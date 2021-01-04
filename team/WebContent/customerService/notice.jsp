@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <link rel="stylesheet" href="../css/customerService.css" type="text/css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -48,68 +49,53 @@
 	                    <h2>고객센터</h2>
 	                </div>
 	            </div>
-			    <div class="col-lg-12">
+	            <div class="col-lg-12">
 			        <div class="blog__details__content">
-			     		<ul class="blog__details__btns" style="text-align: center;">
-	                        <li class="blog__details__btns__item" style="display: inline-block; padding-left: 100px; padding-right: 100px;">
-	                            <h5><a href="#">공지사항</a></h5>
+			     		<ul class="blog__details__btns">
+	                        <li class="blog__details__btns__item">
+	                            <h5><a href="notice.jsp">공지사항</a></h5>
 	                        </li>
-	                        <li class="blog__details__btns__item" style="display: inline-block; padding-left: 100px; padding-right: 100px;">
-	                            <h5><a href="#">자주 묻는 질문</a></h5>
+	                        <li class="blog__details__btns__item">
+	                            <h5><a href="faq.jsp">자주 묻는 질문</a></h5>
 	                        </li>
-	                        <li class="blog__details__btns__item" style="display: inline-block; padding-left: 100px; padding-right: 100px;">
-	                            <h5><a href="#">문의하기</a></h5>
+	                        <li class="blog__details__btns__item">
+	                            <h5><a href="inquireForm.jsp">문의하기</a></h5>
 	                        </li>
                         </ul>
-			     		<div class="blog__details__comment">
-	                        <h4>댓글수</h4>
-	                        <div class="blog__details__comment__item">
-	                            <div class="blog__details__comment__item__text">
-	                                <span>댓글날짜</span>
-	                                <h5>아이디</h5>
-	                                <p>댓글내용댓글내용</p>
-	                                <a href="#">수정</a>
-	                                <a href="#">삭제</a>
-	                            </div>
-	                        </div>
-	                        <div class="blog__details__comment__item blog__details__comment__item--reply">
-	                            <div class="blog__details__comment__item__text">
-	                                <span>날짜</span>
-	                                <h5>아이디</h5>
-	                                <p>답댓글내용답댓글내용</p>
-	                                <a href="#">수정</a>
-	                                <a href="#">삭제</a>
-	                            </div>
-	                        </div>
-	                        <div class="blog__details__comment__item">
-	                            <div class="blog__details__comment__item__text">
-	                                <span>날짜</span>
-	                                <h5>아이디</h5>
-	                                <p>댓글내용댓글내용</p>
-	                                <a href="#">수정</a>
-	                                <a href="#">삭제</a>
-	                            </div>
-	                        </div>
-	                    </div>
-	                    <div class="blog__details__form">
-	                        <h4>댓글달기</h4>
-	                        <form action="#">
-	                            <div class="row">
-	                                <div class="col-lg-6 col-md-6 col-sm-6">
-	                                    <input type="text" placeholder="Name">
-	                                </div>
-	                                <div class="col-lg-6 col-md-6 col-sm-6">
-	                                    <input type="text" placeholder="Email">
-	                                </div>
-	                                <div class="col-lg-12">
-	                                    <textarea placeholder="Message"></textarea>
-	                                    <button type="submit" class="site-btn">입력</button>
-	                                </div>
-	                            </div>
-	                        </form>
-	                    </div>
-	                </div>
-	            </div>
+                        <div class="blog__details__form" style="color: #ffffff;">
+	                        <h4>공지사항</h4>
+						    <table class="notice_table">
+							<colgroup>
+								<col style="width:10%;">
+								<col style="width:*">
+								<col style="width:15%;">
+								<col style="width:10%;">
+							</colgroup>
+							<thead>
+							<tr>
+								<th>번호</th>
+								<th style="text-align: left;">제목</th>
+								<th>등록일</th>
+								<th>조회수</th>
+							</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td style="color: red;"><span>공지</span></td>
+									<td class="table_title"><a href="noticeView.jsp" class="table_title">제목입니다제목입니다</a></td>
+									<td>2020.12.28</td>	
+									<td>233</td>
+								</tr>
+							</tbody>
+							</table>
+						</div>
+						<div class="paging">
+							<div>&lt;<span class="current">1</span>
+							<a href="" data-page-no="2" title="2페이지">2</a>
+							&gt;</div>
+						</div>
+					</div>		
+				</div>			
 	        </div>
 		</div>
     </section>

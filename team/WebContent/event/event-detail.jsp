@@ -54,84 +54,33 @@
 	                        <img src="../img/blog/details/blog-details-pic.jpg" alt="">
 	                    </div>
 	                </div>
-                <div class="col-lg-8">
-                    <div class="blog__details__content">
-                        <div class="blog__details__text">
-                            <p>11이벤트 설정</p>
-                        </div>
-                        <div class="blog__details__item__text">
-                            <h4>이벤트명</h4>
-                            <img src="../img/blog/details/bd-item-1.jpg" alt="">
-                            <p>이벤트 설명</p>
-                        </div>
-                        <div class="blog__details__tags">
-                            <a href="#">태그1</a>
-                            <a href="#">태그2</a>
-                            <a href="#">태그3</a>
-                        </div>
-                        <div class="blog__details__btns">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="blog__details__btns__item">
-                                        <h5><a href="#"><span class="arrow_left"></span>이전페이지</a>
-                                        </h5>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="blog__details__btns__item next__btn">
-                                        <h5><a href="#">다음페이지<span class="arrow_right"></span></a></h5>
+	                <div class="col-lg-12">
+	                    <div class="blog__details__content">
+	                        <div class="blog__details__item__text">
+	                            <h4>이벤트명</h4>
+	                            <p>이벤트 설명</p>
+	                        </div>
+	                        <div class="blog__details__tags">
+	                            <a href="#">태그1</a>
+	                            <a href="#">태그2</a>
+	                            <a href="#">태그3</a>
+	                        </div>
+	                        <div class="blog__details__btns">
+	                            <div class="row">
+	                                <div class="col-lg-6" style="float: left; width: 50%;">
+	                                    <div class="blog__details__btns__item" >
+	                                        <h5><a href="#"><span class="arrow_left"></span>이전페이지</a>
+	                                        </h5>
+	                                    </div>
+	                                </div>
+	                                <div class="col-lg-6" style="float: left; width: 50%;">
+	                                    <div class="blog__details__btns__item next__btn">
+	                                        <h5><a href="#">다음페이지<span class="arrow_right"></span></a></h5>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="blog__details__comment">
-                                <h4>댓글수</h4>
-                                <div class="blog__details__comment__item">
-                                    <div class="blog__details__comment__item__text">
-                                        <span>댓글날짜</span>
-                                        <h5>아이디</h5>
-                                        <p>댓글내용댓글내용</p>
-                                        <a href="#">수정</a>
-                                        <a href="#">삭제</a>
-                                    </div>
-                                </div>
-                                <div class="blog__details__comment__item blog__details__comment__item--reply">
-                                    <div class="blog__details__comment__item__text">
-                                        <span>날짜</span>
-                                        <h5>아이디</h5>
-                                        <p>답댓글내용답댓글내용</p>
-                                        <a href="#">수정</a>
-                                        <a href="#">삭제</a>
-                                    </div>
-                                </div>
-                                <div class="blog__details__comment__item">
-                                    <div class="blog__details__comment__item__text">
-                                        <span>날짜</span>
-                                        <h5>아이디</h5>
-                                        <p>댓글내용댓글내용</p>
-                                        <a href="#">수정</a>
-                                        <a href="#">삭제</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="blog__details__form">
-                                <h4>댓글달기</h4>
-                                <form action="#">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-sm-6">
-                                            <input type="text" placeholder="Name">
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-6">
-                                            <input type="text" placeholder="Email">
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <textarea placeholder="Message"></textarea>
-                                            <button type="submit" class="site-btn">입력</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                         	</div>
+                    	</div>
                     </div>
                 </div>
             </div>
