@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <html lang="zxx">
 <head>
     <meta charset="UTF-8">
@@ -29,16 +31,11 @@
     <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="../css/style.css" type="text/css">
     <link rel="stylesheet" href="../css/signup.css" type="text/css">
-    
+   
     <script type="text/javascript">
-	  //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
     function sample4_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
                 var roadAddr = data.roadAddress; // 도로명 주소 변수
                 var extraRoadAddr = ''; // 참고 항목 변수
 
@@ -86,8 +83,43 @@
             }
         }).open();
     }
-    	
-    	
+    function idCheck(){
+		var userID = document.userForm.userID.value;
+		if(userID==""){
+			alert("아이디를 입력하세요.");
+			document.userForm.userID.focus();
+			return
+		}
+		window.open("${contextPath}/user/idCheck.do?userID="+userID, "" , "width=500,height=200")
+	}
+    
+	function resetCheck() {
+		document.userForm.idCheckState.value = 0;
+	}
+	
+	function check(){
+		if (document.userForm.idCheckState.value != 1) {
+			confirm("아이디 중복체크를 해주세요.");
+			return false;
+		}
+		if (document.userForm.userPW.value == "") {
+            alert("비밀번호를 입력하지 않았습니다.")
+            document.userForm.userPW.focus();
+            return false;
+        }
+        if (userForm.userPW.value == userForm.userID.value) {
+            alert("아이디와 비밀번호가 같습니다.")
+            document.userForm.userPw.focus();
+            return false;
+        }
+        if (document.userForm.userPW.value != document.userForm.userPW2.value) {
+            alert("비밀번호가 일치하지 않습니다")
+            document.userForm.userPW2.value = ""
+            document.userForm.userPW2.focus();
+            return false;
+        }
+	}
+    
     </script>
 </head>
 <body>
@@ -118,52 +150,64 @@
     <section class="signup spad">
         <div class="container">
             <div >
-                
                     <div class="join__form">
                     	<div  style="margin-left: 160px;">
                     		<h3 >Sign Up</h3>
                     	</div>
-                        <form action="#">
+                        <form action="${contextPath}/user/signup.do" method="post"  name="userForm" onsubmit="return check();">
+                        	<input type="hidden" name="idCheckState" value="0" />
                             <div class="input__item" style="margin-left: 50px;">
-                                <input type="text" placeholder="아이디">
+                                <input type="text" placeholder="아이디" name="userID" id="userID" onkeyup="resetCheck()" required="required">
                                 <span class="icon_profile"></span>
+                                <button type="button"  class="site-btn" onclick="idCheck()"> 중복확인</button>
                             </div>
                             <div class="input__item" style="margin-left: 50px;">
-                                <input type="text" placeholder="비밀번호">
+                                <input type="password" placeholder="비밀번호" name="userPW" id="userPW" required="required">
                                 <span class="icon_lock"></span>
                             </div>
                             <div class="input__item" style="margin-left: 50px;">
-                                <input type="text" placeholder="비밀번호 확인">
+                                <input type="password" placeholder="비밀번호 확인" name="userPW2" id="userPW2" required="required">
                                 <span class="icon_lock"></span>
                             </div>
                             <div class="input__item" style="margin-left: 50px;">
-                                <input type="text" placeholder="사용자 이름">
+                                <input type="text" placeholder="사용자 이름" name="userName" >
                                 <span class="icon_profile"></span>
                             </div>
 							<div class="input__item" style="margin-left: 50px;">
-                                <input type="text" placeholder="닉네임">
+                                <input type="text" placeholder="닉네임" name="userNickname" required="required">
                                 <span class="icon_profile"></span>
                             </div>
+							<div class="input__item" style="margin-left: 50px;">
+                                <input type="text" placeholder="전화번호" name=userTel required="required">
+                                <span class="icon_phone"></span>
+                            </div>
                             <div class="input__item" style="margin-left: 50px;">
-                                <input type="text" placeholder="Email address">
+                                <input type="text" placeholder="Email address" name="userEmail" required="required">
                                 <span class="icon_mail"></span>
                             </div>
                             
                             <div class="input__item" style="margin-left: 50px;">
-                            	<label for="address">주소</label> <br />
-                            	<input type="text" id="sample4_postcode"   placeholder="우편번호" name="address" readonly="readonly">
-                            	<button type="button" onclick="sample4_execDaumPostcode()"> 우편번호 찾기 </button>
+                            	<input type="text" id="sample4_postcode"   placeholder="우편번호" name="userAddr1" readonly="readonly">
+                            	<span class="icon_pencil"></span>
+                            	<button type="button" onclick="sample4_execDaumPostcode()" class="site-btn"> 우편번호 찾기 </button>
                             	<!-- <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br> -->
                             </div>
         
                             <div class="input__item" style="margin-left: 50px;">
-                            	<input type="text" id="sample4_roadAddress"  placeholder="도로명주소" name="userAddr1" readonly="readonly">
-                            	<input type="text" id="sample4_jibunAddress"  placeholder="지번주소" name="address2" readonly="readonly">
+                            	<input type="text" id="sample4_roadAddress"  placeholder="도로명주소" name="userAddr2" readonly="readonly">
+                            	<span class="icon_pencil"></span>
+                            </div>
+                            <div class="input__item" style="margin-left: 50px;">
+                            	<input type="text" id="sample4_jibunAddress"  placeholder="지번주소" name="userAddr3" readonly="readonly">
+                            	<span class="icon_pencil"></span>
+                            </div>
+                            <div class="input__item" style="margin-left: 50px;">
 								<span id="guide" style="color:#999;display:none"></span>
-								<input type="text" id="sample4_extraAddress" placeholder="상세주소" name="address3">
+								<input type="text" id="sample4_extraAddress" placeholder="상세주소" name="userAddr4">
+								<span class="icon_pencil"></span>
                             </div>
 				  	     	<div style="margin-left: 140px;">
-                            	<button type="submit" class="site-btn" >Login Now</button>	
+                            	<button type="submit" class="site-btn" >Sign Up Now</button>	
                            	</div>
                         </form>
                     </div>

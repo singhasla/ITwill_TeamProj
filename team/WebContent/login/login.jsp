@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <html lang="zxx">
 
 <head>
@@ -58,13 +60,13 @@
                 <div class="col-lg-6">
                     <div class="login__form">
                         <h3>Login</h3>
-                        <form action="#">
+                        <form action="${contextPath}/user/login.do" method="post">
                             <div class="input__item">
-                                <input type="text" placeholder="Email address">
+                                <input type="text"  name="userID" required autofocus />
                                 <span class="icon_mail"></span>
                             </div>
                             <div class="input__item">
-                                <input type="text" placeholder="Password">
+                                <input type="password"  name="userPW" required autofocus />
                                 <span class="icon_lock"></span>
                             </div>
                             <button type="submit" class="site-btn">Login Now</button>
@@ -75,28 +77,29 @@
                 <div class="col-lg-6">
                     <div class="login__register">
                         <h3>Dont’t Have An Account?</h3>
-                        <a href="./signup.jsp" class="primary-btn">Register Now</a>
+                        <a href="${contextPath}/user/signupForm.do" class="primary-btn">Register Now</a>
                     </div>
                 </div>
             </div>
-<!--             <div class="login__social">
-                <div class="row d-flex justify-content-center">
-                    <div class="col-lg-6">
-                        <div class="login__social__links">
-                            <span>or</span>
-                            <ul>
-                                <li><a href="#" class="facebook"><i class="fa fa-facebook"></i> Sign in With
-                                Facebook</a></li>
-                                <li><a href="#" class="google"><i class="fa fa-google"></i> Sign in With Google</a></li>
-                                <li><a href="#" class="twitter"><i class="fa fa-twitter"></i> Sign in With Twitter</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </section>
+    
+	    <c:choose>
+		<c:when test='${msg=="id"}'>
+			<script>
+				window.onload = function(){
+					window.alert("존재하지 않는 아이디 입니다.");
+				}
+			</script>
+		</c:when>
+		<c:when test='${msg=="pw"}'>
+			<script>
+				window.onload = function(){
+					window.alert("비밀번호가 일치하지 않습니다.");
+				}
+			</script>
+		</c:when>
+	</c:choose>
     <!-- Login Section End -->
 
    <jsp:include page="../inc/footer.jsp" />

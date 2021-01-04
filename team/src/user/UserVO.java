@@ -3,8 +3,8 @@ package user;
 import java.sql.Timestamp;
 
 public class UserVO {
-	private String userId;
-	private String userPw; 
+	private String userID;
+	private String userPW; 
 	private String userName;
 	private String userNickname; 
 	private String userTel; 
@@ -20,21 +20,43 @@ public class UserVO {
 		
 	}
 
-	public String getUserId() {
-		return userId;
+	
+
+	public UserVO(String userID, String userPW, String userName, String userNickname, String userTel, String userEmail,
+			String userAddr1, String userAddr2, String userAddr3, String userAddr4) {
+		this.userID = userID;
+		this.userPW = userPW;
+		this.userName = userName;
+		this.userNickname = userNickname;
+		this.userTel = userTel;
+		this.userEmail = userEmail;
+		this.userAddr1 = userAddr1;
+		this.userAddr2 = userAddr2;
+		this.userAddr3 = userAddr3;
+		this.userAddr4 = userAddr4;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+
+
+	public String getUserID() {
+		return userID;
 	}
 
-	public String getUserPw() {
-		return userPw;
+
+	public void setUserID(String userID) {
+		this.userID = userID;
 	}
 
-	public void setUserPw(String userPw) {
-		this.userPw = userPw;
+
+	public String getUserPW() {
+		return userPW;
 	}
+
+
+	public void setUserPW(String userPW) {
+		this.userPW = userPW;
+	}
+
 
 	public String getUserName() {
 		return userName;
