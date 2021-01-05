@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+
+<%
+	request.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -59,7 +66,7 @@
     <section class="blog spad">
         <div class="container">
         	<h3>이벤트 등록</h3>
-            <form action="${contextPath}/event/addEvent.do" method="post" enctype="multipart/form-data" class="eventForm">	
+            <form action="${contextPath}/eventServlet/addEvent.do" method="post" enctype="multipart/form-data" class="eventForm">	
 				<input type="hidden" name="id" value="${id}"/>
 				<table class="table">
 					<colgroup>
