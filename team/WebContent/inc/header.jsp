@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<!DOCTYPE html>
     <!-- Header Section Begin -->
     <header class="header">
         <div class="container">
@@ -8,7 +10,7 @@
                 <div class="col-lg-2">
                     <div class="header__logo">
                         <a href="../main/index.jsp">
-                            <img src="../img/logo.png" alt="">
+                            <img src="${contextPath }/img/logo.png" alt="">
                         </a>
                     </div>
                 </div>
@@ -36,7 +38,20 @@
                         <a href="#" ><span class="icon_cart"></span></a>
                        <!-- 위시리스트 아이콘 입니다 -->
                        <!--  <a href="#" ><span class="icon_star"></span></a> -->
-                        <a href="../login/login.jsp"><span class="icon_profile"></span></a>
+	                      <c:choose>
+		                       <c:when test="${sessionScope.userID!=null}">		
+		                        <a href="${contextPath}/user/logout.do" ><span class="icon_lock-open"></span></a>
+	                        	<c:if test='${userID=="admin"}'>
+	                       			<a href="${contextPath}/adminPage/dashBoard.do" ><span class="icon_datareport"></span></a>
+								</c:if>
+	                       		<a href="#"><span class="icon_profile"></span></a>
+	                       		<p style="color: white;">${sessionScope.userID}님 로그인중</p>
+		                       	
+		                       </c:when>
+		                       <c:otherwise>
+		                       		<a href="../login/login.jsp"><span class="icon_profile"></span></a>
+		                       </c:otherwise>
+	                       </c:choose>
                     </div>
                 </div>
             </div>
