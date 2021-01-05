@@ -93,8 +93,19 @@
 		window.open("${contextPath}/user/idCheck.do?userID="+userID, "" , "width=500,height=200")
 	}
     
-	function resetCheck() {
+	function resetCheck1() {
 		document.userForm.idCheckState.value = 0;
+	}
+	
+	function resetCheck2() {
+		document.userForm.nicknameCheckState.value = 0;
+	}
+	
+	function resetCheck3() {
+		document.userForm.telCheckState.value = 0;
+	}
+	function resetCheck4() {
+		document.userForm.emailCheckState.value = 0;
 	}
 	
 	function check(){
@@ -156,10 +167,13 @@
                     	</div>
                         <form action="${contextPath}/user/signup.do" method="post"  name="userForm" onsubmit="return check();">
                         	<input type="hidden" name="idCheckState" value="0" />
-                            <div class="input__item" style="margin-left: 50px;">
-                                <input type="text" placeholder="아이디" name="userID" id="userID" onkeyup="resetCheck()" required="required">
+                        	<input type="hidden" name="nicknameCheckState" value="0" />
+                        	<input type="hidden" name="telCheckState" value="0" />
+                        	<input type="hidden" name="emailCheckState" value="0" />
+                            <div class="input__item1" style="margin-left: 50px; display: flex">
+                                <input type="text" placeholder="아이디" name="userID" id="userID" onkeyup="resetCheck()1" required="required">
                                 <span class="icon_profile"></span>
-                                <button type="button"  class="site-btn" onclick="idCheck()"> 중복확인</button>
+                                <button type="button"  class="site-btn-join" onclick="idCheck()" > 중복확인</button>
                             </div>
                             <div class="input__item" style="margin-left: 50px;">
                                 <input type="password" placeholder="비밀번호" name="userPW" id="userPW" required="required">
@@ -173,23 +187,26 @@
                                 <input type="text" placeholder="사용자 이름" name="userName" >
                                 <span class="icon_profile"></span>
                             </div>
-							<div class="input__item" style="margin-left: 50px;">
-                                <input type="text" placeholder="닉네임" name="userNickname" required="required">
+							<div class="input__item1" style="margin-left: 50px;  display: flex">
+                                <input type="text" placeholder="닉네임" name="userNickname" onkeyup="resetCheck2()" required="required">
                                 <span class="icon_profile"></span>
+                                <button type="button"  class="site-btn-join" onclick="idCheck()" > 중복확인</button>
                             </div>
-							<div class="input__item" style="margin-left: 50px;">
-                                <input type="text" placeholder="전화번호" name=userTel required="required">
+							<div class="input__item1" style="margin-left: 50px; display: flex">
+                                <input type="text" placeholder="전화번호" name=userTel onkeyup="resetCheck3()" required="required">
                                 <span class="icon_phone"></span>
+                                <button type="button"  class="site-btn-join" onclick="idCheck()" > 중복확인</button>
                             </div>
-                            <div class="input__item" style="margin-left: 50px;">
-                                <input type="text" placeholder="Email address" name="userEmail" required="required">
+                            <div class="input__item1" style="margin-left: 50px; display: flex">
+                                <input type="text" placeholder="Email address" name="userEmail" onkeyup="resetCheck4()" required="required">
                                 <span class="icon_mail"></span>
+                                <button type="button"  class="site-btn-join" onclick="idCheck()" > 중복확인</button>
                             </div>
                             
-                            <div class="input__item" style="margin-left: 50px;">
+                            <div class="input__item1" style="margin-left: 50px; display: flex">
                             	<input type="text" id="sample4_postcode"   placeholder="우편번호" name="userAddr1" readonly="readonly">
                             	<span class="icon_pencil"></span>
-                            	<button type="button" onclick="sample4_execDaumPostcode()" class="site-btn"> 우편번호 찾기 </button>
+                            	<button type="button" onclick="sample4_execDaumPostcode()" class="site-btn-join">주소찾기</button>
                             	<!-- <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br> -->
                             </div>
         
