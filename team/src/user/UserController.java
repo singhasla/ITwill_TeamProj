@@ -87,28 +87,75 @@ public class UserController extends HttpServlet{
 			
 		} else if (action.equals("/login.do")) {
 			
-			String userID = request.getParameter("userID");
-			String userPW = request.getParameter("userPW");
-			
-			int check = userDAO.login(userID, userPW);
-			
-			if(check == 0){
-				nextPage = "/login/login.jsp";//아이디 없음
-				request.setAttribute("msg", "id");
-			}else if(check == 2){
-				nextPage = "/login/login.jsp";//비밀번호틀림
-				request.setAttribute("msg", "pw");
-			}else{
+				String userID = request.getParameter("userID");
+				String userPW = request.getParameter("userPW");
 				
-				session.setAttribute("userID", userID);
-				nextPage = "/main/index.jsp";
-			}
+				int check = userDAO.login(userID, userPW);
+				
+				if(check == 0){
+					nextPage = "/login/login.jsp";//아이디 없음
+					request.setAttribute("msg", "id");
+				}else if(check == 2){
+					nextPage = "/login/login.jsp";//비밀번호틀림
+					request.setAttribute("msg", "pw");
+				}else{
+					
+					session.setAttribute("userID", userID);
+					nextPage = "/main/index.jsp";
+				}
 			
 			
 			} else if (action.equals("/logout.do")) {
 				session.invalidate();
 				nextPage = "/main/index.jsp";
+				
+			} else if (action.equals("/nickCheck.do")) {
+				String userNickname = request.getParameter("userNickname");
+				request.setAttribute("userNickname", userNickname);
+				int check = userDAO.nickCheck(userNickname);
+				
+				System.out.println(userNickname);
+				if (check == 1) {
+					request.setAttribute("msg", "used");
+					System.out.println("사용중");
+				} else {
+					request.setAttribute("msg", "allow");
+					System.out.println("가능");
+				}
+				
+				nextPage = "/login/nick.jsp";
+			} else if (action.equals("/telCheck.do")) {
+				String userTel = request.getParameter("userTel");
+				request.setAttribute("userTel", userTel);
+				int check = userDAO.telCheck(userTel);
+				
+				System.out.println(userTel);
+				if (check == 1) {
+					request.setAttribute("msg", "used");
+					System.out.println("사용중");
+				} else {
+					request.setAttribute("msg", "allow");
+					System.out.println("가능");
+				}
+				
+				nextPage = "/login/telCheck.jsp";
+			} else if (action.equals("/mailCheck.do")) {
+				String userEmail = request.getParameter("userEmail");
+				request.setAttribute("userEmail", userEmail);
+				int check = userDAO.mailCheck(userEmail);
+				
+				System.out.println(userEmail);
+				if (check == 1) {
+					request.setAttribute("msg", "used");
+					System.out.println("사용중");
+				} else {
+					request.setAttribute("msg", "allow");
+					System.out.println("가능");
+				}
+				
+				nextPage = "/login/mailCheck.jsp";
 			}
+		
 			
 		/*	else if (action.equals("/logo.png")) {
 				

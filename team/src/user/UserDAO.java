@@ -127,6 +127,80 @@ public class UserDAO {
 		return check;
 	}//로그인
 
+	public int nickCheck(String userNickname) {
+		int check = 0;
+		try {
+			conn = getConnection();
+			String sql ="select userNickname from user where userNickname =?";
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setString(1, userNickname);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				check=1; //중복
+			}else{
+				check =0;
+			}
+			
+			
+		} catch (Exception e) {
+			System.out.println("nickCheck메소드  오류: " + e);
+		}finally {
+			discon();
+		}
+		
+		return check;
+	}
+
+	public int telCheck(String userTel) {
+		int check = 0;
+		try {
+			conn = getConnection();
+			String sql ="select userTel from user where userTel =?";
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setString(1, userTel);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				check=1; //중복
+			}else{
+				check =0;
+			}
+			
+			
+		} catch (Exception e) {
+			System.out.println("telCheck메소드  오류: " + e);
+		}finally {
+			discon();
+		}
+		
+		return check;
+	}
+
+	public int mailCheck(String userEmail) {
+		int check = 0;
+		try {
+			conn = getConnection();
+			String sql ="select userEmail from user where userEmail =?";
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setString(1, userEmail);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				check=1; //중복
+			}else{
+				check =0;
+			}
+
+		} catch (Exception e) {
+			System.out.println("emailCheck 메소드  오류: " + e);
+		}finally {
+			discon();
+		}
+		
+		return check;
+	}
+
 	
 	
 	

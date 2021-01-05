@@ -93,6 +93,36 @@
 		window.open("${contextPath}/user/idCheck.do?userID="+userID, "" , "width=500,height=200")
 	}
     
+    function nickCheck(){
+		var userNickname = document.userForm.userNickname.value;
+		if(userNickname==""){
+			alert("닉네임을 입력하세요.");
+			document.userForm.userNickname.focus();
+			return
+		}
+		window.open("${contextPath}/user/nickCheck.do?userNickname="+userNickname, "" , "width=500,height=200")
+	}
+    
+    function telCheck(){
+		var userTel = document.userForm.userTel.value;
+		if(userTel==""){
+			alert("전화번호를 입력하세요.");
+			document.userForm.userTel.focus();
+			return
+		}
+		window.open("${contextPath}/user/telCheck.do?userTel="+userTel, "" , "width=500,height=200")
+	}
+    
+    function mailCheck(){
+		var userEmail = document.userForm.userEmail.value;
+		if(userEmail==""){
+			alert("이메일을 입력하세요.");
+			document.userForm.userEmail.focus();
+			return
+		}
+		window.open("${contextPath}/user/mailCheck.do?userEmail="+userEmail, "" , "width=500,height=200")
+	}
+    
 	function resetCheck1() {
 		document.userForm.idCheckState.value = 0;
 	}
@@ -111,6 +141,18 @@
 	function check(){
 		if (document.userForm.idCheckState.value != 1) {
 			confirm("아이디 중복체크를 해주세요.");
+			return false;
+		}
+		if (document.userForm.nicknameCheckState.value != 1) {
+			confirm("닉네임 중복체크를 해주세요.");
+			return false;
+		}
+		if (document.userForm.telCheckState.value != 1) {
+			confirm("전화번호 중복체크를 해주세요.");
+			return false;
+		}
+		if (document.userForm.emailCheckState.value != 1) {
+			confirm("이메일 중복체크를 해주세요.");
 			return false;
 		}
 		if (document.userForm.userPW.value == "") {
@@ -190,17 +232,17 @@
 							<div class="input__item1" style="margin-left: 50px;  display: flex">
                                 <input type="text" placeholder="닉네임" name="userNickname" onkeyup="resetCheck2()" required="required">
                                 <span class="icon_profile"></span>
-                                <button type="button"  class="site-btn-join" onclick="idCheck()" > 중복확인</button>
+                                <button type="button" class="site-btn-join" onclick="nickCheck()" > 중복확인</button>
                             </div>
 							<div class="input__item1" style="margin-left: 50px; display: flex">
                                 <input type="text" placeholder="전화번호" name=userTel onkeyup="resetCheck3()" required="required">
                                 <span class="icon_phone"></span>
-                                <button type="button"  class="site-btn-join" onclick="idCheck()" > 중복확인</button>
+                                <button type="button"  class="site-btn-join" onclick="telCheck()" > 중복확인</button>
                             </div>
                             <div class="input__item1" style="margin-left: 50px; display: flex">
-                                <input type="text" placeholder="Email address" name="userEmail" onkeyup="resetCheck4()" required="required">
+                                <input type="email" placeholder="이메일 주소 " name="userEmail" onkeyup="resetCheck4()" required="required">
                                 <span class="icon_mail"></span>
-                                <button type="button"  class="site-btn-join" onclick="idCheck()" > 중복확인</button>
+                                <button type="button"  class="site-btn-join" onclick="mailCheck()" > 중복확인</button>
                             </div>
                             
                             <div class="input__item1" style="margin-left: 50px; display: flex">
