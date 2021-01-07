@@ -67,7 +67,7 @@
         <div class="container">
         	<h3>이벤트 등록</h3>
             <form action="${contextPath}/eventServlet/addEvent.do" method="post" enctype="multipart/form-data" class="eventForm">	
-				<input type="hidden" name="id" value="${id}"/>
+				
 				<table class="table">
 					<colgroup>
 						<col width="20%">
@@ -77,19 +77,19 @@
 						<tr>
 							<th>제목</th>
 							<td>
-								<input type="text" placeholder="제목을 입력해 주세요." class="widhun">
+								<input type="text" name="eventTitle" placeholder="제목을 입력해 주세요." class="widhun">
 							</td>
 						</tr>
 						<tr>
 							<th>내용</th>
 							<td>
-								<textarea cols="40" rows="15" placeholder="내용을 입력해 주세요." class="widhun"></textarea>
+								<textarea cols="40" rows="15" name="eventContent" placeholder="내용을 입력해 주세요." class="widhun"></textarea>
 							</td>
 						</tr>
 						<tr>
 							<th>첨부파일</th>
 							<td>
-								<input type="file" class="">
+								<input type="file" name="eventImage">
 							</td>
 						</tr>
 					</tbody>

@@ -87,3 +87,8 @@ h3 {
     border-radius: 4px;
     margin-left: 10px;
 }
+
+col-lg-6, .next {
+	float: left;
+	widows: 50%;
+}

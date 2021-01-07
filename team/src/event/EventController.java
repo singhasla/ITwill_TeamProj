@@ -44,7 +44,7 @@ public class EventController extends HttpServlet {
 		doHandle(request, response);
 	}
 	
-	private void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		EventVO eventVO = new EventVO();
 		
@@ -53,7 +53,7 @@ public class EventController extends HttpServlet {
 		String nextPage = "";
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=utf-8");
-		HttpSession session;
+		HttpSession session = request.getSession();
 		
 		String action = request.getPathInfo();
 		
@@ -86,10 +86,11 @@ public class EventController extends HttpServlet {
 				
 				int eventNo = 0;
 				Map<String, String> eventMap = upload(request, response);
-				
+	
 				String title = eventMap.get("eventTitle");
-				String content = eventMap.get("eventCotent");
+				String content = eventMap.get("eventContent");
 				String imageFileName = eventMap.get("eventImage");
+				
 				
 				eventVO.setEventTitle(title);
 				eventVO.setEventContent(content);
@@ -108,8 +109,8 @@ public class EventController extends HttpServlet {
 				
 				PrintWriter out = response.getWriter();
 				out.print("<script>");
-				out.print("window.alert('새글을 추가했습니다.')");
-				out.print("location.href='" + request.getContextPath() + "/eventServlet/event.do';");
+				out.print("window.alert('새글을 추가했습니다.');");
+				out.print("location.href='" + request.getContextPath() + "/eventServlet/listEvent.do'");
 				out.print("</script>");
 				return;
 				

@@ -3,7 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
@@ -64,6 +63,7 @@
     <!-- Event Section Begin -->
     <section class="blog spad">
         <div class="container">
+        	<!-- 검색  -->
         	<div class="faq-search-box">
 				<div class="form-box tmg0">
 					<input type="text" class="search">
@@ -81,48 +81,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item small__item set-bg" data-setbg="../img/blog/blog-4.jpg">
-                                <div class="blog__item__text">
-                                    <p><span class="icon_calendar"></span>2번</p>
-                                    <h4><a href="event-detail.jsp">이벤트명</a></h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item small__item set-bg" data-setbg="../img/blog/blog-5.jpg">
-                                <div class="blog__item__text">
-                                    <p><span class="icon_calendar"></span>3번</p>
-                                    <h4><a href="event-detail.jsp">이벤트명</a></h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="blog__item set-bg" data-setbg="../img/blog/blog-7.jpg">
-                                <div class="blog__item__text">
-                                    <p><span class="icon_calendar"></span>4번</p>
-                                    <h4><a href="event-detail.jsp">이벤트명</a></h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item small__item set-bg" data-setbg="../img/blog/blog-10.jpg">
-                                <div class="blog__item__text">
-                                    <p><span class="icon_calendar"></span>5번</p>
-                                    <h4><a href="event-detail.jsp">이벤트명</a></h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item small__item set-bg" data-setbg="../img/blog/blog-11.jpg">
-                                <div class="blog__item__text">
-                                    <p><span class="icon_calendar"></span>6번</p>
-                                    <h4><a href="event-detail.jsp">이벤트명</a></h4>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                </div>
+                </div>    
                 <div class="col-lg-6">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
@@ -133,50 +93,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item small__item set-bg" data-setbg="../img/blog/blog-3.jpg">
-                                <div class="blog__item__text">
-                                    <p><span class="icon_calendar"></span>8번</p>
-                                    <h4><a href="event-detail.jsp">이벤트명</a></h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="blog__item set-bg" data-setbg="../img/blog/blog-6.jpg">
-                                <div class="blog__item__text">
-                                    <p><span class="icon_calendar"></span>9번</p>
-                                    <h4><a href="event-detail.jsp">이벤트명</a></h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item small__item set-bg" data-setbg="../img/blog/blog-8.jpg">
-                                <div class="blog__item__text">
-                                    <p><span class="icon_calendar"></span>10번</p>
-                                    <h4><a href="event-detail.jsp">이벤트명</a></h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="blog__item small__item set-bg" data-setbg="../img/blog/blog-9.jpg">
-                                <div class="blog__item__text">
-                                    <p><span class="icon_calendar"></span>11번</p>
-                                    <h4><a href="event-detail.jsp">이벤트명</a></h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="blog__item set-bg" data-setbg="../img/blog/blog-12.jpg">
-                                <div class="blog__item__text">
-                                    <p><span class="icon_calendar"></span>12번</p>
-                                    <h4><a href="event-detail.jsp">이벤트명</a></h4>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
-            <a class="site-btn submit" href="${contextPath}/eventServlet/eventForm.do">이벤트등록</a>
+            
+            <!-- 이벤트 등록버튼 -->
+            <c:if test="${userID eq 'admin'}">
+           		<a class="site-btn submit" href="${contextPath}/eventServlet/eventForm.do">이벤트등록</a>
+            </c:if>
+            
         </div>
     </section>
     <!-- Event Section End -->

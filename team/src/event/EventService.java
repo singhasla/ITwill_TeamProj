@@ -14,16 +14,35 @@ public class EventService {
 	
 	public Map listEvents(Map pagingMap){
 		Map eventMap = new HashMap();
-		List<EventVO> eventList = eventDAO.selectAllEvent();
-		eventDAO.selectAllEvent();
-
+		List<EventVO> eventList = eventDAO.selectAllEvents(pagingMap);
+		int allEvents = eventDAO.allEvents(pagingMap);
+		eventMap.put("eventList", eventList);
+		eventMap.put("allEvents", allEvents);
 		return eventMap;
 	}
-	
-	public int addEvent(EventVO event){
+	//이벤트글 추가
+	public int addEvent(EventVO event) {
+		
 		return eventDAO.insertNewEvent(event);
 	}
 	
+	//이벤트글 상세정보 조회
+	public EventVO viewEvent(int eventNo) {
+		EventVO event = null;
+		event = eventDAO.selectEvent(eventNo);
+		return event;
+	}
 	
+	//이벤트글 수정
+	public void modEvent(EventVO event) {
+		eventDAO.updateEvent(event);
+	}
+	
+	//이벤트글 삭제
+	public List<Integer> removeEvent(int eventNo) {
+		List<Integer> eventNoList = eventDAO.selectRemoveEvents(eventNo);
+		eventDAO.deleteEvent(eventNo);
+		return eventNoList;
+	}
 	
 }
