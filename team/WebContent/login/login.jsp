@@ -71,7 +71,10 @@
                             </div>
                             <button type="submit" class="site-btn">Login Now</button>
                         </form>
-                        <a href="#" class="forget_pass">Forgot Your Password?</a>
+                        <div>
+                        	<a href="${contextPath}/user/findId.do" class="forget_pass">Forgot Your ID?</a>
+                        	<a href="#" class="forget_pass">Forgot Your Password?</a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-6">

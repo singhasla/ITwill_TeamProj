@@ -154,6 +154,28 @@ public class UserController extends HttpServlet{
 				}
 				
 				nextPage = "/login/mailCheck.jsp";
+				
+			} else if (action.equals("/findId.do")) {
+				
+				nextPage = "/login/idFind.jsp";
+			} else if (action.equals("/loginPage.do")) {
+				
+				nextPage = "/login/login.jsp";
+				
+			} else if (action.equals("/idfindAct.do")) {
+				String userName = request.getParameter("userName");
+				String userEmail = request.getParameter("userEmail");
+				
+				String userID = userDAO.idFind(userName,userEmail);
+				
+				if (userID == null || userID.equals("")) {
+					request.setAttribute("msg", "no");
+					nextPage = "/login/idFind.jsp";
+				} else {
+					request.setAttribute("userID", userID);
+					nextPage = "/login/idFind.jsp";
+				}
+				
 			}
 		
 			

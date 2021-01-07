@@ -201,6 +201,29 @@ public class UserDAO {
 		return check;
 	}
 
+	public String idFind(String userName, String userEmail) {
+		String userID ="";
+		
+		try {
+			conn = getConnection();
+			String sql ="select userID from user where userName =? and userEmail =?";
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setString(1, userName);
+			pstmt.setString(2, userEmail);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				userID = rs.getString("userID");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("idfind 메소드 실행중 오류 " + e);
+		}finally {
+			discon();
+		}
+
+		return userID;
+	}
+
 	
 	
 	
