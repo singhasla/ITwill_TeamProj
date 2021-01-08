@@ -72,10 +72,10 @@ public class EventController extends HttpServlet {
 				pagingMap.put("section", section);
 				pagingMap.put("pageNum", pageNum);
 				
-				Map eventsMap = eventService.listEvents(pagingMap);
-				eventsMap.put("section", section);
-				eventsMap.put("pageNum", pageNum);
-				request.setAttribute("eventsMap", eventsMap);
+				Map eventMap = eventService.listEvents(pagingMap);
+				eventMap.put("section", section);
+				eventMap.put("pageNum", pageNum);
+				request.setAttribute("eventMap", eventMap);
 				nextPage = "/event/event.jsp";
 				
 			} else if (action.equals("/eventForm.do")) {
@@ -108,15 +108,91 @@ public class EventController extends HttpServlet {
 				}
 				
 				PrintWriter out = response.getWriter();
-				out.print("<script>");
-				out.print("window.alert('새글을 추가했습니다.');");
-				out.print("location.href='" + request.getContextPath() + "/eventServlet/listEvent.do'");
-				out.print("</script>");
+				out.print("<script>"
+						 + " window.alert('새글을 추가했습니다.');"
+						 + " location.href='" + request.getContextPath() + "/eventServlet/listEvent.do';"
+						 + "</script>"
+						 );
 				return;
 				
+			} else if(action.equals("/event-detail.do")) {
+				
+				EventDAO eventDAO = new EventDAO();
+				int eventNo = Integer.parseInt(request.getParameter("eventNo"));
+				eventVO = eventService.viewEvent(eventNo);
+				request.setAttribute("event", eventVO);
+				
+				nextPage = "/event/event-detail.jsp";
+			
+			} else if(action.equals("/modifyEvent.do")) {	
+				
+				int eventNo = Integer.parseInt(request.getParameter("eventNo"));
+				eventVO = eventService.viewEvent(eventNo);
+				request.setAttribute("event", eventVO);
+				
+				nextPage = "/event/eventUpdate.jsp";
+			
+			} else if(action.equals("/updateEvent.do")) {
+				
+				Map<String, String> eventMap = upload(request, response);
+				
+				int eventNo = Integer.parseInt(eventMap.get("eventNo"));
+				System.out.println(eventNo);
+				eventVO.setEventNo(eventNo);
+				String title = eventMap.get("eventTitle");
+				String content = eventMap.get("eventContent");
+				String eventImage = eventMap.get("eventImage");
+				
+				eventVO.setEventTitle(title);
+				eventVO.setEventContent(content);
+				eventVO.setEventImage(eventImage);
+				eventService.modifyEvent(eventVO);
+				
+				if(eventImage != null && eventImage.length() != 0) {
+					String originalFile = eventMap.get("originalFile");
+					
+					File srcFile = new File(realPath + "\\" + "temp" + "\\" + eventImage);
+					File destDir = new File(realPath + "\\" + eventNo);
+					destDir.mkdir();
+					FileUtils.moveFileToDirectory(srcFile, destDir, true);
+					File oldFile = new File(realPath + "\\" + eventNo + "\\" + originalFile);
+					oldFile.delete();
+				}
+				
+				PrintWriter pw = response.getWriter();
+				pw.print("<script>"
+						+ " window.alert('글을 수정했습니다.');"
+						+ " location.href='" + request.getContextPath()
+						+ "/eventServlet/event-detail.do?eventNo=" + eventNo + "';"
+						+ "</script>"
+						);
+				return;
+				
+			} else if(action.equals("/deleteEvent.do")) {
+				
+				int eventNo = Integer.parseInt(request.getParameter("eventNo"));
+				List<Integer> removeEvent = eventService.removeEvent(eventNo);
+				
+				for(int removeNo : removeEvent ) {
+					File imgDir = new File(realPath + "\\" + removeNo);
+					
+					if(imgDir.exists()) {
+						FileUtils.deleteDirectory(imgDir);
+					}
+				}
+				
+				PrintWriter pw = response.getWriter();
+				pw.print("<script>"
+						+ " window.alert('글을 삭제했습니다.');"
+						+ " location.href='"
+						+ request.getContextPath() + "/eventServlet/listEvent.do';"
+						+ "</script>"
+						);
+				return;
+
 			} else {
 				nextPage = "/event/event.jsp";
-			} 
+			}
 			
 			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 			dispatch.forward(request, response);

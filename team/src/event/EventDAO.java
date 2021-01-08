@@ -98,7 +98,7 @@ public class EventDAO {
 				event.setEventTitle(rs.getString("eventTitle"));
 				event.setEventContent(rs.getString("eventContent"));
 				event.setEventImage(rs.getString("eventImage"));
-				event.setEventWriteDate(rs.getTimestamp("eventWrite"));
+				event.setEventWriteDate(rs.getTimestamp("eventWriteDate"));
 				eventList.add(event);
 			}
 			closeAll();
@@ -109,8 +109,9 @@ public class EventDAO {
 		return eventList;
 	}
 	
-	//
-	public int allEvents(Map pagingMap) {
+	//검색어에 해당하는 글번호 얻기
+	public int searchEvents(Map pagingMap) {
+		
 		int section = (Integer)pagingMap.get("section");
 		int pageNum = (Integer)pagingMap.get("pageNum");
 		int startNum = (section - 1)*27 + (pageNum - 1)*9;
@@ -197,9 +198,9 @@ public class EventDAO {
 		 try {
 			conn = getConnection();
 			
-			String sql = "select eventNo, eventTitle, eventContent,"
+			String sql = "select eventNo, eventTitle, eventContent, "
 						+ "eventImage, eventWriteDate"
-						+ "from event where eventNo = ?";
+						+ " from event where eventNo = ?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, eventNo);
@@ -249,27 +250,10 @@ public class EventDAO {
 		}
 	 }
 	 
-	 //이벤트 글 삭제
-	 public void deleteEvent(int eventNo) {
-		 
-		 try {
-			 conn = getConnection();
-			 String sql = "delete from event"
-					 	+ "where eventNo=?";
-			 pstmt = conn.prepareStatement(sql);
-			 pstmt.setInt(1, eventNo);
-			 pstmt.executeUpdate();
-			 closeAll();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 
-	 }
-	 
 	 //
-	 public List<Integer> selectRemoveEvents(int eventNo) {
+	 public List<Integer> selectRemoveEvent(int eventNo) {
 		 
-		 List<Integer> eventNoList = new ArrayList<Integer>();
+		 List<Integer> removeEventNo = new ArrayList<Integer>();
 		 
 		 try {
 			conn = getConnection();
@@ -279,14 +263,32 @@ public class EventDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				eventNo = rs.getInt("eventNo");
-				eventNoList.add(eventNo);
+				removeEventNo.add(eventNo);
 			}
 			closeAll();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return eventNoList;
+		return removeEventNo;
 	 }
 	
-	
+	 //이벤트 글 삭제
+	 public void deleteEvent(int eventNo) {
+		 
+		 try {
+			 conn = getConnection();
+			 String sql = "delete from event"
+					 	+ " where eventNo = ?";
+			 pstmt = conn.prepareStatement(sql);
+			 pstmt.setInt(1, eventNo);
+			 pstmt.executeUpdate();
+			 closeAll();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+	 }
+
+
 }
+

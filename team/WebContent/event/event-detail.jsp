@@ -1,5 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"/>
+<c:set var="eventNo"  value="${event.eventNo}"/>
+<c:set var="eventTitle"  value="${event.eventTitle}"/>
+<c:set var="eventContent"  value="${event.eventContent}"/>
+<c:set var="eventImage"  value="${event.eventImage}"/>
+<c:set var="eventWriteDate"  value="${event.eventWriteDate}"/>
+
+<%
+	request.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -24,9 +36,9 @@
     <link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <link rel="stylesheet" href="../css/event.css" type="text/css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 </head>
 
 
@@ -45,20 +57,18 @@
 	            <div class="row d-flex justify-content-center">
 	                <div class="col-lg-8">
 	                    <div class="blog__details__title">
-	                        <h6>이벤트카테고리 <span>이벤트날짜</span></h6>
-	                        <h2>이벤트명</h2>
+	                        <h6><span class="icon_calendar"></span><fmt:formatDate value="${eventWriteDate}"/></h6>
+	                        <h2>${eventTitle}</h2>
 	                    </div>
 	                </div>
 	                <div class="col-lg-12">
-	                    <div class="blog__details__pic">
-	                        <img src="" alt="">
-	                    </div>
+	                    <div class="blog__details__pic"></div>
 	                </div>
 	                <div class="col-lg-12">
 	                    <div class="blog__details__content">
 	                        <div class="blog__details__item__text">
-	                            <h4>이벤트명</h4>
-	                            <p>이벤트 설명</p>
+	                            <img src="${contextPath}/files/event/${eventNo}/${eventImage}"/>
+	                            <p>${eventContent}</p>
 	                        </div>
 	                        <div class="blog__details__tags">
 	                            <a href="#">태그1</a>
@@ -69,26 +79,30 @@
 	                            <div class="row">
 	                                <div class="col-lg-6 next">
 	                                    <div class="blog__details__btns__item" >
-	                                        <h5><a href="#"><span class="arrow_left"></span>이전페이지</a>
+	                                        <h5><a href="${contextPath}/eventServlet/event-detail.do?eventNo=${eventNo}"><span class="arrow_left"></span>이전페이지</a>
 	                                        </h5>
 	                                    </div>
 	                                </div>
 	                                <div class="col-lg-6 next">
 	                                    <div class="blog__details__btns__item next__btn">
-	                                        <h5><a href="#">다음페이지<span class="arrow_right"></span></a></h5>
+	                                        <h5><a href="${contextPath}/eventServlet/event-detail.do?eventNo=${eventNo}">다음페이지<span class="arrow_right"></span></a></h5>
                                         </div>
                                     </div>
                                 </div>
                          	</div>
+                         	<!-- 이벤트 등록버튼 -->
+				            <c:if test="${userID eq 'admin'}">
+				           		<button type="button" class="site-btn cancel" onclick="location.href='${contextPath}/eventServlet/deleteEvent.do?eventNo=${eventNo}'">삭제</button>
+				           		<button type="button" class="site-btn cancel" onclick="location.href='${contextPath}/eventServlet/modifyEvent.do?eventNo=${eventNo}'">수정</button>
+				            </c:if>
                     	</div>
                     </div>
                 </div>
+                
             </div>
         </section>
         <!-- Event Details Section End -->
 	
-
-
 	<!-- footer영역 -->
 	<jsp:include page="../inc/footer.jsp" />
 

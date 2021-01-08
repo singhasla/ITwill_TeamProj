@@ -22,8 +22,10 @@ h3 {
 	margin-bottom: 100px;
 }
 
+
 .site-btn, .cancle {
-	float: right; margin-left: 7px;
+	float: right; 
+	margin-left: 7px;
 }
 
 .site-btn, .submit {
@@ -88,7 +90,46 @@ h3 {
     margin-left: 10px;
 }
 
-col-lg-6, .next {
+.col-lg-6, .next {
 	float: left;
-	widows: 50%;
+	width: 50%;
 }
+
+.icon_calendar {
+	margin-right: 7px;
+}
+
+.blog__details__title {
+	margin-bottom: 0 !important;
+}
+
+.blog__details__pic {
+	border-top: 1px solid rgba(255, 255, 255, 0.2);
+	margin-bottom: 50px;
+}
+
+.blog__details__btns {
+	margin-bottom: 20px !important;	
+}
+
+.preview {
+    width: 60px;
+    height: 60px;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border: 1px solid #dee2e6;
+}
+
+@media (max-width: 792px) {
+	.blog__item {
+		height: 480px;
+	}
+	.col-lg-6 {
+		float: left;
+    	width: 100%;
+	}
+
+}
+
+

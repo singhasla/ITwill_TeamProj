@@ -12,12 +12,13 @@ public class EventService {
 		eventDAO = new EventDAO();
 	}
 	
+	//이벤트 글
 	public Map listEvents(Map pagingMap){
 		Map eventMap = new HashMap();
-		List<EventVO> eventList = eventDAO.selectAllEvents(pagingMap);
-		int allEvents = eventDAO.allEvents(pagingMap);
+		List<EventVO> eventList = eventDAO.selectAllEvent();
+		int searchEvents = eventDAO.searchEvents(pagingMap);
 		eventMap.put("eventList", eventList);
-		eventMap.put("allEvents", allEvents);
+		eventMap.put("searchEvents", searchEvents);
 		return eventMap;
 	}
 	//이벤트글 추가
@@ -34,15 +35,15 @@ public class EventService {
 	}
 	
 	//이벤트글 수정
-	public void modEvent(EventVO event) {
+	public void modifyEvent(EventVO event) {
 		eventDAO.updateEvent(event);
 	}
 	
 	//이벤트글 삭제
 	public List<Integer> removeEvent(int eventNo) {
-		List<Integer> eventNoList = eventDAO.selectRemoveEvents(eventNo);
+		List<Integer> removeEventNo = eventDAO.selectRemoveEvent(eventNo);
 		eventDAO.deleteEvent(eventNo);
-		return eventNoList;
+		return removeEventNo;
 	}
 	
 }
