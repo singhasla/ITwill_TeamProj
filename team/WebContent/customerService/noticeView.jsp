@@ -39,9 +39,9 @@
 
 	<!-- Header -->
 	<jsp:include page="../inc/header.jsp" />
-	
-	<!-- FAQ Section Begin -->
-    <section class="blog-details spad">
+
+	<!-- Notice Section Begin -->
+	<section class="blog-details spad">
 	    <div class="container">
 		    <div class="row d-flex justify-content-center">
 	            <div class="col-lg-8">
@@ -62,21 +62,32 @@
 	                            <h5><a href="inquireForm.jsp">문의하기</a></h5>
 	                        </li>
                         </ul>
-                        <div class="blog__details__form">
-	                        <h4>자주 묻는 질문</h4>
-						    <dl id="faq_list" class="faq-list accordion">
-						    	<dt class=""><a href="#"><span>요금결제</span><p>해지/환불 신청은 어떻게 하나요?</p></a></dt>
-						    	<dd style="display: none;">
-								<div><p>내용</p></div>
-								</dd>
-							</dl>
-						</div>	
+                        <div class="col-lg-12" style="margin-top: 60px;">
+		                    <div class="blog__details__content">
+		                        <div class="blog__details__item__text">
+		                            <h4>이벤트명</h4>
+		                            <p>이벤트 설명</p>
+		                        </div>
+		                        <div class="blog__details__tags">
+		                            <a href="#">태그1</a>
+		                            <a href="#">태그2</a>
+		                            <a href="#">태그3</a>
+		                        </div>
+		                        <div class="next" style="">
+		                        	<span>다음 글</span><a href="">[안내] 이용약관 및 티빙 유료이용약관 개정 안내</a>
+		                        </div>
+		                         <div class="next" style="">
+		                        	<span>이전 글</span><a href="">[안내] 이용약관 및 티빙 유료이용약관 개정 안내</a>
+		                        </div>
+	                        </div>
+                    	</div>
 					</div>		
 				</div>			
 	        </div>
 		</div>
     </section>
-    <!-- FAQ Section End -->	
+    <!-- Notice Section End -->
+	
 	
 	<!-- footer영역 -->
 	<jsp:include page="../inc/footer.jsp" />
