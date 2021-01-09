@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <link rel="stylesheet" href="../css/login.css" type="text/css">
 </head>
 <body>
     <!-- Page Preloder -->
@@ -62,19 +63,18 @@
                         <h3>Login</h3>
                         <form action="${contextPath}/user/login.do" method="post">
                             <div class="input__item">
-                                <input type="text"  name="userID" required autofocus />
-                                <span class="icon_mail"></span>
+                                <input type="text"  name="userID" required autofocus placeholder="ID" />
+                                <span class="icon_profile"></span>
                             </div>
                             <div class="input__item">
-                                <input type="password"  name="userPW" required autofocus />
+                                <input type="password"  name="userPW" required autofocus  placeholder="PASSWORD"/>
                                 <span class="icon_lock"></span>
                             </div>
+                           
                             <button type="submit" class="site-btn">Login Now</button>
+                             	<a href="${contextPath}/user/findId.do" class="forget_pass1">Forgot ID</a>&nbsp&nbsp
+                        	<a href="${contextPath}/login/pwFind.jsp" class="forget_pass1">Forgot PW</a>
                         </form>
-                        <div>
-                        	<a href="${contextPath}/user/findId.do" class="forget_pass">Forgot Your ID?</a>
-                        	<a href="#" class="forget_pass">Forgot Your Password?</a>
-                        </div>
                     </div>
                 </div>
                 <div class="col-lg-6">

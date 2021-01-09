@@ -10,7 +10,7 @@
     <meta name="keywords" content="Anime, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>회원가입</title>
+    <title>아이디 찾기</title>
     
    	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -84,14 +84,14 @@
 		                        </form>
 	                        </c:when>
 	                        <c:otherwise>
-          						<div class="userForm text-center">
-									<div class="bg-light py-5">
-										<h3>고객님의 아이디는</h3>
-										<h2 class="p-3 text-danger">${userID}</h2>
-										<h3>입니다.</h3>
+          						
+									<div >
+										<h3 style="color: white; margin-left: 90px;" >고객님의 아이디는</h3>
+										<h2 class="p-3 text-danger" style="color: white; margin-left: 150px;">${userID}</h2>
+										<h3 style="color: white; margin-left: 167px;" >입니다.</h3>
 									</div>
-									<a class="btn btn-lg btn-secondary my-5" href="${contextPath}/user/loginPage.do">로그인 페이지로 이동하기</a>
-								</div>
+									<a class="site-btn" style="margin-left: 98px;" href="${contextPath}/user/loginPage.do">로그인 페이지로 이동하기</a>
+								
 	                        </c:otherwise>
                         </c:choose>
                     </div>
