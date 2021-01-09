@@ -1,7 +1,16 @@
 package user;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Properties;
 
+import javax.mail.Address;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -175,6 +184,53 @@ public class UserController extends HttpServlet{
 					request.setAttribute("userID", userID);
 					nextPage = "/login/idFind.jsp";
 				}
+				
+			} else if (action.equals("/pwfindAct.do")) {
+				String userID = request.getParameter("userId");
+				String userEmail = request.getParameter("userEmail");
+				String userPW = userDAO.findPW(userID,userEmail);
+				request.setAttribute("userEmail", userEmail);
+				request.setAttribute("userPW", userPW);
+				nextPage = "/user/sendMail.do";
+				
+			}else if(action.equals("/sendMail.do")) {
+				String userEmail = (String)request.getAttribute("userEmail");
+				String userPW = (String)request.getAttribute("userPW");
+				String subject ="고객님의 비밀번호 입니다.";
+				PrintWriter out = response.getWriter();
+				Properties p = new Properties();
+				p.put("mail.smtp.host","gmail-smtp.l.google.com");
+				p.put("mail.smtp.port", "465");
+				p.put("mail.smtp.starttls.enable", "true");
+				p.put("mail.smtp.auth", "true");
+				p.put("mail.smtp.debug", "true");
+				p.put("mail.smtp.socketFactory.port", "465");
+				p.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+				p.put("mail.smtp.socketFactory.fallback", "false");
+				
+				try{
+				    Authenticator auth = new SMTPAuthenticator();
+				    Session ses = Session.getInstance(p, auth);
+				     
+				    //ses.setDebug(true);
+				    
+				    MimeMessage msg = new MimeMessage(ses); 
+				    msg.setSubject(subject);
+				    
+				    Address toAddr = new InternetAddress((String) userEmail);
+				    msg.addRecipient(Message.RecipientType.TO, toAddr); 
+				     
+				    msg.setContent("비밀번호: " + userPW, "text/html;charset=UTF-8"); 
+				     
+				    Transport.send(msg); // 전송
+				} catch(Exception e){
+				    e.printStackTrace();
+				    out.println("<script>alert('메일발송에 실패하였습니다. 메일주소를 확인해주세요');history.back();</script>");
+				    // 오류 발생시 뒤로 돌아가도록
+				    return;
+				}
+				request.setAttribute("msg", "ok");  
+				nextPage = "/login/pwFind.jsp";
 				
 			}
 		

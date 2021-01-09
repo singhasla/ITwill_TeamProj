@@ -224,6 +224,27 @@ public class UserDAO {
 		return userID;
 	}
 
+	public String findPW(String userID, String userEmail) {
+		String userPW = "";
+		try {
+			conn = getConnection();
+			String sql = "select userPW from user where userID=? and userEmail=?";
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setString(1, userID);
+			pstmt.setString(2, userEmail);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				userPW = rs.getString("userPW");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("findPW 메소드 실행중 오류"+e);
+		}finally {
+			discon();
+		}
+		return userPW;
+	}
+
 	
 	
 	

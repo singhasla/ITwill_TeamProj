@@ -75,7 +75,7 @@
 		                            </div>
 		                            <div class="input__item" style="margin-left: 50px;">
 		                                <input type="text" placeholder="이메일을 입력해주세요" name="userEmail" id="userEmail" required="required">
-		                                <span class="icon_lock"></span>
+		                                <span class="icon_mail"></span>
 		                            </div>
 		
 						  	     	<div style="margin-left: 140px;">
