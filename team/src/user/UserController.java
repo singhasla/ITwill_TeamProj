@@ -232,6 +232,8 @@ public class UserController extends HttpServlet{
 				request.setAttribute("msg", "ok");  
 				nextPage = "/login/pwFind.jsp";
 				
+			}else if(action.equals("/loginPage.do")){
+				nextPage = "/login/login.jsp";
 			}
 		
 			
