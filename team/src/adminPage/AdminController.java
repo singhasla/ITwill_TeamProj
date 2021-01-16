@@ -33,10 +33,9 @@ public class AdminController extends HttpServlet{
 		System.out.println("action: " + action);
 		
 		if (action.equals("/dashBoard.do")) {
-			
 			nextPage = "/admin/dist/main/adminMain.jsp";
-			
-			
+		} else if (action.equals("/mainHome.do")) {
+			nextPage = "/main/index.jsp";
 		}
 		
 		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
