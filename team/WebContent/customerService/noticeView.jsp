@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
+<%
+	request.setCharacterEncoding("UTF-8");
+%>        
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -25,6 +32,8 @@
     <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="../css/style.css" type="text/css">
     <link rel="stylesheet" href="../css/customerService.css" type="text/css">
+    <link rel="stylesheet" href="../css/event.css" type="text/css">
+    
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -64,19 +73,25 @@
                         </ul>
                         <div class="col-lg-12" style="margin-top: 60px;">
 		                    <div class="blog__details__content">
-		                        <div class="blog__details__item__text">
+		                        <div class="blog__details__item__text titlebackground">
 		                            <h4>이벤트명</h4>
-		                            <p>이벤트 설명</p>
+		                            <span>등록일 | 조회수</span>
+		                        </div>
+		                        <div class="filearea">
+		                        	첨부파일 : <a>파일명</a>
+		                        </div>
+		                        <div class="blog__details__item__text">
+		                        	<p>이벤트 설명</p>
 		                        </div>
 		                        <div class="blog__details__tags">
 		                            <a href="#">태그1</a>
 		                            <a href="#">태그2</a>
 		                            <a href="#">태그3</a>
 		                        </div>
-		                        <div class="next" style="">
+		                        <div class="next">
 		                        	<span>다음 글</span><a href="">[안내] 이용약관 및 티빙 유료이용약관 개정 안내</a>
 		                        </div>
-		                         <div class="next" style="">
+		                         <div class="next">
 		                        	<span>이전 글</span><a href="">[안내] 이용약관 및 티빙 유료이용약관 개정 안내</a>
 		                        </div>
 	                        </div>

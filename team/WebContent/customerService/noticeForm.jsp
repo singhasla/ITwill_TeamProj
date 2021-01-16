@@ -2,11 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"/>
 
 
 <%
 	request.setCharacterEncoding("UTF-8");
-%>        
+%>    
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -34,7 +35,6 @@
     <link rel="stylesheet" href="../css/customerService.css" type="text/css">
     <link rel="stylesheet" href="../css/event.css" type="text/css">
 
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -48,9 +48,9 @@
 
 	<!-- Header -->
 	<jsp:include page="../inc/header.jsp" />
- 	
- 	<!-- InquireForm Section Begin -->
-    <section class="blog-details spad">
+
+	<!-- Notice Section Begin -->
+	<section class="blog-details spad">
 	    <div class="container">
 		    <div class="row d-flex justify-content-center">
 	            <div class="col-lg-8">
@@ -58,7 +58,7 @@
 	                    <h2>고객센터</h2>
 	                </div>
 	            </div>
-			    <div class="col-lg-12">
+	            <div class="col-lg-12">
 			        <div class="blog__details__content">
 			     		<ul class="blog__details__btns">
 	                        <li class="blog__details__btns__item">
@@ -71,31 +71,9 @@
 	                            <h5><a href="inquireForm.jsp">문의하기</a></h5>
 	                        </li>
                         </ul>
-                        <div class="blog__details__form">
-	                        <h4>고객 문의</h4>
-	                        <form action="#">
-	                            <div style="margin-top: 45px;">
-	                                <div class="col-lg-12">
-	                                	<span style="color: #ffffff;">이름</span>
-	                                	<input type="text" placeholder="Name">
-	                                </div>
-	                                <div class="col-lg-12">
-	                                	<span style="color: #ffffff;">문의 제목</span>
-										<input type="text" placeholder="제목을 입력해주세요">
-	                                </div>
-	                                <div class="col-lg-12">
-	                                	<span style="color: #ffffff;">문의 내용</span>
-	                                    <textarea placeholder="문의 내용을 입력해주세요"></textarea>
-	                                    <button type="submit" class="site-btn">확인</button>
-	                                    <button type="reset" class="site-btn">취소</button>
-	                                </div>
-	                            </div>
-	                        </form>
-	                    </div>           
-
-		                <div class="noticeForm">
-	                        <h4>고객 문의</h4>
-						    <form action="${contextPath}/noticeServlet/addNotice.do" method="post" class="writeForm">
+                        <div class="noticeForm">
+	                        <h4>공지사항</h4>
+						    <form action="${contextPath}/notice/insertNotice.do" method="post" enctype="multipart/form-data" class="writeForm">
 								<table class="table">
 									<colgroup>
 										<col width="20%">
@@ -105,25 +83,31 @@
 										<tr>
 											<th>제목</th>
 											<td>
-												<input type="text" name="eventTitle" placeholder="제목을 입력해 주세요." class="widhun">
+												<input type="text" name="noticeTitle" placeholder="제목을 입력해 주세요." class="widhun">
 											</td>
 										</tr>
 										<tr>
 											<th>종류</th>
 											<td>
-												<select class="nice-select">
+												<select class="nice-select" name="noticeCategory">
 													<option>선택하세요</option>
-													<option>공지</option>
-													<option>안내</option>
-													<option>이벤트</option>
-													<option>점검</option>
+													<option value="1">공지</option>
+													<option value="2">안내</option>
+													<option value="3">이벤트</option>
+													<option value="4">점검</option>
 												</select>
 											</td>
 										</tr>
 										<tr>
 											<th>내용</th>
 											<td>
-												<textarea cols="40" rows="15" name="eventContent" placeholder="내용을 입력해 주세요." class="widhun"></textarea>
+												<textarea cols="40" rows="15" name="noticeContent" placeholder="내용을 입력해 주세요." class="widhun"></textarea>
+											</td>
+										</tr>
+										<tr>
+											<th>첨부파일</th>
+											<td>
+												<input type="file" name="noticeFile">
 											</td>
 										</tr>
 									</tbody>
@@ -133,13 +117,13 @@
 									<button type="submit" class="site-btn submit">등록</button>
 								</div>
 							</form>
-						</div>   
-	               	</div>	
-	            </div>
+						</div>
+					</div>		
+				</div>			
 	        </div>
 		</div>
     </section>
-    <!-- InquireForm Section End -->
+    <!-- Notice Section End -->
 	
 	
 	<!-- footer영역 -->

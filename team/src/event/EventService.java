@@ -15,15 +15,14 @@ public class EventService {
 	//이벤트 글
 	public Map listEvents(Map pagingMap){
 		Map eventMap = new HashMap();
-		List<EventVO> eventList = eventDAO.selectAllEvent();
-		int searchEvents = eventDAO.searchEvents(pagingMap);
+		List<EventVO> eventList = eventDAO.selectAllEvents(pagingMap);
+		int allEvents = eventDAO.allEvents(pagingMap);
 		eventMap.put("eventList", eventList);
-		eventMap.put("searchEvents", searchEvents);
+		eventMap.put("allEvents", allEvents);
 		return eventMap;
 	}
 	//이벤트글 추가
 	public int addEvent(EventVO event) {
-		
 		return eventDAO.insertNewEvent(event);
 	}
 	

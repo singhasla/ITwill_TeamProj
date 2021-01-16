@@ -77,15 +77,15 @@
 	                        </div>
 	                        <div class="blog__details__btns">
 	                            <div class="row">
-	                                <div class="col-lg-6 next">
+	                                <div class="col-lg-6 next1">
 	                                    <div class="blog__details__btns__item" >
-	                                        <h5><a href="${contextPath}/eventServlet/event-detail.do?eventNo=${eventNo}"><span class="arrow_left"></span>이전페이지</a>
+	                                        <h5><a href="${contextPath}/eventServlet/event-detail.do?eventNo=${eventNo+1}"><span class="arrow_left"></span>이전페이지</a>
 	                                        </h5>
 	                                    </div>
 	                                </div>
-	                                <div class="col-lg-6 next">
+	                                <div class="col-lg-6 next1">
 	                                    <div class="blog__details__btns__item next__btn">
-	                                        <h5><a href="${contextPath}/eventServlet/event-detail.do?eventNo=${eventNo}">다음페이지<span class="arrow_right"></span></a></h5>
+	                                        <h5><a href="${contextPath}/eventServlet/event-detail.do?eventNo=${eventNo-1}">다음페이지<span class="arrow_right"></span></a></h5>
                                         </div>
                                     </div>
                                 </div>

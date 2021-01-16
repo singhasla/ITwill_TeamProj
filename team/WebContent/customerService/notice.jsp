@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"/>
+
+
+<%
+	request.setCharacterEncoding("UTF-8");
+%>    
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -25,6 +33,7 @@
     <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="../css/style.css" type="text/css">
     <link rel="stylesheet" href="../css/customerService.css" type="text/css">
+    <link rel="stylesheet" href="../css/event.css" type="text/css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -53,13 +62,13 @@
 			        <div class="blog__details__content">
 			     		<ul class="blog__details__btns">
 	                        <li class="blog__details__btns__item">
-	                            <h5><a href="notice.jsp">공지사항</a></h5>
+	                            <h5><a href="${contextPath}/notice/listNotice.do">공지사항</a></h5>
 	                        </li>
 	                        <li class="blog__details__btns__item">
-	                            <h5><a href="faq.jsp">자주 묻는 질문</a></h5>
+	                            <h5><a href="${contextPath}/faq/faqList.do">자주 묻는 질문</a></h5>
 	                        </li>
 	                        <li class="blog__details__btns__item">
-	                            <h5><a href="inquireForm.jsp">문의하기</a></h5>
+	                            <h5><a href="${contextPath}/qna/addQna.do">문의하기</a></h5>
 	                        </li>
                         </ul>
                         <div class="blog__details__form" style="color: #ffffff;">
@@ -82,13 +91,28 @@
 							<tbody>
 								<tr>
 									<td style="color: red;"><span>공지</span></td>
-									<td class="table_title"><a href="noticeView.jsp" class="table_title">제목입니다제목입니다</a></td>
+									<td class="table_title"><a href="noticeView.jsp" class="table_title">[카테고리]제목입니다</a></td>
 									<td>2020.12.28</td>	
 									<td>233</td>
 								</tr>
 							</tbody>
 							</table>
 						</div>
+						<!-- Search Begin -->
+			        	<div class="faq-search-box">
+				        	<form action="${contextPath}/notice/listNotice.do">
+								<div class="form-box tmg0">
+									<input type="hidden" name="section" value="${section}">
+									<input type="hidden" name="pageNum" value="${pageNum}">
+									<input type="text" class="search" name="search" value="${search}">
+									<input type="submit" value="검색">
+								</div>
+							</form>	
+						</div>
+						<!-- 공지 등록버튼 -->
+			            <c:if test="${userID eq 'admin'}">
+			           		<a class="site-btn submit" href="${contextPath}/notice/addNotice.do">공지 등록</a>
+			            </c:if>
 						<div class="paging">
 							<div>&lt;<span class="current">1</span>
 							<a href="" data-page-no="2" title="2페이지">2</a>
