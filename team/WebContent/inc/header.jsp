@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-<c:set var="userNo" value="${sessionScope.userNo}"/>
 <!DOCTYPE html>
     <!-- Header Section Begin -->
     <header class="header">
@@ -11,7 +10,7 @@
                 <div class="col-lg-2">
                     <div class="header__logo">
                         <a href="../main/index.jsp">
-                            <img src="${contextPath }/img/logo.png" alt="">
+                            <img src="${contextPath}/img/logo.png" alt="">
                         </a>
                     </div>
                 </div>
