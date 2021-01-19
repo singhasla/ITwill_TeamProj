@@ -66,7 +66,7 @@ public class NoticeDAO {
 		
 		int section = (int)searchMap.get("section");
 		int pageNo = (int)searchMap.get("pageNo"); 
-		int startNum = (section - 1)*27 + (pageNo - 1)*9;
+		int startNum = (section - 1)*27 + (pageNo - 1)*10;
 		String search = (String)searchMap.get("search");
 		
 		try {
@@ -201,6 +201,64 @@ public class NoticeDAO {
 			closeAll();
 		}
 		return noticeCategoryList;
+	}
+	
+	public void updateNotice(NoticeVO noticeVO, String deleteFile) {
+		
+		String noticeFile = noticeVO.getNoticeFile();
+		
+		try {
+			conn = getConnection();
+			
+			if(noticeFile != null && noticeFile.length() != 0) {
+				String sql = "update notice set noticeTitle=?, noticeContent=?, noticeFile=?, noticeCategory=?"
+						+ " where noticeNo= ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, noticeVO.getNoticeTitle());
+				pstmt.setString(2, noticeVO.getNoticeContent());
+				pstmt.setString(3, noticeVO.getNoticeFile());
+				pstmt.setString(4, noticeVO.getNoticeCategory());
+				pstmt.setInt(5, noticeVO.getNoticeNo());	
+			} else if(deleteFile != null) {
+				String sql = "update notice set noticeTitle=?, noticeContent=?, noticeFile=?, noticeCategory=?"
+						+ " where noticeNo= ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, noticeVO.getNoticeTitle());
+				pstmt.setString(2, noticeVO.getNoticeContent());
+				pstmt.setString(3, null);
+				pstmt.setString(4, noticeVO.getNoticeCategory());
+				pstmt.setInt(5, noticeVO.getNoticeNo());
+			} else {
+				String sql = "update notice set noticeTitle=?, noticeContent=?, noticeCategory=?"
+						+ " where noticeNo= ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, noticeVO.getNoticeTitle());
+				pstmt.setString(2, noticeVO.getNoticeContent());
+				pstmt.setString(3, noticeVO.getNoticeCategory());
+				pstmt.setInt(4, noticeVO.getNoticeNo());
+			}
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteNotice(int noticeNo) {
+		
+		try {
+			conn = getConnection();
+			String sql = "delete from notice"
+						+ " where noticeNo = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, noticeNo);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll();
+		}
+		
 	}
 	
 }

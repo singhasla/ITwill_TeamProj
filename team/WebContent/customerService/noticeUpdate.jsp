@@ -78,8 +78,10 @@
                         <div class="noticeForm">
 	                        <h4>공지사항 수정</h4>
 						    <form action="${contextPath}/notice/updateNotice.do" method="post" enctype="multipart/form-data" class="writeForm">
-								<input type="hidden" name="noticeNo" value="${noticeNo }">	
-								<input type="hidden" name="originalFile" value="${noticeFile }">
+								<input type="hidden" name="pageNo" value="${pageNo}"/>
+								<input type="hidden" name="search" value="${search}"/>
+								<input type="hidden" name="noticeNo" value="${noticeNo}"/>	
+								<input type="hidden" name="originalFile" value="${noticeFile}"/>
 								<table class="table">
 									<colgroup>
 										<col width="20%">
@@ -120,12 +122,14 @@
 											<th>첨부파일</th>
 											<td>
 												<c:if test="${not empty noticeFile }">
-													<div>
-													<p>${noticeFile}</p>
+													<div class="originalFile">
+														<p style="color: #ffffff;">${noticeFile}</p>
+														<input type="checkbox" name="deleteFile" id="deleteFile">
+														<label for="deleteFile">첨부된 파일 삭제하기</label>
 													</div>
-													<p style="display: none;">파일 첨부 시 기존 파일이 삭제됩니다.</p>
+													<p class="alert" style="display: none;">파일 첨부 시 기존 파일이 삭제됩니다.</p>
 												</c:if>
-												<input type="file" name="noticeFile">
+												<input type="file" name="noticeFile" id="noticeFile" onchange="checkFile(this); showPreview(this);" >
 											</td>
 										</tr>
 									</tbody>
@@ -146,6 +150,19 @@
 	
 	<!-- footer영역 -->
 	<jsp:include page="../inc/footer.jsp" />
+	
+	<script>
+	function checkFile(obj){
+		if($(obj).parent().siblings(".alert")){
+			if($(obj).val().length > 0){
+				$(obj).parent().siblings(".alert").fadeIn();
+			}else{
+				$(obj).parent().siblings(".alert").hide();
+			}
+		}
+	}
+	
+	</script>
 
 </body>
 </html>

@@ -151,3 +151,8 @@ h4 {
 .noticesearch {
 	background: rgba(255, 255, 255, 0.1) !important;
 }
+
+.originalFile input{
+	width: auto !important;
+    height: 15px !important;
+}
