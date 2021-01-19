@@ -127,6 +127,124 @@ public class UserDAO {
 		return check;
 	}//로그인
 
+	public int nickCheck(String userNickname) {
+		int check = 0;
+		try {
+			conn = getConnection();
+			String sql ="select userNickname from user where userNickname =?";
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setString(1, userNickname);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				check=1; //중복
+			}else{
+				check =0;
+			}
+			
+			
+		} catch (Exception e) {
+			System.out.println("nickCheck메소드  오류: " + e);
+		}finally {
+			discon();
+		}
+		
+		return check;
+	}
+
+	public int telCheck(String userTel) {
+		int check = 0;
+		try {
+			conn = getConnection();
+			String sql ="select userTel from user where userTel =?";
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setString(1, userTel);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				check=1; //중복
+			}else{
+				check =0;
+			}
+			
+			
+		} catch (Exception e) {
+			System.out.println("telCheck메소드  오류: " + e);
+		}finally {
+			discon();
+		}
+		
+		return check;
+	}
+
+	public int mailCheck(String userEmail) {
+		int check = 0;
+		try {
+			conn = getConnection();
+			String sql ="select userEmail from user where userEmail =?";
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setString(1, userEmail);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				check=1; //중복
+			}else{
+				check =0;
+			}
+
+		} catch (Exception e) {
+			System.out.println("emailCheck 메소드  오류: " + e);
+		}finally {
+			discon();
+		}
+		
+		return check;
+	}
+
+	public String idFind(String userName, String userEmail) {
+		String userID ="";
+		
+		try {
+			conn = getConnection();
+			String sql ="select userID from user where userName =? and userEmail =?";
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setString(1, userName);
+			pstmt.setString(2, userEmail);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				userID = rs.getString("userID");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("idfind 메소드 실행중 오류 " + e);
+		}finally {
+			discon();
+		}
+
+		return userID;
+	}
+
+	public String findPW(String userID, String userEmail) {
+		String userPW = "";
+		try {
+			conn = getConnection();
+			String sql = "select userPW from user where userID=? and userEmail=?";
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setString(1, userID);
+			pstmt.setString(2, userEmail);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				userPW = rs.getString("userPW");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("findPW 메소드 실행중 오류"+e);
+		}finally {
+			discon();
+		}
+		return userPW;
+	}
+
 	
 	
 	

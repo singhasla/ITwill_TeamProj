@@ -20,8 +20,8 @@
                         <nav class="header__menu mobile-menu">
                             <ul>
                             	<li ><a href="../main/index.jsp">홈</a></li>
-                            	<li ><a href="#">이벤트</a></li>
-                                <li ><a href="#">고객센터</a></li>
+                            	<li ><a href="${contextPath}/eventServlet/listEvent.do">이벤트</a></li>
+                                <li ><a href="${contextPath}/customerServiceServlet/listNotice.do">고객센터</a></li>
                                 <li><a href="#">카테고리 <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
                                         <li><a href="#">로맨스</a></li>

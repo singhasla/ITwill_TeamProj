@@ -8,9 +8,9 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="${contextPath}/admin/dist/index.html">
+                            <a class="nav-link" href="${contextPath}/adminPage/dashBoard.do">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Dashboard
+                               		 회원관리
                             </a>
                             <div class="sb-sidenav-menu-heading">Interface</div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -20,8 +20,8 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="../layout-static.html">Static Navigation</a>
-                                    <a class="nav-link" href="../layout-sidenav-light.html">Light Sidenav</a>
+                                    <a class="nav-link" href="../admin/dist/layout-static.html">Static Navigation</a>
+                                    <a class="nav-link" href="../admin/dist/layout-sidenav-light.html">Light Sidenav</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -37,9 +37,9 @@
                                     </a>
                                     <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="../login.html">Login</a>
-                                            <a class="nav-link" href="../register.html">Register</a>
-                                            <a class="nav-link" href="../password.html">Forgot Password</a>
+                                            <a class="nav-link" href="../admin/dist/login.html">Login</a>
+                                            <a class="nav-link" href="../admin/dist/register.html">Register</a>
+                                            <a class="nav-link" href="../admin/dist/password.html">Forgot Password</a>
                                         </nav>
                                     </div>
                                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
@@ -48,21 +48,25 @@
                                     </a>
                                     <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="../401.html">401 Page</a>
-                                            <a class="nav-link" href="../404.html">404 Page</a>
-                                            <a class="nav-link" href="../500.html">500 Page</a>
+                                            <a class="nav-link" href="../admin/dist/401.html">401 Page</a>
+                                            <a class="nav-link" href="../admin/dist/404.html">404 Page</a>
+                                            <a class="nav-link" href="../admin/dist/500.html">500 Page</a>
                                         </nav>
                                     </div>
                                 </nav>
                             </div>
                             <div class="sb-sidenav-menu-heading">Addons</div>
-                            <a class="nav-link" href="../charts.html">
+                            <a class="nav-link" href="../admin/dist/charts.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Charts
                             </a>
-                            <a class="nav-link" href="../tables.html">
+                            <a class="nav-link" href="../admin/dist/tables.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Tables
+                            </a>
+                            <a class="nav-link" href="${contextPath}/adminPage/mainHome.do">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                	홈페이지 바로가기 
                             </a>
                         </div>
                     </div>

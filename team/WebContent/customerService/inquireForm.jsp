@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <link rel="stylesheet" href="../css/customerService.css" type="text/css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -50,60 +51,60 @@
 	            </div>
 			    <div class="col-lg-12">
 			        <div class="blog__details__content">
-			     		<ul class="blog__details__btns" style="text-align: center;">
-	                        <li class="blog__details__btns__item" style="display: inline-block; padding-left: 100px; padding-right: 100px;">
-	                            <h5><a href="#">공지사항</a></h5>
+			     		<ul class="blog__details__btns">
+	                        <li class="blog__details__btns__item">
+	                            <h5><a href="notice.jsp">공지사항</a></h5>
 	                        </li>
-	                        <li class="blog__details__btns__item" style="display: inline-block; padding-left: 100px; padding-right: 100px;">
-	                            <h5><a href="#">자주 묻는 질문</a></h5>
+	                        <li class="blog__details__btns__item">
+	                            <h5><a href="faq.jsp">자주 묻는 질문</a></h5>
 	                        </li>
-	                        <li class="blog__details__btns__item" style="display: inline-block; padding-left: 100px; padding-right: 100px;">
-	                            <h5><a href="#">문의하기</a></h5>
+	                        <li class="blog__details__btns__item">
+	                            <h5><a href="inquireForm.jsp">문의하기</a></h5>
 	                        </li>
                         </ul>
-			     		<div class="blog__details__comment">
-	                        <h4>댓글수</h4>
-	                        <div class="blog__details__comment__item">
-	                            <div class="blog__details__comment__item__text">
-	                                <span>댓글날짜</span>
-	                                <h5>아이디</h5>
-	                                <p>댓글내용댓글내용</p>
-	                                <a href="#">수정</a>
-	                                <a href="#">삭제</a>
-	                            </div>
-	                        </div>
-	                        <div class="blog__details__comment__item blog__details__comment__item--reply">
-	                            <div class="blog__details__comment__item__text">
-	                                <span>날짜</span>
-	                                <h5>아이디</h5>
-	                                <p>답댓글내용답댓글내용</p>
-	                                <a href="#">수정</a>
-	                                <a href="#">삭제</a>
-	                            </div>
-	                        </div>
-	                        <div class="blog__details__comment__item">
-	                            <div class="blog__details__comment__item__text">
-	                                <span>날짜</span>
-	                                <h5>아이디</h5>
-	                                <p>댓글내용댓글내용</p>
-	                                <a href="#">수정</a>
-	                                <a href="#">삭제</a>
-	                            </div>
-	                        </div>
-	                    </div>
-	                    <div class="blog__details__form">
-	                        <h4>댓글달기</h4>
+                        <div class="blog__details__form">
+	                        <h4>고객 문의</h4>
 	                        <form action="#">
-	                            <div class="row">
-	                                <div class="col-lg-6 col-md-6 col-sm-6">
-	                                    <input type="text" placeholder="Name">
+	                            <div style="margin-top: 45px;">
+	                                <div class="col-lg-12">
+	                                	<span style="color: #ffffff;">이름</span>
+	                                	<input type="text" placeholder="Name">
 	                                </div>
-	                                <div class="col-lg-6 col-md-6 col-sm-6">
-	                                    <input type="text" placeholder="Email">
+	                                 <!--  
+	                                <div class="col-lg-6">
+	                                	<span style="color: #ffffff;">이메일</span>
+										<input type="text" placeholder="Email"><em>@</em>
+										<input type="text">
+										<select>
+									        <option value="0">직접입력</option>
+									        <option value="naver.com">naver.com</option>
+									        <option value="daum.net">daum.net</option>
+									        <option value="nate.com">nate.com</option>
+									        <option value="gmail.com">gmail.com</option>
+										</select>
 	                                </div>
 	                                <div class="col-lg-12">
-	                                    <textarea placeholder="Message"></textarea>
-	                                    <button type="submit" class="site-btn">입력</button>
+	                                	<span style="color: #ffffff;">연락처</span>
+	                                	<select>
+	                                		<option value="">010</option>
+	                                		<option value="">011</option>
+	                                		<option value="">016</option>
+	                                		<option value="">017</option>
+	                                		<option value="">018</option>
+	                                		<option value="">019</option>
+	                                	</select>
+	                                	-<input type="text">
+	                                	-<input type="text">
+	                                </div>-->
+	                                <div class="col-lg-12">
+	                                	<span style="color: #ffffff;">문의 제목</span>
+										<input type="text" placeholder="제목을 입력해주세요">
+	                                </div>
+	                                <div class="col-lg-12">
+	                                	<span style="color: #ffffff;">문의 내용</span>
+	                                    <textarea placeholder="문의 내용을 입력해주세요"></textarea>
+	                                    <button type="submit" class="site-btn">확인</button>
+	                                    <button type="reset" class="site-btn">취소</button>
 	                                </div>
 	                            </div>
 	                        </form>
