@@ -9,7 +9,7 @@ public class NoticeVO {
 	private String noticeContent;
 	private Timestamp noticeWriteDate;
 	private Timestamp noticeUpdateDate;
-	private int noticeCategory;
+	private String noticeCategory;
 	private int noticeReadCount;
 	private String noticeFile;
 	
@@ -17,7 +17,7 @@ public class NoticeVO {
 		
 	}
 
-	public NoticeVO(int noticeNo, String noticeTitle, String noticeContent, int noticeCategory, int noticeReadCount, String noticeFile) {
+	public NoticeVO(int noticeNo, String noticeTitle, String noticeContent, String noticeCategory, int noticeReadCount, String noticeFile) {
 	
 		this.noticeNo = noticeNo;
 		this.noticeTitle = noticeTitle;
@@ -67,11 +67,12 @@ public class NoticeVO {
 		this.noticeUpdateDate = noticeUpdateDate;
 	}
 
-	public int getNoticeCategory() {
+
+	public String getNoticeCategory() {
 		return noticeCategory;
 	}
 
-	public void setNoticeCategory(int noticeCategory) {
+	public void setNoticeCategory(String noticeCategory) {
 		this.noticeCategory = noticeCategory;
 	}
 

@@ -51,8 +51,9 @@ public class EventDAO {
 		
 		int section = (Integer)pagingMap.get("section");
 		int pageNum = (Integer)pagingMap.get("pageNum");
-		int startNum = (section - 1)*27 + (pageNum -1)*9;
-		String search = (String)pagingMap.get("search");		
+		int startNum = (section - 1)*27 + (pageNum -1)*8;
+		String search = (String)pagingMap.get("search");
+		
 		try {
 			conn = getConnection();
 			String sql = "select * from event"

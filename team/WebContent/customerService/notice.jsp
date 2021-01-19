@@ -3,7 +3,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"/>
-
+<c:set var="noticeList" value="${noticeMap.noticeList }"/>
+<c:set var="noticeListCount" value="${noticeMap.noticeListCount }"/>
+<c:set var="section" value="${noticeMap.section }"/>
+<c:set var="pageNo" value="${noticeMap.pageNo }"/>
+<c:set var="search" value="${noticeMap.search }"/>
 
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -89,35 +93,93 @@
 							</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td style="color: red;"><span>공지</span></td>
-									<td class="table_title"><a href="noticeView.jsp" class="table_title">[카테고리]제목입니다</a></td>
-									<td>2020.12.28</td>	
-									<td>233</td>
-								</tr>
+							<c:choose>	
+								<c:when test="${noticeList == null }">
+									<tr>
+										<td colspan="4">등록된 이벤트가 없습니다.</td>
+									</tr>		
+								</c:when>
+								<c:otherwise>
+									<c:forEach var="notice" items="${noticeList}">
+									<fmt:formatDate var="noticeFormattedDate" value="${notice.noticeWriteDate}" pattern="yy-MM-dd"/>
+									<tr>
+										<td><span>${notice.noticeNo}</span></td>
+										<td class="table_title"><a href="${contextPath}/notice/viewNotice.do?noticeNo=${notice.noticeNo}" class="table_title"><span style="color: #ffffff;">[${notice.noticeCategory}]${notice.noticeTitle}</span></a></td>
+										<td>${noticeFormattedDate}</td>	
+										<td>${notice.noticeReadCount}</td>
+									</tr>
+									</c:forEach>
+								</c:otherwise>	
+							</c:choose>	
 							</tbody>
 							</table>
 						</div>
 						<!-- Search Begin -->
-			        	<div class="faq-search-box">
+			        	<div class="faq-search-box noticesearch">
 				        	<form action="${contextPath}/notice/listNotice.do">
 								<div class="form-box tmg0">
 									<input type="hidden" name="section" value="${section}">
-									<input type="hidden" name="pageNum" value="${pageNum}">
+									<input type="hidden" name="pageNo" value="${pageNo}">
 									<input type="text" class="search" name="search" value="${search}">
 									<input type="submit" value="검색">
 								</div>
 							</form>	
 						</div>
+						<!-- Search End -->
 						<!-- 공지 등록버튼 -->
 			            <c:if test="${userID eq 'admin'}">
-			           		<a class="site-btn submit" href="${contextPath}/notice/addNotice.do">공지 등록</a>
+			           		<a class="site-btn submit" href="${contextPath}/notice/addNotice.do">등록</a>
 			            </c:if>
-						<div class="paging">
-							<div>&lt;<span class="current">1</span>
-							<a href="" data-page-no="2" title="2페이지">2</a>
-							&gt;</div>
+			            <!-- 페이징 -->
+			            <div class="row" style="justify-content: center;">
+			            <c:if test="${noticeListCount != null}">
+			            	<c:choose>
+			            		<c:when test="${noticeListCount > 100}">
+			            			<c:forEach var="page" begin="1" end="10" step="1">
+				            			<c:if test="${section > 1 && page = 1}">
+				            			<div class="paging">
+				            				<a href="${contextPath}/notice/listNotice.do?section=${section-1}&pageNo=${(section-1)*10+1}&search=${search}">
+				            				<span class="arrow_carrot-left"></span></a>
+				            			</div>
+				            			</c:if>
+				            			<div class="paging">
+				            				<a href="${contextPath}/notice/listNotice.do?section=${section}&pageNo=${page}&search=${search}">${(section-1)*10}</a>
+			            				</div>
+			            				<c:if test="${page==10}">
+			            				<div class="paging">	
+			            					<a href="${contextPath}/notice/listNotice.do?section=${section+1}&pageNo=${section*10+1}&search=${search}">
+			            					<span class="arrow_carrot-right"></span></a>
+			            				</div>
+			            				</c:if>
+			            			</c:forEach>
+			            		</c:when>
+			            		<c:when test="${noticeListCount == 100}">
+			            			<c:forEach var="page" begin="1" end="10" step="1">
+			            			<div class="paging">	
+			            				<span><a>${page}</a></span>
+			            			</div>	
+			            			</c:forEach>
+			            		</c:when>
+			            		<c:when test="${noticeListCount < 100 }">
+			            			<c:forEach var="page" begin="1" end="${noticeListCount/10+1}" step="1">
+			            				<c:choose>
+			            					<c:when test="${page==pageNo}">
+			            					<div class="paging">
+			            						<span><a class="current" href="${contextPath}/notice/listNotice.do?section=${section}&pageNo=${page}&search=${search}">${page}</a></span>
+			            					</div>
+			            					</c:when>
+			            					<c:otherwise>
+			            					<div class="paging">
+			            						<span><a href="${contextPath}/notice/listNotice.do?section=${section}&pageNo=${page}&search=${search}">${page}</a></span>
+			            					</div>	
+			            					</c:otherwise>
+			            				</c:choose>
+			            			</c:forEach>
+			            		</c:when>
+			            	</c:choose>
+						</c:if>
 						</div>
+						<!-- 페이징 끝 -->
 					</div>		
 				</div>			
 	        </div>

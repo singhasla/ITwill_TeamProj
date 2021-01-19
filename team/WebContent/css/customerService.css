@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-a, button {
+button {
 	color: #ffffff !important;
     cursor: pointer;
 }
@@ -88,6 +88,10 @@ h4 {
     border-right: 1px solid #1f1f1f;
 }
 
+.next a {
+	margin-left: 30px;
+}
+
 .nice-select {
 	width: 25% !important;
 	color: #111 !important;
@@ -122,6 +126,10 @@ h4 {
     background: rgba(255, 255, 255, 0.1);
 }
 
+.titlebackground small {
+	padding: 0 10px;
+}
+
 .blog__details__item__text h4 {
 	margin-bottom: 0px !important;
 	position: absolute;
@@ -138,4 +146,8 @@ h4 {
     margin-top: 10px;
     margin-bottom: 30px;
     padding-bottom: 10px;
+}
+
+.noticesearch {
+	background: rgba(255, 255, 255, 0.1) !important;
 }

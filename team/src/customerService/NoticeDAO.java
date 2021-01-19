@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -61,35 +62,38 @@ public class NoticeDAO {
 	}
 	
 	public List getNoticeList(Map searchMap) {
-		
 		List noticeList = new ArrayList();
-		int pageNum = (Integer)searchMap.get("pageNum");
-		int section = (Integer)searchMap.get("section");
+		
+		int section = (int)searchMap.get("section");
+		int pageNo = (int)searchMap.get("pageNo"); 
+		int startNum = (section - 1)*27 + (pageNo - 1)*9;
 		String search = (String)searchMap.get("search");
-		int startNum = (section - 1)*27 + (pageNum -1)*9;
+		
 		try {
 			conn = getConnection();
 			String sql = "select * from notice"
 						+ " where noticeTitle like ?"
-						+ " or noticeContent like ?"
-						+ " order by field(noticeCategory, 1) asc, noticeNo desc"
-						+ " limit ?, 20";
+						+ " order by noticeNo desc"
+						+ " limit ?, 10";
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%" + search + "%");
-			pstmt.setString(2, "%" + search + "%");
-			pstmt.setInt(3, startNum);
+			pstmt.setInt(2, startNum);
 			
 			rs = pstmt.executeQuery();
+			
 			while(rs.next()) {
-				NoticeVO notice = new NoticeVO();
-				notice.setNoticeNo(rs.getInt("noticeNo"));
-				notice.setNoticeTitle(rs.getString("noticeTitle"));
-				notice.setNoticeContent(rs.getString("noticeContent"));
-				notice.setNoticeFile(rs.getString("noticeFile"));
-				notice.setNoticeCategory(rs.getInt("noticeCategory"));
-				notice.setNoticeReadCount(rs.getInt("noticeReadCount"));
-				notice.setNoticeWriteDate(rs.getTimestamp("noticeWriteDate"));
-				noticeList.add(notice);
+				NoticeVO noticeVO = new NoticeVO();
+				noticeVO.setNoticeNo(rs.getInt("noticeNo"));
+				noticeVO.setNoticeTitle(rs.getString("noticeTitle"));
+				noticeVO.setNoticeContent(rs.getString("noticeContent"));
+				noticeVO.setNoticeFile(rs.getString("noticeFile"));
+				noticeVO.setNoticeCategory(rs.getString("noticeCategory"));
+				noticeVO.setNoticeReadCount(rs.getInt("noticeReadCount"));
+				noticeVO.setNoticeWriteDate(rs.getTimestamp("noticeWriteDate"));
+				
+				noticeList.add(noticeVO);
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -104,17 +108,18 @@ public class NoticeDAO {
 		int noticeNo = 0;
 		try {
 			conn = getConnection();
-			String sql = "insert into notice (noticeTitle, noticeContent, noticeWriteDate, noticeCategory, noticeFile)"
-					+ "values (?, ?, now(), ?,?)";
+			String sql = "insert into notice (noticeTitle, noticeContent, noticeWriteDate, noticeCategory, noticeFile, noticeReadCount)"
+					+ "values (?, ?, now(), ?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, notice.getNoticeTitle());
 			pstmt.setString(2, notice.getNoticeContent());
-			pstmt.setInt(3, notice.getNoticeCategory());
+			pstmt.setString(3, notice.getNoticeCategory());
 			pstmt.setString(4, notice.getNoticeFile());
+			pstmt.setInt(5, 0);
 			
 			pstmt.executeUpdate();
 			
-			sql = "select noticeNo from notice order by noticeNo limit 1";
+			sql = "select noticeNo from notice order by noticeNo desc limit 1";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			rs.next();
@@ -133,12 +138,12 @@ public class NoticeDAO {
 		
 		try {
 			conn = getConnection();
-			String sql = "update notice set noticeReadCount = noticeReadCount +1"
+			String sql = "update notice set noticeReadCount = noticeReadCount+1"
 						+ " where noticeNo = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, noticeNo);
 			pstmt.executeUpdate();
-			
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -158,13 +163,13 @@ public class NoticeDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				noticeVO.setNoticeCategory(rs.getInt("noticeCategory"));
 				noticeVO.setNoticeNo(rs.getInt("noticeNo"));
 				noticeVO.setNoticeTitle(rs.getString("noticeTitle"));
 				noticeVO.setNoticeContent(rs.getString("noticeContent"));
 				noticeVO.setNoticeWriteDate(rs.getTimestamp("noticeWriteDate"));
 				noticeVO.setNoticeReadCount(rs.getInt("noticeReadCount"));
 				noticeVO.setNoticeFile(rs.getString("noticeFile"));
+				noticeVO.setNoticeCategory(rs.getString("noticeCategory"));
 			}
 			
 		} catch (Exception e) {

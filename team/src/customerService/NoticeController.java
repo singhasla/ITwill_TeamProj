@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItem;
@@ -57,7 +58,6 @@ public class NoticeController extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		
 		String action = request.getPathInfo();
-		
 		System.out.println("action: " + action);
 		
 		try {
@@ -66,11 +66,28 @@ public class NoticeController extends HttpServlet {
 				setPagination(request);
 				
 				Map<String, Object> searchMap = new HashMap<String, Object>();
-				searchMap.put("pageNum", request.getParameter("pageNum"));
-				searchMap.put("search", request.getParameter("search"));
-				searchMap.put("section", request.getParameter("section"));
+				searchMap.put("pageNo", request.getAttribute("pageNo"));
+				searchMap.put("section", request.getAttribute("section"));
+				searchMap.put("search", request.getAttribute("search"));
 				
-				Map<String, Object> noticeMap = new HashMap<>();
+//				String _search = request.getParameter("search");			
+//				String _section = request.getParameter("section");
+//				String _pageNo = request.getParameter("pageNo");			
+//				
+//				int section = Integer.parseInt(((_section == null) ? "1" : _section));
+//				int pageNo = Integer.parseInt(((_pageNo == null) ? "1" : _pageNo));
+//				String search = (_search == null) ? "" : _search;
+//				
+//				Map<String, Object> searchMap = new HashMap<String, Object>();
+//				searchMap.put("pageNo", pageNo);
+//				searchMap.put("search", search);
+//				searchMap.put("section", section);
+				
+				Map<String, Object> noticeMap = new HashMap<String, Object>();
+				searchMap.put("pageNo", request.getAttribute("pageNo"));
+				searchMap.put("section", request.getAttribute("section"));
+				searchMap.put("search", request.getAttribute("search"));
+				
 				List<NoticeVO> noticeList = noticeDAO.getNoticeList(searchMap);
 				int noticeListCount = noticeDAO.getNoticeListCount(searchMap);
 				noticeMap.put("noticeList", noticeList);
@@ -89,7 +106,7 @@ public class NoticeController extends HttpServlet {
 				String noticeTitle = multipartMap.get("noticeTitle");
 				String noticeContent = multipartMap.get("noticeContent");
 				String noticeFile = multipartMap.get("noticeFile");
-				int noticeCategory = Integer.parseInt(multipartMap.get("noticeCategory"));
+				String noticeCategory = multipartMap.get("noticeCategory");
 	
 				noticeVO.setNoticeTitle(noticeTitle);
 				noticeVO.setNoticeContent(noticeContent);
@@ -98,17 +115,11 @@ public class NoticeController extends HttpServlet {
 				
 				int noticeNo = noticeDAO.insertNotice(noticeVO);
 				
-				if(noticeFile != null) {
+				if(noticeFile != null && noticeFile.length() != 0) {
 					moveFile(noticeNo, noticeFile);
 				}
 				
-				PrintWriter out = response.getWriter();
-				out.print("<script>"
-						 + " alter('공지를 추가했습니다.');"
-						 + " location.href='" + request.getContextPath() + "/customerService/noticeView.do?noticeNo='"
-						 + noticeNo+";"
-						 + "</script>");
-				//nextPage = "/customerService/noticeView.do?noticeNo=" + noticeNo;
+				nextPage = "/notice/viewNotice.do?noticeNo=" + noticeNo;
 			
 			} else if(action.equals("/viewNotice.do")) {	
 				
@@ -123,7 +134,27 @@ public class NoticeController extends HttpServlet {
 				noticeMap.put("noticeVO", noticeVO);
 				request.setAttribute("noticeMap", noticeMap);
 				
-				nextPage = "/customerService/noitceView.jsp";
+				nextPage = "/customerService/noticeView.jsp";
+			
+			} else if(action.equals("/modifyNotice.do")) {		
+				
+				setPagination(request);
+				
+				int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
+				
+				Map<String, Object> noticeMap = new HashMap<String, Object>();
+				NoticeVO noticeVO = noticeDAO.getNotice(noticeNo);
+				noticeMap.put("noticeVO", noticeVO);
+				request.setAttribute("noticeMap", noticeMap);
+				
+				nextPage = "/customerService/noticeUpdate.jsp";
+				
+			} else if(action.equals("/download.do")) {		
+				
+				int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
+				String noticeFile = request.getParameter("noticeFile");
+				
+				downloadFile(response, noticeNo, noticeFile);
 				
 			} else {
 				nextPage = "/customerService.jsp";
@@ -138,30 +169,32 @@ public class NoticeController extends HttpServlet {
 		
 	}
 	
-	private void setPagination(HttpServletRequest request){
+	private void setPagination(HttpServletRequest request) {
 		try {
-			int pageNum = 1;
-			if(request.getParameter("pageNum") != null) {
-				pageNum = Integer.parseInt(request.getParameter("pageNo"));
-			} else {
-				request.setAttribute("pageNum", pageNum);
+			int pageNo = 1;
+			if(request.getParameter("pageNo")!=null) {
+				pageNo = Integer.parseInt(request.getParameter("pageNo"));
+			}
+			if(request.getAttribute("pageNo")==null) {
+				request.setAttribute("pageNo", pageNo);
 			}
 			
 			int section = 1;
-			if(request.getParameter("section") != null) {
+			if(request.getParameter("section")!=null) {
 				section = Integer.parseInt(request.getParameter("section"));
-			} else {
+			}
+			if(request.getAttribute("section")==null) {
 				request.setAttribute("section", section);
 			}
 			
 			String search = "";
-			if(request.getParameter("search") != null) {
+			if(request.getParameter("search")!=null) {
 				search = request.getParameter("search");
-			} else {
+			}
+			if(request.getAttribute("search")==null) {
 				request.setAttribute("search", search);
 			}
 			
-	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -195,7 +228,7 @@ public class NoticeController extends HttpServlet {
 						idx = fileItem.getName().lastIndexOf("/");
 					}
 					
-					String fileName = fileItem.getName().substring(idx + 1);
+					String noticeFile = fileItem.getName().substring(idx + 1);
 					String tempDirPath = realPath + "\\temp";
 					File tempDir = new File(tempDirPath);
 					
@@ -203,7 +236,7 @@ public class NoticeController extends HttpServlet {
 						tempDir.mkdir();
 					}
 					
-					File uploadFile = new File(tempDirPath + "\\" + fileName);
+					File uploadFile = new File(tempDirPath + "\\" + noticeFile);
 					
 					if(!uploadFile.exists()) {
 						fileItem.write(uploadFile);
@@ -220,13 +253,13 @@ public class NoticeController extends HttpServlet {
 		return noticeMap;
 	}
 	
-	private void moveFile(int noticeNo, String fileName) {
+	private void moveFile(int noticeNo, String noticeFile) {
 		try {
-			File srcFile = new File(realPath + "\\temp\\" + fileName );
+			File srcFile = new File(realPath + "\\temp\\" + noticeFile );
 			File destDir = new File(realPath + "\\" + noticeNo );
 			Boolean createDestDir = destDir.mkdir();
 			
-			String filePath = realPath + "\\" + noticeNo + "\\" + fileName;
+			String filePath = realPath + "\\" + noticeNo + "\\" + noticeFile;
 			File file = new File(filePath);
 			
 			if(!file.exists()) {
@@ -237,9 +270,9 @@ public class NoticeController extends HttpServlet {
 		}
 	}
 	
-	private void deleteFile(int noticeNo, String fileName) {
+	private void deleteFile(int noticeNo, String noticeFile) {
 		try {
-			String filePath = realPath + "\\" + noticeNo + "\\" + fileName;
+			String filePath = realPath + "\\" + noticeNo + "\\" + noticeFile;
 			File file = new File(filePath);
 			
 			if(file.exists()) {
@@ -250,16 +283,16 @@ public class NoticeController extends HttpServlet {
 		}
 	}
 
-	private void downloadFile(HttpServletResponse response, int noticeNo, String fileName) {
+	private void downloadFile(HttpServletResponse response, int noticeNo, String noticeFile) {
 		try {
-			String filePath = realPath + "\\" + noticeNo + "\\" + fileName;
+			String filePath = realPath + "\\" + noticeNo + "\\" + noticeFile;
 			File file = new File(filePath);
 			
 			OutputStream out = response.getOutputStream();
 			
 			response.setHeader("Cache-Cotrol", "no-chche");
 			response.addHeader("Cache-Control", "no-store");
-			response.setHeader("Content-disposition", "attachment; fileName=\"" + URLEncoder.encode(fileName, "UTF-8") + "\";");
+			response.setHeader("Content-disposition", "attachment; noticeFile=\"" + URLEncoder.encode(noticeFile, "UTF-8") + "\";");
 			
 			FileInputStream in = new FileInputStream(file);
 			
@@ -281,11 +314,11 @@ public class NoticeController extends HttpServlet {
 		}
 	}
 	
-	private String getFileType(int noticeNo, String fileName) {
+	private String getFileType(int noticeNo, String noticeFile) {
 		String noticeFileType = "";
 		
 		try {
-			String filePath = realPath + "\\" + noticeNo + "\\" + fileName;
+			String filePath = realPath + "\\" + noticeNo + "\\" + noticeFile;
 			File file = new File(filePath);
 			
 			String mimeType = Files.probeContentType(file.toPath());

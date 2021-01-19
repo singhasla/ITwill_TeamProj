@@ -90,7 +90,7 @@
                                     </div>
                                 </div>
                          	</div>
-                         	<!-- 이벤트 등록버튼 -->
+                         	<!-- 이벤트 수정,삭제 버튼 -->
 				            <c:if test="${userID eq 'admin'}">
 				           		<button type="button" class="site-btn cancel" onclick="location.href='${contextPath}/eventServlet/deleteEvent.do?eventNo=${eventNo}'">삭제</button>
 				           		<button type="button" class="site-btn cancel" onclick="location.href='${contextPath}/eventServlet/modifyEvent.do?eventNo=${eventNo}'">수정</button>

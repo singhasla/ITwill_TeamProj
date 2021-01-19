@@ -62,7 +62,7 @@
 			        <div class="blog__details__content">
 			     		<ul class="blog__details__btns">
 	                        <li class="blog__details__btns__item">
-	                            <h5><a href="notice.jsp">공지사항</a></h5>
+	                            <h5><a href="${contextPath}/notice/listNotice.do">공지사항</a></h5>
 	                        </li>
 	                        <li class="blog__details__btns__item">
 	                            <h5><a href="faq.jsp">자주 묻는 질문</a></h5>
@@ -91,10 +91,10 @@
 											<td>
 												<select class="nice-select" name="noticeCategory">
 													<option>선택하세요</option>
-													<option value="1">공지</option>
-													<option value="2">안내</option>
-													<option value="3">이벤트</option>
-													<option value="4">점검</option>
+													<option value="공지">공지</option>
+													<option value="안내">안내</option>
+													<option value="이벤트">이벤트</option>
+													<option value="점검">점검</option>
 												</select>
 											</td>
 										</tr>
