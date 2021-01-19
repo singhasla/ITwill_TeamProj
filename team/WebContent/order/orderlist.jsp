@@ -92,7 +92,7 @@
 												</a> --%>
 											</td>
 											<td style="vertical-align: middle; text-align: center;">
-												<a class="icon_trash" href="${contextPath}/ordersvlt/delCart.do?userNo=${userNo}&movieNo=${orderListInf.movieNo}"></a>
+												<a class="icon_trash" href="${contextPath}/ordersvlt/delOrder.do?userNo=${userNo}&movieNo=${orderListInf.movieNo}"></a>
 											</td>
 										</tr>
 									</c:forEach>

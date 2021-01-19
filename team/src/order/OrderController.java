@@ -102,7 +102,7 @@ public class OrderController extends HttpServlet {
 				int userNo = Integer.parseInt(request.getParameter("userNo"));
 				int movieNo = Integer.parseInt(request.getParameter("movieNo"));
 				
-				orderService.delSelectedItem(userNo, movieNo);
+				orderService.delSelectedItem1(userNo, movieNo);
 				
 				PrintWriter pw = response.getWriter();
 				pw.print("<script>" + " alert('삭제완료');" 
@@ -149,6 +149,20 @@ public class OrderController extends HttpServlet {
 	
 				nextPage = "/order/orderlist.jsp";
 				
+			} else if (action.equals("/delOrder.do")) {	//구매내역의 개별 목록 삭제
+
+				int userNo = Integer.parseInt(request.getParameter("userNo"));
+				int movieNo = Integer.parseInt(request.getParameter("movieNo"));
+				
+				orderService.delSelectedItem2(userNo, movieNo);
+				
+				PrintWriter pw = response.getWriter();
+				pw.print("<script>" + " alert('삭제완료');" 
+									+ " location.href='" + request.getContextPath()
+									+ "/ordersvlt/myOrderList.do';" 
+						+ "</script>");
+				
+				return;
 			}
 			
 			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
