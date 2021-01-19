@@ -19,10 +19,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import order.OrderDAO;
+
 @WebServlet("/user/*")
 public class UserController extends HttpServlet{
 	
 	UserDAO userDAO;
+	OrderDAO orderDAO;
 	
 	@Override
 	public void init() throws ServletException {
@@ -99,6 +102,8 @@ public class UserController extends HttpServlet{
 				String userID = request.getParameter("userID");
 				String userPW = request.getParameter("userPW");
 				
+				int userNo = orderDAO.myUserNo(userID);
+				
 				int check = userDAO.login(userID, userPW);
 				
 				if(check == 0){
@@ -108,7 +113,7 @@ public class UserController extends HttpServlet{
 					nextPage = "/login/login.jsp";//비밀번호틀림
 					request.setAttribute("msg", "pw");
 				}else{
-					
+					session.setAttribute("userNo", Integer.toString(userNo));
 					session.setAttribute("userID", userID);
 					nextPage = "/main/index.jsp";
 				}
