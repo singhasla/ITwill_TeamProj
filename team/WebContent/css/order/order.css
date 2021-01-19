@@ -1,0 +1,23 @@
+.login__register .home-btn {
+    background: #e53637;
+    padding: 12px 42px;
+}
+
+.home-btn {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #ffffff;
+    letter-spacing: 2px;
+    margin-left: 185px;
+}
+
+.play-btn {
+    max-width: 50% !important;
+}
+
+.p_margin_top{
+	margin-top: 100px;
+}
+
