@@ -60,11 +60,7 @@ public class OrderController extends HttpServlet {
 			
 			if (action == null || action.equals("/cart.do")) {	//로그인한 회원의 카트목록
 				  
-				//String userID = (String)session.getAttribute("userID");
-				
-				//int userNo = orderService.myUserNo(userID);
-				int userNo = (int) session.getAttribute("userNo");
-				session.setAttribute("userNo", Integer.toString(userNo));
+				int userNo = Integer.parseInt((String)session.getAttribute("userNo"));
 				
 				List<MovieVO> list = orderService.myCartList(userNo);
 				
@@ -119,11 +115,7 @@ public class OrderController extends HttpServlet {
 
 			} else if (action.equals("/pay.do")) {	// 결제페이지
 
-				//String userID = (String)session.getAttribute("userID");
-				
-				//int userNo = orderService.myUserNo(userID);
-				int userNo = (int) session.getAttribute("userNo");
-				session.setAttribute("userNo", Integer.toString(userNo));
+				int userNo = Integer.parseInt((String)session.getAttribute("userNo"));
 				
 				List<MovieVO> list = orderService.myCartList(userNo);
 				
@@ -139,11 +131,7 @@ public class OrderController extends HttpServlet {
 
 			} else if (action.equals("/paycomplt.do")) {	// 결제완료 후 status 변경
 
-				//String userID = (String)session.getAttribute("userID");
-				
-				//int userNo = orderService.myUserNo(userID);
-				int userNo = (int) session.getAttribute("userNo");
-				session.setAttribute("userNo", Integer.toString(userNo));
+				int userNo = Integer.parseInt((String)session.getAttribute("userNo"));
 				
 				orderService.updateStatus(userNo);
 	
@@ -151,11 +139,7 @@ public class OrderController extends HttpServlet {
 
 			} else if (action.equals("/myOrderList.do")) {
 				
-				//String userID = (String)session.getAttribute("userID");
-				
-				//int userNo = orderService.myUserNo(userID);
-				int userNo = (int) session.getAttribute("userNo");
-				session.setAttribute("userNo", Integer.toString(userNo));
+				int userNo = Integer.parseInt((String)session.getAttribute("userNo"));
 				
 				List<MovieVO> list = orderService.myOrderList(userNo);
 				

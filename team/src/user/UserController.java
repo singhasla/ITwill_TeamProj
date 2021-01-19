@@ -20,16 +20,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import order.OrderDAO;
+import order.OrderService;
 
 @WebServlet("/user/*")
 public class UserController extends HttpServlet{
-	
 	UserDAO userDAO;
+	OrderService orderService;
 	OrderDAO orderDAO;
 	
 	@Override
 	public void init() throws ServletException {
 		userDAO = new UserDAO();
+		orderService = new OrderService();
+		orderDAO = new OrderDAO();
 	}
 	
 	@Override
@@ -102,8 +105,7 @@ public class UserController extends HttpServlet{
 				String userID = request.getParameter("userID");
 				String userPW = request.getParameter("userPW");
 				
-				int userNo = orderDAO.myUserNo(userID);
-				
+				int userNo = orderService.myUserNo(userID);
 				int check = userDAO.login(userID, userPW);
 				
 				if(check == 0){
