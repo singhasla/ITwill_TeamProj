@@ -8,6 +8,7 @@
 <c:set var="noticeContent" value="${noticeMap.noticeVO.noticeContent}"/>
 <c:set var="noticeFile" value="${noticeMap.noticeVO.noticeFile}"/>
 <c:set var="noticeCategory" value="${noticeMap.noticeVO.noticeCategory}"/>
+<c:set var="noticeCategoryList" value="${noticeMap.noticeCategoryList}"/>
 <%
 	request.setCharacterEncoding("UTF-8");
 %>    
@@ -96,18 +97,16 @@
 											<td>
 												<select class="nice-select" name="noticeCategory" id="noticeCategory">
 													<option>선택하세요</option>
-													<c:if test="${noticeCategory} == '공지'">
-														<option value="${noticeCategory}" selected>${noticeCategory}</option>
-													</c:if>
-													<c:if test="${noticeCategory} == '안내'">
-														<option value="${noticeCategory}" selected>${noticeCategory}</option>
-													</c:if>
-													<c:if test="${noticeCategory} == '이벤트'">
-														<option value="이벤트" selected>${noticeCategory}</option>
-													</c:if>
-													<c:if test="${noticeCategory} == '점검'">
-														<option value="${noticeCategory}" selected>${noticeCategory}</option>
-													</c:if>
+													<c:forEach var="category" items="${noticeCategoryList}">
+														<c:choose>
+															<c:when test="${category.noticeCategory == noticeCategory}">
+																<option value="${category.noticeCategory}" selected>${category.noticeCategory}</option>
+															</c:when>
+															<c:otherwise>
+																<option value="${category.noticeCategory}">${category.noticeCategory}</option>
+															</c:otherwise>
+														</c:choose>
+													</c:forEach>
 												</select>
 											</td>
 										</tr>

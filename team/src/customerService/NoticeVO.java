@@ -16,6 +16,10 @@ public class NoticeVO {
 	public NoticeVO() {
 		
 	}
+	
+	public NoticeVO(String noticeCategory) {
+		this.noticeCategory = noticeCategory;
+	}
 
 	public NoticeVO(int noticeNo, String noticeTitle, String noticeContent, String noticeCategory, int noticeReadCount, String noticeFile) {
 	

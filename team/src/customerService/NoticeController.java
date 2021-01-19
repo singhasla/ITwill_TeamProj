@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -145,6 +146,11 @@ public class NoticeController extends HttpServlet {
 				Map<String, Object> noticeMap = new HashMap<String, Object>();
 				NoticeVO noticeVO = noticeDAO.getNotice(noticeNo);
 				noticeMap.put("noticeVO", noticeVO);
+				
+				List noticeCategoryList = noticeDAO.noticeCategoryList();
+				System.out.println(noticeCategoryList);
+				noticeMap.put("noticeCategoryList", noticeCategoryList);
+				
 				request.setAttribute("noticeMap", noticeMap);
 				
 				nextPage = "/customerService/noticeUpdate.jsp";

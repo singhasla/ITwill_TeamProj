@@ -180,4 +180,27 @@ public class NoticeDAO {
 		return noticeVO;
 	}
 	
+	public List<NoticeVO> noticeCategoryList(){
+		List<NoticeVO> noticeCategoryList = new ArrayList<NoticeVO>();
+		try {
+			conn = getConnection();
+			String sql = "select noticeCategory from notice"
+						+" group by noticeCategory";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String noticeCategory = rs.getString("noticeCategory");
+				NoticeVO noticeCategoryVO = new NoticeVO(noticeCategory);
+				noticeCategoryList.add(noticeCategoryVO);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll();
+		}
+		return noticeCategoryList;
+	}
+	
 }
