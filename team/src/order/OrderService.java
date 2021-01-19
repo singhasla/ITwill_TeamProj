@@ -23,8 +23,12 @@ public class OrderService {
 		orderDAO.allDelItem(userNo);
 	}
 
-	public void delSelectedItem(int userNo, int movieNo){ //카트에 일부 상품만 삭제
-		orderDAO.delSelectedItem(userNo, movieNo);
+	public void delSelectedItem1(int userNo, int movieNo){ //카트에 일부 상품만 삭제
+		orderDAO.delSelectedItem1(userNo, movieNo);
+	}
+	
+	public void delSelectedItem2(int userNo, int movieNo){ //구매내역에 일부 상품만 삭제
+		orderDAO.delSelectedItem2(userNo, movieNo);
 	}
 	
 	public int cartTotalPrice(int userNo) {	//카트에 담긴 상품 전체 금액

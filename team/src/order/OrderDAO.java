@@ -172,7 +172,7 @@ public class OrderDAO {
 	}// allDelItem
 	
 	
-	public void delSelectedItem(int userNo, int movieNo) {// 카트 목록에서 선택한 목록 제거
+	public void delSelectedItem1(int userNo, int movieNo) {// 카트 목록에서 선택한 목록 제거
 
 		try {
 			conn = getConnection();
@@ -187,26 +187,34 @@ public class OrderDAO {
 			pstmt.executeUpdate();
 
 		} catch (Exception e) {
-			System.out.println("delSelectedItem 메소드 오류 : " + e.getMessage());
+			System.out.println("delSelectedItem1 메소드 오류 : " + e.getMessage());
 			e.printStackTrace();
 		} finally {
 			freeResource();
 		}
-	}// delSelectedItem
+	}// delSelectedItem1
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public void delSelectedItem2(int userNo, int movieNo) {// 구매내역에서 선택한 목록 제거
+
+		try {
+			conn = getConnection();
+
+			sql = "DELETE FROM team.order WHERE userNo=? AND movieNo=? AND orderStatus=1";
+
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, movieNo);
+
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("delSelectedItem2 메소드 오류 : " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			freeResource();
+		}
+	}// delSelectedItem2
 	
 	public void addItemCart(OrderVO vo) { // 카트에 추가
 		
@@ -241,8 +249,6 @@ public class OrderDAO {
 			freeResource();
 		}
 	}// addItemCart
-
-	
 
 	public int cartTotalPrice(int userNo) { // 장바구니에 담긴 상품 전체금액
 
@@ -348,7 +354,7 @@ public class OrderDAO {
 		} finally {
 			freeResource();
 		}
-	}//paycomplt
+	}//updateStatus
 
 	
 
