@@ -1,8 +1,11 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=refs/remotes/origin/main
 eclipse.preferences.version=1
-<<<<<<< HEAD
+encoding//src/adminOrder/AdminOrderController.java=UTF-8
+encoding//src/adminOrder/AdminOrderDAO.java=UTF-8
+encoding//src/adminOrder/AdminOrderService.java=UTF-8
 encoding//src/order/OrderController.java=UTF-8
 encoding//src/order/OrderDAO.java=UTF-8
 encoding//src/order/OrderService.java=UTF-8
-=======
 encoding/<project>=UTF-8
->>>>>>> refs/remotes/origin/main
