@@ -7,6 +7,7 @@
 <c:set var="allEvents" value="${eventMap.allEvents}"/>
 <c:set var="section" value="${eventMap.section}"/>
 <c:set var="pageNum" value="${eventMap.pageNum}"/>
+<c:set var="search" value="${eventMap.search}"/>
 <c:set var="allEvent"/>
 
 <%
@@ -36,6 +37,7 @@
     <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="../css/style.css" type="text/css">
     <link rel="stylesheet" href="../css/event.css" type="text/css">
+    <link rel="stylesheet" href="../css/customerService.css" type="text/css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
@@ -70,17 +72,21 @@
         <div class="container">
         	<!-- Search Begin -->
         	<div class="faq-search-box">
-				<div class="form-box tmg0">
-					<input type="text" class="search">
-					<input type="submit" value="검색">
-				</div>
+	        	<form action="${contextPath}/eventServlet/listEvent.do">
+					<div class="form-box tmg0">
+						<input type="hidden" name="section" value="${section}">
+						<input type="hidden" name="pageNum" value="${pageNum}">
+						<input type="text" class="search" name="search" value="${search}">
+						<input type="submit" value="검색">
+					</div>
+				</form>	
 			</div>
 			<!-- Search End  -->
 			<!-- Event List Begin -->
             <div class="row">
 	            <c:choose>
 	            	<c:when test="${empty eventList}">
-	            		<p></p>
+	            		<p>등록된 이벤트가 없습니다.</p>
 	            	</c:when>
 	            	<c:when test="${!empty eventList}">
 	            		<c:forEach var="event" items="${eventList}" varStatus="eventNo">	
@@ -106,6 +112,55 @@
             <c:if test="${userID eq 'admin'}">
            		<a class="site-btn submit" href="${contextPath}/eventServlet/eventForm.do">이벤트등록</a>
             </c:if>
+            <!-- 페이징 -->
+            <div class="row" style="justify-content: center;">
+            <c:if test="${allEvents != null}">
+            	<c:choose>
+            		<c:when test="${allEvents > 100}">
+            			<c:forEach var="page" begin="1" end="10" step="1">
+	            			<c:if test="${section > 1 && page = 1}">
+	            			<div class="paging">
+	            				<a href="${contextPath}/eventServlet/listEvent.do?section=${section-1}&pageNum=${(section-1)*10+1}&search=${search}">
+	            				<span class="arrow_carrot-left"></span></a>
+	            			</div>
+	            			</c:if>
+	            			<div class="paging">
+	            				<a href="${contextPath}/eventServlet/listEvent.do?section=${section}&pageNum=${page}&search=${search}">${(section-1)*10}</a>
+            				</div>
+            				<c:if test="${page==10}">
+            				<div class="paging">	
+            					<a href="${contextPath}/eventServlet/listEvent.do?section=${section+1}&pageNum=${section*10+1}&search=${search}">
+            					<span class="arrow_carrot-right"></span></a>
+            				</div>
+            				</c:if>
+            			</c:forEach>
+            		</c:when>
+            		<c:when test="${allEvents == 100}">
+            			<c:forEach var="page" begin="1" end="10" step="1">
+            			<div class="paging">	
+            				<span><a>${page}</a></span>
+            			</div>	
+            			</c:forEach>
+            		</c:when>
+            		<c:when test="${allEvents < 100 }">
+            			<c:forEach var="page" begin="1" end="${allEvents/10+1}" step="1">
+            				<c:choose>
+            					<c:when test="${page==pageNum}">
+            					<div class="paging">
+            						<span><a class="current" href="${contextPath}/eventServlet/listEvent.do?section=${section}&pageNum=${page}&search=${search}">${page}</a></span>
+            					</div>
+            					</c:when>
+            					<c:otherwise>
+            					<div class="paging">
+            						<span><a href="${contextPath}/eventServlet/listEvent.do?section=${section}&pageNum=${page}&search=${search}">${page}</a></span>
+            					</div>	
+            					</c:otherwise>
+            				</c:choose>
+            			</c:forEach>
+            		</c:when>
+            	</c:choose>
+			</c:if>
+			</div>
         </div>
     </section>
     <!-- Event Section End -->
