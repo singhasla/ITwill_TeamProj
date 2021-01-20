@@ -11,7 +11,7 @@
     <meta name="keywords" content="Anime, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>로그인</title>
+    <title>Anime | Template</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="../css/style.css" type="text/css">
-    <link rel="stylesheet" href="../css/login.css" type="text/css">
+    <link rel="stylesheet" href="../css/order/order.css" type="text/css">
 </head>
 <body>
     <!-- Page Preloder -->
@@ -45,8 +45,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="normal__breadcrumb__text">
-                        <h2>Login</h2>
-                        <p>Welcome to the official Anime blog.</p>
+                        <h2>결제 완료</h2>
                     </div>
                 </div>
             </div>
@@ -54,58 +53,39 @@
     </section>
     <!-- Normal Breadcrumb End -->
 
-    <!-- Login Section Begin -->
-    <section class="login spad">
+	<div class="container">
+    	<div class="row">
+        	<div class="col-lg-12 text-center">
+                   <div class="normal__breadcrumb__text">
+                        <p class="p_margin_top">결제가 정상적으로 처리되었습니다.</p>
+                   </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="login__form">
-                        <h3>Login</h3>
-                        <form action="${contextPath}/user/login.do" method="post">
-                            <div class="input__item">
-                                <input type="text"  name="userID" required autofocus placeholder="ID" />
-                                <span class="icon_profile"></span>
-                            </div>
-                            <div class="input__item">
-                                <input type="password"  name="userPW" required autofocus  placeholder="PASSWORD"/>
-                                <span class="icon_lock"></span>
-                            </div>
-                           
-                            <button type="submit" class="site-btn">Login Now</button>
-                             	<a href="${contextPath}/user/findId.do" class="forget_pass1">Forgot ID</a>&nbsp&nbsp
-                        	<a href="${contextPath}/login/pwFind.jsp" class="forget_pass1">Forgot PW</a>
-                        </form>
+                         <div class="login__register">
+                       	 	<a href="${contextPath}/main/index.jsp" class="home-btn">홈으로 이동</a>
+                   		 </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="login__register">
-                        <h3>Dont’t Have An Account?</h3>
-                        <a href="${contextPath}/user/signupForm.do" class="primary-btn">Register Now</a>
+                        <a href="${contextPath}/ordersvlt/myOrderList.do" class="primary-btn">나의 구매내역</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     
-	    <c:choose>
-		<c:when test='${msg=="id"}'>
-			<script>
-				window.onload = function(){
-					window.alert("존재하지 않는 아이디 입니다.");
-				}
-			</script>
-		</c:when>
-		<c:when test='${msg=="pw"}'>
-			<script>
-				window.onload = function(){
-					window.alert("비밀번호가 일치하지 않습니다.");
-				}
-			</script>
-		</c:when>
-	</c:choose>
-    <!-- Login Section End -->
-
-   <jsp:include page="../inc/footer.jsp" />
+	<!-- Footer Section Begin -->
+	<jsp:include page="../inc/footer.jsp" />
+	<!-- Footer Section End -->
+   
 
 </body>
 

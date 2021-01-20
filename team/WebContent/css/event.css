@@ -1,0 +1,156 @@
+@CHARSET "UTF-8";
+
+h3 {
+	color: #ffffff !important; 
+}
+
+.writeForm {
+	margin-top: 50px;
+}
+
+.table{
+	color: #ffffff;
+	border-bottom: 1px solid #dee2e6;
+	
+}
+
+.writeForm input {
+	width: 100%;
+	border-radius: 5px;
+	height: 42px;
+	line-height: 40px;
+    padding-left: 18px;
+    padding-right: 30px;
+}
+
+.writeForm textarea {
+	width: 100%;
+	border-radius: 5px;
+	padding-top: 10px;
+	padding-left: 18px;
+    padding-right: 30px;
+}
+
+.writeForm input[type=file] {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.button {
+	text-align: right; 
+	margin-bottom: 100px;
+}
+
+
+.site-btn, .cancle {
+	float: right; 
+	margin-left: 7px;
+}
+
+.site-btn, .submit {
+	float: right;
+}
+
+.faq-search-box {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+    background: #e5363773;
+    padding: 25px 0;
+    border-radius: 3px;
+    text-align: center;
+    margin-bottom: 15px;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.search {
+	width:30%;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 9px;
+    background-color: #0b0c2a94;
+    outline: none;
+    box-sizing: border-box;
+    font-size: 15px;
+    width: 250px;
+    color: #b7b7b7;
+    border: 1px solid #0b0c2a94;
+}
+
+.faq-search-box input {
+    border-radius: 1.375rem;
+    margin-left: 0;
+    padding: 0 1.25rem;
+}
+
+.form-box input[type=submit]:hover {
+    background-color: #dedede;
+    color: #141414;
+}
+
+.faq-search-box input[type=submit] {
+    margin-left: 5px;
+}
+
+.form-box input[type=submit] {
+    display: inline-block;
+    cursor: pointer;
+    border: 0;
+    background-color: #0b0c2a94;
+    color: #d5d5d5;
+    min-width: 64px;
+    text-align: center;
+    line-height: 40px;
+    box-sizing: border-box;
+    padding: 0 20px;
+    font-weight: 600;
+    letter-spacing: -.05em;
+    border-radius: 4px;
+    margin-left: 10px;
+}
+
+.col-lg-6, .next1 {
+	float: left;
+	width: 50%;
+}
+
+.icon_calendar {
+	margin-right: 7px;
+}
+
+.blog__details__title {
+	margin-bottom: 0 !important;
+}
+
+.blog__details__pic {
+	border-top: 1px solid rgba(255, 255, 255, 0.2);
+	margin-bottom: 50px;
+}
+
+.blog__details__btns {
+	margin-bottom: 20px !important;	
+}
+
+.preview {
+    width: 60px;
+    height: 60px;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border: 1px solid #dee2e6;
+}
+
+@media (max-width: 792px) {
+	.blog__item {
+		height: 580px;
+	}
+	.col-lg-6 {
+		float: left;
+    	width: 100%;
+	}
+
+}
+
+.widhun {
+	width: 100%;
+}

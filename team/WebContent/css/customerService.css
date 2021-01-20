@@ -1,0 +1,158 @@
+@CHARSET "UTF-8";
+
+button {
+	color: #ffffff !important;
+    cursor: pointer;
+}
+
+h4 {
+	color: #ffffff !important; 
+}
+
+.blog__details__btns {
+	padding: 25px 0 45px !important;
+	text-align: center !important;
+	margin-bottom: 0px !important;
+}
+
+.blog__details__btns >li {
+	float: left; 
+	width: 33.3%;
+}
+
+.notice_table{
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.notice_table thead th {
+	height: 65px;
+    font-weight: 400;
+    color: #dedede;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    color: #969696;
+    font-weight: bold;
+    
+}
+
+.notice_table tbody tr td {    
+	position: relative;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 20px 0;
+    vertical-align: middle;	
+}
+
+.table_title {
+	text-align: left !important;
+	font-weight: bold;	
+}	
+
+.paging {
+	color: #ffffff;
+	padding-top: 30px;
+	text-align: center;
+	
+}
+
+.current {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.paging a, .paging span {
+	margin: 0 1px;
+    width: 1.875rem;
+    height: 1.875rem;
+    line-height: 1.875rem;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 100%;
+    overflow: hidden;
+    border: 0;
+}
+
+.next {
+	height: 3.4375rem;
+    line-height: 3.4375rem;
+    padding-left: 1rem;
+    border-bottom: 1px solid #383838;
+    border-top: 1px solid #383838
+}
+
+.next span {
+	position: relative;
+    float: left;
+    color: #646464;
+    padding: 0 2.125rem 0 1rem;
+    border-right: 1px solid #1f1f1f;
+}
+
+.next a {
+	margin-left: 30px;
+}
+
+.nice-select {
+	width: 25% !important;
+	color: #111 !important;
+	
+}
+
+.noticeForm {
+	padding-top: 50px;
+	color: #ffffff;
+}
+
+.float_left {
+	float: left;
+}
+
+.title {
+	height: 58px;
+    font-size: 15px;
+    padding: 0 17px;
+    line-height: 58px;
+    background: #0000a0;
+    font-weight: 500;
+    position: relative;
+    letter-spacing: -.05em
+}
+
+.titlebackground{
+	margin-bottom: 0 !important;
+	padding: 25px;
+	height: 80px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.titlebackground small {
+	padding: 0 10px;
+}
+
+.blog__details__item__text h4 {
+	margin-bottom: 0px !important;
+	position: absolute;
+}
+
+.blog__details__item__text span {
+	float: right;
+	color: #c0c0c0;
+}
+
+.filearea {
+	border-bottom: 1px solid;
+    color: #646464;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+}
+
+.noticesearch {
+	background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.originalFile input{
+	width: auto !important;
+    height: 15px !important;
+}
