@@ -8,6 +8,7 @@ public class QnaVO {
 	private int userNo;
 	private String qnaTitle;
 	private String qnaContent;
+	private String qnaCategory;
 	private Timestamp qnaWriteDate;
 	private String answerTitle;
 	private String answerContent;
@@ -37,6 +38,12 @@ public class QnaVO {
 	}
 	public void setQnaContent(String qnaContent) {
 		this.qnaContent = qnaContent;
+	}
+	public String getQnaCategory() {
+		return qnaCategory;
+	}
+	public void setQnaCategory(String qnaCategory) {
+		this.qnaCategory = qnaCategory;
 	}
 	public Timestamp getQnaWriteDate() {
 		return qnaWriteDate;

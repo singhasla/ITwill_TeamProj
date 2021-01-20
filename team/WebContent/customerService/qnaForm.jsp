@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"/>
+<c:set var="userNo" value="${sessionScope.userNo}"/>
 
 
 <%
@@ -49,7 +51,7 @@
 	<!-- Header -->
 	<jsp:include page="../inc/header.jsp" />
  	
- 	<!-- InquireForm Section Begin -->
+ 	<!-- qnaForm Section Begin -->
     <section class="blog-details spad">
 	    <div class="container">
 		    <div class="row d-flex justify-content-center">
@@ -68,34 +70,14 @@
 	                            <h5><a href="${contextPath}/faq/">자주 묻는 질문</a></h5>
 	                        </li>
 	                        <li class="blog__details__btns__item">
-	                            <h5><a href="${contextPath}/qna">문의하기</a></h5>
+	                            <h5><a href="${contextPath}/qna/addQna.do">문의하기</a></h5>
 	                        </li>
                         </ul>
-                        <div class="blog__details__form">
-	                        <h4>고객 문의</h4>
-	                        <form action="#">
-	                            <div style="margin-top: 45px;">
-	                                <div class="col-lg-12">
-	                                	<span style="color: #ffffff;">이름</span>
-	                                	<input type="text" placeholder="Name">
-	                                </div>
-	                                <div class="col-lg-12">
-	                                	<span style="color: #ffffff;">문의 제목</span>
-										<input type="text" placeholder="제목을 입력해주세요">
-	                                </div>
-	                                <div class="col-lg-12">
-	                                	<span style="color: #ffffff;">문의 내용</span>
-	                                    <textarea placeholder="문의 내용을 입력해주세요"></textarea>
-	                                    <button type="submit" class="site-btn">확인</button>
-	                                    <button type="reset" class="site-btn">취소</button>
-	                                </div>
-	                            </div>
-	                        </form>
-	                    </div>           
-
+                                  
 		                <div class="noticeForm">
 	                        <h4>고객 문의</h4>
-						    <form action="${contextPath}/" method="post" class="writeForm">
+						    <form action="${contextPath}/qna/insertQna.do" method="post" class="writeForm">
+						    	<input type="hidden" name="userNo" value="${userNo}">
 								<table class="table">
 									<colgroup>
 										<col width="20%">
@@ -105,25 +87,27 @@
 										<tr>
 											<th>제목</th>
 											<td>
-												<input type="text" name="eventTitle" placeholder="제목을 입력해 주세요." class="widhun">
+												<input type="text" name="qnaTitle" placeholder="제목을 입력해 주세요." class="widhun">
 											</td>
 										</tr>
 										<tr>
 											<th>종류</th>
 											<td>
-												<select class="nice-select">
+												<select class="nice-select" name="qnaCategory">
 													<option>선택하세요</option>
-													<option>공지</option>
-													<option>안내</option>
-													<option>이벤트</option>
-													<option>점검</option>
+													<option value="사이트이용">사이트 이용</option>
+													<option value="회원/로그인">회원/로그인</option>
+													<option value="결제/요금">결제/요금</option>
+													<option value="이벤트">이벤트</option>
+													<option value="장애신고">장애신고</option>
+													<option value="기타">기타</option>
 												</select>
 											</td>
 										</tr>
 										<tr>
 											<th>내용</th>
 											<td>
-												<textarea cols="40" rows="15" name="eventContent" placeholder="내용을 입력해 주세요." class="widhun"></textarea>
+												<textarea cols="40" rows="15" name="qnaContent" placeholder="내용을 입력해 주세요." class="widhun"></textarea>
 											</td>
 										</tr>
 									</tbody>
@@ -139,7 +123,7 @@
 	        </div>
 		</div>
     </section>
-    <!-- InquireForm Section End -->
+    <!-- qnaForm Section End -->
 	
 	
 	<!-- footer영역 -->

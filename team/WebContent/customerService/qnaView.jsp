@@ -1,12 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"/>
+<c:set var="qnaVO" value="${qnaVO}"/>
+<c:set var="qnaNo" value="${qnaVO.qnaNo}"/>
+<c:set var="qnaTitle" value="${qnaVO.qnaTitle}"/>
+<c:set var="qnaContent" value="${qnaVO.qnaContent}"/>
+<c:set var="qnaCategory" value="${qnaVO.qnaCategory}"/>
+<c:set var="qnaWriteDate" value="${qnaVO.qnaWriteDate}"/>
+<c:set var="answerTitle" value="${qnaVO.answerTitle}"/>
+<c:set var="answerContent" value="${qnaVO.answerContent}"/>
+<c:set var="answerWriteDate" value="${qnaVO.answerWriteDate}"/>
 
+<fmt:formatDate var="qnaFormattedDate" value="${qnaWriteDate}" pattern="yy-MM-dd"/>
 
 <%
 	request.setCharacterEncoding("UTF-8");
+	pageContext.setAttribute("LF", "\n");
+	pageContext.setAttribute("BR", "<br>");
 %>    
 <!DOCTYPE html>
 <html lang="zxx">
@@ -55,73 +68,43 @@
 		    <div class="row d-flex justify-content-center">
 	            <div class="col-lg-8">
 	                <div class="blog__details__title">
-	                    <h2>고객센터</h2>
+	                    <h2>문의내역</h2>
 	                </div>
 	            </div>
 	            <div class="col-lg-12">
-			        <div class="blog__details__content">
-			     		<ul class="blog__details__btns">
-	                        <li class="blog__details__btns__item">
-	                            <h5><a href="${contextPath}/notice/listNotice.do">공지사항</a></h5>
-	                        </li>
-	                        <li class="blog__details__btns__item">
-	                            <h5><a href="${contextPath}/faq">자주 묻는 질문</a></h5>
-	                        </li>
-	                        <li class="blog__details__btns__item">
-	                            <h5><a href="${contextPath}/qna/addQna.do">문의하기</a></h5>
-	                        </li>
-                        </ul>
-                        <div class="noticeForm">
-	                        <h4>공지사항</h4>
-						    <form action="${contextPath}/notice/insertNotice.do" method="post" enctype="multipart/form-data" class="writeForm">
-								<table class="table">
-									<colgroup>
-										<col width="20%">
-										<col width="*">
-									</colgroup>
-									<tbody>
-										<tr>
-											<th>제목</th>
-											<td>
-												<input type="text" name="noticeTitle" placeholder="제목을 입력해 주세요." class="widhun">
-											</td>
-										</tr>
-										<tr>
-											<th>종류</th>
-											<td>
-												<select class="nice-select" name="noticeCategory">
-													<option>선택하세요</option>
-													<option value="공지">공지</option>
-													<option value="안내">안내</option>
-													<option value="이벤트">이벤트</option>
-													<option value="점검">점검</option>
-												</select>
-											</td>
-										</tr>
-										<tr>
-											<th>내용</th>
-											<td>
-												<textarea cols="40" rows="15" name="noticeContent" placeholder="내용을 입력해 주세요." class="widhun"></textarea>
-											</td>
-										</tr>
-										<tr>
-											<th>첨부파일</th>
-											<td>
-												<input type="file" name="noticeFile">
-											</td>
-										</tr>
-									</tbody>
-								</table>
-								<div class="button">
-									<button type="button" class="site-btn cancel" onclick="history.back();">취소</button>
-									<button type="submit" class="site-btn submit">등록</button>
+			        <div class="blog__details__content border">
+                        <div class="blog__details__form" style="color: #ffffff; padding: 30px;">
+		                    <div class="blog__details__content">
+		                        <div class="blog__details__item__text titlebackground">
+		                        <c:choose>
+		                        	<c:when test="${answerContent!=null}">
+		                            	<span style="float: left; color: red;"><em>•</em>답변완료</span>
+		                        	</c:when>
+		                        	<c:otherwise>
+		                        		<span style="float: left;"><em>•</em>답변대기</span>
+		                        	</c:otherwise>
+		                        </c:choose>  
+		                            <h4 style="padding-left: 100px;">${qnaTitle}</h4>
+		                            <span>등록일 : ${qnaFormattedDate}<small>|</small></span>
+		                        </div>
+		                        <div class="qnacategory">
+		                        	구분  |<span style="display: inline-block;">${qnaCategory}</span>
+		                        </div>
+		                        <div class="content-box-question">
+		                        	<p>${fn:replace(qnaContent,LF,BR)}</p>
+		                        </div>
+		                        <div class="content-box-answer">
+		                        	<p>${fn:replace(answerContent,LF,BR)}</p>
 								</div>
-							</form>
+							</div>
 						</div>
-					</div>		
-				</div>			
-	        </div>
-		</div>
+					</div>
+				</div>
+				<div class="btn-area ar">
+					<a href="${contextPath}/qna/myQnaList.do" class="btn-box board">목록</a>
+				</div>		
+			</div>			
+        </div>
     </section>
     <!-- Notice Section End -->
 	

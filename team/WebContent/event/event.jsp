@@ -86,7 +86,9 @@
             <div class="row">
 	            <c:choose>
 	            	<c:when test="${empty eventList}">
+	            		<div class="eventnone">
 	            		<p>등록된 이벤트가 없습니다.</p>
+	            		</div>
 	            	</c:when>
 	            	<c:when test="${!empty eventList}">
 	            		<c:forEach var="event" items="${eventList}" varStatus="eventNo">	
