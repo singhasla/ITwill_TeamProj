@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>        
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:set var="userList" value="${userList}" />
 <c:set var="total" value="${total}" />
@@ -16,6 +17,25 @@
         <link href="${contextPath}/admin/dist/css/styles.css" rel="stylesheet" />
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+        
+        <script type="text/javascript">
+         function modUser(userID,event){
+        	 alert(userID)
+        	event.stopPropagation();
+			var form = document.userForm;
+        	form.action = "${contextPath}/adminPage/modUser.do?userID=" + userID;
+        	form.submit();
+        }
+         
+         function delUser(userID,event){
+        	 alert(userID)
+        	event.stopPropagation();
+			var form = document.userForm;
+        	form.action = "${contextPath}/adminPage/modUser.do?userID=" + userID;
+        	form.submit();
+        }
+         
+        </script>
     </head>
     <body class="sb-nav-fixed">
     <!-- 헤더 -->
@@ -37,32 +57,36 @@
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
-                                            <tr>
+                                            <tr align="center">
                                                 <th>ID</th>
                                                 <th>Name</th>
                                                 <th>NickName</th>
                                                 <th>Email</th>
-                                                <th>수정</th>
-                                                <th>삭제</th>
+                                                <th>Date</th>
+                                                <th>Edit</th>
                                             </tr>
                                         </thead>
 
                                         <tbody>
                                         	<c:choose>
                                        			<c:when test="${total==0}">			
-													<tr>
+													<tr align="center">
 														<td colspan="6">등록된 회원이 없습니다.</td>
 													</tr>
 												</c:when>
 												<c:otherwise>	
 													<c:forEach var="user" items="${userList}">
-			                                            <tr>
+													<fmt:formatDate var="userFmtDate" value="${user.userWriteDate}" pattern="yyyy-MM-dd HH:mm"/>
+			                                            <tr align="center">
 			                                                <td>${user.userID}</td>
 			                                                <td>${user.userName}</td>
 			                                                <td>${user.userNickname}</td>
 			                                                <td>${user.userEmail}</td>
-			                                                <td>수정버튼 넣기</td>
-			                                                <td>삭제버튼 넣기</td>
+			                                                <td>${userFmtDate}</td>
+			                                                <td>
+			                                                	<button type="button" class="btn btn-primary" onclick="modUser('${user.userID}', event)">수정</button>
+			                                                	<button type="button" class="btn btn-danger" onclick="delUser('${user.userID}', event)">삭제</button>
+			                                                </td>
 			                                            </tr>
 			                      					</c:forEach>
 	                                   			</c:otherwise>
@@ -75,6 +99,7 @@
                         </div>
                     </div>
                 </main>
+                <form name="userForm" method="post"></form>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">

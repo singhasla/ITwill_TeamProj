@@ -54,7 +54,7 @@ public class AdminUserDAO {
 				 sql ="select * from user ";
 			}else{
 				//검색했을때
-				sql="select * from user where userName like '%"+searchKeyword+"%'";
+				/*sql="select * from user where userName like '%"+searchKeyword+"%'";*/
 			}
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -71,6 +71,8 @@ public class AdminUserDAO {
 				userVO.setUserAddr2(rs.getString("userAddr2"));
 				userVO.setUserAddr3(rs.getString("userAddr3"));
 				userVO.setUserAddr4(rs.getString("userAddr4"));
+				userVO.setUserUpdate(rs.getTimestamp("userUpdate"));
+				userVO.setUserWriteDate(rs.getTimestamp("userWriteDate"));
 				
 				userList.add(userVO);
 			}
