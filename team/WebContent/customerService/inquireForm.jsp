@@ -65,10 +65,10 @@
 	                            <h5><a href="${contextPath}/notice/listNotice.do">공지사항</a></h5>
 	                        </li>
 	                        <li class="blog__details__btns__item">
-	                            <h5><a href="faq.jsp">자주 묻는 질문</a></h5>
+	                            <h5><a href="${contextPath}/faq/">자주 묻는 질문</a></h5>
 	                        </li>
 	                        <li class="blog__details__btns__item">
-	                            <h5><a href="inquireForm.jsp">문의하기</a></h5>
+	                            <h5><a href="${contextPath}/qna">문의하기</a></h5>
 	                        </li>
                         </ul>
                         <div class="blog__details__form">
