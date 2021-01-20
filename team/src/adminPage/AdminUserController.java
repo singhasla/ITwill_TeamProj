@@ -68,6 +68,10 @@ public class AdminUserController extends HttpServlet{
 		}else if(action.equals("/modUser.do")) {
 			
 			nextPage = "/admin/dist/userPage/modUser.jsp";
+		}else if(action.equals("/delUser.do")) {
+			
+			
+			nextPage = "/admin/dist/main/adminMain.jsp";
 		}
 		
 		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
