@@ -60,11 +60,7 @@ public class OrderController extends HttpServlet {
 			
 			if (action == null || action.equals("/cart.do")) {	//로그인한 회원의 카트목록
 				  
-				String userID = (String)session.getAttribute("userID");
-				
-				int userNo = orderService.myUserNo(userID);
-				//int userNo = (int) session.getAttribute("userNo");
-				session.setAttribute("userNo", Integer.toString(userNo));
+				int userNo = Integer.parseInt((String)session.getAttribute("userNo"));
 				
 				List<MovieVO> list = orderService.myCartList(userNo);
 				
@@ -106,7 +102,7 @@ public class OrderController extends HttpServlet {
 				int userNo = Integer.parseInt(request.getParameter("userNo"));
 				int movieNo = Integer.parseInt(request.getParameter("movieNo"));
 				
-				orderService.delSelectedItem(userNo, movieNo);
+				orderService.delSelectedItem1(userNo, movieNo);
 				
 				PrintWriter pw = response.getWriter();
 				pw.print("<script>" + " alert('삭제완료');" 
@@ -119,11 +115,7 @@ public class OrderController extends HttpServlet {
 
 			} else if (action.equals("/pay.do")) {	// 결제페이지
 
-				String userID = (String)session.getAttribute("userID");
-				
-				int userNo = orderService.myUserNo(userID);
-				//int userNo = (int) session.getAttribute("userNo");
-				session.setAttribute("userNo", Integer.toString(userNo));
+				int userNo = Integer.parseInt((String)session.getAttribute("userNo"));
 				
 				List<MovieVO> list = orderService.myCartList(userNo);
 				
@@ -139,11 +131,7 @@ public class OrderController extends HttpServlet {
 
 			} else if (action.equals("/paycomplt.do")) {	// 결제완료 후 status 변경
 
-				String userID = (String)session.getAttribute("userID");
-				
-				int userNo = orderService.myUserNo(userID);
-				//int userNo = (int) session.getAttribute("userNo");
-				session.setAttribute("userNo", Integer.toString(userNo));
+				int userNo = Integer.parseInt((String)session.getAttribute("userNo"));
 				
 				orderService.updateStatus(userNo);
 	
@@ -151,11 +139,7 @@ public class OrderController extends HttpServlet {
 
 			} else if (action.equals("/myOrderList.do")) {
 				
-				String userID = (String)session.getAttribute("userID");
-				
-				int userNo = orderService.myUserNo(userID);
-				//int userNo = (int) session.getAttribute("userNo");
-				session.setAttribute("userNo", Integer.toString(userNo));
+				int userNo = Integer.parseInt((String)session.getAttribute("userNo"));
 				
 				List<MovieVO> list = orderService.myOrderList(userNo);
 				
@@ -165,10 +149,21 @@ public class OrderController extends HttpServlet {
 	
 				nextPage = "/order/orderlist.jsp";
 				
+			} else if (action.equals("/delOrder.do")) {	//구매내역의 개별 목록 삭제
+
+				int userNo = Integer.parseInt(request.getParameter("userNo"));
+				int movieNo = Integer.parseInt(request.getParameter("movieNo"));
+				
+				orderService.delSelectedItem2(userNo, movieNo);
+				
+				PrintWriter pw = response.getWriter();
+				pw.print("<script>" + " alert('삭제완료');" 
+									+ " location.href='" + request.getContextPath()
+									+ "/ordersvlt/myOrderList.do';" 
+						+ "</script>");
+				
+				return;
 			}
-			
-			
-			
 			
 			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 			dispatch.forward(request, response);

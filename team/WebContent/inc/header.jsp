@@ -35,6 +35,18 @@
                                         <li><a href="#">범죄</a></li>
                                     </ul>
                                 </li>
+                                <c:choose>
+			                       	<c:when test="${sessionScope.userID!=null}">	
+		                                <li><a href="#">마이페이지 <span class="arrow_carrot-down"></span></a>
+		                                    <ul class="dropdown">
+		                                        <li><a href="${contextPath}/ordersvlt/myOrderList.do">나의 구매내역</a></li>
+		                                        <li><a href="#">나의 찜 목록</a></li>
+		                                        <li><a href="#">회원정보수정</a></li>
+		                                        <li><a href="#">회원탈퇴</a></li>
+		                                    </ul>
+		                                </li>
+	                                </c:when>
+                                </c:choose>
                             </ul>
                         </nav>
                     </div>
