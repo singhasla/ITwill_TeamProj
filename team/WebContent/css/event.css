@@ -4,17 +4,36 @@ h3 {
 	color: #ffffff !important; 
 }
 
-.eventForm {
+.writeForm {
 	margin-top: 50px;
 }
 
 .table{
 	color: #ffffff;
 	border-bottom: 1px solid #dee2e6;
+	
 }
 
-.widhun {
+.writeForm input {
 	width: 100%;
+	border-radius: 5px;
+	height: 42px;
+	line-height: 40px;
+    padding-left: 18px;
+    padding-right: 30px;
+}
+
+.writeForm textarea {
+	width: 100%;
+	border-radius: 5px;
+	padding-top: 10px;
+	padding-left: 18px;
+    padding-right: 30px;
+}
+
+.writeForm input[type=file] {
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 .button {
@@ -90,7 +109,7 @@ h3 {
     margin-left: 10px;
 }
 
-.col-lg-6, .next {
+.col-lg-6, .next1 {
 	float: left;
 	width: 50%;
 }
@@ -123,7 +142,7 @@ h3 {
 
 @media (max-width: 792px) {
 	.blog__item {
-		height: 480px;
+		height: 580px;
 	}
 	.col-lg-6 {
 		float: left;
@@ -132,4 +151,6 @@ h3 {
 
 }
 
-
+.widhun {
+	width: 100%;
+}
