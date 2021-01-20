@@ -1,10 +1,8 @@
 package event;
 
-import java.awt.print.Pageable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -53,14 +51,15 @@ public class EventDAO {
 		
 		int section = (Integer)pagingMap.get("section");
 		int pageNum = (Integer)pagingMap.get("pageNum");
-		int startNum = (section - 1)*27 + (pageNum -1)*9;
-		String search = (String)pagingMap.get("search");		
+		int startNum = (section - 1)*27 + (pageNum -1)*8;
+		String search = (String)pagingMap.get("search");
+		
 		try {
 			conn = getConnection();
 			String sql = "select * from event"
 					+ " where eventTitle like ?"
 					+ " order by eventNo desc"
-					+ " limit ?, 9";
+					+ " limit ?, 8";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%" + search + "%");
 			pstmt.setInt(2, startNum);
@@ -109,8 +108,8 @@ public class EventDAO {
 		return eventList;
 	}
 	
-	//검색어에 해당하는 글번호 얻기
-	public int searchEvents(Map pagingMap) {
+	//검색어에 해당하는 글갯수 얻기
+	public int allEvents(Map pagingMap) {
 		
 		int section = (Integer)pagingMap.get("section");
 		int pageNum = (Integer)pagingMap.get("pageNum");
@@ -164,7 +163,7 @@ public class EventDAO {
 		int eventNo=0;
 		try {
 			conn = getConnection();
-			System.out.println(event.getEventContent() + event.getEventTitle() +event.getEventImage());
+			
 			String sql = "insert into event (eventTitle, eventContent, eventImage, eventWriteDate)"
 					+ "values (?,?,?,now())";
 			pstmt = conn.prepareStatement(sql);
@@ -175,7 +174,7 @@ public class EventDAO {
 			
 			pstmt.executeUpdate();
 			
-			sql =  "select eventNo from event order by eventWriteDate desc limit 1";
+			sql =  "select eventNo from event order by eventNo desc limit 1";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			rs.next();
@@ -228,7 +227,7 @@ public class EventDAO {
 		 try {
 			conn = getConnection();
 			String sql = "update event set eventTitle=?, eventContent=?";
-			
+					
 			if(eventImage != null && eventImage.length() != 0) {
 				sql += ", eventImage=?";
 			}
@@ -250,7 +249,7 @@ public class EventDAO {
 		}
 	 }
 	 
-	 //
+	 //삭제할 글번호
 	 public List<Integer> selectRemoveEvent(int eventNo) {
 		 
 		 List<Integer> removeEventNo = new ArrayList<Integer>();

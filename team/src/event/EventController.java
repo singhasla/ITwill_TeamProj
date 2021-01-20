@@ -53,28 +53,31 @@ public class EventController extends HttpServlet {
 		String nextPage = "";
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=utf-8");
-		HttpSession session = request.getSession();
 		
 		String action = request.getPathInfo();
 		
 		System.out.println("action: "+action);
 		
 		try {
-			List<EventVO> eventList = new ArrayList<EventVO>();
 			if(action == null || action.equals("/listEvent.do")){
+				String _search = request.getParameter("search");
 				String _section = request.getParameter("section");
 				String _pageNum = request.getParameter("pageNum");
 				
 				int section = Integer.parseInt(((_section == null)? "1":_section));
 				int pageNum = Integer.parseInt(((_pageNum == null)? "1":_pageNum));
+				String search = (_search == null) ? "" : _search;
 				
-				Map<String, Integer> pagingMap = new HashMap<String, Integer>();
+				Map<String, Object> pagingMap = new HashMap<String, Object>();
 				pagingMap.put("section", section);
 				pagingMap.put("pageNum", pageNum);
+				pagingMap.put("search", search);
 				
-				Map eventMap = eventService.listEvents(pagingMap);
+				Map<String, Object> eventMap = eventService.listEvents(pagingMap);
 				eventMap.put("section", section);
 				eventMap.put("pageNum", pageNum);
+				eventMap.put("search", search);
+				
 				request.setAttribute("eventMap", eventMap);
 				nextPage = "/event/event.jsp";
 				

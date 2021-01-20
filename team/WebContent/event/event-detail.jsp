@@ -77,20 +77,20 @@
 	                        </div>
 	                        <div class="blog__details__btns">
 	                            <div class="row">
-	                                <div class="col-lg-6 next">
+	                                <div class="col-lg-6 next1">
 	                                    <div class="blog__details__btns__item" >
-	                                        <h5><a href="${contextPath}/eventServlet/event-detail.do?eventNo=${eventNo}"><span class="arrow_left"></span>이전페이지</a>
+	                                        <h5><a href="${contextPath}/eventServlet/event-detail.do?eventNo=${eventNo+1}"><span class="arrow_left"></span>이전페이지</a>
 	                                        </h5>
 	                                    </div>
 	                                </div>
-	                                <div class="col-lg-6 next">
+	                                <div class="col-lg-6 next1">
 	                                    <div class="blog__details__btns__item next__btn">
-	                                        <h5><a href="${contextPath}/eventServlet/event-detail.do?eventNo=${eventNo}">다음페이지<span class="arrow_right"></span></a></h5>
+	                                        <h5><a href="${contextPath}/eventServlet/event-detail.do?eventNo=${eventNo-1}">다음페이지<span class="arrow_right"></span></a></h5>
                                         </div>
                                     </div>
                                 </div>
                          	</div>
-                         	<!-- 이벤트 등록버튼 -->
+                         	<!-- 이벤트 수정,삭제 버튼 -->
 				            <c:if test="${userID eq 'admin'}">
 				           		<button type="button" class="site-btn cancel" onclick="location.href='${contextPath}/eventServlet/deleteEvent.do?eventNo=${eventNo}'">삭제</button>
 				           		<button type="button" class="site-btn cancel" onclick="location.href='${contextPath}/eventServlet/modifyEvent.do?eventNo=${eventNo}'">수정</button>
