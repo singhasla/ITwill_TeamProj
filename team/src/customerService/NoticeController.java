@@ -124,7 +124,8 @@ public class NoticeController extends HttpServlet {
 				PrintWriter out = response.getWriter();
 				out.print("<script>"
 						 + " window.alert('새글을 추가했습니다.');"
-						 + " location.href='" + request.getContextPath() + "/notice/viewNotice.do?noticeNo=" + noticeNo
+						 + " location.href='" + request.getContextPath() 
+						 + "/notice/viewNotice.do?noticeNo=" + noticeNo + "';"
 						 + "</script>"
 						 );
 				return;
@@ -223,7 +224,7 @@ public class NoticeController extends HttpServlet {
 				downloadFile(response, noticeNo, noticeFile);
 				
 			} else {
-				nextPage = "/customerService.jsp";
+				nextPage = "/customerService/notice.jsp";
 			}
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);

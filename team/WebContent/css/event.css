@@ -154,3 +154,40 @@ h3 {
 .widhun {
 	width: 100%;
 }
+
+.eventnone {
+	width: 100%;
+	text-align: center;
+    display: block;
+    border-bottom: 1px solid;
+    margin-bottom: 10px;
+}
+
+.eventnone p {
+	color: #c0c0c0;
+}
+
+.btn-box {
+    height: 3.125rem;
+    line-height: 3rem;
+    display: inline-block;
+    cursor: pointer;
+    color: #969697;
+    min-width: 6.375rem;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0 1.25rem;
+    font-weight: 400;
+    letter-spacing: -.05em;
+    border-radius: .25rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    float: right;
+}
+
+.btn-box.board {
+    height: 2.5rem;
+    line-height: 2.125rem;
+    min-width: 4rem;
+    padding: 0 .5625rem;
+    border-radius: 5px;
+}
