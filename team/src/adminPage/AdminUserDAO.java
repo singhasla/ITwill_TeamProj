@@ -113,4 +113,35 @@ public class AdminUserDAO {
 		return total;
 	}
 
+	public UserVO getUser(String userID) {
+		UserVO userVO= new UserVO();
+		try {
+			conn = getConnection();
+			String sql = "select * from user where userID = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userID);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				userVO.setUserID(rs.getString("userID"));
+				userVO.setUserPW(rs.getString("userPW"));
+				userVO.setUserName(rs.getString("userName"));
+				userVO.setUserNickname(rs.getString("userNickname"));
+				userVO.setUserTel(rs.getString("userTel"));
+				userVO.setUserEmail(rs.getString("userEmail"));
+				userVO.setUserAddr2(rs.getString("userAddr2"));
+				userVO.setUserAddr3(rs.getString("userAddr3"));
+				userVO.setUserAddr4(rs.getString("userAddr4"));
+				userVO.setUserWriteDate(rs.getTimestamp("userWriteDate"));
+				userVO.setUserUpdate(rs.getTimestamp("userUpdate"));
+			}
+			
+		} catch (Exception e) {
+			System.out.println("getUser 메소드 내부 오류 "+e);
+		}finally {
+			discon();
+		}
+		return userVO;
+	}
+
 }

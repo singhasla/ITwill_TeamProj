@@ -20,7 +20,7 @@
         
         <script type="text/javascript">
          function modUser(userID,event){
-        	 alert(userID)
+        	 /* alert(userID) */
         	event.stopPropagation();
 			var form = document.userForm;
         	form.action = "${contextPath}/adminPage/modUser.do?userID=" + userID;
@@ -31,7 +31,7 @@
         	 alert(userID)
         	event.stopPropagation();
 			var form = document.userForm;
-        	form.action = "${contextPath}/adminPage/modUser.do?userID=" + userID;
+        	form.action = "${contextPath}/adminPage/delUser.do?userID=" + userID;
         	form.submit();
         }
          

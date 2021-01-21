@@ -66,6 +66,10 @@ public class AdminUserController extends HttpServlet{
 		} else if (action.equals("/mainHome.do")) {
 			nextPage = "/main/index.jsp";
 		}else if(action.equals("/modUser.do")) {
+			String userID = request.getParameter("userID");
+			
+			UserVO userVO = adminUserService.getUser(userID);
+			
 			
 			nextPage = "/admin/dist/userPage/modUser.jsp";
 		}else if(action.equals("/delUser.do")) {

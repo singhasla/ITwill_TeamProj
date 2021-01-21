@@ -25,7 +25,88 @@
         <!-- 사이드 메뉴 -->
         	<jsp:include page="../adminInc/sidenav.jsp"/>
             <div id="layoutSidenav_content">
-
+			<article class="user">
+				<form action="${contextPath}/userAdminServlet/updateUser.do" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="pageNo" value="${pageNo}" />
+					<input type="hidden" name="searchKeyword" value="${searchKeyword}" />
+					<table class="table">
+						<colgroup>
+							<col style="width: 120px" />
+							<col />
+						</colgroup>
+						<tr>
+							<th class="align-middle">
+								<label for="userId" class="m-0">아이디</label>
+							</th>
+							<td>
+								<input class="form-control" type="text" name="userId" id="userId" value="${userId}" required readonly />
+							</td>
+						</tr>
+						<tr>
+							<th class="align-middle">
+								<label for="userName" class="m-0">이름</label>
+							</th>
+							<td>
+								<input class="form-control" type="text" name="userName" id="userName" value="${userName}" required />
+							</td>
+						</tr>
+						<tr>
+							<th class="align-middle">
+								<label for="userPhone" class="m-0">전화번호</label>
+							</th>
+							<td>
+								<input class="form-control" type="tel" name="userPhone" id="userPhone" value="${userPhone}" placeholder="010-0000-0000" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required />
+							</td>
+						</tr>
+						<tr>
+							<th class="align-middle">
+								<label for="userEmail" class="m-0">이메일</label>
+							</th>
+							<td>
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text">@</span>
+									</div>
+									<input type="email" class="form-control" name="userEmail" id="userEmail" value="${userEmail}" required>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th class="align-middle">
+								<label for="userZipcode" class="m-0">우편번호</label>
+							</th>
+							<td>
+								<div class="input-group">
+									<input type="text" class="form-control" name="userZipcode" id="userZipcode" value="${userZipcode}" required />
+									<div class="input-group-append">
+										<button class="btn btn-secondary" type="button" onclick="postCode()">우편번호 검색</button>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th class="align-middle">
+								<label for="userAddress1" class="m-0">주소</label>
+							</th>
+							<td>
+								<input class="form-control" type="text" name="userAddress1" id="userAddress1" value="${userAddress1}" required />
+							</td>
+						</tr>
+						<tr>
+							<th class="align-middle">
+								<label for="userAddress2" class="m-0">상세주소</label>
+							</th>
+							<td>
+								<input class="form-control" type="text" name="userAddress2" id="userAddress2" value="${userAddress2}" required />
+							</td>
+						</tr>
+					</table>
+					<div class="text-center my-5">
+						<button type="button" class="btn btn-secondary" onclick="history.back()">취소</button>
+						<button type="submit" class="btn btn-warning">수정하기</button>
+					</div>
+				</form>
+			</article>
 
 
                 <footer class="py-4 bg-light mt-auto">

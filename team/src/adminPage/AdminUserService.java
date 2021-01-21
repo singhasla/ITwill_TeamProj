@@ -20,7 +20,7 @@ public class AdminUserService {
 		
 		userList= adminUserDAO.getUserList(searchKeyword);
 		System.out.println(userList);
-		/*List<UserVO> userList = adminUserDAO.getUserList(searchKeyword);*/
+		
 		return userList;
 	}
 	
@@ -29,6 +29,11 @@ public class AdminUserService {
 		int totalCount = adminUserDAO.getUserListCount(searchKeyword);
 		
 		return totalCount;
+	}
+
+	public UserVO getUser(String userID) {
+		
+		return adminUserDAO.getUser(userID);
 	}
 
 }
