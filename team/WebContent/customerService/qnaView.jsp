@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"/>
+<c:set var="userNo" value="${sessionScope.userNo}"/>
 <c:set var="qnaVO" value="${qnaVO}"/>
 <c:set var="qnaNo" value="${qnaVO.qnaNo}"/>
 <c:set var="qnaTitle" value="${qnaVO.qnaTitle}"/>

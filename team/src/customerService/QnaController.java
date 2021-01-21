@@ -2,7 +2,9 @@ package customerService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.mail.Session;
 import javax.servlet.RequestDispatcher;
@@ -51,7 +53,7 @@ public class QnaController extends HttpServlet {
 				
 				nextPage = "/customerService/qnaForm.jsp";
 				
-			} else if(action.equals("/insertQna.do")) {
+			} else if(action.equals("/insertQna.do")) {		
 				
 				int userNo = Integer.parseInt(request.getParameter("userNo"));
 				String qnaTitle = request.getParameter("qnaTitle");
@@ -64,18 +66,32 @@ public class QnaController extends HttpServlet {
 				qnaVO.setQnaCategory(qnaCategory);
 				
 				int qnaNo = qnaDAO.insertQna(qnaVO);
+				System.out.println(qnaNo);
 				
 				PrintWriter out = response.getWriter();
 				out.print("<script>"
 						 + " window.alert('문의가 등록되었습니다.');"
-						 + " location.href='" + request.getContextPath() 
-						 + "/qna/myQnaList.do?userNo=" + userNo + "';"
+						 + " location.href='" 
+						 + request.getContextPath() + "/qna/myQnaList.do';"
 						 + "</script>");
+				return;
 				
 			} else if(action.equals("/myQnaList.do")) {
 				
 				int userNo = Integer.parseInt((String)session.getAttribute("userNo"));
-				List<QnaVO> qnaList = qnaDAO.myQnaList(userNo);
+				String _section = request.getParameter("section");
+				String _pageNo = request.getParameter("pageNo");			
+				
+				int section = Integer.parseInt(((_section == null) ? "1" : _section));
+				int pageNo = Integer.parseInt(((_pageNo == null) ? "1" : _pageNo));
+				
+				Map<String, Object> qnaMap = new HashMap<String, Object>();
+				qnaMap.put("pageNo", pageNo);
+				qnaMap.put("section", section);
+				qnaMap.put("userNo", userNo);
+				request.setAttribute("qnaMap", qnaMap);
+				
+				List<QnaVO> qnaList = qnaDAO.myQnaList(qnaMap);
 				int qnaListCount = qnaDAO.qnaListCount(userNo);
 				request.setAttribute("qnaList", qnaList);
 				request.setAttribute("qnaListCount", qnaListCount);

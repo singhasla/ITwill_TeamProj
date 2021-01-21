@@ -3,11 +3,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"/>
-<c:set var="noticeList" value="${noticeMap.noticeList }"/>
-<c:set var="noticeListCount" value="${noticeMap.noticeListCount }"/>
-<c:set var="section" value="${noticeMap.section }"/>
-<c:set var="pageNo" value="${noticeMap.pageNo }"/>
-<c:set var="search" value="${noticeMap.search }"/>
+<c:set var="noticeList" value="${noticeMap.noticeList}"/>
+<c:set var="noticeListCount" value="${noticeMap.noticeListCount}"/>
+<c:set var="section" value="${noticeMap.section}"/>
+<c:set var="pageNo" value="${noticeMap.pageNo}"/>
+<c:set var="search" value="${noticeMap.search}"/>
 
 <%
 	request.setCharacterEncoding("UTF-8");

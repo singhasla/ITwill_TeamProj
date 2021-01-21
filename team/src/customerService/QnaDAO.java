@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -71,17 +72,24 @@ public class QnaDAO {
 		return qnaNo;
 	}
 	
-	public List<QnaVO> myQnaList(int userNo) {
+	public List<QnaVO> myQnaList(Map qnaMap) {
 		
 		List<QnaVO> qnaList = new ArrayList<QnaVO>();
+		int userNo = (int)qnaMap.get("userNo");
+		int section = (int)qnaMap.get("section");
+		int pageNo = (int)qnaMap.get("pageNo"); 
+		int startNum = (section - 1)*27 + (pageNo - 1)*10;
 		
 		try {
 			conn = getConnection();
 			String sql = "select * from qna"
 						+ " where userNo like ?"
-						+ " order by userNo desc";
+						+ " order by qnaNo desc"
+						+ " limit ?, 10";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, startNum);
+			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {

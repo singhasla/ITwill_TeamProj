@@ -3,8 +3,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"/>
+<c:set var="userNo" value="${sessionScope.userNo}"/>
 <c:set var="qnaList" value="${qnaList}"/>
-<c:set var="qnaListCount" value="${qnaListCount}" />
+<c:set var="qnaListCount" value="${qnaListCount}"/>
+<c:set var="section" value="${qnaMap.section}"/>
+<c:set var="pageNo" value="${qnaMap.pageNo}"/>
+<c:set var="search" value="${qnaMap.search}"/>
+
 <%
 	request.setCharacterEncoding("UTF-8");
 %>    
@@ -61,7 +66,10 @@
 	            <div class="col-lg-12">
 			        <div class="blog__details__content border">
                         <div class="blog__details__form colorwhite pd-30">
-	                        <h4>나의 문의내역</h4>
+	                        <div class="btn-area ar">
+	                        <h4 style="float: left;">나의 문의내역</h4>
+								<a href="${contextPath}/qna/addQna.do" class="btn-box board mr-top-20">문의하기</a>
+							</div>
 						    <table class="notice_table">
 							<colgroup>
 								<col style="width:10%;">
@@ -102,10 +110,60 @@
 									</tr>
 									</c:forEach>
 								</c:otherwise>	
-							</c:choose>	
+							</c:choose>
 							</tbody>
 							</table>
-						</div>
+							<!-- 페이징 -->
+				            <div class="row" style="justify-content: center;">
+				            <c:if test="${qnaListCount != 0}">
+				            	<c:choose>
+				            		<c:when test="${qnaListCount > 100}">
+				            			<c:forEach var="page" begin="1" end="10" step="1">
+					            			<c:if test="${section > 1 && page = 1}">
+					            			<div class="paging">
+					            				<a href="${contextPath}/qna/myQnaList.do?section=${section-1}&pageNo=${(section-1)*10+1}">
+					            				<span class="arrow_carrot-left"></span></a>
+					            			</div>
+					            			</c:if>
+					            			<div class="paging">
+					            				<a href="${contextPath}/qna/myQnaList.do?section=${section}&pageNo=${page}">${(section-1)*10}</a>
+				            				</div>
+				            				<c:if test="${page==10}">
+				            				<div class="paging">	
+				            					<a href="${contextPath}/qna/myQnaList.do?section=${section+1}&pageNo=${section*10+1}">
+				            					<span class="arrow_carrot-right"></span></a>
+				            				</div>
+				            				</c:if>
+				            			</c:forEach>
+				            		</c:when>
+				            		<c:when test="${qnaListCount == 100}">
+				            			<c:forEach var="page" begin="1" end="10" step="1">
+				            			<div class="paging">	
+				            				<span><a>${page}</a></span>
+				            			</div>	
+				            			</c:forEach>
+				            		</c:when>
+				            		<c:when test="${qnaListCount < 100 }">
+				            			<c:forEach var="page" begin="1" end="${qnaListCount/10+1}" step="1">
+				            				<c:choose>
+				            					<c:when test="${page==pageNo}">
+				            					<div class="paging">
+				            						<span><a class="current" href="${contextPath}/qna/myQnaList.do?section=${section}&pageNo=${page}">${page}</a></span>
+				            					</div>
+				            					</c:when>
+				            					<c:otherwise>
+				            					<div class="paging">
+				            						<span><a href="${contextPath}/qna/myQnaList.do?section=${section}&pageNo=${page}">${page}</a></span>
+				            					</div>	
+				            					</c:otherwise>
+				            				</c:choose>
+				            			</c:forEach>
+				            		</c:when>
+				            	</c:choose>
+							</c:if>
+							</div>
+							<!-- 페이징 끝 -->	
+						</div>	
 					</div>		
 				</div>			
 	        </div>
