@@ -55,6 +55,15 @@
                                     </div>
                                 </nav>
                             </div>
+                            
+                             <!-- 영화 등록 수정 삭제  -->
+                            <div class="sb-sidenav-menu-heading">Movie</div>
+                            <a class="nav-link" href="${contextPath}/movieServlet/movie.do">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                             	영화관리
+                            </a>
+                            
+                            
                             <div class="sb-sidenav-menu-heading">Addons</div>
                             <a class="nav-link" href="../admin/dist/charts.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
