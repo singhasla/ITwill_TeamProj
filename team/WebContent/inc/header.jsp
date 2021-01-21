@@ -43,6 +43,7 @@
 		                                        <li><a href="#">나의 찜 목록</a></li>
 		                                        <li><a href="#">회원정보수정</a></li>
 		                                        <li><a href="#">회원탈퇴</a></li>
+		                                        <li><a href="${contextPath}/qna/myQnaList.do">문의내역</a></li>
 		                                    </ul>
 		                                </li>
 	                                </c:when>

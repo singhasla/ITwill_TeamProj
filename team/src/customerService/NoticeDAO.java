@@ -57,6 +57,8 @@ public class NoticeDAO {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			closeAll();
 		}
 		return 0;
 	}
@@ -240,6 +242,8 @@ public class NoticeDAO {
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			closeAll();
 		}
 	}
 	
