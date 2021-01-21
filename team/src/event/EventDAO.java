@@ -246,6 +246,8 @@ public class EventDAO {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			closeAll();
 		}
 	 }
 	 

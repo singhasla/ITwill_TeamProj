@@ -3,11 +3,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"/>
-<c:set var="noticeList" value="${noticeMap.noticeList }"/>
-<c:set var="noticeListCount" value="${noticeMap.noticeListCount }"/>
-<c:set var="section" value="${noticeMap.section }"/>
-<c:set var="pageNo" value="${noticeMap.pageNo }"/>
-<c:set var="search" value="${noticeMap.search }"/>
+<c:set var="noticeList" value="${noticeMap.noticeList}"/>
+<c:set var="noticeListCount" value="${noticeMap.noticeListCount}"/>
+<c:set var="section" value="${noticeMap.section}"/>
+<c:set var="pageNo" value="${noticeMap.pageNo}"/>
+<c:set var="search" value="${noticeMap.search}"/>
 
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -69,7 +69,7 @@
 	                            <h5><a href="${contextPath}/notice/listNotice.do">공지사항</a></h5>
 	                        </li>
 	                        <li class="blog__details__btns__item">
-	                            <h5><a href="${contextPath}/faq/faqList.do">자주 묻는 질문</a></h5>
+	                            <h5><a href="${contextPath}/faq/">자주 묻는 질문</a></h5>
 	                        </li>
 	                        <li class="blog__details__btns__item">
 	                            <h5><a href="${contextPath}/qna/addQna.do">문의하기</a></h5>
@@ -94,9 +94,9 @@
 							</thead>
 							<tbody>
 							<c:choose>	
-								<c:when test="${noticeList == null }">
+								<c:when test="${noticeListCount == 0 }">
 									<tr>
-										<td colspan="4">등록된 이벤트가 없습니다.</td>
+										<td colspan="4">등록된 공지사항이 없습니다.</td>
 									</tr>		
 								</c:when>
 								<c:otherwise>
@@ -132,7 +132,7 @@
 			            </c:if>
 			            <!-- 페이징 -->
 			            <div class="row" style="justify-content: center;">
-			            <c:if test="${noticeListCount != null}">
+			            <c:if test="${noticeListCount != 0}">
 			            	<c:choose>
 			            		<c:when test="${noticeListCount > 100}">
 			            			<c:forEach var="page" begin="1" end="10" step="1">

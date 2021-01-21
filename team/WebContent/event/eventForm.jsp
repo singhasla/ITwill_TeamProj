@@ -66,7 +66,7 @@
     <section class="blog spad">
         <div class="container">
         	<h3>이벤트 등록</h3>
-            <form action="${contextPath}/eventServlet/addEvent.do" method="post" enctype="multipart/form-data" class="eventForm">	
+            <form action="${contextPath}/eventServlet/addEvent.do" method="post" enctype="multipart/form-data" class="eventForm writeForm">	
 				
 				<table class="table">
 					<colgroup>

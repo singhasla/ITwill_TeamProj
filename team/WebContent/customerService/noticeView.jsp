@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"/>
@@ -75,7 +75,7 @@
 	                            <h5><a href="${contextPath}/notice/listNotice.do">공지사항</a></h5>
 	                        </li>
 	                        <li class="blog__details__btns__item">
-	                            <h5><a href="${contextPath}/faq/faqList.do">자주 묻는 질문</a></h5>
+	                            <h5><a href="${contextPath}/faq/">자주 묻는 질문</a></h5>
 	                        </li>
 	                        <li class="blog__details__btns__item">
 	                            <h5><a href="${contextPath}/qna/addQna.do">문의하기</a></h5>
@@ -101,17 +101,30 @@
 		                        </div>
 		                        <div style="margin-bottom: 20px;">
 			                        <div class="next">
-			                        	<span>다음 글</span><a href=""><span style="color: #646464;">[이전글 카테고리] 이전글 제목</span></a>
+			                        	<span class="bo-r">다음 글</span>
+			                        	<span><a href=""  style="color: #646464;">[이전글 카테고리] 이전글 제목</a></span>
 			                        </div>
 			                         <div class="next">
-			                        	<span>이전 글</span><a href=""><span style="color: #646464;">[다음글 카테고리] 다음글 제목</span></a>
+			                        	<span class="bo-r">이전 글</span>
+			                        	<span><a href=""  style="color: #646464;">[다음글 카테고리] 다음글 제목</a></span>
 			                        </div>
 		                        </div>
+		                        	
 		                        <!-- 공지사항 수정 삭제 버튼 -->
-					            <c:if test="${userID eq 'admin'}">
+		                        <c:choose>
+					            <c:when test="${userID eq 'admin'}">
 					           		<button type="button" class="site-btn cancel" onclick="location.href='${contextPath}/notice/deleteNotice.do?noticeNo=${noticeNo}'">삭제</button>
 					           		<button type="button" class="site-btn cancel" onclick="location.href='${contextPath}/notice/modifyNotice.do?noticeNo=${noticeNo}'">수정</button>
-					            </c:if>
+					           		<div class="btn-area ar" style="float: left; margin-top: 0px;">
+										<a href="${contextPath}/notice/listNotice.do" class="btn-box board">목록</a>
+									</div>	 
+					            </c:when>
+					            <c:otherwise>
+					            	<div class="btn-area ar" style="margin-top: 0px;">
+										<a href="${contextPath}/notice/listQna.do" class="btn-box board">목록</a>
+									</div>
+					            </c:otherwise>
+					            </c:choose>
 	                        </div>
                     	</div>
 					</div>		
