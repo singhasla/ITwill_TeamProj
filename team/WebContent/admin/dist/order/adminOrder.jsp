@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:set var="orderList" value="${orderList}" />
 <!DOCTYPE html>
@@ -38,13 +39,13 @@
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr style="text-align: center;">
-                                                <th style="width: 10%">주문번호</th>
+                                                <th style="width: 7%">주문번호</th>
+                                                <th style="width: 15%">결제일</th>
                                                 <th style="width: 5%">userNo</th>
                                                 <th style="width: 15%">아이디</th>
                                                 <th style="width: 5%">movieNo</th>
-                                                <th style="width: 30%">영화이름</th>
-                                                <th style="width: 9%">결제상태<br>(0:결제대기,<br>1:결제완료)</th>
-                                                <th style="width: 20%">결제일</th>
+                                                <th style="width: 36%">영화이름</th>
+                                                <th style="width: 11%">결제상태<br>(0:결제대기,<br>1:결제완료)</th>
                                                 <th style="width: 6%">삭제</th>
                                             </tr>
                                         </thead>
@@ -62,12 +63,14 @@
 													<c:forEach var="order" items="${orderList}">
 			                                            <tr>
 			                                                <td>${order.orderNo}</td>
+			                                                <td><fmt:formatDate value="${order.orderWriteDate}" 
+			                                                					type="both" 
+			                                                					pattern="yyyy-MM-dd hh:mm:ss"/></td>
 			                                                <td>${order.userNo}</td>
 			                                                <td>${order.userID}</td>
 			                                                <td>${order.movieNo}</td>
 			                                                <td>${order.movieName}</td>
 			                                                <td>${order.orderStatus}</td>
-			                                                <td>${order.orderWriteDate}</td>
 			                                                <td style="vertical-align: middle; text-align: center;">
 																<a class="icon_trash" href="${contextPath}/adminOrdersvlt/delOrder.do?orderNo=${order.orderNo}"></a>
 															</td>

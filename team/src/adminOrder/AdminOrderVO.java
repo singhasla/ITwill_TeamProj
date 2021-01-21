@@ -1,6 +1,7 @@
 package adminOrder;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class AdminOrderVO {
 
@@ -10,14 +11,14 @@ public class AdminOrderVO {
 	private int movieNo;
 	private String movieName;
 	private int orderStatus;	//결제대기 0, 결제완료 1
-	private Date orderWriteDate;
+	private Timestamp orderWriteDate;
 	
 	public AdminOrderVO(){}
 	
 	public AdminOrderVO(int orderNo, int userNo, 
 						String userID, int movieNo, 
 						String movieName, int orderStatus,
-						Date orderWriteDate) {
+						Timestamp orderWriteDate) {
 		super();
 		this.orderNo = orderNo;
 		this.userNo = userNo;
@@ -65,10 +66,10 @@ public class AdminOrderVO {
 	public void setOrderStatus(int orderStatus) {
 		this.orderStatus = orderStatus;
 	}
-	public Date getOrderWriteDate() {
+	public Timestamp getOrderWriteDate() {
 		return orderWriteDate;
 	}
-	public void setOrderWriteDate(Date orderWriteDate) {
+	public void setOrderWriteDate(Timestamp orderWriteDate) {
 		this.orderWriteDate = orderWriteDate;
 	}
 
