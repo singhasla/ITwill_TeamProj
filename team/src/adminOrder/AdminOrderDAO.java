@@ -49,111 +49,8 @@ public class AdminOrderDAO {
 		}
 	}// freeResource();
 
-	public int myUserNo(String userID) { // 회원아이디로 회원번호 조회
 	
-		int Number = 0;
-
-		try {
-			conn = getConnection();
-
-			sql = "SELECT userNo FROM user WHERE userID=?";
-
-			pstmt = conn.prepareStatement(sql);
-
-			pstmt.setString(1, userID);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				Number = rs.getInt(1);
-			}
-
-		} catch (Exception e) {
-			System.out.println("myUserNo메소드 오류:" + e.getMessage());
-			e.printStackTrace();
-		} finally {
-			freeResource();
-		}
-		return Number;
-	}//myUserNo
-	
-	public List<MovieVO> myCartList(int userNo) { // 장바구니 내역 조회
-		
-		List<MovieVO> list = new ArrayList();
-
-		try {
-			conn = getConnection();
-
-			sql = "SELECT m.* FROM team.order o JOIN movie m ON o.movieNo = m.movieNo"
-					+ " WHERE o.userNo=? AND o.orderStatus=0 ORDER BY orderWriteDate";
-
-			pstmt = conn.prepareStatement(sql);
-
-			pstmt.setInt(1, userNo);
-
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				MovieVO vo = new MovieVO(rs.getInt("movieNo"), 
-										 rs.getString("movieName"), 
-										 rs.getString("movieContent"),
-										 rs.getString("movieImage"), 
-										 rs.getInt("moviePrice"), 
-										 rs.getInt("movieCategoryNo1"),
-										 rs.getInt("movieCategoryNo2"),
-										 rs.getInt("movieAvgRating"), 
-										 rs.getString("movieLink"), 
-										 rs.getDate("movieWriteDate"),
-										 rs.getDate("movieUpdateDate"));
-				list.add(vo);
-			}
-		} catch (Exception e) {
-			System.out.println("myCartList메소드 오류 :" + e.getMessage());
-			e.printStackTrace();
-		} finally {
-			freeResource();
-		}
-		return list;
-	}// myCartList
-
-	public List<MovieVO> myOrderList(int userNo) {	// 구매 내역 조회
-
-		List<MovieVO> list = new ArrayList();
-
-		try {
-			conn = getConnection();
-
-			sql = "SELECT m.* FROM team.order o JOIN movie m ON o.movieNo = m.movieNo"
-					+ " WHERE o.userNo=? AND o.orderStatus=1 ORDER BY orderWriteDate";
-
-			pstmt = conn.prepareStatement(sql);
-
-			pstmt.setInt(1, userNo);
-
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				MovieVO vo = new MovieVO(rs.getInt("movieNo"), 
-										 rs.getString("movieName"), 
-										 rs.getString("movieContent"),
-										 rs.getString("movieImage"), 
-										 rs.getInt("moviePrice"), 
-										 rs.getInt("movieCategoryNo1"),
-										 rs.getInt("movieCategoryNo2"),
-										 rs.getInt("movieAvgRating"), 
-										 rs.getString("movieLink"), 
-										 rs.getDate("movieWriteDate"),
-										 rs.getDate("movieUpdateDate"));
-				list.add(vo);
-			}
-		} catch (Exception e) {
-			System.out.println("myOrderList메소드 오류 :" + e.getMessage());
-			e.printStackTrace();
-		} finally {
-			freeResource();
-		}
-		return list;
-	}//myOrderList
-	
-	public void allDelItem(int userNo) { // 카트목록 전체삭제
+	public void allDelItem(int userNo) { // 목록 전체삭제
 
 		try {
 			conn = getConnection();
@@ -175,192 +72,7 @@ public class AdminOrderDAO {
 	}// allDelItem
 	
 	
-	public void delSelectedItem1(int userNo, int movieNo) {// 카트 목록에서 선택한 목록 제거
 
-		try {
-			conn = getConnection();
-
-			sql = "DELETE FROM team.order WHERE userNo=? AND movieNo=? AND orderStatus=0";
-
-			pstmt = conn.prepareStatement(sql);
-
-			pstmt.setInt(1, userNo);
-			pstmt.setInt(2, movieNo);
-
-			pstmt.executeUpdate();
-
-		} catch (Exception e) {
-			System.out.println("delSelectedItem1 메소드 오류 : " + e.getMessage());
-			e.printStackTrace();
-		} finally {
-			freeResource();
-		}
-	}// delSelectedItem1
-	
-	public void delSelectedItem2(int userNo, int movieNo) {// 구매내역에서 선택한 목록 제거
-
-		try {
-			conn = getConnection();
-
-			sql = "DELETE FROM team.order WHERE userNo=? AND movieNo=? AND orderStatus=1";
-
-			pstmt = conn.prepareStatement(sql);
-
-			pstmt.setInt(1, userNo);
-			pstmt.setInt(2, movieNo);
-
-			pstmt.executeUpdate();
-
-		} catch (Exception e) {
-			System.out.println("delSelectedItem2 메소드 오류 : " + e.getMessage());
-			e.printStackTrace();
-		} finally {
-			freeResource();
-		}
-	}// delSelectedItem2
-	
-	public void addItemCart(AdminOrderVO vo) { // 카트에 추가
-		
-		try {
-			conn = getConnection();
-
-			int userNo = vo.getUserNo();
-			int movieNo = vo.getMovieNo();
-
-			//쿼리로 중복체크 후 데이터 삽입(같은 userNo에 movieNo가 중복될 수 없도록...)
-			sql = "INSERT INTO team.order(userNo, movieNo, orderWriteDate)"
-								+ " SELECT ?,?,sysdate() FROM dual"
-								+ "	WHERE NOT EXISTS (SELECT * FROM team.order"
-													+ "	WHERE userNo=? AND movieNo=?)";
-			
-			//sql = "INSERT INTO order(userNo, movieNo, orderWriteDate)" 
-			//		+ " VALUES(?,?,sysdate())";
-
-			pstmt = conn.prepareStatement(sql);
-
-			pstmt.setInt(1, userNo);
-			pstmt.setInt(2, movieNo);
-			pstmt.setInt(3, userNo);
-			pstmt.setInt(4, movieNo);
-
-			pstmt.executeUpdate();
-
-		} catch (Exception e) {
-			System.out.println("addItemCart메소드 오류 :" + e.getMessage());
-			e.printStackTrace();
-		} finally {
-			freeResource();
-		}
-	}// addItemCart
-
-	public int cartTotalPrice(int userNo) { // 장바구니에 담긴 상품 전체금액
-
-		int totalPrice = 0;
-
-		try {
-			conn = getConnection();
-
-			sql = "SELECT sum(moviePrice)" 
-					+ " FROM movie m JOIN team.order o" 
-					+ " ON m.movieNo = o.movieNo"
-					+ " WHERE o.userNo=? AND o.orderStatus=0";
-
-			pstmt = conn.prepareStatement(sql);
-
-			pstmt.setInt(1, userNo);
-
-			rs = pstmt.executeQuery();
-
-			if(rs.next()) {
-				totalPrice = rs.getInt(1);
-			}
-
-		} catch (Exception e) {
-			System.out.println("cartTotalPrice메소드 오류 :" + e.getMessage());
-			e.printStackTrace();
-		} finally {
-			freeResource();
-		}
-
-		return totalPrice;
-	}//cartTotalPrice
-
-	public int cartTotalCount(int userNo) { // 카트 목록 갯수
-		
-		int totalcount = 0;
-
-		try {
-			conn = getConnection();
-
-			sql = "SELECT count(*) FROM team.order WHERE userNo=? AND orderStatus=0";
-
-			pstmt = conn.prepareStatement(sql);
-
-			pstmt.setInt(1, userNo);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				totalcount = rs.getInt(1);
-			}
-
-		} catch (Exception e) {
-			System.out.println("cartTotalCount메소드 오류 :" + e.getMessage());
-			e.printStackTrace();
-		} finally {
-			freeResource();
-		}
-		return totalcount;
-	}//cartTotalCount
-
-	public String firstMovieName(int userNo) {
-	
-		String firstMN = null;
-
-		try {
-			conn = getConnection();
-
-			sql = "SELECT m.movieName FROM team.order o JOIN movie m ON o.movieNo = m.movieNo"
-					+ " WHERE o.userNo=? AND o.orderStatus=0 ORDER BY orderWriteDate";
-
-			pstmt = conn.prepareStatement(sql);
-
-			pstmt.setInt(1, userNo);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				firstMN = rs.getString(1);
-			}
-
-		} catch (Exception e) {
-			System.out.println("firstMovieName메소드 오류 :" + e.getMessage());
-			e.printStackTrace();
-		} finally {
-			freeResource();
-		}
-		return firstMN;
-	}//firstMovieName
-
-	public void updateStatus(int userNo) {	//장바구니에서 결제완료된 상품들 후처리(0:결제대기 -> 1:결제완료)
-
-		try {
-			conn = getConnection();
-
-			sql = "UPDATE team.order SET orderStatus=1 WHERE userNo=? AND orderStatus=0";
-
-			pstmt = conn.prepareStatement(sql);
-
-			pstmt.setInt(1, userNo);
-
-			pstmt.executeUpdate();
-
-		} catch (Exception e) {
-			System.out.println("updateStatus메소드 오류 :" + e.getMessage());
-			e.printStackTrace();
-		} finally {
-			freeResource();
-		}
-	}//updateStatus
-
-	
-	
 	
 	
 	
@@ -372,12 +84,12 @@ public class AdminOrderDAO {
 			conn = getConnection();
 
 			sql = "SELECT o.orderNo, o.userNo, u.userID, "
-					+ "o.movieNo, m.movieName, "
+					+ "o.movieNo, m.movieName, m.moviePrice, "
 					+ "o.orderStatus, o.orderWriteDate "
 					+ "FROM team.order o "
-					+ "left JOIN team.user u "
+					+ "LEFT JOIN team.user u "
 					+ "ON o.userNo = u.userNo "
-					+ "left JOIN team.movie m "
+					+ "LEFT JOIN team.movie m "
 					+ "ON o.movieNo = m.movieNo "
 					+ "ORDER BY o.orderWriteDate ";
 
@@ -391,8 +103,9 @@ public class AdminOrderDAO {
 													rs.getString("userID"),
 													rs.getInt("movieNo"),
 													rs.getString("movieName"), 
+													rs.getInt("moviePrice"),
 													rs.getInt("orderStatus"),
-													rs.getDate("orderWriteDate"));
+													rs.getTimestamp("orderWriteDate"));
 				
 				list.add(vo);
 			}
@@ -424,5 +137,112 @@ public class AdminOrderDAO {
 			freeResource();
 		}
 	}// delSelectedItem
+
+	public int periodSales(Date start, Date end) {
+		
+		int sales=0;
+		
+		try {
+			conn = getConnection();
+
+			sql = "SELECT sum(moviePrice) AS total FROM team.order o JOIN team.movie m "
+					+ "ON o.movieNo = m.movieNo "
+					+ "WHERE o.orderStatus=1 "
+					+ "AND o.orderWriteDate BETWEEN STR_TO_DATE(?,'%Y-%m-%d') "
+									+ "AND DATE_ADD(STR_TO_DATE(?,'%Y-%m-%d'), INTERVAL 1 DAY) ";
+
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setDate(1, start);
+			pstmt.setDate(2, end);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				sales = rs.getInt("total");
+			}
+
+		} catch (Exception e) {
+			System.out.println("periodSales 메소드 오류 : " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			freeResource();
+		}
+		return sales;
+	}//periodSales
+
+	public int totalSales() {
+		
+		int totalSales=0;
+		
+		try {
+			conn = getConnection();
+
+			sql = "SELECT sum(moviePrice) AS total FROM team.order o JOIN team.movie m "
+					+ "ON o.movieNo = m.movieNo "
+					+ "WHERE o.orderStatus=1";
+
+			pstmt = conn.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				totalSales = rs.getInt("total");
+			}
+
+		} catch (Exception e) {
+			System.out.println("periodSales 메소드 오류 : " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			freeResource();
+		}
+		
+		return totalSales;
+	}
+	
+	public List<AdminOrderVO> periodList(Date start, Date end) {
+		
+		List<AdminOrderVO> list = new ArrayList();
+
+		try {
+			conn = getConnection();
+
+			sql = "SELECT o.orderNo, o.userNo, u.userID, o.movieNo, "
+					+ "m.movieName, m.moviePrice, o.orderStatus, o.orderWriteDate "
+					+ "FROM team.order o "
+					+ "JOIN team.movie m ON o.movieNo = m.movieNo "
+					+ "JOIN team.user u ON o.userNo = u.userNo "
+					+ "WHERE o.orderStatus=1 "
+					+ "AND o.orderWriteDate BETWEEN STR_TO_DATE(?,'%Y-%m-%d') "
+									+ "AND DATE_ADD(STR_TO_DATE(?,'%Y-%m-%d'), INTERVAL 1 DAY) "
+					+ "ORDER BY o.orderWriteDate DESC";
+
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setDate(1, start);
+			pstmt.setDate(2, end);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				AdminOrderVO vo = new AdminOrderVO(	rs.getInt("orderNo"),
+													rs.getInt("userNo"),
+													rs.getString("userID"),
+													rs.getInt("movieNo"),
+													rs.getString("movieName"), 
+													rs.getInt("moviePrice"),
+													rs.getInt("orderStatus"),
+													rs.getTimestamp("orderWriteDate"));
+				
+				list.add(vo);
+			}
+		} catch (Exception e) {
+			System.out.println("periodList메소드 오류 :" + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			freeResource();
+		}
+		
+		return list;
+		
+	}//periodList
 		
 }
