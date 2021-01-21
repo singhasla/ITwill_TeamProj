@@ -74,8 +74,16 @@ public class AdminUserController extends HttpServlet{
 			nextPage = "/admin/dist/userPage/modUser.jsp";
 			
 		}else if(action.equals("/delUser.do")) {//회원삭제
-
-			nextPage = "/admin/dist/main/adminMain.jsp";
+			String userID = request.getParameter("userID");
+			int result = adminUserService.deleteUser(userID);
+			String msg ="";
+			if(result > 0){
+				msg ="회원을 삭제 했습니다";
+			}else{
+				msg ="삭제중 오류가 생겼습니다.";
+			}
+			request.setAttribute("msg", msg);
+			nextPage = "/adminPage/dashBoard.do";
 			
 		}else if(action.equals("/getUser.do")) {
 			String userID = request.getParameter("userID");

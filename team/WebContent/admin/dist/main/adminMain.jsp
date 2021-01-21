@@ -5,6 +5,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:set var="userList" value="${userList}" />
 <c:set var="total" value="${total}" />
+<c:set var="msg" value="${msg}" />
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -35,11 +36,14 @@
         }
          
          function delUser(userID,event){
-        	 alert(userID)
         	event.stopPropagation();
-			var form = document.userForm;
-        	form.action = "${contextPath}/adminPage/delUser.do?userID=" + userID;
-        	form.submit();
+        	var result = confirm("정말로 삭제하시겠습니까?");	
+        	if(result){
+        		var form = document.userForm;
+        		form.action = "${contextPath}/adminPage/delUser.do?userID=" + userID;
+            	form.submit();
+        	}
+			
         }
          
         </script>
@@ -50,6 +54,12 @@
         <div id="layoutSidenav">
         <!-- 사이드 메뉴 -->
         	<jsp:include page="../adminInc/sidenav.jsp"/>
+        	<c:if test="${msg!=null}">
+				<script>
+					alert("${msg}");
+				</script>
+				<c:remove var="msg" />
+			</c:if>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">

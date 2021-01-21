@@ -129,6 +129,7 @@ public class AdminUserDAO {
 				userVO.setUserNickname(rs.getString("userNickname"));
 				userVO.setUserTel(rs.getString("userTel"));
 				userVO.setUserEmail(rs.getString("userEmail"));
+				userVO.setUserAddr1(rs.getString("userAddr1"));
 				userVO.setUserAddr2(rs.getString("userAddr2"));
 				userVO.setUserAddr3(rs.getString("userAddr3"));
 				userVO.setUserAddr4(rs.getString("userAddr4"));
@@ -165,6 +166,22 @@ public class AdminUserDAO {
 			discon();
 		}
 		return result ;
+	}
+
+	public int deleteUser(String userID) {
+		
+		try {
+			conn = getConnection();
+			String sql = "delete from user where userID =?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userID);
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("delete()메소드 내부에서 오류"+e);
+		}finally {
+			discon();
+		}
+		return 0;
 	}
 
 }
