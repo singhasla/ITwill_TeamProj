@@ -1,5 +1,8 @@
 @CHARSET "UTF-8";
 
+a {
+	color: #ffffff;
+}
 button {
 	color: #ffffff !important;
     cursor: pointer;
@@ -7,6 +10,13 @@ button {
 
 h4 {
 	color: #ffffff !important; 
+}
+.bdt3 {
+	border-top: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.bdb3 {
+	border-bottom: 3px solid rgba(255, 255, 255, 0.2);
 }
 
 .blog__details__btns {
@@ -23,6 +33,53 @@ h4 {
 .notice_table{
 	width: 100%;
 	margin-bottom: 20px;
+}
+.faq-list {
+	color: #fff;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 0px !important;
+}
+.faq-list dt {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    position: relative;
+}
+.faq-list dt span {
+    left: auto;
+    font-size: 1.2rem;
+    top: 0;
+    color: #b7b7b7;
+    float: left;
+    margin-right: 30px;
+}
+.faq-list dt p {
+	float: left;
+	font-size: 1.2rem;
+	color: #b7b7b7;
+	line-height: inherit;
+}
+.scrolldown {
+	float: right !important;
+	font-size: xx-large !important;
+}
+.faq-list dd {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 23px;
+    line-height: 1.7em;
+    font-size: 1.2rem;
+    background: #070720;
+    color: #969696;
+    font-weight: 500;
+    margin-bottom: 0px !important;
+}
+
+.faq-list dd p {
+	padding: 3px 13px;
+	color: #b7b7b7;
+	font-size: 1.2rem;
 }
 
 .notice_table thead th {
@@ -76,8 +133,8 @@ h4 {
 	height: 3.4375rem;
     line-height: 3.4375rem;
     padding-left: 1rem;
-    border-bottom: 1px solid #383838;
-    border-top: 1px solid #383838
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .next span {
@@ -87,7 +144,7 @@ h4 {
     padding: 0 2.125rem 0 1rem;
 }
 .bo-r {
-	border-right: 1px solid #383838;
+	border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
 .next a {
 	margin-left: 30px;
@@ -147,7 +204,7 @@ h4 {
 }
 
 .filearea {
-	border-bottom: 1px solid;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     color: #646464;
     margin-top: 10px;
     margin-bottom: 30px;
@@ -242,4 +299,9 @@ h4 {
 
 .mr-top-20 {
 	margin-top: 20px;
+}
+
+.arrow_triangle-up {
+	float: right;
+	font-size: xx-large;
 }
