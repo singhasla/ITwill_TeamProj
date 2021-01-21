@@ -27,6 +27,13 @@
         	form.submit();
         }
          
+         function getUser(userID,event){
+        	event.stopPropagation();
+			var form = document.userForm;
+        	form.action = "${contextPath}/adminPage/getUser.do?userID=" + userID;
+        	form.submit();
+        }
+         
          function delUser(userID,event){
         	 alert(userID)
         	event.stopPropagation();
@@ -77,7 +84,7 @@
 												<c:otherwise>	
 													<c:forEach var="user" items="${userList}">
 													<fmt:formatDate var="userFmtDate" value="${user.userWriteDate}" pattern="yyyy-MM-dd HH:mm"/>
-			                                            <tr align="center">
+			                                            <tr align="center"  onclick="getUser('${user.userID}', event)" style="cursor:pointer">
 			                                                <td>${user.userID}</td>
 			                                                <td>${user.userName}</td>
 			                                                <td>${user.userNickname}</td>

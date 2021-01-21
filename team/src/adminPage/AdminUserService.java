@@ -36,4 +36,9 @@ public class AdminUserService {
 		return adminUserDAO.getUser(userID);
 	}
 
+	public int userUpate(UserVO userVO) {
+		int result = adminUserDAO.userUpdate(userVO);
+		return result;
+	}
+
 }

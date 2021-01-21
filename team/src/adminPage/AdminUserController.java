@@ -54,7 +54,7 @@ public class AdminUserController extends HttpServlet{
 			String searchKeyword = request.getParameter("searchKeyword");
 			
 			List userList = adminUserService.userlist(searchKeyword);
-			System.out.println(userList);
+			/*System.out.println(userList);*/
 			
 			int total = adminUserService.total(searchKeyword);
 			
@@ -65,18 +65,40 @@ public class AdminUserController extends HttpServlet{
 			
 		} else if (action.equals("/mainHome.do")) {
 			nextPage = "/main/index.jsp";
-		}else if(action.equals("/modUser.do")) {
+			
+		}else if(action.equals("/modUser.do")) {//수정페이지
+			String userID = request.getParameter("userID");
+			UserVO userVO = adminUserService.getUser(userID);
+			request.setAttribute("userVO", userVO);
+			
+			nextPage = "/admin/dist/userPage/modUser.jsp";
+			
+		}else if(action.equals("/delUser.do")) {//회원삭제
+
+			nextPage = "/admin/dist/main/adminMain.jsp";
+			
+		}else if(action.equals("/getUser.do")) {
 			String userID = request.getParameter("userID");
 			
 			UserVO userVO = adminUserService.getUser(userID);
+			request.setAttribute("userVO", userVO);
+			nextPage = "/admin/dist/userPage/getUser.jsp";
+			
+		}else if(action.equals("/updateUser.do")) {
+			int result =0;
+			userVO.setUserID(request.getParameter("userID"));
+			userVO.setUserNickname(request.getParameter("userNickname"));
+			userVO.setUserTel(request.getParameter("userTel"));
+			userVO.setUserAddr1(request.getParameter("userAddr1"));
+			userVO.setUserAddr2(request.getParameter("userAddr2"));
+			userVO.setUserAddr3(request.getParameter("userAddr3"));
+			userVO.setUserAddr4(request.getParameter("userAddr4"));
 			
 			
-			nextPage = "/admin/dist/userPage/modUser.jsp";
-		}else if(action.equals("/delUser.do")) {
-			
-			
-			nextPage = "/admin/dist/main/adminMain.jsp";
-		}
+			result = adminUserService.userUpate(userVO);
+			request.setAttribute("result", result);
+			nextPage = "/adminPage/getUser.do";
+		}//수정메소드
 		
 		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 		dispatch.forward(request, response);

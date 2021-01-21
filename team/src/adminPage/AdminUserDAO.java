@@ -144,4 +144,27 @@ public class AdminUserDAO {
 		return userVO;
 	}
 
+	public int userUpdate(UserVO userVO) {
+		int result =0;
+		try {
+			conn = getConnection();
+			String sql = "update user set userNickname= ?, userTel= ?, userAddr1=?,userAddr2=?,userAddr3=?,userAddr4=? , userUpdate = now() where userID =? ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userVO.getUserNickname());
+			pstmt.setString(2, userVO.getUserTel());
+			pstmt.setString(3, userVO.getUserAddr1());
+			pstmt.setString(4, userVO.getUserAddr2());
+			pstmt.setString(5, userVO.getUserAddr3());
+			pstmt.setString(6, userVO.getUserAddr4());
+			pstmt.setString(7, userVO.getUserID());
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("userUpdate 메소드 내부 오류 "+e);
+		}finally {
+			discon();
+		}
+		return result ;
+	}
+
 }
