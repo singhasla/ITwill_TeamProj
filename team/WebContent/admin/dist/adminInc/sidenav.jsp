@@ -16,6 +16,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                		 주문관리
                             </a>
+                             <a class="nav-link" href="${contextPath}/adminMovieServlet/movie.do">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                             		영화관리
+                            </a>
                             <div class="sb-sidenav-menu-heading">Interface</div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -60,12 +64,8 @@
                                 </nav>
                             </div>
                             
-                             <!-- 영화 등록 수정 삭제  -->
-                            <div class="sb-sidenav-menu-heading">Movie</div>
-                            <a class="nav-link" href="${contextPath}/movieServlet/movie.do">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                             	영화관리
-                            </a>
+                             
+                           
                             
                             
                             <div class="sb-sidenav-menu-heading">Addons</div>
