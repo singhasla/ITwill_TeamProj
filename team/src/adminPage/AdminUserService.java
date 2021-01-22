@@ -19,8 +19,8 @@ public class AdminUserService {
 		List<UserVO> userList = new ArrayList<UserVO>();
 		
 		userList= adminUserDAO.getUserList(searchKeyword);
-		System.out.println(userList);
-		/*List<UserVO> userList = adminUserDAO.getUserList(searchKeyword);*/
+		/*System.out.println(userList);*/
+		
 		return userList;
 	}
 	
@@ -29,6 +29,21 @@ public class AdminUserService {
 		int totalCount = adminUserDAO.getUserListCount(searchKeyword);
 		
 		return totalCount;
+	}
+
+	public UserVO getUser(String userID) {
+		
+		return adminUserDAO.getUser(userID);
+	}
+
+	public int userUpate(UserVO userVO) {
+		int result = adminUserDAO.userUpdate(userVO);
+		return result;
+	}
+
+	public int deleteUser(String userID) {
+		
+		return adminUserDAO.deleteUser(userID);
 	}
 
 }
