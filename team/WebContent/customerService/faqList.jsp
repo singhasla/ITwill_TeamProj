@@ -79,9 +79,18 @@
 	                        <li class="blog__details__btns__item">
 	                            <h5><a href="${contextPath}/faq/listFaq.do">자주 묻는 질문</a></h5>
 	                        </li>
-	                        <li class="blog__details__btns__item">
-	                            <h5><a href="${contextPath}/qna/addQna.do">문의하기</a></h5>
-	                        </li>
+	                       	<c:if test="${sessionScope.userID != null || sessionScope.userNo != null }">
+	                           	 <li class="blog__details__btns__item">
+	                           	<h5><a href="${contextPath}/qna/addQna.do">문의하기</a></h5>
+	                       		</li>
+	                       	</c:if>
+	                       	<c:if test="${ sessionScope.userID == null || sessionScope.userNo == null }">
+	                       		 <li class="blog__details__btns__item">
+	                       		<h5><a onclick="if(confirm('로그인 후 이용이 가능합니다. 로그인 페이지로 이동합니다.'))
+	                       			{location.href='${contextPath}/user/loginPage.do'}else{cancel();}" 
+	                       			style="cursor: pointer; color: #ffffff;">문의하기</a></h5>
+	                       		</li>
+	                       	</c:if>
                         </ul>
                         <!-- FAQ -->
                         <div class="blog__details__form accordions">
