@@ -22,10 +22,7 @@ public class MovieVO {
 	public MovieVO() {
 	}
 
-	
-	
-	
-	
+
 	public MovieVO(int movieNo, String movieName, String movieContent,  int movieCategoryNo1,
 			int movieCategoryNo2, int moviePrice) {
 		super();
@@ -36,9 +33,6 @@ public class MovieVO {
 		this.movieCategoryNo2 = movieCategoryNo2;
 		this.moviePrice = moviePrice;
 	}
-
-
-
 
 
 	public MovieVO(String movieName, String movieContent, String movieImage, int moviePrice, int movieCategoryNo1,
