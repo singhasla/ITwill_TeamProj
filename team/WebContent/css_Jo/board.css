@@ -1,0 +1,150 @@
+@charset "UTF-8";
+img {
+  max-width: 100%;
+}
+
+.deleteform {
+  width: 100%;
+  max-width: 510px;
+  margin: auto;
+}
+
+.table {
+  border-top: 2px solid #999;
+  border-bottom: 1px solid #dee2e6;
+}
+.table th {
+  white-space: nowrap;
+}
+.table thead th:not(:last-child) {
+  position: relative;
+}
+.table thead th:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 1px;
+  height: 12px;
+  margin: auto;
+  background-color: #999;
+}
+.table tbody th:not(:last-child) {
+  position: relative;
+}
+.table tbody th:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 16px;
+  background-color: #dee2e6;
+}
+
+.table-layout-fixed {
+  table-layout: fixed;
+}
+
+.reply-list-table {
+  margin-bottom: 0;
+}
+
+.reply-form-table {
+  border-top-width: 0;
+}
+.reply-form-table tr:first-child td {
+  border-top-width: 0;
+}
+
+.read-table tbody th {
+  position: relative;
+}
+.read-table tbody th::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 1px;
+  height: 12px;
+  margin: auto;
+  background-color: #dee2e6;
+}
+
+.readsubject {
+  background-color: #fafafa;
+}
+
+.event-grid {
+  margin: 0 -8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.event-grid.active {
+  opacity: 1;
+}
+
+.event-grid-item {
+  width: 50%;
+  padding: 8px;
+}
+.event-grid-item .caption {
+  overflow: hidden;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  bottom: 8px;
+  left: 8px;
+}
+.event-grid-item .caption-inner {
+  display: table;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  transition: top 0.2s ease-out;
+}
+.event-grid-item .caption-inner div {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+@media (min-width: 992px) {
+  .d-lg-table-column-group {
+    display: table-column-group !important;
+  }
+
+  .d-lg-table-header-group {
+    display: table-header-group !important;
+  }
+
+  .event-grid-item {
+    width: 33.33%;
+  }
+  .event-grid-item:hover .caption-inner {
+    top: 0;
+  }
+}
+.preview {
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border: 1px solid #dee2e6;
+}
+
+.wbka {
+  word-break: keep-all;
+}
+
+.custom-file-label::after {
+  content: "파일 선택";
+}
+
+/*# sourceMappingURL=board.css.map */
