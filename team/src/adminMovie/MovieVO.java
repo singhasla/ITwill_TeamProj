@@ -12,20 +12,17 @@ public class MovieVO {
 	private int movieCategoryNo1;
 	private int movieCategoryNo2;
 	private String movieDirector;
+	private String actorName;
+	private String movieTime;
 	private String movieLink;
 	private Date movieReleaseDate;
 	private Date movieWriteDate;
 	private Date movieUpdateDate;
-	private String actorName;
-	private String movieTime;
 
 	public MovieVO() {
 	}
 
-	
-	
-	
-	
+
 	public MovieVO(int movieNo, String movieName, String movieContent,  int movieCategoryNo1,
 			int movieCategoryNo2, int moviePrice) {
 		super();
@@ -36,9 +33,6 @@ public class MovieVO {
 		this.movieCategoryNo2 = movieCategoryNo2;
 		this.moviePrice = moviePrice;
 	}
-
-
-
 
 
 	public MovieVO(String movieName, String movieContent, String movieImage, int moviePrice, int movieCategoryNo1,

@@ -57,10 +57,10 @@
 					</div>
 				</div>
 				<div class="col-8">
-					<table class="table table-dark table-hover">
+					<table class="table table-hover">
 						<thead>
 							<p style="color: white;">${userID} 님의 장바구니에 담긴 상품입니다.</p>
-							<tr>
+							<tr style="color: white;">
 								<th scope="col">#</th>
 								<th width="15%" scope="col" style="text-align: center">영화</th>
 								<th width="50%" scope="col">제목</th>
@@ -83,7 +83,7 @@
 								
 								<c:when test="${myCartList != null}">
 									<c:forEach var="cartListInf" items="${myCartList}" varStatus="status">
-										<tr>
+										<tr style="color: white;">
 											<td scope="row" style="vertical-align: middle">${status.index+1}</td>
 											<td><img src="${cartListInf.movieImage}" class="cart_thumbnail"/></td>
 											<td style="vertical-align: middle">${cartListInf.movieName}</td>
@@ -98,7 +98,7 @@
 								</c:when>
 							</c:choose>
 							
-							<tr>
+							<tr style="color: white;">
 								<td colspan="3" align="right">총 결제 금액 :</td>
 								
 								<td>

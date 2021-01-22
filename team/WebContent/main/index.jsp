@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="latestList" value="${latestList}" />
+<c:set var="hotList" value="${hotList}" />
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -9,7 +13,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>main</title>
-
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -92,13 +95,12 @@
 		<div class="container">
 			<div class="row">
 
-
 				<!-- 신작무비 -->
 				<div align="center">
 					<div class="row">
 						<div class="col-lg-8 col-md-8 col-sm-8">
 							<div class="section-title">
-								<h4>새로나온 영화</h4>
+								<h4>최신 영화</h4>
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-4 col-sm-4">
@@ -108,161 +110,39 @@
 							</div>
 						</div>
 					</div>
+					<!-- 그림한칸 영역-->
 					<div class="row">
-						<div class="col-lg-4 col-md-6 col-sm-6">
-							<a href="../detail/movie-detail.jsp">
-								<div class="product__item">
-									<div class="product__item__pic set-bg"
-										data-setbg="../img/trending/trend-1.jpg">
-										<div class="ep">18 / 18</div>
-										<div class="comment">
-											<i class="fa fa-comments"></i> 11
+						<c:forEach var="latest" items="${latestList}" end="5">
+							<div class="col-lg-4 col-md-6 col-sm-6">
+								<a href="../detail/movie-detail.jsp">
+									<div class="product__item">
+										<div class="product__item__pic set-bg"
+											data-setbg="${latest.movieImage}">
+											<div class="ep">18 / 18</div>
+											<div class="comment">
+												<i class="fa fa-comments"></i> 11
+											</div>
+											<div class="view">
+												<i class="fa fa-eye"></i> ${latest.movieTime}
+											</div>
 										</div>
-										<div class="view">
-											<i class="fa fa-eye"></i> 9141
-										</div>
-									</div>
-									<div class="product__item__text">
-										<ul>
-											<li>Active</li>
-											<li>Movie</li>
-										</ul>
-										<h5>
-											<a href="#">다이버전트</a>
-										</h5>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-6">
-							<a href="../detail/movie-detail.jsp">
-								<div class="product__item">
-									<div class="product__item__pic set-bg"
-										data-setbg="../img/trending/trend-1.jpg">
-										<div class="ep">18 / 18</div>
-										<div class="comment">
-											<i class="fa fa-comments"></i> 11
-										</div>
-										<div class="view">
-											<i class="fa fa-eye"></i> 9141
+										<div class="product__item__text">
+											<ul>
+												<li>${latest.cn1}</li>
+												<li>${latest.cn2}</li>
+											</ul>
+											<h5>
+												<a href="#">${latest.movieName}</a>
+											</h5>
 										</div>
 									</div>
-									<div class="product__item__text">
-										<ul>
-											<li>Active</li>
-											<li>Movie</li>
-										</ul>
-										<h5>
-											<a href="#">다이버전트</a>
-										</h5>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-6">
-							<a href="../detail/movie-detail.jsp">
-								<div class="product__item">
-									<div class="product__item__pic set-bg"
-										data-setbg="../img/trending/trend-1.jpg">
-										<div class="ep">18 / 18</div>
-										<div class="comment">
-											<i class="fa fa-comments"></i> 11
-										</div>
-										<div class="view">
-											<i class="fa fa-eye"></i> 9141
-										</div>
-									</div>
-									<div class="product__item__text">
-										<ul>
-											<li>Active</li>
-											<li>Movie</li>
-										</ul>
-										<h5>
-											<a href="#">다이버전트</a>
-										</h5>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-6">
-							<a href="../detail/movie-detail.jsp">
-								<div class="product__item">
-									<div class="product__item__pic set-bg"
-										data-setbg="../img/trending/trend-2.jpg">
-										<div class="ep">18 / 18</div>
-										<div class="comment">
-											<i class="fa fa-comments"></i> 11
-										</div>
-										<div class="view">
-											<i class="fa fa-eye"></i> 9141
-										</div>
-									</div>
-									<div class="product__item__text">
-										<ul>
-											<li>Active</li>
-											<li>Movie</li>
-										</ul>
-										<h5>
-											<a href="#">애니1</a>
-										</h5>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-6">
-							<a href="../detail/movie-detail.jsp">
-								<div class="product__item">
-									<div class="product__item__pic set-bg"
-										data-setbg="../img/trending/trend-3.jpg">
-										<div class="ep">18 / 18</div>
-										<div class="comment">
-											<i class="fa fa-comments"></i> 11
-										</div>
-										<div class="view">
-											<i class="fa fa-eye"></i> 9141
-										</div>
-									</div>
-									<div class="product__item__text">
-										<ul>
-											<li>Active</li>
-											<li>Movie</li>
-										</ul>
-										<h5>
-											<a href="#">애니2</a>
-										</h5>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-6">
-							<a href="../detail/movie-detail.jsp">
-								<div class="product__item">
-									<div class="product__item__pic set-bg"
-										data-setbg="../img/trending/trend-3.jpg">
-										<div class="ep">18 / 18</div>
-										<div class="comment">
-											<i class="fa fa-comments"></i> 11
-										</div>
-										<div class="view">
-											<i class="fa fa-eye"></i> 9141
-										</div>
-									</div>
-									<div class="product__item__text">
-										<ul>
-											<li>Active</li>
-											<li>Movie</li>
-										</ul>
-										<h5>
-											<a href="#">애니2</a>
-										</h5>
-									</div>
-								</div>
-							</a>
-						</div>
+								</a>
+							</div>
+						</c:forEach>
 					</div>
 				</div>
-
-
+				<!-- 신작무비 -->
+						
 
 				<!-- 베스트무비 -->
 				<div align="center">
@@ -279,153 +159,42 @@
 							</div>
 						</div>
 					</div>
+					<!-- 그림한칸 영역-->
 					<div class="row">
-						<div class="col-lg-4 col-md-6 col-sm-6">
-							<div class="product__item">
-								<div class="product__item__pic set-bg"
-									data-setbg="../img/trending/trend-1.jpg">
-									<div class="ep">18 / 18</div>
-									<div class="comment">
-										<i class="fa fa-comments"></i> 11
-									</div>
-									<div class="view">
-										<i class="fa fa-eye"></i> 9141
-									</div>
-								</div>
-								<div class="product__item__text">
-									<ul>
-										<li>Active</li>
-										<li>Movie</li>
-									</ul>
-									<h5>
-										<a href="#">보루토1</a>
-									</h5>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-6">
-							<div class="product__item">
-								<div class="product__item__pic set-bg"
-									data-setbg="../img/trending/trend-1.jpg">
-									<div class="ep">18 / 18</div>
-									<div class="comment">
-										<i class="fa fa-comments"></i> 11
-									</div>
-									<div class="view">
-										<i class="fa fa-eye"></i> 9141
-									</div>
-								</div>
-								<div class="product__item__text">
-									<ul>
-										<li>Active</li>
-										<li>Movie</li>
-									</ul>
-									<h5>
-										<a href="#">보루토2</a>
-									</h5>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-6">
-							<div class="product__item">
-								<div class="product__item__pic set-bg"
-									data-setbg="../img/trending/trend-1.jpg">
-									<div class="ep">18 / 18</div>
-									<div class="comment">
-										<i class="fa fa-comments"></i> 11
-									</div>
-									<div class="view">
-										<i class="fa fa-eye"></i> 9141
-									</div>
-								</div>
-								<div class="product__item__text">
-									<ul>
-										<li>Active</li>
-										<li>Movie</li>
-									</ul>
-									<h5>
-										<a href="#">보루토3</a>
-									</h5>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-6">
-							<div class="product__item">
-								<div class="product__item__pic set-bg"
-									data-setbg="../img/trending/trend-2.jpg">
-									<div class="ep">18 / 18</div>
-									<div class="comment">
-										<i class="fa fa-comments"></i> 11
-									</div>
-									<div class="view">
-										<i class="fa fa-eye"></i> 9141
-									</div>
-								</div>
-								<div class="product__item__text">
-									<ul>
-										<li>Active</li>
-										<li>Movie</li>
-									</ul>
-									<h5>
-										<a href="#">보루토4</a>
-									</h5>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-6">
-							<a href="../detail/movie-detail.jsp">
-								<div class="product__item">
-									<div class="product__item__pic set-bg"
-										data-setbg="../img/trending/trend-3.jpg">
-										<div class="ep">18 / 18</div>
-										<div class="comment">
-											<i class="fa fa-comments"></i> 11
+						<c:forEach var="hot" items="${hotList}" end="5">
+							<div class="col-lg-4 col-md-6 col-sm-6">
+								<a href="../detail/movie-detail.jsp">
+									<div class="product__item">
+										<div class="product__item__pic set-bg"
+											data-setbg="${hot.movieImage}">
+											<div class="ep">18 / 18</div>
+											<div class="comment">
+												<i class="fa fa-comments"></i> 11
+											</div>
+											<div class="view">
+												<i class="fa fa-eye"></i> ${hot.movieTime}
+											</div>
 										</div>
-										<div class="view">
-											<i class="fa fa-eye"></i> 9141
+										<div class="product__item__text">
+											<ul>
+												<li>${hot.cn1}</li>
+												<li>${hot.cn2}</li>
+											</ul>
+											<h5>
+												<a href="#">${hot.movieName}</a>
+											</h5>
 										</div>
 									</div>
-									<div class="product__item__text">
-										<ul>
-											<li>Active</li>
-											<li>Movie</li>
-										</ul>
-										<h5>
-											<a href="#">애니2</a>
-										</h5>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-6">
-							<div class="product__item">
-								<div class="product__item__pic set-bg"
-									data-setbg="../img/trending/trend-3.jpg">
-									<div class="ep">18 / 18</div>
-									<div class="comment">
-										<i class="fa fa-comments"></i> 11
-									</div>
-									<div class="view">
-										<i class="fa fa-eye"></i> 9141
-									</div>
-								</div>
-								<div class="product__item__text">
-									<ul>
-										<li>Active</li>
-										<li>Movie</li>
-									</ul>
-									<h5>
-										<a href="#">보루토5</a>
-									</h5>
-								</div>
+								</a>
 							</div>
-						</div>
+						</c:forEach>
 					</div>
 				</div>
+				<!-- 베스트 무비 -->
 
-
-				<!-- 액션/SF -->
-				<div align="action">
+<!-- 
+				액션/SF
+				<div align="center">
 					<div class="row">
 						<div class="col-lg-8 col-md-8 col-sm-8">
 							<div class="section-title">
@@ -583,7 +352,7 @@
 					</div>
 				</div>
 
-				<!-- 코미디 -->
+				코미디
 				<div align="center">
 					<div class="row">
 						<div class="col-lg-8 col-md-8 col-sm-8">
@@ -743,7 +512,7 @@
 				</div>
 
 
-				<!-- 로맨스/멜로 -->
+				로맨스/멜로
 				<div align="center">
 					<div class="row">
 						<div class="col-lg-8 col-md-8 col-sm-8">
@@ -903,7 +672,7 @@
 				</div>
 
 
-				<!-- 공포/스릴러 -->
+				공포/스릴러
 				<div align="center">
 					<div class="row">
 						<div class="col-lg-8 col-md-8 col-sm-8">
@@ -1062,7 +831,7 @@
 					</div>
 				</div>
 
-				<!-- 애니메이션 -->
+				애니메이션
 				<div align="center">
 					<div class="row">
 						<div class="col-lg-8 col-md-8 col-sm-8">
@@ -1220,6 +989,9 @@
 						</div>
 					</div>
 				</div>
+				애니메이션 끝
+ -->				
+				
 			</div>
 		</div>
 	</section>
