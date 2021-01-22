@@ -23,6 +23,7 @@ public class AdminUserController extends HttpServlet{
 	
 	UserVO userVO;
 	AdminUserService adminUserService;
+	UserDAO userDAO;
 	
 	@Override
 	public void init() throws ServletException {
@@ -54,7 +55,7 @@ public class AdminUserController extends HttpServlet{
 			String searchKeyword = request.getParameter("searchKeyword");
 			
 			List userList = adminUserService.userlist(searchKeyword);
-			System.out.println(userList);
+			/*System.out.println(userList);*/
 			
 			int total = adminUserService.total(searchKeyword);
 			
@@ -65,7 +66,66 @@ public class AdminUserController extends HttpServlet{
 			
 		} else if (action.equals("/mainHome.do")) {
 			nextPage = "/main/index.jsp";
+			
+		}else if(action.equals("/modUser.do")) {//수정페이지
+			String userID = request.getParameter("userID");
+			UserVO userVO = adminUserService.getUser(userID);
+			request.setAttribute("userVO", userVO);
+			
+			nextPage = "/admin/dist/userPage/modUser.jsp";
+			
+		}else if(action.equals("/delUser.do")) {//회원삭제
+			String userID = request.getParameter("userID");
+			int result = adminUserService.deleteUser(userID);
+			String msg ="";
+			if(result > 0){
+				msg ="회원을 삭제 했습니다";
+			}else{
+				msg ="삭제중 오류가 생겼습니다.";
+			}
+			request.setAttribute("msg", msg);
+			nextPage = "/adminPage/dashBoard.do";
+			
+		}else if(action.equals("/getUser.do")) {
+			String userID = request.getParameter("userID");
+			
+			UserVO userVO = adminUserService.getUser(userID);
+			request.setAttribute("userVO", userVO);
+			nextPage = "/admin/dist/userPage/getUser.jsp";
+			
+		}else if(action.equals("/updateUser.do")) {
+			int result =0;
+			userVO.setUserID(request.getParameter("userID"));
+			userVO.setUserNickname(request.getParameter("userNickname"));
+			userVO.setUserTel(request.getParameter("userTel"));
+			userVO.setUserAddr1(request.getParameter("userAddr1"));
+			userVO.setUserAddr2(request.getParameter("userAddr2"));
+			userVO.setUserAddr3(request.getParameter("userAddr3"));
+			userVO.setUserAddr4(request.getParameter("userAddr4"));
+			
+			
+			result = adminUserService.userUpate(userVO);
+			request.setAttribute("result", result);
+			nextPage = "/adminPage/getUser.do";
+			
+		} else if (action.equals("/nickCheck.do")) {
+			String userNickname = request.getParameter("userNickname");
+			request.setAttribute("userNickname", userNickname);
+			int check = userDAO.nickCheck(userNickname);
+			
+			System.out.println(userNickname);
+			if (check == 1) {
+				request.setAttribute("msg", "used");
+				System.out.println("사용중");
+			} else {
+				request.setAttribute("msg", "allow");
+				System.out.println("가능");
+			}
+			
+			nextPage = "/userPage/nick.jsp";
+			
 		}
+		
 		
 		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 		dispatch.forward(request, response);

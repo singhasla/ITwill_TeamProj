@@ -545,7 +545,8 @@ typeof navigator === "object" && (function (global, factory) {
     setTimeout(function () {
       try {
         // eslint-disable-next-line no-param-reassign
-        element.hidden = true; // eslint-disable-next-line no-unused-expressions
+        element.hidden = true; // eslint-disable-next-line
+								// no-unused-expressions
 
         element.offsetHeight; // eslint-disable-next-line no-param-reassign
 
@@ -612,17 +613,27 @@ typeof navigator === "object" && (function (global, factory) {
 
   function wrap(elements, wrapper) {
     // Convert `elements` to an array, if necessary.
-    var targets = elements.length ? elements : [elements]; // Loops backwards to prevent having to clone the wrapper on the
+    var targets = elements.length ? elements : [elements]; // Loops backwards
+															// to prevent having
+															// to clone the
+															// wrapper on the
     // first element (see `child` below).
 
     Array.from(targets).reverse().forEach(function (element, index) {
-      var child = index > 0 ? wrapper.cloneNode(true) : wrapper; // Cache the current parent and sibling.
+      var child = index > 0 ? wrapper.cloneNode(true) : wrapper; // Cache the
+																	// current
+																	// parent
+																	// and
+																	// sibling.
 
       var parent = element.parentNode;
-      var sibling = element.nextSibling; // Wrap the element (is automatically removed from its current
+      var sibling = element.nextSibling; // Wrap the element (is
+											// automatically removed from its
+											// current
       // parent).
 
-      child.appendChild(element); // If the element had a sibling, insert the wrapper before
+      child.appendChild(element); // If the element had a sibling, insert the
+									// wrapper before
       // the sibling to maintain the HTML structure; otherwise, just
       // append it to the parent.
 
@@ -738,14 +749,18 @@ typeof navigator === "object" && (function (global, factory) {
       // Remove whitespace
       var selector = s.trim();
       var className = selector.replace('.', '');
-      var stripped = selector.replace(/[[\]]/g, ''); // Get the parts and value
+      var stripped = selector.replace(/[[\]]/g, ''); // Get the parts and
+														// value
 
       var parts = stripped.split('=');
 
       var _parts = _slicedToArray(parts, 1),
           key = _parts[0];
 
-      var value = parts.length > 1 ? parts[1].replace(/["']/g, '') : ''; // Get the first character
+      var value = parts.length > 1 ? parts[1].replace(/["']/g, '') : ''; // Get
+																			// the
+																			// first
+																			// character
 
       var start = selector.charAt(0);
 
@@ -787,7 +802,8 @@ typeof navigator === "object" && (function (global, factory) {
 
 
     element.hidden = hide;
-  } // Mirror Element.classList.toggle, with IE compatibility for "force" argument
+  } // Mirror Element.classList.toggle, with IE compatibility for "force"
+	// argument
 
   function toggleClass(element, className, force) {
     if (is$1.nodeList(element)) {
@@ -933,7 +949,8 @@ typeof navigator === "object" && (function (global, factory) {
           _input$split2 = _slicedToArray(_input$split, 1),
           mediaType = _input$split2[0];
 
-      var type = input; // Verify we're using HTML5 and there's no media type mismatch
+      var type = input; // Verify we're using HTML5 and there's no media type
+						// mismatch
 
       if (!this.isHTML5 || mediaType !== this.type) {
         return false;
@@ -959,7 +976,8 @@ typeof navigator === "object" && (function (global, factory) {
       return range.type === 'range';
     }(),
     // Touch
-    // NOTE: Remember a device can be mouse + touch enabled so we check on first touch event
+    // NOTE: Remember a device can be mouse + touch enabled so we check on first
+	// touch event
     touch: 'ontouchstart' in document.documentElement,
     // Detect transitions support
     transitions: transitionEndEvent !== false,
@@ -972,7 +990,8 @@ typeof navigator === "object" && (function (global, factory) {
   // https://www.youtube.com/watch?v=NPM6172J22g
 
   var supportsPassiveListeners = function () {
-    // Test via a getter in the options object to see if the passive property is accessed
+    // Test via a getter in the options object to see if the passive property is
+	// accessed
     var supported = false;
 
     try {
@@ -1005,7 +1024,8 @@ typeof navigator === "object" && (function (global, factory) {
 
 
     var events = event.split(' '); // Build options
-    // Default to just the capture boolean for browsers with no passive listener support
+    // Default to just the capture boolean for browsers with no passive listener
+	// support
 
     var options = capture; // If passive events listeners are supported
 
@@ -1114,11 +1134,13 @@ typeof navigator === "object" && (function (global, factory) {
   }
 
   /**
-   * Silence a Promise-like object.
-   * This is useful for avoiding non-harmful, but potentially confusing "uncaught
-   * play promise" rejection error messages.
-   * @param  {Object} value An object that may or may not be `Promise`-like.
-   */
+	 * Silence a Promise-like object. This is useful for avoiding non-harmful,
+	 * but potentially confusing "uncaught play promise" rejection error
+	 * messages.
+	 * 
+	 * @param {Object}
+	 *            value An object that may or may not be `Promise`-like.
+	 */
 
   function silencePromise(value) {
     if (is$1.promise(value)) {
@@ -1192,7 +1214,10 @@ typeof navigator === "object" && (function (global, factory) {
         h = _ref2[1];
 
     var padding = 100 / w * h;
-    wrapper.style.paddingBottom = "".concat(padding, "%"); // For Vimeo we have an extra <div> to hide the standard controls and UI
+    wrapper.style.paddingBottom = "".concat(padding, "%"); // For Vimeo we have
+															// an extra <div> to
+															// hide the standard
+															// controls and UI
 
     if (this.isVimeo && !this.config.vimeo.premium && this.supported.ui) {
       var height = 100 / this.media.offsetWidth * parseInt(window.getComputedStyle(this.media).paddingBottom, 10);
@@ -1217,7 +1242,14 @@ typeof navigator === "object" && (function (global, factory) {
         return [];
       }
 
-      var sources = Array.from(this.media.querySelectorAll('source')); // Filter out unsupported sources (if type is specified)
+      var sources = Array.from(this.media.querySelectorAll('source')); // Filter
+																		// out
+																		// unsupported
+																		// sources
+																		// (if
+																		// type
+																		// is
+																		// specified)
 
       return sources.filter(function (source) {
         var type = source.getAttribute('type');
@@ -1248,7 +1280,8 @@ typeof navigator === "object" && (function (global, factory) {
 
       var player = this; // Set speed options from config
 
-      player.options.speed = player.config.speed.options; // Set aspect ratio if fixed
+      player.options.speed = player.config.speed.options; // Set aspect ratio
+															// if fixed
 
       if (!is$1.empty(this.config.ratio)) {
         setAspectRatio.call(player);
@@ -1275,7 +1308,9 @@ typeof navigator === "object" && (function (global, factory) {
             player.config.quality.onChange(input);
           } else {
             // Get sources
-            var sources = html5.getSources.call(player); // Get first match for requested size
+            var sources = html5.getSources.call(player); // Get first match
+															// for requested
+															// size
 
             var source = sources.find(function (s) {
               return Number(s.getAttribute('size')) === input;
@@ -1293,7 +1328,11 @@ typeof navigator === "object" && (function (global, factory) {
                 readyState = _player$media.readyState,
                 playbackRate = _player$media.playbackRate; // Set new source
 
-            player.media.src = source.getAttribute('src'); // Prevent loading if preload="none" and the current source isn't loaded (#1044)
+            player.media.src = source.getAttribute('src'); // Prevent loading
+															// if preload="none"
+															// and the current
+															// source isn't
+															// loaded (#1044)
 
             if (preload !== 'none' || readyState) {
               // Restore time
@@ -1325,11 +1364,14 @@ typeof navigator === "object" && (function (global, factory) {
       } // Remove child sources
 
 
-      removeElement(html5.getSources.call(this)); // Set blank video src attribute
+      removeElement(html5.getSources.call(this)); // Set blank video src
+													// attribute
       // This is to prevent a MEDIA_ERR_SRC_NOT_SUPPORTED error
-      // Info: http://stackoverflow.com/questions/32231579/how-to-properly-dispose-of-an-html5-video-and-close-socket-or-connection
+      // Info:
+		// http://stackoverflow.com/questions/32231579/how-to-properly-dispose-of-an-html5-video-and-close-socket-or-connection
 
-      this.media.setAttribute('src', this.config.blankVideo); // Load the new empty source
+      this.media.setAttribute('src', this.config.blankVideo); // Load the new
+																// empty source
       // This will cancel existing requests
       // See https://github.com/sampotts/plyr/issues/174
 
@@ -1480,7 +1522,7 @@ typeof navigator === "object" && (function (global, factory) {
     }
   };
 
-  var Storage = /*#__PURE__*/function () {
+  var Storage = /* #__PURE__ */function () {
     function Storage(player) {
       _classCallCheck(this, Storage);
 
@@ -1538,7 +1580,8 @@ typeof navigator === "object" && (function (global, factory) {
             return false;
           }
 
-          var test = '___test'; // Try to use it (it might be disabled, e.g. user is in private mode)
+          var test = '___test'; // Try to use it (it might be disabled, e.g.
+								// user is in private mode)
           // see: https://github.com/sampotts/plyr/issues/131
 
           window.localStorage.setItem(test, test);
@@ -1748,7 +1791,10 @@ typeof navigator === "object" && (function (global, factory) {
         return true;
       } catch (error) {
         // Log it
-        this.debug.warn('It looks like there is a problem with your custom controls HTML', error); // Restore native video controls
+        this.debug.warn('It looks like there is a problem with your custom controls HTML', error); // Restore
+																									// native
+																									// video
+																									// controls
 
         this.toggleNativeControls(true);
         return false;
@@ -1758,7 +1804,8 @@ typeof navigator === "object" && (function (global, factory) {
     createIcon: function createIcon(type, attributes) {
       var namespace = 'http://www.w3.org/2000/svg';
       var iconUrl = controls.getIconUrl.call(this);
-      var iconPath = "".concat(!iconUrl.cors ? iconUrl.url : '', "#").concat(this.config.iconPrefix); // Create <svg>
+      var iconPath = "".concat(!iconUrl.cors ? iconUrl.url : '', "#").concat(this.config.iconPrefix); // Create
+																										// <svg>
 
       var icon = document.createElementNS(namespace, 'svg');
       setAttributes(icon, extend(attributes, {
@@ -1773,10 +1820,14 @@ typeof navigator === "object" && (function (global, factory) {
 
       if ('href' in use) {
         use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', path);
-      } // Always set the older attribute even though it's "deprecated" (it'll be around for ages)
+      } // Always set the older attribute even though it's "deprecated" (it'll
+		// be around for ages)
 
 
-      use.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', path); // Add <use> to <svg>
+      use.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', path); // Add
+																				// <use>
+																				// to
+																				// <svg>
 
       icon.appendChild(use);
       return icon;
@@ -1896,7 +1947,8 @@ typeof navigator === "object" && (function (global, factory) {
 
       }
 
-      var button = createElement(props.element); // Setup toggle icon and labels
+      var button = createElement(props.element); // Setup toggle icon and
+													// labels
 
       if (props.toggle) {
         // Icon
@@ -1953,7 +2005,8 @@ typeof navigator === "object" && (function (global, factory) {
       }, attributes));
       this.elements.inputs[type] = input; // Set the fill for webkit now
 
-      controls.updateRangeFill.call(this, input); // Improve support on touch devices
+      controls.updateRangeFill.call(this, input); // Improve support on touch
+													// devices
 
       RangeTouch.setup(input);
       return input;
@@ -1993,7 +2046,8 @@ typeof navigator === "object" && (function (global, factory) {
       return container;
     },
     // Bind keyboard shortcuts for a menu item
-    // We have to bind to keyup otherwise Firefox triggers a click when a keydown event handler shifts focus
+    // We have to bind to keyup otherwise Firefox triggers a click when a
+	// keydown event handler shifts focus
     // https://bugzilla.mozilla.org/show_bug.cgi?id=1220143
     bindMenuItemShortcuts: function bindMenuItemShortcuts(menuItem, type) {
       var _this2 = this;
@@ -2007,13 +2061,17 @@ typeof navigator === "object" && (function (global, factory) {
 
 
         event.preventDefault();
-        event.stopPropagation(); // We're just here to prevent the keydown bubbling
+        event.stopPropagation(); // We're just here to prevent the keydown
+									// bubbling
 
         if (event.type === 'keydown') {
           return;
         }
 
-        var isRadioButton = matches$1(menuItem, '[role="menuitemradio"]'); // Show the respective menu
+        var isRadioButton = matches$1(menuItem, '[role="menuitemradio"]'); // Show
+																			// the
+																			// respective
+																			// menu
 
         if (!isRadioButton && [32, 39].includes(event.which)) {
           controls.showMenuPanel.call(_this2, type, true);
@@ -2038,7 +2096,8 @@ typeof navigator === "object" && (function (global, factory) {
             setFocus.call(_this2, target, true);
           }
         }
-      }, false); // Enter will fire a `click` event but we still need to manage focus
+      }, false); // Enter will fire a `click` event but we still need to
+					// manage focus
       // So we bind to keyup which fires after and set focus here
 
       on.call(this, menuItem, 'keyup', function (event) {
@@ -2069,7 +2128,8 @@ typeof navigator === "object" && (function (global, factory) {
         'aria-checked': checked,
         value: value
       }));
-      var flex = createElement('span'); // We have to set as HTML incase of special characters
+      var flex = createElement('span'); // We have to set as HTML incase of
+										// special characters
 
       flex.innerHTML = title;
 
@@ -2194,7 +2254,10 @@ typeof navigator === "object" && (function (global, factory) {
 
       var setProgress = function setProgress(target, input) {
         var val = is$1.number(input) ? input : 0;
-        var progress = is$1.element(target) ? target : _this4.elements.display.buffer; // Update value and label
+        var progress = is$1.element(target) ? target : _this4.elements.display.buffer; // Update
+																						// value
+																						// and
+																						// label
 
         if (is$1.element(progress)) {
           progress.value = val; // Update text label inside
@@ -2213,7 +2276,14 @@ typeof navigator === "object" && (function (global, factory) {
           case 'timeupdate':
           case 'seeking':
           case 'seeked':
-            value = getPercentage(this.currentTime, this.duration); // Set seek range value only if it's a 'natural' time event
+            value = getPercentage(this.currentTime, this.duration); // Set seek
+																	// range
+																	// value
+																	// only if
+																	// it's a
+																	// 'natural'
+																	// time
+																	// event
 
             if (event.type === 'timeupdate') {
               controls.setRange.call(this, this.elements.inputs.seek, value);
@@ -2232,7 +2302,9 @@ typeof navigator === "object" && (function (global, factory) {
     // Webkit polyfill for lower fill range
     updateRangeFill: function updateRangeFill(target) {
       // Get range from event if event passed
-      var range = is$1.event(target) ? target.target : target; // Needs to be a valid <input type='range'>
+      var range = is$1.event(target) ? target.target : target; // Needs to be a
+																// valid <input
+																// type='range'>
 
       if (!is$1.element(range) || range.getAttribute('type') !== 'range') {
         return;
@@ -2302,9 +2374,12 @@ typeof navigator === "object" && (function (global, factory) {
       } // Display the time a click would seek to
 
 
-      controls.updateTimeDisplay.call(this, this.elements.display.seekTooltip, this.duration / 100 * percent); // Set position
+      controls.updateTimeDisplay.call(this, this.elements.display.seekTooltip, this.duration / 100 * percent); // Set
+																												// position
 
-      this.elements.display.seekTooltip.style.left = "".concat(percent, "%"); // Show/hide the tooltip
+      this.elements.display.seekTooltip.style.left = "".concat(percent, "%"); // Show/hide
+																				// the
+																				// tooltip
       // If the event is a moues in/out and percentage is inside bounds
 
       if (is$1.event(event) && ['mouseenter', 'mouseleave'].includes(event.type)) {
@@ -2313,10 +2388,14 @@ typeof navigator === "object" && (function (global, factory) {
     },
     // Handle time change event
     timeUpdate: function timeUpdate(event) {
-      // Only invert if only one time element is displayed and used for both duration and currentTime
+      // Only invert if only one time element is displayed and used for both
+		// duration and currentTime
       var invert = !is$1.element(this.elements.display.duration) && this.config.invertTime; // Duration
 
-      controls.updateTimeDisplay.call(this, this.elements.display.currentTime, invert ? this.duration - this.currentTime : this.currentTime, invert); // Ignore updates while seeking
+      controls.updateTimeDisplay.call(this, this.elements.display.currentTime, invert ? this.duration - this.currentTime : this.currentTime, invert); // Ignore
+																																						// updates
+																																						// while
+																																						// seeking
 
       if (event && event.type === 'timeupdate' && this.media.seeking) {
         return;
@@ -2327,10 +2406,13 @@ typeof navigator === "object" && (function (global, factory) {
     },
     // Show the duration on metadataloaded or durationchange events
     durationUpdate: function durationUpdate() {
-      // Bail if no UI or durationchange event triggered after playing/seek when invertTime is false
+      // Bail if no UI or durationchange event triggered after playing/seek
+		// when invertTime is false
       if (!this.supported.ui || !this.config.invertTime && this.currentTime) {
         return;
-      } // If duration is the 2**32 (shaka), Infinity (HLS), DASH-IF (Number.MAX_SAFE_INTEGER || Number.MAX_VALUE) indicating live we hide the currentTime and progressbar.
+      } // If duration is the 2**32 (shaka), Infinity (HLS), DASH-IF
+		// (Number.MAX_SAFE_INTEGER || Number.MAX_VALUE) indicating live we hide
+		// the currentTime and progressbar.
       // https://github.com/video-dev/hls.js/blob/5820d29d3c4c8a46e8b75f1e3afa3e68c1a9a2db/src/controller/buffer-controller.js#L415
       // https://github.com/google/shaka-player/blob/4d889054631f4e1cf0fbd80ddd2b71887c02e232/lib/media/streaming_engine.js#L1062
       // https://github.com/Dash-Industry-Forum/dash.js/blob/69859f51b969645b234666800d4cb596d89c602d/src/dash/models/DashManifestModel.js#L338
@@ -2348,7 +2430,15 @@ typeof navigator === "object" && (function (global, factory) {
       } // If there's a spot to display duration
 
 
-      var hasDuration = is$1.element(this.elements.display.duration); // If there's only one time display, display duration there
+      var hasDuration = is$1.element(this.elements.display.duration); // If
+																		// there's
+																		// only
+																		// one
+																		// time
+																		// display,
+																		// display
+																		// duration
+																		// there
 
       if (!hasDuration && this.config.displayDuration && this.paused) {
         controls.updateTimeDisplay.call(this, this.elements.display.currentTime, this.duration);
@@ -2406,7 +2496,13 @@ typeof navigator === "object" && (function (global, factory) {
 
 
       var label = this.elements.settings.buttons[setting].querySelector(".".concat(this.config.classNames.menu.value));
-      label.innerHTML = controls.getLabel.call(this, setting, value); // Find the radio option and check it
+      label.innerHTML = controls.getLabel.call(this, setting, value); // Find
+																		// the
+																		// radio
+																		// option
+																		// and
+																		// check
+																		// it
 
       var target = list && list.querySelector("[value=\"".concat(value, "\"]"));
 
@@ -2450,7 +2546,17 @@ typeof navigator === "object" && (function (global, factory) {
       }
 
       var type = 'quality';
-      var list = this.elements.settings.panels.quality.querySelector('[role="menu"]'); // Set options if passed and filter based on uniqueness and config
+      var list = this.elements.settings.panels.quality.querySelector('[role="menu"]'); // Set
+																						// options
+																						// if
+																						// passed
+																						// and
+																						// filter
+																						// based
+																						// on
+																						// uniqueness
+																						// and
+																						// config
 
       if (is$1.array(options)) {
         this.options.quality = dedupe(options).filter(function (quality) {
@@ -2498,40 +2604,24 @@ typeof navigator === "object" && (function (global, factory) {
     },
     // Set the looping options
 
-    /* setLoopMenu() {
-          // Menu required
-          if (!is.element(this.elements.settings.panels.loop)) {
-              return;
-          }
-           const options = ['start', 'end', 'all', 'reset'];
-          const list = this.elements.settings.panels.loop.querySelector('[role="menu"]');
-           // Show the pane and tab
-          toggleHidden(this.elements.settings.buttons.loop, false);
-          toggleHidden(this.elements.settings.panels.loop, false);
-           // Toggle the pane and tab
-          const toggle = !is.empty(this.loop.options);
-          controls.toggleMenuButton.call(this, 'loop', toggle);
-           // Empty the menu
-          emptyElement(list);
-           options.forEach(option => {
-              const item = createElement('li');
-               const button = createElement(
-                  'button',
-                  extend(getAttributesFromSelector(this.config.selectors.buttons.loop), {
-                      type: 'button',
-                      class: this.config.classNames.control,
-                      'data-plyr-loop-action': option,
-                  }),
-                  i18n.get(option, this.config)
-              );
-               if (['start', 'end'].includes(option)) {
-                  const badge = controls.createBadge.call(this, '00:00');
-                  button.appendChild(badge);
-              }
-               item.appendChild(button);
-              list.appendChild(item);
-          });
-      }, */
+    /*
+	 * setLoopMenu() { // Menu required if
+	 * (!is.element(this.elements.settings.panels.loop)) { return; } const
+	 * options = ['start', 'end', 'all', 'reset']; const list =
+	 * this.elements.settings.panels.loop.querySelector('[role="menu"]'); //
+	 * Show the pane and tab toggleHidden(this.elements.settings.buttons.loop,
+	 * false); toggleHidden(this.elements.settings.panels.loop, false); //
+	 * Toggle the pane and tab const toggle = !is.empty(this.loop.options);
+	 * controls.toggleMenuButton.call(this, 'loop', toggle); // Empty the menu
+	 * emptyElement(list); options.forEach(option => { const item =
+	 * createElement('li'); const button = createElement( 'button',
+	 * extend(getAttributesFromSelector(this.config.selectors.buttons.loop), {
+	 * type: 'button', class: this.config.classNames.control,
+	 * 'data-plyr-loop-action': option, }), i18n.get(option, this.config) ); if
+	 * (['start', 'end'].includes(option)) { const badge =
+	 * controls.createBadge.call(this, '00:00'); button.appendChild(badge); }
+	 * item.appendChild(button); list.appendChild(item); }); },
+	 */
     // Get current selected caption language
     // TODO: rework this to user the getter in the API?
     // Set a list of available captions languages
@@ -2592,7 +2682,10 @@ typeof navigator === "object" && (function (global, factory) {
       }
 
       var type = 'speed';
-      var list = this.elements.settings.panels.speed.querySelector('[role="menu"]'); // Filter out invalid speeds
+      var list = this.elements.settings.panels.speed.querySelector('[role="menu"]'); // Filter
+																						// out
+																						// invalid
+																						// speeds
 
       this.options.speed = this.options.speed.filter(function (o) {
         return o >= _this8.minimumSpeed && o <= _this8.maximumSpeed;
@@ -2650,7 +2743,8 @@ typeof navigator === "object" && (function (global, factory) {
     // Show/hide menu
     toggleMenu: function toggleMenu(input) {
       var popup = this.elements.settings.popup;
-      var button = this.elements.buttons.settings; // Menu and button are required
+      var button = this.elements.buttons.settings; // Menu and button are
+													// required
 
       if (!is$1.element(popup) || !is$1.element(button)) {
         return;
@@ -2665,10 +2759,12 @@ typeof navigator === "object" && (function (global, factory) {
       } else if (is$1.keyboardEvent(input) && input.which === 27) {
         show = false;
       } else if (is$1.event(input)) {
-        // If Plyr is in a shadowDOM, the event target is set to the component, instead of the
+        // If Plyr is in a shadowDOM, the event target is set to the component,
+		// instead of the
         // Element in the shadowDOM. The path, if available, is complete.
         var target = is$1.function(input.composedPath) ? input.composedPath()[0] : input.target;
-        var isMenuItem = popup.contains(target); // If the click was inside the menu or if the click
+        var isMenuItem = popup.contains(target); // If the click was inside
+													// the menu or if the click
         // wasn't the button or menu item and we're trying to
         // show the menu (a doc click shouldn't show the menu)
 
@@ -2682,7 +2778,13 @@ typeof navigator === "object" && (function (global, factory) {
 
       toggleHidden(popup, !show); // Add class hook
 
-      toggleClass(this.elements.container, this.config.classNames.menu.open, show); // Focus the first item if key interaction
+      toggleClass(this.elements.container, this.config.classNames.menu.open, show); // Focus
+																					// the
+																					// first
+																					// item
+																					// if
+																					// key
+																					// interaction
 
       if (show && is$1.keyboardEvent(input)) {
         controls.focusFirstMenuItem.call(this, null, true);
@@ -2696,7 +2798,8 @@ typeof navigator === "object" && (function (global, factory) {
       var clone = tab.cloneNode(true);
       clone.style.position = 'absolute';
       clone.style.opacity = 0;
-      clone.removeAttribute('hidden'); // Append to parent so we get the "real" size
+      clone.removeAttribute('hidden'); // Append to parent so we get the "real"
+										// size
 
       tab.parentNode.appendChild(clone); // Get the sizes before we remove
 
@@ -2715,7 +2818,10 @@ typeof navigator === "object" && (function (global, factory) {
 
       var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
       var tabFocus = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-      var target = this.elements.container.querySelector("#plyr-settings-".concat(this.id, "-").concat(type)); // Nothing to show, bail
+      var target = this.elements.container.querySelector("#plyr-settings-".concat(this.id, "-").concat(type)); // Nothing
+																												// to
+																												// show,
+																												// bail
 
       if (!is$1.element(target)) {
         return;
@@ -2730,9 +2836,12 @@ typeof navigator === "object" && (function (global, factory) {
       if (support.transitions && !support.reducedMotion) {
         // Set the current width as a base
         container.style.width = "".concat(current.scrollWidth, "px");
-        container.style.height = "".concat(current.scrollHeight, "px"); // Get potential sizes
+        container.style.height = "".concat(current.scrollHeight, "px"); // Get
+																		// potential
+																		// sizes
 
-        var size = controls.getMenuSize.call(this, target); // Restore auto height/width
+        var size = controls.getMenuSize.call(this, target); // Restore auto
+															// height/width
 
         var restore = function restore(event) {
           // We're only bothered about height and width on the container
@@ -2748,7 +2857,9 @@ typeof navigator === "object" && (function (global, factory) {
         }; // Listen for the transition finishing and restore auto height/width
 
 
-        on.call(this, container, transitionEndEvent, restore); // Set dimensions to target
+        on.call(this, container, transitionEndEvent, restore); // Set
+																// dimensions to
+																// target
 
         container.style.width = "".concat(size.width, "px");
         container.style.height = "".concat(size.height, "px");
@@ -2824,13 +2935,19 @@ typeof navigator === "object" && (function (global, factory) {
           var progressContainer = createElement('div', {
             class: "".concat(defaultAttributes.class, " plyr__progress__container")
           });
-          var progress = createElement('div', getAttributesFromSelector(_this10.config.selectors.progress)); // Seek range slider
+          var progress = createElement('div', getAttributesFromSelector(_this10.config.selectors.progress)); // Seek
+																												// range
+																												// slider
 
           progress.appendChild(createRange.call(_this10, 'seek', {
             id: "plyr-seek-".concat(data.id)
           })); // Buffer progress
 
-          progress.appendChild(createProgress.call(_this10, 'buffer')); // TODO: Add loop display indicator
+          progress.appendChild(createProgress.call(_this10, 'buffer')); // TODO:
+																		// Add
+																		// loop
+																		// display
+																		// indicator
           // Seek tooltip
 
           if (_this10.config.tooltips.seek) {
@@ -2858,7 +2975,8 @@ typeof navigator === "object" && (function (global, factory) {
 
 
         if (control === 'mute' || control === 'volume') {
-          var volume = _this10.elements.volume; // Create the volume container if needed
+          var volume = _this10.elements.volume; // Create the volume container
+												// if needed
 
           if (!is$1.element(volume) || !container.contains(volume)) {
             volume = createElement('div', extend({}, defaultAttributes, {
@@ -2933,7 +3051,8 @@ typeof navigator === "object" && (function (global, factory) {
               hidden: ''
             })); // Bind menu shortcuts for keyboard users
 
-            bindMenuItemShortcuts.call(_this10, menuItem, type); // Show menu on click
+            bindMenuItemShortcuts.call(_this10, menuItem, type); // Show menu
+																	// on click
 
             on.call(_this10, menuItem, 'click', function () {
               showMenuPanel.call(_this10, type, false);
@@ -3054,7 +3173,8 @@ typeof navigator === "object" && (function (global, factory) {
 
       // Sprite
       if (this.config.loadSprite) {
-        var icon = controls.getIconUrl.call(this); // Only load external sprite using AJAX
+        var icon = controls.getIconUrl.call(this); // Only load external sprite
+													// using AJAX
 
         if (icon.cors) {
           loadSprite(icon.url, 'sprite-plyr');
@@ -3130,11 +3250,13 @@ typeof navigator === "object" && (function (global, factory) {
 
       if (!is$1.element(target)) {
         target = this.elements.container;
-      } // Inject controls HTML (needs to be before captions, hence "afterbegin")
+      } // Inject controls HTML (needs to be before captions, hence
+		// "afterbegin")
 
 
       var insertMethod = is$1.element(container) ? 'insertAdjacentElement' : 'insertAdjacentHTML';
-      target[insertMethod]('afterbegin', container); // Find the elements if need be
+      target[insertMethod]('afterbegin', container); // Find the elements if
+														// need be
 
       if (!is$1.element(this.elements.controls)) {
         controls.findElements.call(this);
@@ -3187,10 +3309,13 @@ typeof navigator === "object" && (function (global, factory) {
   };
 
   /**
-   * Parse a string to a URL object
-   * @param {String} input - the URL to be parsed
-   * @param {Boolean} safe - failsafe parsing
-   */
+	 * Parse a string to a URL object
+	 * 
+	 * @param {String}
+	 *            input - the URL to be parsed
+	 * @param {Boolean}
+	 *            safe - failsafe parsing
+	 */
 
   function parseUrl(input) {
     var safe = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
@@ -3266,18 +3391,26 @@ typeof navigator === "object" && (function (global, factory) {
           }
         });
       } // Get and set initial data
-      // The "preferred" options are not realized unless / until the wanted language has a match
+      // The "preferred" options are not realized unless / until the wanted
+		// language has a match
       // * languages: Array of user's browser languages.
-      // * language:  The language preferred by user settings or config
-      // * active:    The state preferred by user settings or config
-      // * toggled:   The real captions state
+      // * language: The language preferred by user settings or config
+      // * active: The state preferred by user settings or config
+      // * toggled: The real captions state
 
 
       var browserLanguages = navigator.languages || [navigator.language || navigator.userLanguage || 'en'];
       var languages = dedupe(browserLanguages.map(function (language) {
         return language.split('-')[0];
       }));
-      var language = (this.storage.get('language') || this.config.captions.language || 'auto').toLowerCase(); // Use first browser language when language is 'auto'
+      var language = (this.storage.get('language') || this.config.captions.language || 'auto').toLowerCase(); // Use
+																												// first
+																												// browser
+																												// language
+																												// when
+																												// language
+																												// is
+																												// 'auto'
 
       if (language === 'auto') {
         var _languages = _slicedToArray(languages, 1);
@@ -3301,7 +3434,8 @@ typeof navigator === "object" && (function (global, factory) {
       if (this.isHTML5) {
         var trackEvents = this.config.captions.update ? 'addtrack removetrack' : 'removetrack';
         on.call(this, this.media.textTracks, trackEvents, captions.update.bind(this));
-      } // Update available languages in list next tick (the event must not be triggered before the listeners)
+      } // Update available languages in list next tick (the event must not be
+		// triggered before the listeners)
 
 
       setTimeout(captions.update.bind(this), 0);
@@ -3310,7 +3444,8 @@ typeof navigator === "object" && (function (global, factory) {
     update: function update() {
       var _this = this;
 
-      var tracks = captions.getTracks.call(this, true); // Get the wanted language
+      var tracks = captions.getTracks.call(this, true); // Get the wanted
+														// language
 
       var _this$captions = this.captions,
           active = _this$captions.active,
@@ -3325,14 +3460,18 @@ typeof navigator === "object" && (function (global, factory) {
         tracks.filter(function (track) {
           return !meta.get(track);
         }).forEach(function (track) {
-          _this.debug.log('Track added', track); // Attempt to store if the original dom element was "default"
+          _this.debug.log('Track added', track); // Attempt to store if the
+													// original dom element was
+													// "default"
 
 
           meta.set(track, {
             default: track.mode === 'showing'
           }); // Turn off native caption rendering to avoid double captions
-          // Note: mode='hidden' forces a track to download. To ensure every track
-          // isn't downloaded at once, only 'showing' tracks should be reassigned
+          // Note: mode='hidden' forces a track to download. To ensure every
+			// track
+          // isn't downloaded at once, only 'showing' tracks should be
+			// reassigned
           // eslint-disable-next-line no-param-reassign
 
           if (track.mode === 'showing') {
@@ -3345,7 +3484,8 @@ typeof navigator === "object" && (function (global, factory) {
             return captions.updateCues.call(_this);
           });
         });
-      } // Update language first time it matches, or if the previous matching track was removed
+      } // Update language first time it matches, or if the previous matching
+		// track was removed
 
 
       if (languageExists && this.language !== language || !tracks.includes(currentTrackNode)) {
@@ -3354,14 +3494,19 @@ typeof navigator === "object" && (function (global, factory) {
       } // Enable or disable captions based on track length
 
 
-      toggleClass(this.elements.container, this.config.classNames.captions.enabled, !is$1.empty(tracks)); // Update available languages in list
+      toggleClass(this.elements.container, this.config.classNames.captions.enabled, !is$1.empty(tracks)); // Update
+																											// available
+																											// languages
+																											// in
+																											// list
 
       if (is$1.array(this.config.controls) && this.config.controls.includes('settings') && this.config.settings.includes('captions')) {
         controls.setCaptionsMenu.call(this);
       }
     },
     // Toggle captions display
-    // Used internally for the toggleCaptions method, with the passive option forced to false
+    // Used internally for the toggleCaptions method, with the passive option
+	// forced to false
     toggle: function toggle(input) {
       var _this2 = this;
 
@@ -3374,10 +3519,15 @@ typeof navigator === "object" && (function (global, factory) {
 
       var toggled = this.captions.toggled; // Current state
 
-      var activeClass = this.config.classNames.captions.active; // Get the next state
-      // If the method is called without parameter, toggle based on current value
+      var activeClass = this.config.classNames.captions.active; // Get the next
+																// state
+      // If the method is called without parameter, toggle based on current
+		// value
 
-      var active = is$1.nullOrUndefined(input) ? !toggled : input; // Update state and trigger event
+      var active = is$1.nullOrUndefined(input) ? !toggled : input; // Update
+																	// state and
+																	// trigger
+																	// event
 
       if (active !== toggled) {
         // When passive, don't override user preferences
@@ -3386,14 +3536,28 @@ typeof navigator === "object" && (function (global, factory) {
           this.storage.set({
             captions: active
           });
-        } // Force language if the call isn't passive and there is no matching language to toggle to
+        } // Force language if the call isn't passive and there is no matching
+			// language to toggle to
 
 
         if (!this.language && active && !passive) {
           var tracks = captions.getTracks.call(this);
-          var track = captions.findTrack.call(this, [this.captions.language].concat(_toConsumableArray(this.captions.languages)), true); // Override user preferences to avoid switching languages if a matching track is added
+          var track = captions.findTrack.call(this, [this.captions.language].concat(_toConsumableArray(this.captions.languages)), true); // Override
+																																			// user
+																																			// preferences
+																																			// to
+																																			// avoid
+																																			// switching
+																																			// languages
+																																			// if a
+																																			// matching
+																																			// track
+																																			// is
+																																			// added
 
-          this.captions.language = track.language; // Set caption, but don't store in localStorage as user preference
+          this.captions.language = track.language; // Set caption, but don't
+													// store in localStorage as
+													// user preference
 
           captions.set.call(this, tracks.indexOf(track));
           return;
@@ -3408,7 +3572,8 @@ typeof navigator === "object" && (function (global, factory) {
         toggleClass(this.elements.container, activeClass, active);
         this.captions.toggled = active; // Update settings menu
 
-        controls.updateSetting.call(this, 'captions'); // Trigger event (not used internally)
+        controls.updateSetting.call(this, 'captions'); // Trigger event (not
+														// used internally)
 
         triggerEvent.call(this, this.media, active ? 'captionsenabled' : 'captionsdisabled');
       } // Wait for the call stack to clear before setting mode='hidden'
@@ -3422,10 +3587,12 @@ typeof navigator === "object" && (function (global, factory) {
       });
     },
     // Set captions by track index
-    // Used internally for the currentTrack setter with the passive option forced to false
+    // Used internally for the currentTrack setter with the passive option
+	// forced to false
     set: function set(index) {
       var passive = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-      var tracks = captions.getTracks.call(this); // Disable captions if setting to -1
+      var tracks = captions.getTracks.call(this); // Disable captions if
+													// setting to -1
 
       if (index === -1) {
         captions.toggle.call(this, false, passive);
@@ -3447,12 +3614,15 @@ typeof navigator === "object" && (function (global, factory) {
         var track = tracks[index];
 
         var _ref = track || {},
-            language = _ref.language; // Store reference to node for invalidation on remove
+            language = _ref.language; // Store reference to node for
+										// invalidation on remove
 
 
         this.captions.currentTrackNode = track; // Update settings menu
 
-        controls.updateSetting.call(this, 'captions'); // When passive, don't override user preferences
+        controls.updateSetting.call(this, 'captions'); // When passive, don't
+														// override user
+														// preferences
 
         if (!passive) {
           this.captions.language = language;
@@ -3474,12 +3644,14 @@ typeof navigator === "object" && (function (global, factory) {
       captions.toggle.call(this, true, passive);
 
       if (this.isHTML5 && this.isVideo) {
-        // If we change the active track while a cue is already displayed we need to update it
+        // If we change the active track while a cue is already displayed we
+		// need to update it
         captions.updateCues.call(this);
       }
     },
     // Set captions by language
-    // Used internally for the language setter with the passive option forced to false
+    // Used internally for the language setter with the passive option forced to
+	// false
     setLanguage: function setLanguage(input) {
       var passive = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
 
@@ -3498,14 +3670,27 @@ typeof navigator === "object" && (function (global, factory) {
     },
     // Get current valid caption tracks
     // If update is false it will also ignore tracks without metadata
-    // This is used to "freeze" the language options when captions.update is false
+    // This is used to "freeze" the language options when captions.update is
+	// false
     getTracks: function getTracks() {
       var _this3 = this;
 
       var update = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
       // Handle media or textTracks missing or null
-      var tracks = Array.from((this.media || {}).textTracks || []); // For HTML5, use cache instead of current tracks when it exists (if captions.update is false)
-      // Filter out removed tracks and tracks that aren't captions/subtitles (for example metadata)
+      var tracks = Array.from((this.media || {}).textTracks || []); // For
+																	// HTML5,
+																	// use cache
+																	// instead
+																	// of
+																	// current
+																	// tracks
+																	// when it
+																	// exists
+																	// (if
+																	// captions.update
+																	// is false)
+      // Filter out removed tracks and tracks that aren't captions/subtitles
+		// (for example metadata)
 
       return tracks.filter(function (track) {
         return !_this3.isHTML5 || update || _this3.captions.meta.has(track);
@@ -3623,8 +3808,10 @@ typeof navigator === "object" && (function (global, factory) {
     autoplay: false,
     // Only allow one media playing at once (vimeo only)
     autopause: true,
-    // Allow inline playback on iOS (this effects YouTube/Vimeo - HTML5 requires the attribute present)
-    // TODO: Remove iosNative fullscreen option in favour of this (logic needs work)
+    // Allow inline playback on iOS (this effects YouTube/Vimeo - HTML5 requires
+	// the attribute present)
+    // TODO: Remove iosNative fullscreen option in favour of this (logic needs
+	// work)
     playsinline: true,
     // Default time to skip when rewind/fast forward
     seekTime: 10,
@@ -3634,11 +3821,13 @@ typeof navigator === "object" && (function (global, factory) {
     // Pass a custom duration
     duration: null,
     // Display the media duration on load in the current time position
-    // If you have opted to display both duration and currentTime, this is ignored
+    // If you have opted to display both duration and currentTime, this is
+	// ignored
     displayDuration: true,
     // Invert the current time to be a countdown
     invertTime: true,
-    // Clicking the currentTime inverts it's value to show time left rather than elapsed
+    // Clicking the currentTime inverts it's value to show time left rather than
+	// elapsed
     toggleInvert: true,
     // Force an aspect ratio
     // The format must be `'w:h'` (e.g. `'16:9'`)
@@ -3674,7 +3863,8 @@ typeof navigator === "object" && (function (global, factory) {
     // Speed default and options to display
     speed: {
       selected: 1,
-      // The options to display in the UI, if available for the source media (e.g. Vimeo and YouTube only support 0.5x-4x)
+      // The options to display in the UI, if available for the source media
+		// (e.g. Vimeo and YouTube only support 0.5x-4x)
       options: [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 4]
     },
     // Keyboard shortcut settings
@@ -3692,7 +3882,8 @@ typeof navigator === "object" && (function (global, factory) {
       active: false,
       language: 'auto',
       // Listen to new tracks added after Plyr is initialized.
-      // This is needed for streaming captions, but may result in unselectable options
+      // This is needed for streaming captions, but may result in unselectable
+		// options
       update: false
     },
     // Fullscreen settings
@@ -3701,8 +3892,10 @@ typeof navigator === "object" && (function (global, factory) {
       // Allow fullscreen?
       fallback: true,
       // Fallback using full viewport/window
-      iosNative: false // Use the native fullscreen in iOS (disables custom controls)
-      // Selector for the fullscreen container so contextual / non-player content can remain visible in fullscreen mode
+      iosNative: false // Use the native fullscreen in iOS (disables custom
+						// controls)
+      // Selector for the fullscreen container so contextual / non-player
+		// content can remain visible in fullscreen mode
       // Non-ancestors of the player element will be ignored
       // container: null, // defaults to the player element
 
@@ -3805,7 +3998,8 @@ typeof navigator === "object" && (function (global, factory) {
     // Events to watch and bubble
     events: [// Events to watch on HTML5 media elements and bubble
     // https://developer.mozilla.org/en/docs/Web/Guide/Events/Media_events
-    'ended', 'progress', 'stalled', 'playing', 'waiting', 'canplay', 'canplaythrough', 'loadstart', 'loadeddata', 'loadedmetadata', 'timeupdate', 'volumechange', 'play', 'pause', 'error', 'seeking', 'seeked', 'emptied', 'ratechange', 'cuechange', // Custom events
+    'ended', 'progress', 'stalled', 'playing', 'waiting', 'canplay', 'canplaythrough', 'loadstart', 'loadeddata', 'loadedmetadata', 'timeupdate', 'volumechange', 'play', 'pause', 'error', 'seeking', 'seeked', 'emptied', 'ratechange', 'cuechange', // Custom
+																																																														// events
     'download', 'enterfullscreen', 'exitfullscreen', 'captionsenabled', 'captionsdisabled', 'languagechange', 'controlshidden', 'controlsshown', 'ready', // YouTube
     'statechange', // Quality
     'qualitychange', // Ads
@@ -3924,7 +4118,8 @@ typeof navigator === "object" && (function (global, factory) {
       }
     },
     // Advertisements plugin
-    // Register for an account here: http://vi.ai/publisher-video-monetization/?aid=plyrio
+    // Register for an account here:
+	// http://vi.ai/publisher-video-monetization/?aid=plyrio
     ads: {
       enabled: false,
       publisherId: '',
@@ -3959,7 +4154,8 @@ typeof navigator === "object" && (function (global, factory) {
       // Hide info
       iv_load_policy: 3,
       // Hide annotations
-      modestbranding: 1 // Hide logos as much as possible (they still show one in the corner when paused)
+      modestbranding: 1 // Hide logos as much as possible (they still show one
+						// in the corner when paused)
 
     }
   };
@@ -3985,9 +4181,11 @@ typeof navigator === "object" && (function (global, factory) {
     video: 'video'
   };
   /**
-   * Get provider by URL
-   * @param {String} url
-   */
+	 * Get provider by URL
+	 * 
+	 * @param {String}
+	 *            url
+	 */
 
   function getProviderByUrl(url) {
     // YouTube
@@ -4008,7 +4206,7 @@ typeof navigator === "object" && (function (global, factory) {
   // ==========================================================================
   var noop = function noop() {};
 
-  var Console = /*#__PURE__*/function () {
+  var Console = /* #__PURE__ */function () {
     function Console() {
       var enabled = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 
@@ -4044,7 +4242,7 @@ typeof navigator === "object" && (function (global, factory) {
     return Console;
   }();
 
-  var Fullscreen = /*#__PURE__*/function () {
+  var Fullscreen = /* #__PURE__ */function () {
     function Fullscreen(player) {
       var _this = this;
 
@@ -4061,10 +4259,15 @@ typeof navigator === "object" && (function (global, factory) {
         y: 0
       }; // Force the use of 'full window/browser' rather than fullscreen
 
-      this.forceFallback = player.config.fullscreen.fallback === 'force'; // Get the fullscreen element
+      this.forceFallback = player.config.fullscreen.fallback === 'force'; // Get
+																			// the
+																			// fullscreen
+																			// element
       // Checks container is an ancestor, defaults to null
 
-      this.player.elements.fullscreen = player.config.fullscreen.container && closest(this.player.elements.container, player.config.fullscreen.container); // Register event listeners
+      this.player.elements.fullscreen = player.config.fullscreen.container && closest(this.player.elements.container, player.config.fullscreen.container); // Register
+																																							// event
+																																							// listeners
       // Handle event (incase user presses escape etc)
 
       on.call(this.player, document, this.prefix === 'ms' ? 'MSFullscreenChange' : "".concat(this.prefix, "fullscreenchange"), function () {
@@ -4122,13 +4325,20 @@ typeof navigator === "object" && (function (global, factory) {
         } // Toggle scroll
 
 
-        document.body.style.overflow = toggle ? 'hidden' : ''; // Toggle class hook
+        document.body.style.overflow = toggle ? 'hidden' : ''; // Toggle class
+																// hook
 
-        toggleClass(this.target, this.player.config.classNames.fullscreen.fallback, toggle); // Force full viewport on iPhone X+
+        toggleClass(this.target, this.player.config.classNames.fullscreen.fallback, toggle); // Force
+																								// full
+																								// viewport
+																								// on
+																								// iPhone
+																								// X+
 
         if (browser.isIos) {
           var viewport = document.head.querySelector('meta[name="viewport"]');
-          var property = 'viewport-fit=cover'; // Inject the viewport meta if required
+          var property = 'viewport-fit=cover'; // Inject the viewport meta if
+												// required
 
           if (!viewport) {
             viewport = document.createElement('meta');
@@ -4173,7 +4383,8 @@ typeof navigator === "object" && (function (global, factory) {
         var last = focusable[focusable.length - 1];
 
         if (focused === last && !event.shiftKey) {
-          // Move focus to first element that can be tabbed if Shift isn't used
+          // Move focus to first element that can be tabbed if Shift isn't
+			// used
           first.focus();
           event.preventDefault();
         } else if (focused === first && event.shiftKey) {
@@ -4330,8 +4541,10 @@ typeof navigator === "object" && (function (global, factory) {
 
   // ==========================================================================
   // Load image avoiding xhr/fetch CORS issues
-  // Server status can't be obtained this way unfortunately, so this uses "naturalWidth" to determine if the image has loaded
-  // By default it checks if it is at least 1px, but you can add a second argument to change this
+  // Server status can't be obtained this way unfortunately, so this uses
+	// "naturalWidth" to determine if the image has loaded
+  // By default it checks if it is at least 1px, but you can add a second
+	// argument to change this
   // ==========================================================================
   function loadImage(src) {
     var minWidth = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
@@ -4376,7 +4589,9 @@ typeof navigator === "object" && (function (global, factory) {
       this.listeners.media(); // Don't setup interface if no support
 
       if (!this.supported.ui) {
-        this.debug.warn("Basic support only for ".concat(this.provider, " ").concat(this.type)); // Restore native controls
+        this.debug.warn("Basic support only for ".concat(this.provider, " ").concat(this.type)); // Restore
+																									// native
+																									// controls
 
         ui.toggleNativeControls.call(this, true); // Bail
 
@@ -4415,13 +4630,23 @@ typeof navigator === "object" && (function (global, factory) {
 
       ui.checkPlaying.call(this); // Check for picture-in-picture support
 
-      toggleClass(this.elements.container, this.config.classNames.pip.supported, support.pip && this.isHTML5 && this.isVideo); // Check for airplay support
+      toggleClass(this.elements.container, this.config.classNames.pip.supported, support.pip && this.isHTML5 && this.isVideo); // Check
+																																// for
+																																// airplay
+																																// support
 
-      toggleClass(this.elements.container, this.config.classNames.airplay.supported, support.airplay && this.isHTML5); // Add iOS class
+      toggleClass(this.elements.container, this.config.classNames.airplay.supported, support.airplay && this.isHTML5); // Add
+																														// iOS
+																														// class
 
-      toggleClass(this.elements.container, this.config.classNames.isIos, browser.isIos); // Add touch class
+      toggleClass(this.elements.container, this.config.classNames.isIos, browser.isIos); // Add
+																							// touch
+																							// class
 
-      toggleClass(this.elements.container, this.config.classNames.isTouch, this.touch); // Ready for API calls
+      toggleClass(this.elements.container, this.config.classNames.isTouch, this.touch); // Ready
+																						// for
+																						// API
+																						// calls
 
       this.ready = true; // Ready event at end of execution stack
 
@@ -4429,12 +4654,15 @@ typeof navigator === "object" && (function (global, factory) {
         triggerEvent.call(_this, _this.media, 'ready');
       }, 0); // Set the title
 
-      ui.setTitle.call(this); // Assure the poster image is set, if the property was added before the element was created
+      ui.setTitle.call(this); // Assure the poster image is set, if the
+								// property was added before the element was
+								// created
 
       if (this.poster) {
         ui.setPoster.call(this, this.poster, false).catch(function () {});
       } // Manually set the duration if user has overridden it.
-      // The event listeners for it doesn't get called if preload is disabled (#701)
+      // The event listeners for it doesn't get called if preload is disabled
+		// (#701)
 
 
       if (this.config.duration) {
@@ -4444,7 +4672,9 @@ typeof navigator === "object" && (function (global, factory) {
     // Setup aria attribute for play and iframe title
     setTitle: function setTitle() {
       // Find the current text
-      var label = i18n.get('play', this.config); // If there's a media title set, use that for the label
+      var label = i18n.get('play', this.config); // If there's a media title
+													// set, use that for the
+													// label
 
       if (is$1.string(this.config.title) && !is$1.empty(this.config.title)) {
         label += ", ".concat(this.config.title);
@@ -4474,7 +4704,8 @@ typeof navigator === "object" && (function (global, factory) {
       toggleClass(this.elements.container, this.config.classNames.posterEnabled, enable);
     },
     // Set the poster image (async)
-    // Used internally for the poster setter, with the passive option forced to false
+    // Used internally for the poster setter, with the passive option forced to
+	// false
     setPoster: function setPoster(poster) {
       var _this2 = this;
 
@@ -4486,7 +4717,8 @@ typeof navigator === "object" && (function (global, factory) {
       } // Set property synchronously to respect the call order
 
 
-      this.media.setAttribute('data-poster', poster); // Wait until ui is ready
+      this.media.setAttribute('data-poster', poster); // Wait until ui is
+														// ready
 
       return ready.call(this) // Load image
       .then(function () {
@@ -4507,7 +4739,8 @@ typeof navigator === "object" && (function (global, factory) {
       }).then(function () {
         Object.assign(_this2.elements.poster.style, {
           backgroundImage: "url('".concat(poster, "')"),
-          // Reset backgroundSize as well (since it can be set to "cover" for padded thumbnails for youtube)
+          // Reset backgroundSize as well (since it can be set to "cover" for
+			// padded thumbnails for youtube)
           backgroundSize: ''
         });
         ui.togglePoster.call(_this2, true);
@@ -4521,7 +4754,8 @@ typeof navigator === "object" && (function (global, factory) {
       // Class hooks
       toggleClass(this.elements.container, this.config.classNames.playing, this.playing);
       toggleClass(this.elements.container, this.config.classNames.paused, this.paused);
-      toggleClass(this.elements.container, this.config.classNames.stopped, this.stopped); // Set state
+      toggleClass(this.elements.container, this.config.classNames.stopped, this.stopped); // Set
+																							// state
 
       Array.from(this.elements.buttons.play || []).forEach(function (target) {
         Object.assign(target, {
@@ -4541,13 +4775,17 @@ typeof navigator === "object" && (function (global, factory) {
     checkLoading: function checkLoading(event) {
       var _this4 = this;
 
-      this.loading = ['stalled', 'waiting'].includes(event.type); // Clear timer
+      this.loading = ['stalled', 'waiting'].includes(event.type); // Clear
+																	// timer
 
-      clearTimeout(this.timers.loading); // Timer to prevent flicker when seeking
+      clearTimeout(this.timers.loading); // Timer to prevent flicker when
+											// seeking
 
       this.timers.loading = setTimeout(function () {
         // Update progress bar loading class state
-        toggleClass(_this4.elements.container, _this4.config.classNames.loading, _this4.loading); // Update controls visibility
+        toggleClass(_this4.elements.container, _this4.config.classNames.loading, _this4.loading); // Update
+																									// controls
+																									// visibility
 
         ui.toggleControls.call(_this4);
       }, this.loading ? 250 : 0);
@@ -4557,8 +4795,22 @@ typeof navigator === "object" && (function (global, factory) {
       var controlsElement = this.elements.controls;
 
       if (controlsElement && this.config.hideControls) {
-        // Don't hide controls if a touch-device user recently seeked. (Must be limited to touch devices, or it occasionally prevents desktop controls from hiding.)
-        var recentTouchSeek = this.touch && this.lastSeekTime + 2000 > Date.now(); // Show controls if force, loading, paused, button interaction, or recent seek, otherwise hide
+        // Don't hide controls if a touch-device user recently seeked. (Must be
+		// limited to touch devices, or it occasionally prevents desktop
+		// controls from hiding.)
+        var recentTouchSeek = this.touch && this.lastSeekTime + 2000 > Date.now(); // Show
+																					// controls
+																					// if
+																					// force,
+																					// loading,
+																					// paused,
+																					// button
+																					// interaction,
+																					// or
+																					// recent
+																					// seek,
+																					// otherwise
+																					// hide
 
         this.toggleControls(Boolean(force || this.loading || this.paused || controlsElement.pressed || controlsElement.hover || recentTouchSeek));
       }
@@ -4567,13 +4819,21 @@ typeof navigator === "object" && (function (global, factory) {
     migrateStyles: function migrateStyles() {
       var _this5 = this;
 
-      // Loop through values (as they are the keys when the object is spread 🤔)
-      Object.values(_objectSpread2({}, this.media.style)) // We're only fussed about Plyr specific properties
+      // Loop through values (as they are the keys when the object is spread
+		// 🤔)
+      Object.values(_objectSpread2({}, this.media.style)) // We're only fussed
+															// about Plyr
+															// specific
+															// properties
       .filter(function (key) {
         return !is$1.empty(key) && key.startsWith('--plyr');
       }).forEach(function (key) {
         // Set on the container
-        _this5.elements.container.style.setProperty(key, _this5.media.style.getPropertyValue(key)); // Clean up from media element
+        _this5.elements.container.style.setProperty(key, _this5.media.style.getPropertyValue(key)); // Clean
+																									// up
+																									// from
+																									// media
+																									// element
 
 
         _this5.media.style.removeProperty(key);
@@ -4585,7 +4845,7 @@ typeof navigator === "object" && (function (global, factory) {
     }
   };
 
-  var Listeners = /*#__PURE__*/function () {
+  var Listeners = /* #__PURE__ */function () {
     function Listeners(player) {
       _classCallCheck(this, Listeners);
 
@@ -4607,7 +4867,8 @@ typeof navigator === "object" && (function (global, factory) {
         var elements = player.elements;
         var code = event.keyCode ? event.keyCode : event.which;
         var pressed = event.type === 'keydown';
-        var repeat = pressed && code === this.lastKey; // Bail if a modifier key is set
+        var repeat = pressed && code === this.lastKey; // Bail if a modifier
+														// key is set
 
         if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
           return;
@@ -4630,7 +4891,8 @@ typeof navigator === "object" && (function (global, factory) {
         if (pressed) {
           // Check focused element
           // and if the focused element is not editable (e.g. text input)
-          // and any that accept key input http://webaim.org/techniques/keyboard/
+          // and any that accept key input
+			// http://webaim.org/techniques/keyboard/
           var focused = document.activeElement;
 
           if (is$1.element(focused)) {
@@ -4647,7 +4909,18 @@ typeof navigator === "object" && (function (global, factory) {
           } // Which keycodes should we prevent default
 
 
-          var preventDefault = [32, 37, 38, 39, 40, 48, 49, 50, 51, 52, 53, 54, 56, 57, 67, 70, 73, 75, 76, 77, 79]; // If the code is found prevent default (e.g. prevent scrolling for arrows)
+          var preventDefault = [32, 37, 38, 39, 40, 48, 49, 50, 51, 52, 53, 54, 56, 57, 67, 70, 73, 75, 76, 77, 79]; // If
+																														// the
+																														// code
+																														// is
+																														// found
+																														// prevent
+																														// default
+																														// (e.g.
+																														// prevent
+																														// scrolling
+																														// for
+																														// arrows)
 
           if (preventDefault.includes(code)) {
             event.preventDefault();
@@ -4780,19 +5053,27 @@ typeof navigator === "object" && (function (global, factory) {
         }; // Determine if a key was pressed to trigger this event
 
 
-        var wasKeyDown = event.timeStamp - this.lastKeyDown <= 20; // Ignore focus events if a key was pressed prior
+        var wasKeyDown = event.timeStamp - this.lastKeyDown <= 20; // Ignore
+																	// focus
+																	// events if
+																	// a key was
+																	// pressed
+																	// prior
 
         if (event.type === 'focus' && !wasKeyDown) {
           return;
         } // Remove all current
 
 
-        removeCurrent(); // Delay the adding of classname until the focus has changed
+        removeCurrent(); // Delay the adding of classname until the focus has
+							// changed
         // This event fires before the focusin event
 
         if (event.type !== 'focusout') {
           this.focusTimer = setTimeout(function () {
-            var focused = document.activeElement; // Ignore if current focus element isn't inside the player
+            var focused = document.activeElement; // Ignore if current focus
+													// element isn't inside the
+													// player
 
             if (!elements.container.contains(focused)) {
               return;
@@ -4814,9 +5095,14 @@ typeof navigator === "object" && (function (global, factory) {
         } // Click anywhere closes menu
 
 
-        toggleListener.call(player, document.body, 'click', this.toggleMenu, toggle); // Detect touch by events
+        toggleListener.call(player, document.body, 'click', this.toggleMenu, toggle); // Detect
+																						// touch
+																						// by
+																						// events
 
-        once.call(player, document.body, 'touchstart', this.firstTouch); // Tab focus detection
+        once.call(player, document.body, 'touchstart', this.firstTouch); // Tab
+																			// focus
+																			// detection
 
         toggleListener.call(player, document.body, 'keydown focus blur focusout', this.setTabFocus, toggle, false, true);
       } // Container listeners
@@ -4835,25 +5121,29 @@ typeof navigator === "object" && (function (global, factory) {
 
 
         on.call(player, elements.container, 'mousemove mouseleave touchstart touchmove enterfullscreen exitfullscreen', function (event) {
-          var controlsElement = elements.controls; // Remove button states for fullscreen
+          var controlsElement = elements.controls; // Remove button states for
+													// fullscreen
 
           if (controlsElement && event.type === 'enterfullscreen') {
             controlsElement.pressed = false;
             controlsElement.hover = false;
-          } // Show, then hide after a timeout unless another control event occurs
+          } // Show, then hide after a timeout unless another control event
+			// occurs
 
 
           var show = ['touchstart', 'touchmove', 'mousemove'].includes(event.type);
           var delay = 0;
 
           if (show) {
-            ui.toggleControls.call(player, true); // Use longer timeout for touch devices
+            ui.toggleControls.call(player, true); // Use longer timeout for
+													// touch devices
 
             delay = player.touch ? 3000 : 2000;
           } // Clear timer
 
 
-          clearTimeout(timers.controls); // Set new timer to prevent flicker when seeking
+          clearTimeout(timers.controls); // Set new timer to prevent flicker
+											// when seeking
 
           timers.controls = setTimeout(function () {
             return ui.toggleControls.call(player, false);
@@ -4900,7 +5190,8 @@ typeof navigator === "object" && (function (global, factory) {
         on.call(player, elements.container, 'enterfullscreen exitfullscreen', function (event) {
           var _player$fullscreen = player.fullscreen,
               target = _player$fullscreen.target,
-              usingNative = _player$fullscreen.usingNative; // Ignore events not from target
+              usingNative = _player$fullscreen.usingNative; // Ignore events not
+															// from target
 
           if (target !== elements.container) {
             return;
@@ -4911,14 +5202,20 @@ typeof navigator === "object" && (function (global, factory) {
             return;
           }
 
-          var isEnter = event.type === 'enterfullscreen'; // Set the player size when entering fullscreen to viewport size
+          var isEnter = event.type === 'enterfullscreen'; // Set the player
+															// size when
+															// entering
+															// fullscreen to
+															// viewport size
 
           var _setPlayerSize = setPlayerSize(isEnter),
               padding = _setPlayerSize.padding,
               ratio = _setPlayerSize.ratio; // Set Vimeo gutter
 
 
-          setGutter(ratio, padding, isEnter); // If not using native browser fullscreen API, we need to check for resizes of viewport
+          setGutter(ratio, padding, isEnter); // If not using native browser
+												// fullscreen API, we need to
+												// check for resizes of viewport
 
           if (!usingNative) {
             if (isEnter) {
@@ -4950,7 +5247,8 @@ typeof navigator === "object" && (function (global, factory) {
           // Show poster on end
           if (player.isHTML5 && player.isVideo && player.config.resetOnEnd) {
             // Restart
-            player.restart(); // Call pause otherwise IE11 will start playing the video again
+            player.restart(); // Call pause otherwise IE11 will start playing
+								// the video again
 
             player.pause();
           }
@@ -4974,7 +5272,15 @@ typeof navigator === "object" && (function (global, factory) {
 
         if (player.supported.ui && player.config.clickToPlay && !player.isAudio) {
           // Re-fetch the wrapper
-          var wrapper = getElement.call(player, ".".concat(player.config.classNames.video)); // Bail if there's no wrapper (this should never happen)
+          var wrapper = getElement.call(player, ".".concat(player.config.classNames.video)); // Bail
+																								// if
+																								// there's
+																								// no
+																								// wrapper
+																								// (this
+																								// should
+																								// never
+																								// happen)
 
           if (!is$1.element(wrapper)) {
             return;
@@ -4982,7 +5288,10 @@ typeof navigator === "object" && (function (global, factory) {
 
 
           on.call(player, elements.container, 'click', function (event) {
-            var targets = [elements.container, wrapper]; // Ignore if click if not container or in video wrapper
+            var targets = [elements.container, wrapper]; // Ignore if click
+															// if not container
+															// or in video
+															// wrapper
 
             if (!targets.includes(event.target) && !wrapper.contains(event.target)) {
               return;
@@ -5046,7 +5355,11 @@ typeof navigator === "object" && (function (global, factory) {
         var proxyEvents = player.config.events.concat(['keyup', 'keydown']).join(' ');
         on.call(player, player.media, proxyEvents, function (event) {
           var _event$detail = event.detail,
-              detail = _event$detail === void 0 ? {} : _event$detail; // Get error details from media
+              detail = _event$detail === void 0 ? {} : _event$detail; // Get
+																		// error
+																		// details
+																		// from
+																		// media
 
           if (event.type === 'error') {
             detail = player.media.error;
@@ -5094,7 +5407,8 @@ typeof navigator === "object" && (function (global, factory) {
         var _this3 = this;
 
         var player = this.player;
-        var elements = player.elements; // IE doesn't support input event, so we fallback to change
+        var elements = player.elements; // IE doesn't support input event, so we
+										// fallback to change
 
         var inputEvent = browser.isIE ? 'change' : 'input'; // Play/pause toggle
 
@@ -5111,7 +5425,8 @@ typeof navigator === "object" && (function (global, factory) {
 
         this.bind(elements.buttons.rewind, 'click', player.rewind, 'rewind'); // Rewind
 
-        this.bind(elements.buttons.fastForward, 'click', player.forward, 'fastForward'); // Mute toggle
+        this.bind(elements.buttons.fastForward, 'click', player.forward, 'fastForward'); // Mute
+																							// toggle
 
         this.bind(elements.buttons.mute, 'click', function () {
           player.muted = !player.muted;
@@ -5133,7 +5448,11 @@ typeof navigator === "object" && (function (global, factory) {
           player.pip = 'toggle';
         }, 'pip'); // Airplay
 
-        this.bind(elements.buttons.airplay, 'click', player.airplay, 'airplay'); // Settings menu - click toggle
+        this.bind(elements.buttons.airplay, 'click', player.airplay, 'airplay'); // Settings
+																					// menu
+																					// -
+																					// click
+																					// toggle
 
         this.bind(elements.buttons.settings, 'click', function (event) {
           // Prevent the document click listener closing the menu
@@ -5143,7 +5462,8 @@ typeof navigator === "object" && (function (global, factory) {
           controls.toggleMenu.call(player, event);
         }, null, false); // Can't be passive as we're preventing default
         // Settings menu - keyboard toggle
-        // We have to bind to keyup otherwise Firefox triggers a click when a keydown event handler shifts focus
+        // We have to bind to keyup otherwise Firefox triggers a click when a
+		// keydown event handler shifts focus
         // https://bugzilla.mozilla.org/show_bug.cgi?id=1220143
 
         this.bind(elements.buttons.settings, 'keyup', function (event) {
@@ -5151,7 +5471,8 @@ typeof navigator === "object" && (function (global, factory) {
 
           if (![13, 32].includes(code)) {
             return;
-          } // Because return triggers a click anyway, all we need to do is set focus
+          } // Because return triggers a click anyway, all we need to do is set
+			// focus
 
 
           if (code === 13) {
@@ -5173,7 +5494,8 @@ typeof navigator === "object" && (function (global, factory) {
           if (event.which === 27) {
             controls.toggleMenu.call(player, event);
           }
-        }); // Set range input alternative "value", which matches the tooltip time (#954)
+        }); // Set range input alternative "value", which matches the tooltip
+			// time (#954)
 
         this.bind(elements.inputs.seek, 'mousedown mousemove', function (event) {
           var rect = elements.progress.getBoundingClientRect();
@@ -5188,14 +5510,24 @@ typeof navigator === "object" && (function (global, factory) {
 
           if (is$1.keyboardEvent(event) && code !== 39 && code !== 37) {
             return;
-          } // Record seek time so we can prevent hiding controls for a few seconds after seek
+          } // Record seek time so we can prevent hiding controls for a few
+			// seconds after seek
 
 
           player.lastSeekTime = Date.now(); // Was playing before?
 
           var play = seek.hasAttribute(attribute); // Done seeking
 
-          var done = ['mouseup', 'touchend', 'keyup'].includes(event.type); // If we're done seeking and it was playing, resume playback
+          var done = ['mouseup', 'touchend', 'keyup'].includes(event.type); // If
+																			// we're
+																			// done
+																			// seeking
+																			// and
+																			// it
+																			// was
+																			// playing,
+																			// resume
+																			// playback
 
           if (play && done) {
             seek.removeAttribute(attribute);
@@ -5205,7 +5537,8 @@ typeof navigator === "object" && (function (global, factory) {
             player.pause();
           }
         }); // Fix range inputs on iOS
-        // Super weird iOS bug where after you interact with an <input type="range">,
+        // Super weird iOS bug where after you interact with an <input
+		// type="range">,
         // it takes over further interactions on the page. This is a hack
 
         if (browser.isIos) {
@@ -5219,7 +5552,10 @@ typeof navigator === "object" && (function (global, factory) {
 
 
         this.bind(elements.inputs.seek, inputEvent, function (event) {
-          var seek = event.currentTarget; // If it exists, use seek-value instead of "value" for consistency with tooltip time (#954)
+          var seek = event.currentTarget; // If it exists, use seek-value
+											// instead of "value" for
+											// consistency with tooltip time
+											// (#954)
 
           var seekTo = seek.getAttribute('seek-value');
 
@@ -5234,7 +5570,8 @@ typeof navigator === "object" && (function (global, factory) {
         this.bind(elements.progress, 'mouseenter mouseleave mousemove', function (event) {
           return controls.updateSeekTooltip.call(player, event);
         }); // Preview thumbnails plugin
-        // TODO: Really need to work on some sort of plug-in wide event bus or pub-sub for this
+        // TODO: Really need to work on some sort of plug-in wide event bus or
+		// pub-sub for this
 
         this.bind(elements.progress, 'mousemove touchmove', function (event) {
           var previewThumbnails = player.previewThumbnails;
@@ -5242,7 +5579,8 @@ typeof navigator === "object" && (function (global, factory) {
           if (previewThumbnails && previewThumbnails.loaded) {
             previewThumbnails.startMove(event);
           }
-        }); // Hide thumbnail preview - on mouse click, mouse leave, and video play/seek. All four are required, e.g., for buffering
+        }); // Hide thumbnail preview - on mouse click, mouse leave, and video
+			// play/seek. All four are required, e.g., for buffering
 
         this.bind(elements.progress, 'mouseleave touchend click', function () {
           var previewThumbnails = player.previewThumbnails;
@@ -5293,11 +5631,13 @@ typeof navigator === "object" && (function (global, factory) {
 
         this.bind(elements.inputs.volume, inputEvent, function (event) {
           player.volume = event.target.value;
-        }, 'volume'); // Update controls.hover state (used for ui.toggleControls to avoid hiding when interacting)
+        }, 'volume'); // Update controls.hover state (used for
+						// ui.toggleControls to avoid hiding when interacting)
 
         this.bind(elements.controls, 'mouseenter mouseleave', function (event) {
           elements.controls.hover = !player.touch && event.type === 'mouseenter';
-        }); // Also update controls.hover state for any non-player children of fullscreen element (as above)
+        }); // Also update controls.hover state for any non-player children of
+			// fullscreen element (as above)
 
         if (elements.fullscreen) {
           Array.from(elements.fullscreen.children).filter(function (c) {
@@ -5307,16 +5647,19 @@ typeof navigator === "object" && (function (global, factory) {
               elements.controls.hover = !player.touch && event.type === 'mouseenter';
             });
           });
-        } // Update controls.pressed state (used for ui.toggleControls to avoid hiding when interacting)
+        } // Update controls.pressed state (used for ui.toggleControls to
+			// avoid hiding when interacting)
 
 
         this.bind(elements.controls, 'mousedown mouseup touchstart touchend touchcancel', function (event) {
           elements.controls.pressed = ['mousedown', 'touchstart'].includes(event.type);
-        }); // Show controls when they receive focus (e.g., when using keyboard tab key)
+        }); // Show controls when they receive focus (e.g., when using keyboard
+			// tab key)
 
         this.bind(elements.controls, 'focusin', function () {
           var config = player.config,
-              timers = player.timers; // Skip transition to prevent focus from scrolling the parent element
+              timers = player.timers; // Skip transition to prevent focus from
+										// scrolling the parent element
 
           toggleClass(elements.controls, config.classNames.noTransition, true); // Toggle
 
@@ -5338,19 +5681,29 @@ typeof navigator === "object" && (function (global, factory) {
         this.bind(elements.inputs.volume, 'wheel', function (event) {
           // Detect "natural" scroll - suppored on OS X Safari only
           // Other browsers on OS X will be inverted until support improves
-          var inverted = event.webkitDirectionInvertedFromDevice; // Get delta from event. Invert if `inverted` is true
+          var inverted = event.webkitDirectionInvertedFromDevice; // Get delta
+																	// from
+																	// event.
+																	// Invert if
+																	// `inverted`
+																	// is true
 
           var _map = [event.deltaX, -event.deltaY].map(function (value) {
             return inverted ? -value : value;
           }),
               _map2 = _slicedToArray(_map, 2),
               x = _map2[0],
-              y = _map2[1]; // Using the biggest delta, normalize to 1 or -1 (or 0 if no delta)
+              y = _map2[1]; // Using the biggest delta, normalize to 1 or -1 (or
+							// 0 if no delta)
 
 
-          var direction = Math.sign(Math.abs(x) > Math.abs(y) ? x : y); // Change the volume by 2%
+          var direction = Math.sign(Math.abs(x) > Math.abs(y) ? x : y); // Change
+																		// the
+																		// volume
+																		// by 2%
 
-          player.increaseVolume(direction / 50); // Don't break page scrolling at max and min
+          player.increaseVolume(direction / 50); // Don't break page
+													// scrolling at max and min
 
           var volume = player.media.volume;
 
@@ -5377,18 +5730,22 @@ typeof navigator === "object" && (function (global, factory) {
       }
     })(commonjsGlobal, function () {
       /**
-       * Global dependencies.
-       * @global {Object} document - DOM
-       */
+		 * Global dependencies.
+		 * 
+		 * @global {Object} document - DOM
+		 */
       var devnull = function devnull() {},
           bundleIdCache = {},
           bundleResultCache = {},
           bundleCallbackQueue = {};
       /**
-       * Subscribe to bundle load event.
-       * @param {string[]} bundleIds - Bundle ids
-       * @param {Function} callbackFn - The callback function
-       */
+		 * Subscribe to bundle load event.
+		 * 
+		 * @param {string[]}
+		 *            bundleIds - Bundle ids
+		 * @param {Function}
+		 *            callbackFn - The callback function
+		 */
 
 
       function subscribe(bundleIds, callbackFn) {
@@ -5425,10 +5782,13 @@ typeof navigator === "object" && (function (global, factory) {
         }
       }
       /**
-       * Publish bundle load event.
-       * @param {string} bundleId - Bundle id
-       * @param {string[]} pathsNotFound - List of files not found
-       */
+		 * Publish bundle load event.
+		 * 
+		 * @param {string}
+		 *            bundleId - Bundle id
+		 * @param {string[]}
+		 *            pathsNotFound - List of files not found
+		 */
 
 
       function publish(bundleId, pathsNotFound) {
@@ -5436,7 +5796,8 @@ typeof navigator === "object" && (function (global, factory) {
         if (!bundleId) return;
         var q = bundleCallbackQueue[bundleId]; // cache result
 
-        bundleResultCache[bundleId] = pathsNotFound; // exit if queue is empty
+        bundleResultCache[bundleId] = pathsNotFound; // exit if queue is
+														// empty
 
         if (!q) return; // empty callback queue
 
@@ -5446,10 +5807,13 @@ typeof navigator === "object" && (function (global, factory) {
         }
       }
       /**
-       * Execute callbacks.
-       * @param {Object or Function} args - The callback args
-       * @param {string[]} depsNotFound - List of dependencies not found
-       */
+		 * Execute callbacks.
+		 * 
+		 * @param {Object
+		 *            or Function} args - The callback args
+		 * @param {string[]}
+		 *            depsNotFound - List of dependencies not found
+		 */
 
 
       function executeCallbacks(args, depsNotFound) {
@@ -5461,10 +5825,13 @@ typeof navigator === "object" && (function (global, factory) {
         if (depsNotFound.length) (args.error || devnull)(depsNotFound);else (args.success || devnull)(args);
       }
       /**
-       * Load individual file.
-       * @param {string} path - The file path
-       * @param {Function} callbackFn - The callback function
-       */
+		 * Load individual file.
+		 * 
+		 * @param {string}
+		 *            path - The file path
+		 * @param {Function}
+		 *            callbackFn - The callback function
+		 */
 
 
       function loadFile(path, callbackFn, args, numTries) {
@@ -5484,7 +5851,8 @@ typeof navigator === "object" && (function (global, factory) {
           e.rel = 'stylesheet';
           e.href = pathStripped; // tag IE9+
 
-          isLegacyIECss = 'hideFocus' in e; // use preload in IE Edge (to detect load errors)
+          isLegacyIECss = 'hideFocus' in e; // use preload in IE Edge (to detect
+											// load errors)
 
           if (isLegacyIECss && e.relList) {
             isLegacyIECss = 0;
@@ -5503,7 +5871,8 @@ typeof navigator === "object" && (function (global, factory) {
         }
 
         e.onload = e.onerror = e.onbeforeload = function (ev) {
-          var result = ev.type[0]; // treat empty stylesheets as failures to get around lack of onerror
+          var result = ev.type[0]; // treat empty stylesheets as failures to
+									// get around lack of onerror
           // support in IE9-11
 
           if (isLegacyIECss) {
@@ -5537,10 +5906,13 @@ typeof navigator === "object" && (function (global, factory) {
         if (beforeCallbackFn(path, e) !== false) doc.head.appendChild(e);
       }
       /**
-       * Load multiple files.
-       * @param {string[]} paths - The file paths
-       * @param {Function} callbackFn - The callback function
-       */
+		 * Load multiple files.
+		 * 
+		 * @param {string[]}
+		 *            paths - The file paths
+		 * @param {Function}
+		 *            callbackFn - The callback function
+		 */
 
 
       function loadFiles(paths, callbackFn, args) {
@@ -5554,7 +5926,10 @@ typeof navigator === "object" && (function (global, factory) {
 
         fn = function fn(path, result, defaultPrevented) {
           // handle error
-          if (result == 'e') pathsNotFound.push(path); // handle beforeload event. If defaultPrevented then that means the load
+          if (result == 'e') pathsNotFound.push(path); // handle beforeload
+														// event. If
+														// defaultPrevented then
+														// that means the load
           // will be blocked (ex. Ghostery/ABP on Safari)
 
           if (result == 'b') {
@@ -5571,14 +5946,18 @@ typeof navigator === "object" && (function (global, factory) {
         }
       }
       /**
-       * Initiate script load and register bundle.
-       * @param {(string|string[])} paths - The file paths
-       * @param {(string|Function|Object)} [arg1] - The (1) bundleId or (2) success
-       *   callback or (3) object literal with success/error arguments, numRetries,
-       *   etc.
-       * @param {(Function|Object)} [arg2] - The (1) success callback or (2) object
-       *   literal with success/error arguments, numRetries, etc.
-       */
+		 * Initiate script load and register bundle.
+		 * 
+		 * @param {(string|string[])}
+		 *            paths - The file paths
+		 * @param {(string|Function|Object)}
+		 *            [arg1] - The (1) bundleId or (2) success callback or (3)
+		 *            object literal with success/error arguments, numRetries,
+		 *            etc.
+		 * @param {(Function|Object)}
+		 *            [arg2] - The (1) success callback or (2) object literal
+		 *            with success/error arguments, numRetries, etc.
+		 */
 
 
       function loadjs(paths, arg1, arg2) {
@@ -5586,7 +5965,8 @@ typeof navigator === "object" && (function (global, factory) {
 
         if (arg1 && arg1.trim) bundleId = arg1; // args (default is {})
 
-        args = (bundleId ? arg2 : arg1) || {}; // throw error if bundle is already defined
+        args = (bundleId ? arg2 : arg1) || {}; // throw error if bundle is
+												// already defined
 
         if (bundleId) {
           if (bundleId in bundleIdCache) {
@@ -5616,10 +5996,13 @@ typeof navigator === "object" && (function (global, factory) {
         if (args.returnPromise) return new Promise(loadFn);else loadFn();
       }
       /**
-       * Execute callbacks when dependencies have been satisfied.
-       * @param {(string|string[])} deps - List of bundle ids
-       * @param {Object} args - success/error arguments
-       */
+		 * Execute callbacks when dependencies have been satisfied.
+		 * 
+		 * @param {(string|string[])}
+		 *            deps - List of bundle ids
+		 * @param {Object}
+		 *            args - success/error arguments
+		 */
 
 
       loadjs.ready = function ready(deps, args) {
@@ -5631,17 +6014,19 @@ typeof navigator === "object" && (function (global, factory) {
         return loadjs;
       };
       /**
-       * Manually satisfy bundle dependencies.
-       * @param {string} bundleId - The bundle id
-       */
+		 * Manually satisfy bundle dependencies.
+		 * 
+		 * @param {string}
+		 *            bundleId - The bundle id
+		 */
 
 
       loadjs.done = function done(bundleId) {
         publish(bundleId, []);
       };
       /**
-       * Reset loadjs dependencies statuses
-       */
+		 * Reset loadjs dependencies statuses
+		 */
 
 
       loadjs.reset = function reset() {
@@ -5650,9 +6035,11 @@ typeof navigator === "object" && (function (global, factory) {
         bundleCallbackQueue = {};
       };
       /**
-       * Determine if bundle has already been defined
-       * @param String} bundleId - The bundle id
-       */
+		 * Determine if bundle has already been defined
+		 * 
+		 * @param String}
+		 *            bundleId - The bundle id
+		 */
 
 
       loadjs.isDefined = function isDefined(bundleId) {
@@ -5703,7 +6090,11 @@ typeof navigator === "object" && (function (global, factory) {
     setup: function setup() {
       var player = this; // Add embed class for responsive
 
-      toggleClass(player.elements.wrapper, player.config.classNames.embed, true); // Set speed options from config
+      toggleClass(player.elements.wrapper, player.config.classNames.embed, true); // Set
+																					// speed
+																					// options
+																					// from
+																					// config
 
       player.options.speed = player.config.speed.options; // Set intial ratio
 
@@ -5728,7 +6119,21 @@ typeof navigator === "object" && (function (global, factory) {
 
       var premium = config.premium,
           referrerPolicy = config.referrerPolicy,
-          frameParams = _objectWithoutProperties(config, ["premium", "referrerPolicy"]); // If the owner has a pro or premium account then we can hide controls etc
+          frameParams = _objectWithoutProperties(config, ["premium", "referrerPolicy"]); // If
+																							// the
+																							// owner
+																							// has
+																							// a
+																							// pro
+																							// or
+																							// premium
+																							// account
+																							// then
+																							// we
+																							// can
+																							// hide
+																							// controls
+																							// etc
 
 
       if (premium) {
@@ -5747,7 +6152,8 @@ typeof navigator === "object" && (function (global, factory) {
         playsinline: !this.config.fullscreen.iosNative
       }, frameParams)); // Get the source URL or ID
 
-      var source = player.media.getAttribute('src'); // Get from <div> if needed
+      var source = player.media.getAttribute('src'); // Get from <div> if
+														// needed
 
       if (is$1.empty(source)) {
         source = player.media.getAttribute(player.config.attributes.embed.id);
@@ -5759,7 +6165,12 @@ typeof navigator === "object" && (function (global, factory) {
       var src = format(player.config.urls.vimeo.iframe, id, params);
       iframe.setAttribute('src', src);
       iframe.setAttribute('allowfullscreen', '');
-      iframe.setAttribute('allow', 'autoplay,fullscreen,picture-in-picture'); // Set the referrer policy if required
+      iframe.setAttribute('allow', 'autoplay,fullscreen,picture-in-picture'); // Set
+																				// the
+																				// referrer
+																				// policy
+																				// if
+																				// required
 
       if (!is$1.empty(referrerPolicy)) {
         iframe.setAttribute('referrerPolicy', referrerPolicy);
@@ -5789,7 +6200,10 @@ typeof navigator === "object" && (function (global, factory) {
 
         var url = new URL(response[0].thumbnail_large); // Get original image
 
-        url.pathname = "".concat(url.pathname.split('_')[0], ".jpg"); // Set and show poster
+        url.pathname = "".concat(url.pathname.split('_')[0], ".jpg"); // Set
+																		// and
+																		// show
+																		// poster
 
         ui.setPoster.call(player, url.href).catch(function () {});
       }); // Setup instance
@@ -5829,16 +6243,19 @@ typeof navigator === "object" && (function (global, factory) {
           return currentTime;
         },
         set: function set(time) {
-          // Vimeo will automatically play on seek if the video hasn't been played before
+          // Vimeo will automatically play on seek if the video hasn't been
+			// played before
           // Get current paused state and volume etc
           var embed = player.embed,
               media = player.media,
               paused = player.paused,
               volume = player.volume;
-          var restorePause = paused && !embed.hasPlayed; // Set seeking state and trigger event
+          var restorePause = paused && !embed.hasPlayed; // Set seeking state
+															// and trigger event
 
           media.seeking = true;
-          triggerEvent.call(player, media, 'seeking'); // If paused, mute until seek is complete
+          triggerEvent.call(player, media, 'seeking'); // If paused, mute until
+														// seek is complete
 
           Promise.resolve(restorePause && embed.setVolume(0)) // Seek
           .then(function () {
@@ -6006,11 +6423,13 @@ typeof navigator === "object" && (function (global, factory) {
       });
       player.embed.on('progress', function (data) {
         player.media.buffered = data.percent;
-        triggerEvent.call(player, player.media, 'progress'); // Check all loaded
+        triggerEvent.call(player, player.media, 'progress'); // Check all
+																// loaded
 
         if (parseInt(data.percent, 10) === 1) {
           triggerEvent.call(player, player.media, 'canplaythrough');
-        } // Get duration as if we do it before load, it gives an incorrect value
+        } // Get duration as if we do it before load, it gives an incorrect
+			// value
         // https://github.com/sampotts/plyr/issues/891
 
 
@@ -6081,13 +6500,15 @@ typeof navigator === "object" && (function (global, factory) {
       var _this = this;
 
       // Add embed class for responsive
-      toggleClass(this.elements.wrapper, this.config.classNames.embed, true); // Setup API
+      toggleClass(this.elements.wrapper, this.config.classNames.embed, true); // Setup
+																				// API
 
       if (is$1.object(window.YT) && is$1.function(window.YT.Player)) {
         youtube.ready.call(this);
       } else {
         // Reference current global callback
-        var callback = window.onYouTubeIframeAPIReady; // Set callback to process queue
+        var callback = window.onYouTubeIframeAPIReady; // Set callback to
+														// process queue
 
         window.onYouTubeIframeAPIReady = function () {
           // Call global callback if set
@@ -6138,7 +6559,8 @@ typeof navigator === "object" && (function (global, factory) {
       } // Get the source URL or ID
 
 
-      var source = player.media.getAttribute('src'); // Get from <div> if needed
+      var source = player.media.getAttribute('src'); // Get from <div> if
+														// needed
 
       if (is$1.empty(source)) {
         source = player.media.getAttribute(this.config.attributes.embed.id);
@@ -6154,11 +6576,13 @@ typeof navigator === "object" && (function (global, factory) {
         id: id,
         'data-poster': poster
       });
-      player.media = replaceElement(container, player.media); // Id to poster wrapper
+      player.media = replaceElement(container, player.media); // Id to poster
+																// wrapper
 
       var posterSrc = function posterSrc(s) {
         return "https://i.ytimg.com/vi/".concat(videoId, "/").concat(s, "default.jpg");
-      }; // Check thumbnail images in order of quality, but reject fallback thumbnails (120px wide)
+      }; // Check thumbnail images in order of quality, but reject fallback
+			// thumbnails (120px wide)
 
 
       loadImage(posterSrc('maxres'), 121) // Higest quality and unpadded
@@ -6171,7 +6595,8 @@ typeof navigator === "object" && (function (global, factory) {
       .then(function (image) {
         return ui.setPoster.call(player, image.src);
       }).then(function (src) {
-        // If the image is padded, use background-size "cover" instead (like youtube does too with their posters)
+        // If the image is padded, use background-size "cover" instead (like
+		// youtube does too with their posters)
         if (!src.includes('maxres')) {
           player.elements.poster.style.backgroundSize = 'cover';
         }
@@ -6203,7 +6628,8 @@ typeof navigator === "object" && (function (global, factory) {
           onError: function onError(event) {
             // YouTube may fire onError twice, so only handle it once
             if (!player.media.error) {
-              var code = event.data; // Messages copied from https://developers.google.com/youtube/iframe_api_reference#onError
+              var code = event.data; // Messages copied from
+										// https://developers.google.com/youtube/iframe_api_reference#onError
 
               var message = {
                 2: 'The request contains an invalid parameter value. For example, this error occurs if you specify a video ID that does not have 11 characters, or if the video ID contains invalid characters, such as exclamation points or asterisks.',
@@ -6235,7 +6661,8 @@ typeof navigator === "object" && (function (global, factory) {
 
             var instance = event.target; // Get the title
 
-            youtube.getTitle.call(player, videoId); // Create a faux HTML5 API using the YouTube API
+            youtube.getTitle.call(player, videoId); // Create a faux HTML5 API
+													// using the YouTube API
 
             player.media.play = function () {
               assurePlaybackState$1.call(player, true);
@@ -6260,14 +6687,18 @@ typeof navigator === "object" && (function (global, factory) {
                 return Number(instance.getCurrentTime());
               },
               set: function set(time) {
-                // If paused and never played, mute audio preventively (YouTube starts playing on seek if the video hasn't been played yet).
+                // If paused and never played, mute audio preventively (YouTube
+				// starts playing on seek if the video hasn't been played yet).
                 if (player.paused && !player.embed.hasPlayed) {
                   player.embed.mute();
                 } // Set seeking state and trigger event
 
 
                 player.media.seeking = true;
-                triggerEvent.call(player, player.media, 'seeking'); // Seek after events sent
+                triggerEvent.call(player, player.media, 'seeking'); // Seek
+																	// after
+																	// events
+																	// sent
 
                 instance.seekTo(time);
               }
@@ -6319,7 +6750,8 @@ typeof navigator === "object" && (function (global, factory) {
               }
             }); // Get available speeds
 
-            var speeds = instance.getAvailablePlaybackRates(); // Filter based on config
+            var speeds = instance.getAvailablePlaybackRates(); // Filter based
+																// on config
 
             player.options.speed = speeds.filter(function (s) {
               return player.config.speed.options.includes(s);
@@ -6330,20 +6762,30 @@ typeof navigator === "object" && (function (global, factory) {
             }
 
             triggerEvent.call(player, player.media, 'timeupdate');
-            triggerEvent.call(player, player.media, 'durationchange'); // Reset timer
+            triggerEvent.call(player, player.media, 'durationchange'); // Reset
+																		// timer
 
             clearInterval(player.timers.buffering); // Setup buffering
 
             player.timers.buffering = setInterval(function () {
               // Get loaded % from YouTube
-              player.media.buffered = instance.getVideoLoadedFraction(); // Trigger progress only when we actually buffer something
+              player.media.buffered = instance.getVideoLoadedFraction(); // Trigger
+																			// progress
+																			// only
+																			// when
+																			// we
+																			// actually
+																			// buffer
+																			// something
 
               if (player.media.lastBuffered === null || player.media.lastBuffered < player.media.buffered) {
                 triggerEvent.call(player, player.media, 'progress');
               } // Set last buffer point
 
 
-              player.media.lastBuffered = player.media.buffered; // Bail if we're at 100%
+              player.media.lastBuffered = player.media.buffered; // Bail if
+																	// we're at
+																	// 100%
 
               if (player.media.buffered === 1) {
                 clearInterval(player.timers.buffering); // Trigger event
@@ -6368,25 +6810,32 @@ typeof navigator === "object" && (function (global, factory) {
               player.media.seeking = false;
               triggerEvent.call(player, player.media, 'seeked');
             } // Handle events
-            // -1   Unstarted
-            // 0    Ended
-            // 1    Playing
-            // 2    Paused
-            // 3    Buffering
-            // 5    Video cued
+            // -1 Unstarted
+            // 0 Ended
+            // 1 Playing
+            // 2 Paused
+            // 3 Buffering
+            // 5 Video cued
 
 
             switch (event.data) {
               case -1:
                 // Update scrubber
-                triggerEvent.call(player, player.media, 'timeupdate'); // Get loaded % from YouTube
+                triggerEvent.call(player, player.media, 'timeupdate'); // Get
+																		// loaded
+																		// %
+																		// from
+																		// YouTube
 
                 player.media.buffered = instance.getVideoLoadedFraction();
                 triggerEvent.call(player, player.media, 'progress');
                 break;
 
               case 0:
-                assurePlaybackState$1.call(player, false); // YouTube doesn't support loop for a single video, so mimick it.
+                assurePlaybackState$1.call(player, false); // YouTube doesn't
+															// support loop for
+															// a single video,
+															// so mimick it.
 
                 if (player.media.loop) {
                   // YouTube needs a call to `stopVideo` before playing again
@@ -6399,12 +6848,17 @@ typeof navigator === "object" && (function (global, factory) {
                 break;
 
               case 1:
-                // Restore paused state (YouTube starts playing on seek if the video hasn't been played yet)
+                // Restore paused state (YouTube starts playing on seek if the
+				// video hasn't been played yet)
                 if (!player.config.autoplay && player.media.paused && !player.embed.hasPlayed) {
                   player.media.pause();
                 } else {
                   assurePlaybackState$1.call(player, true);
-                  triggerEvent.call(player, player.media, 'playing'); // Poll to get playback progress
+                  triggerEvent.call(player, player.media, 'playing'); // Poll
+																		// to
+																		// get
+																		// playback
+																		// progress
 
                   player.timers.playing = setInterval(function () {
                     triggerEvent.call(player, player.media, 'timeupdate');
@@ -6421,7 +6875,8 @@ typeof navigator === "object" && (function (global, factory) {
                 break;
 
               case 2:
-                // Restore audio (YouTube starts playing on seek if the video hasn't been played yet)
+                // Restore audio (YouTube starts playing on seek if the video
+				// hasn't been played yet)
                 if (!player.muted) {
                   player.embed.unMute();
                 }
@@ -6430,7 +6885,8 @@ typeof navigator === "object" && (function (global, factory) {
                 break;
 
               case 3:
-                // Trigger waiting event to add loading classes to container as the video buffers.
+                // Trigger waiting event to add loading classes to container as
+				// the video buffers.
                 triggerEvent.call(player, player.media, 'waiting');
                 break;
             }
@@ -6455,9 +6911,15 @@ typeof navigator === "object" && (function (global, factory) {
       } // Add type class
 
 
-      toggleClass(this.elements.container, this.config.classNames.type.replace('{0}', this.type), true); // Add provider class
+      toggleClass(this.elements.container, this.config.classNames.type.replace('{0}', this.type), true); // Add
+																											// provider
+																											// class
 
-      toggleClass(this.elements.container, this.config.classNames.provider.replace('{0}', this.provider), true); // Add video class for embeds
+      toggleClass(this.elements.container, this.config.classNames.provider.replace('{0}', this.provider), true); // Add
+																													// video
+																													// class
+																													// for
+																													// embeds
       // This will require changes if audio embeds are added
 
       if (this.isEmbed) {
@@ -6503,12 +6965,14 @@ typeof navigator === "object" && (function (global, factory) {
     instance.elements.container.remove();
   };
 
-  var Ads = /*#__PURE__*/function () {
+  var Ads = /* #__PURE__ */function () {
     /**
-     * Ads constructor.
-     * @param {Object} player
-     * @return {Ads}
-     */
+	 * Ads constructor.
+	 * 
+	 * @param {Object}
+	 *            player
+	 * @return {Ads}
+	 */
     function Ads(player) {
       var _this = this;
 
@@ -6527,7 +6991,8 @@ typeof navigator === "object" && (function (global, factory) {
       this.cuePoints = null;
       this.events = {};
       this.safetyTimer = null;
-      this.countdownTimer = null; // Setup a promise to resolve when the IMA manager is ready
+      this.countdownTimer = null; // Setup a promise to resolve when the IMA
+									// manager is ready
 
       this.managerPromise = new Promise(function (resolve, reject) {
         // The ad is loaded and ready
@@ -6543,8 +7008,8 @@ typeof navigator === "object" && (function (global, factory) {
       key: "load",
 
       /**
-       * Load the IMA SDK
-       */
+		 * Load the IMA SDK
+		 */
       value: function load() {
         var _this2 = this;
 
@@ -6565,8 +7030,8 @@ typeof navigator === "object" && (function (global, factory) {
         }
       }
       /**
-       * Get the ads instance ready
-       */
+		 * Get the ads instance ready
+		 */
 
     }, {
       key: "ready",
@@ -6595,13 +7060,15 @@ typeof navigator === "object" && (function (global, factory) {
       key: "setupIMA",
 
       /**
-       * In order for the SDK to display ads for our video, we need to tell it where to put them,
-       * so here we define our ad container. This div is set up to render on top of the video player.
-       * Using the code below, we tell the SDK to render ads within that div. We also provide a
-       * handle to the content video player - the SDK will poll the current time of our player to
-       * properly place mid-rolls. After we create the ad display container, we initialize it. On
-       * mobile devices, this initialization is done as the result of a user action.
-       */
+		 * In order for the SDK to display ads for our video, we need to tell it
+		 * where to put them, so here we define our ad container. This div is
+		 * set up to render on top of the video player. Using the code below, we
+		 * tell the SDK to render ads within that div. We also provide a handle
+		 * to the content video player - the SDK will poll the current time of
+		 * our player to properly place mid-rolls. After we create the ad
+		 * display container, we initialize it. On mobile devices, this
+		 * initialization is done as the result of a user action.
+		 */
       value: function setupIMA() {
         var _this4 = this;
 
@@ -6609,17 +7076,51 @@ typeof navigator === "object" && (function (global, factory) {
         this.elements.container = createElement('div', {
           class: this.player.config.classNames.ads
         });
-        this.player.elements.container.appendChild(this.elements.container); // So we can run VPAID2
+        this.player.elements.container.appendChild(this.elements.container); // So
+																				// we
+																				// can
+																				// run
+																				// VPAID2
 
-        google.ima.settings.setVpaidMode(google.ima.ImaSdkSettings.VpaidMode.ENABLED); // Set language
+        google.ima.settings.setVpaidMode(google.ima.ImaSdkSettings.VpaidMode.ENABLED); // Set
+																						// language
 
-        google.ima.settings.setLocale(this.player.config.ads.language); // Set playback for iOS10+
+        google.ima.settings.setLocale(this.player.config.ads.language); // Set
+																		// playback
+																		// for
+																		// iOS10+
 
-        google.ima.settings.setDisableCustomPlaybackForIOS10Plus(this.player.config.playsinline); // We assume the adContainer is the video container of the plyr element that will house the ads
+        google.ima.settings.setDisableCustomPlaybackForIOS10Plus(this.player.config.playsinline); // We
+																									// assume
+																									// the
+																									// adContainer
+																									// is
+																									// the
+																									// video
+																									// container
+																									// of
+																									// the
+																									// plyr
+																									// element
+																									// that
+																									// will
+																									// house
+																									// the
+																									// ads
 
-        this.elements.displayContainer = new google.ima.AdDisplayContainer(this.elements.container, this.player.media); // Create ads loader
+        this.elements.displayContainer = new google.ima.AdDisplayContainer(this.elements.container, this.player.media); // Create
+																														// ads
+																														// loader
 
-        this.loader = new google.ima.AdsLoader(this.elements.displayContainer); // Listen and respond to ads loaded and error events
+        this.loader = new google.ima.AdsLoader(this.elements.displayContainer); // Listen
+																				// and
+																				// respond
+																				// to
+																				// ads
+																				// loaded
+																				// and
+																				// error
+																				// events
 
         this.loader.addEventListener(google.ima.AdsManagerLoadedEvent.Type.ADS_MANAGER_LOADED, function (event) {
           return _this4.onAdsManagerLoaded(event);
@@ -6631,8 +7132,8 @@ typeof navigator === "object" && (function (global, factory) {
         this.requestAds();
       }
       /**
-       * Request advertisements
-       */
+		 * Request advertisements
+		 */
 
     }, {
       key: "requestAds",
@@ -6642,15 +7143,22 @@ typeof navigator === "object" && (function (global, factory) {
         try {
           // Request video ads
           var request = new google.ima.AdsRequest();
-          request.adTagUrl = this.tagUrl; // Specify the linear and nonlinear slot sizes. This helps the SDK
+          request.adTagUrl = this.tagUrl; // Specify the linear and nonlinear
+											// slot sizes. This helps the SDK
           // to select the correct creative if multiple are returned
 
           request.linearAdSlotWidth = container.offsetWidth;
           request.linearAdSlotHeight = container.offsetHeight;
           request.nonLinearAdSlotWidth = container.offsetWidth;
-          request.nonLinearAdSlotHeight = container.offsetHeight; // We only overlay ads as we only support video.
+          request.nonLinearAdSlotHeight = container.offsetHeight; // We only
+																	// overlay
+																	// ads as we
+																	// only
+																	// support
+																	// video.
 
-          request.forceNonLinearFullSlot = false; // Mute based on current state
+          request.forceNonLinearFullSlot = false; // Mute based on current
+													// state
 
           request.setAdWillPlayMuted(!this.player.muted);
           this.loader.requestAds(request);
@@ -6659,9 +7167,11 @@ typeof navigator === "object" && (function (global, factory) {
         }
       }
       /**
-       * Update the ad countdown
-       * @param {Boolean} start
-       */
+		 * Update the ad countdown
+		 * 
+		 * @param {Boolean}
+		 *            start
+		 */
 
     }, {
       key: "pollCountdown",
@@ -6686,9 +7196,12 @@ typeof navigator === "object" && (function (global, factory) {
         this.countdownTimer = setInterval(update, 100);
       }
       /**
-       * This method is called whenever the ads are ready inside the AdDisplayContainer
-       * @param {Event} adsManagerLoadedEvent
-       */
+		 * This method is called whenever the ads are ready inside the
+		 * AdDisplayContainer
+		 * 
+		 * @param {Event}
+		 *            adsManagerLoadedEvent
+		 */
 
     }, {
       key: "onAdsManagerLoaded",
@@ -6701,15 +7214,32 @@ typeof navigator === "object" && (function (global, factory) {
         } // Get the ads manager
 
 
-        var settings = new google.ima.AdsRenderingSettings(); // Tell the SDK to save and restore content video state on our behalf
+        var settings = new google.ima.AdsRenderingSettings(); // Tell the SDK
+																// to save and
+																// restore
+																// content video
+																// state on our
+																// behalf
 
         settings.restoreCustomPlaybackStateOnAdBreakComplete = true;
-        settings.enablePreloading = true; // The SDK is polling currentTime on the contentPlayback. And needs a duration
+        settings.enablePreloading = true; // The SDK is polling currentTime on
+											// the contentPlayback. And needs a
+											// duration
         // so it can determine when to start the mid- and post-roll
 
-        this.manager = event.getAdsManager(this.player, settings); // Get the cue points for any mid-rolls by filtering out the pre- and post-roll
+        this.manager = event.getAdsManager(this.player, settings); // Get the
+																	// cue
+																	// points
+																	// for any
+																	// mid-rolls
+																	// by
+																	// filtering
+																	// out the
+																	// pre- and
+																	// post-roll
 
-        this.cuePoints = this.manager.getCuePoints(); // Add listeners to the required events
+        this.cuePoints = this.manager.getCuePoints(); // Add listeners to the
+														// required events
         // Advertisement error events
 
         this.manager.addEventListener(google.ima.AdErrorEvent.Type.AD_ERROR, function (error) {
@@ -6748,18 +7278,24 @@ typeof navigator === "object" && (function (global, factory) {
         }
       }
       /**
-       * This is where all the event handling takes place. Retrieve the ad from the event. Some
-       * events (e.g. ALL_ADS_COMPLETED) don't have the ad object associated
-       * https://developers.google.com/interactive-media-ads/docs/sdks/html5/v3/apis#ima.AdEvent.Type
-       * @param {Event} event
-       */
+		 * This is where all the event handling takes place. Retrieve the ad
+		 * from the event. Some events (e.g. ALL_ADS_COMPLETED) don't have the
+		 * ad object associated
+		 * https://developers.google.com/interactive-media-ads/docs/sdks/html5/v3/apis#ima.AdEvent.Type
+		 * 
+		 * @param {Event}
+		 *            event
+		 */
 
     }, {
       key: "onAdEvent",
       value: function onAdEvent(event) {
         var _this8 = this;
 
-        var container = this.player.elements.container; // Retrieve the ad from the event. Some events (e.g. ALL_ADS_COMPLETED)
+        var container = this.player.elements.container; // Retrieve the ad from
+														// the event. Some
+														// events (e.g.
+														// ALL_ADS_COMPLETED)
         // don't have ad object associated
 
         var ad = event.getAd();
@@ -6774,7 +7310,8 @@ typeof navigator === "object" && (function (global, factory) {
 
         switch (event.type) {
           case google.ima.AdEvent.Type.LOADED:
-            // This is the first event sent for an ad - it is possible to determine whether the
+            // This is the first event sent for an ad - it is possible to
+			// determine whether the
             // ad is a video ad or an overlay
             this.trigger('loaded'); // Start countdown
 
@@ -6784,8 +7321,10 @@ typeof navigator === "object" && (function (global, factory) {
               // Position AdDisplayContainer correctly for overlay
               ad.width = container.offsetWidth;
               ad.height = container.offsetHeight;
-            } // console.info('Ad type: ' + event.getAd().getAdPodInfo().getPodIndex());
-            // console.info('Ad time: ' + event.getAd().getAdPodInfo().getTimeOffset());
+            } // console.info('Ad type: ' +
+				// event.getAd().getAdPodInfo().getPodIndex());
+            // console.info('Ad time: ' +
+			// event.getAd().getAdPodInfo().getTimeOffset());
 
 
             break;
@@ -6796,49 +7335,63 @@ typeof navigator === "object" && (function (global, factory) {
             break;
 
           case google.ima.AdEvent.Type.ALL_ADS_COMPLETED:
-            // All ads for the current videos are done. We can now request new advertisements
+            // All ads for the current videos are done. We can now request new
+			// advertisements
             // in case the video is re-played
-            // TODO: Example for what happens when a next video in a playlist would be loaded.
+            // TODO: Example for what happens when a next video in a playlist
+			// would be loaded.
             // So here we load a new video when all ads are done.
             // Then we load new ads within a new adsManager. When the video
             // Is started - after - the ads are loaded, then we get ads.
             // You can also easily test cancelling and reloading by running
             // player.ads.cancel() and player.ads.play from the console I guess.
             // this.player.source = {
-            //     type: 'video',
-            //     title: 'View From A Blue Moon',
-            //     sources: [{
-            //         src:
-            // 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.mp4', type:
+            // type: 'video',
+            // title: 'View From A Blue Moon',
+            // sources: [{
+            // src:
+            // 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.mp4',
+			// type:
             // 'video/mp4', }], poster:
-            // 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg', tracks:
+            // 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg',
+			// tracks:
             // [ { kind: 'captions', label: 'English', srclang: 'en', src:
             // 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt',
-            // default: true, }, { kind: 'captions', label: 'French', srclang: 'fr', src:
-            // 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.fr.vtt', }, ],
+            // default: true, }, { kind: 'captions', label: 'French', srclang:
+			// 'fr', src:
+            // 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.fr.vtt',
+			// }, ],
             // };
-            // TODO: So there is still this thing where a video should only be allowed to start
+            // TODO: So there is still this thing where a video should only be
+			// allowed to start
             // playing when the IMA SDK is ready or has failed
             if (this.player.ended) {
               this.loadAds();
             } else {
-              // The SDK won't allow new ads to be called without receiving a contentComplete()
+              // The SDK won't allow new ads to be called without receiving a
+				// contentComplete()
               this.loader.contentComplete();
             }
 
             break;
 
           case google.ima.AdEvent.Type.CONTENT_PAUSE_REQUESTED:
-            // This event indicates the ad has started - the video player can adjust the UI,
-            // for example display a pause button and remaining time. Fired when content should
-            // be paused. This usually happens right before an ad is about to cover the content
+            // This event indicates the ad has started - the video player can
+			// adjust the UI,
+            // for example display a pause button and remaining time. Fired when
+			// content should
+            // be paused. This usually happens right before an ad is about to
+			// cover the content
             this.pauseContent();
             break;
 
           case google.ima.AdEvent.Type.CONTENT_RESUME_REQUESTED:
-            // This event indicates the ad has finished - the video player can perform
-            // appropriate UI actions, such as removing the timer for remaining time detection.
-            // Fired when content should be resumed. This usually happens when an ad finishes
+            // This event indicates the ad has finished - the video player can
+			// perform
+            // appropriate UI actions, such as removing the timer for remaining
+			// time detection.
+            // Fired when content should be resumed. This usually happens when
+			// an ad finishes
             // or collapses
             this.pollCountdown();
             this.resumeContent();
@@ -6853,9 +7406,11 @@ typeof navigator === "object" && (function (global, factory) {
         }
       }
       /**
-       * Any ad error handling comes through here
-       * @param {Event} event
-       */
+		 * Any ad error handling comes through here
+		 * 
+		 * @param {Event}
+		 *            event
+		 */
 
     }, {
       key: "onAdError",
@@ -6864,10 +7419,10 @@ typeof navigator === "object" && (function (global, factory) {
         this.player.debug.warn('Ads error', event);
       }
       /**
-       * Setup hooks for Plyr and window events. This ensures
-       * the mid- and post-roll launch at the correct time. And
-       * resize the advertisement when the player resizes
-       */
+		 * Setup hooks for Plyr and window events. This ensures the mid- and
+		 * post-roll launch at the correct time. And resize the advertisement
+		 * when the player resizes
+		 */
 
     }, {
       key: "listeners",
@@ -6909,8 +7464,8 @@ typeof navigator === "object" && (function (global, factory) {
         });
       }
       /**
-       * Initialize the adsManager and start playing advertisements
-       */
+		 * Initialize the adsManager and start playing advertisements
+		 */
 
     }, {
       key: "play",
@@ -6926,15 +7481,32 @@ typeof navigator === "object" && (function (global, factory) {
 
         this.managerPromise.then(function () {
           // Set volume to match player
-          _this10.manager.setVolume(_this10.player.volume); // Initialize the container. Must be done via a user action on mobile devices
+          _this10.manager.setVolume(_this10.player.volume); // Initialize the
+															// container. Must
+															// be done via a
+															// user action on
+															// mobile devices
 
 
           _this10.elements.displayContainer.initialize();
 
           try {
             if (!_this10.initialized) {
-              // Initialize the ads manager. Ad rules playlist will start at this time
-              _this10.manager.init(container.offsetWidth, container.offsetHeight, google.ima.ViewMode.NORMAL); // Call play to start showing the ad. Single video and overlay ads will
+              // Initialize the ads manager. Ad rules playlist will start at
+				// this time
+              _this10.manager.init(container.offsetWidth, container.offsetHeight, google.ima.ViewMode.NORMAL); // Call
+																												// play
+																												// to
+																												// start
+																												// showing
+																												// the
+																												// ad.
+																												// Single
+																												// video
+																												// and
+																												// overlay
+																												// ads
+																												// will
               // start at this time; the call will be ignored for ad rules
 
 
@@ -6950,8 +7522,8 @@ typeof navigator === "object" && (function (global, factory) {
         }).catch(function () {});
       }
       /**
-       * Resume our video
-       */
+		 * Resume our video
+		 */
 
     }, {
       key: "resumeContent",
@@ -6964,8 +7536,8 @@ typeof navigator === "object" && (function (global, factory) {
         silencePromise(this.player.media.play());
       }
       /**
-       * Pause our video
-       */
+		 * Pause our video
+		 */
 
     }, {
       key: "pauseContent",
@@ -6978,11 +7550,12 @@ typeof navigator === "object" && (function (global, factory) {
         this.player.media.pause();
       }
       /**
-       * Destroy the adsManager so we can grab new ads after this. If we don't then we're not
-       * allowed to call new ads based on google policies, as they interpret this as an accidental
-       * video requests. https://developers.google.com/interactive-
-       * media-ads/docs/sdks/android/faq#8
-       */
+		 * Destroy the adsManager so we can grab new ads after this. If we don't
+		 * then we're not allowed to call new ads based on google policies, as
+		 * they interpret this as an accidental video requests.
+		 * https://developers.google.com/interactive-
+		 * media-ads/docs/sdks/android/faq#8
+		 */
 
     }, {
       key: "cancel",
@@ -6998,8 +7571,8 @@ typeof navigator === "object" && (function (global, factory) {
         this.loadAds();
       }
       /**
-       * Re-create our adsManager
-       */
+		 * Re-create our adsManager
+		 */
 
     }, {
       key: "loadAds",
@@ -7018,7 +7591,8 @@ typeof navigator === "object" && (function (global, factory) {
             _this11.on('loaded', resolve);
 
             _this11.player.debug.log(_this11.manager);
-          }); // Now that the manager has been destroyed set it to also be un-initialized
+          }); // Now that the manager has been destroyed set it to also be
+				// un-initialized
 
           _this11.initialized = false; // Now request some new advertisements
 
@@ -7026,9 +7600,11 @@ typeof navigator === "object" && (function (global, factory) {
         }).catch(function () {});
       }
       /**
-       * Handles callbacks after an ad event was invoked
-       * @param {String} event - Event type
-       */
+		 * Handles callbacks after an ad event was invoked
+		 * 
+		 * @param {String}
+		 *            event - Event type
+		 */
 
     }, {
       key: "trigger",
@@ -7050,11 +7626,14 @@ typeof navigator === "object" && (function (global, factory) {
         }
       }
       /**
-       * Add event listeners
-       * @param {String} event - Event type
-       * @param {Function} callback - Callback for when event occurs
-       * @return {Ads}
-       */
+		 * Add event listeners
+		 * 
+		 * @param {String}
+		 *            event - Event type
+		 * @param {Function}
+		 *            callback - Callback for when event occurs
+		 * @return {Ads}
+		 */
 
     }, {
       key: "on",
@@ -7067,13 +7646,17 @@ typeof navigator === "object" && (function (global, factory) {
         return this;
       }
       /**
-       * Setup a safety timer for when the ad network doesn't respond for whatever reason.
-       * The advertisement has 12 seconds to get its things together. We stop this timer when the
-       * advertisement is playing, or when a user action is required to start, then we clear the
-       * timer on ad ready
-       * @param {Number} time
-       * @param {String} from
-       */
+		 * Setup a safety timer for when the ad network doesn't respond for
+		 * whatever reason. The advertisement has 12 seconds to get its things
+		 * together. We stop this timer when the advertisement is playing, or
+		 * when a user action is required to start, then we clear the timer on
+		 * ad ready
+		 * 
+		 * @param {Number}
+		 *            time
+		 * @param {String}
+		 *            from
+		 */
 
     }, {
       key: "startSafetyTimer",
@@ -7088,9 +7671,11 @@ typeof navigator === "object" && (function (global, factory) {
         }, time);
       }
       /**
-       * Clear our safety timer(s)
-       * @param {String} from
-       */
+		 * Clear our safety timer(s)
+		 * 
+		 * @param {String}
+		 *            from
+		 */
 
     }, {
       key: "clearSafetyTimer",
@@ -7141,22 +7726,46 @@ typeof navigator === "object" && (function (global, factory) {
       var lines = frame.split(/\r\n|\n|\r/);
       lines.forEach(function (line) {
         if (!is$1.number(result.startTime)) {
-          // The line with start and end times on it is the first line of interest
-          var matchTimes = line.match(/([0-9]{2})?:?([0-9]{2}):([0-9]{2}).([0-9]{2,3})( ?--> ?)([0-9]{2})?:?([0-9]{2}):([0-9]{2}).([0-9]{2,3})/); // Note that this currently ignores caption formatting directives that are optionally on the end of this line - fine for non-captions VTT
+          // The line with start and end times on it is the first line of
+			// interest
+          var matchTimes = line.match(/([0-9]{2})?:?([0-9]{2}):([0-9]{2}).([0-9]{2,3})( ?--> ?)([0-9]{2})?:?([0-9]{2}):([0-9]{2}).([0-9]{2,3})/); // Note
+																																					// that
+																																					// this
+																																					// currently
+																																					// ignores
+																																					// caption
+																																					// formatting
+																																					// directives
+																																					// that
+																																					// are
+																																					// optionally
+																																					// on
+																																					// the
+																																					// end
+																																					// of
+																																					// this
+																																					// line
+																																					// -
+																																					// fine
+																																					// for
+																																					// non-captions
+																																					// VTT
 
           if (matchTimes) {
             result.startTime = Number(matchTimes[1] || 0) * 60 * 60 + Number(matchTimes[2]) * 60 + Number(matchTimes[3]) + Number("0.".concat(matchTimes[4]));
             result.endTime = Number(matchTimes[6] || 0) * 60 * 60 + Number(matchTimes[7]) * 60 + Number(matchTimes[8]) + Number("0.".concat(matchTimes[9]));
           }
         } else if (!is$1.empty(line.trim()) && is$1.empty(result.text)) {
-          // If we already have the startTime, then we're definitely up to the text line(s)
+          // If we already have the startTime, then we're definitely up to the
+			// text line(s)
           var lineSplit = line.trim().split('#xywh=');
 
           var _lineSplit = _slicedToArray(lineSplit, 1);
 
           result.text = _lineSplit[0];
 
-          // If there's content in lineSplit[1], then we have sprites. If not, then it's just one frame per image
+          // If there's content in lineSplit[1], then we have sprites. If not,
+			// then it's just one frame per image
           if (lineSplit[1]) {
             var _lineSplit$1$split = lineSplit[1].split(',');
 
@@ -7177,15 +7786,31 @@ typeof navigator === "object" && (function (global, factory) {
     return processedList;
   };
   /**
-   * Preview thumbnails for seek hover and scrubbing
-   * Seeking: Hover over the seek bar (desktop only): shows a small preview container above the seek bar
-   * Scrubbing: Click and drag the seek bar (desktop and mobile): shows the preview image over the entire video, as if the video is scrubbing at very high speed
-   *
-   * Notes:
-   * - Thumbs are set via JS settings on Plyr init, not HTML5 'track' property. Using the track property would be a bit gross, because it doesn't support custom 'kinds'. kind=metadata might be used for something else, and we want to allow multiple thumbnails tracks. Tracks must have a unique combination of 'kind' and 'label'. We would have to do something like kind=metadata,label=thumbnails1 / kind=metadata,label=thumbnails2. Square peg, round hole
-   * - VTT info: the image URL is relative to the VTT, not the current document. But if the url starts with a slash, it will naturally be relative to the current domain. https://support.jwplayer.com/articles/how-to-add-preview-thumbnails
-   * - This implementation uses multiple separate img elements. Other implementations use background-image on one element. This would be nice and simple, but Firefox and Safari have flickering issues with replacing backgrounds of larger images. It seems that YouTube perhaps only avoids this because they don't have the option for high-res previews (even the fullscreen ones, when mousedown/seeking). Images appear over the top of each other, and previous ones are discarded once the new ones have been rendered
-   */
+	 * Preview thumbnails for seek hover and scrubbing Seeking: Hover over the
+	 * seek bar (desktop only): shows a small preview container above the seek
+	 * bar Scrubbing: Click and drag the seek bar (desktop and mobile): shows
+	 * the preview image over the entire video, as if the video is scrubbing at
+	 * very high speed
+	 * 
+	 * Notes: - Thumbs are set via JS settings on Plyr init, not HTML5 'track'
+	 * property. Using the track property would be a bit gross, because it
+	 * doesn't support custom 'kinds'. kind=metadata might be used for something
+	 * else, and we want to allow multiple thumbnails tracks. Tracks must have a
+	 * unique combination of 'kind' and 'label'. We would have to do something
+	 * like kind=metadata,label=thumbnails1 / kind=metadata,label=thumbnails2.
+	 * Square peg, round hole - VTT info: the image URL is relative to the VTT,
+	 * not the current document. But if the url starts with a slash, it will
+	 * naturally be relative to the current domain.
+	 * https://support.jwplayer.com/articles/how-to-add-preview-thumbnails -
+	 * This implementation uses multiple separate img elements. Other
+	 * implementations use background-image on one element. This would be nice
+	 * and simple, but Firefox and Safari have flickering issues with replacing
+	 * backgrounds of larger images. It seems that YouTube perhaps only avoids
+	 * this because they don't have the option for high-res previews (even the
+	 * fullscreen ones, when mousedown/seeking). Images appear over the top of
+	 * each other, and previous ones are discarded once the new ones have been
+	 * rendered
+	 */
 
 
   var fitRatio = function fitRatio(ratio, outer) {
@@ -7203,12 +7828,14 @@ typeof navigator === "object" && (function (global, factory) {
     return result;
   };
 
-  var PreviewThumbnails = /*#__PURE__*/function () {
+  var PreviewThumbnails = /* #__PURE__ */function () {
     /**
-     * PreviewThumbnails constructor.
-     * @param {Plyr} player
-     * @return {PreviewThumbnails}
-     */
+	 * PreviewThumbnails constructor.
+	 * 
+	 * @param {Plyr}
+	 *            player
+	 * @return {PreviewThumbnails}
+	 */
     function PreviewThumbnails(player) {
       _classCallCheck(this, PreviewThumbnails);
 
@@ -7245,7 +7872,8 @@ typeof navigator === "object" && (function (global, factory) {
           } // Render DOM elements
 
 
-          _this.render(); // Check to see if thumb container size was specified manually in CSS
+          _this.render(); // Check to see if thumb container size was
+							// specified manually in CSS
 
 
           _this.determineContainerAutoSizing();
@@ -7287,7 +7915,13 @@ typeof navigator === "object" && (function (global, factory) {
           } // VTT urls
           else {
               // If string, convert into single-element list
-              var urls = is$1.string(src) ? [src] : src; // Loop through each src URL. Download and process the VTT file, storing the resulting data in this.thumbnails
+              var urls = is$1.string(src) ? [src] : src; // Loop through each
+															// src URL. Download
+															// and process the
+															// VTT file, storing
+															// the resulting
+															// data in
+															// this.thumbnails
 
               var promises = urls.map(function (u) {
                 return _this2.getThumbnail(u);
@@ -7309,13 +7943,18 @@ typeof navigator === "object" && (function (global, factory) {
               frames: parseVtt(response),
               height: null,
               urlPrefix: ''
-            }; // If the URLs don't start with '/', then we need to set their relative path to be the location of the VTT file
-            // If the URLs do start with '/', then they obviously don't need a prefix, so it will remain blank
-            // If the thumbnail URLs start with with none of '/', 'http://' or 'https://', then we need to set their relative path to be the location of the VTT file
+            }; // If the URLs don't start with '/', then we need to set their
+				// relative path to be the location of the VTT file
+            // If the URLs do start with '/', then they obviously don't need a
+			// prefix, so it will remain blank
+            // If the thumbnail URLs start with with none of '/', 'http://' or
+			// 'https://', then we need to set their relative path to be the
+			// location of the VTT file
 
             if (!thumbnail.frames[0].text.startsWith('/') && !thumbnail.frames[0].text.startsWith('http://') && !thumbnail.frames[0].text.startsWith('https://')) {
               thumbnail.urlPrefix = url.substring(0, url.lastIndexOf('/') + 1);
-            } // Download the first frame, so that we can determine/set the height of this thumbnailsDef
+            } // Download the first frame, so that we can determine/set the
+				// height of this thumbnailsDef
 
 
             var tempImage = new Image();
@@ -7364,7 +8003,8 @@ typeof navigator === "object" && (function (global, factory) {
           }
 
           if (this.seekTime > this.player.media.duration - 1) {
-            // Took 1 second off the duration for safety, because different players can disagree on the real duration of a video
+            // Took 1 second off the duration for safety, because different
+			// players can disagree on the real duration of a video
             this.seekTime = this.player.media.duration - 1;
           }
 
@@ -7384,7 +8024,8 @@ typeof navigator === "object" && (function (global, factory) {
     }, {
       key: "startScrubbing",
       value: function startScrubbing(event) {
-        // Only act on left mouse button (0), or touch device (event.button does not exist or is false)
+        // Only act on left mouse button (0), or touch device (event.button does
+		// not exist or is false)
         if (is$1.nullOrUndefined(event.button) || event.button === false || event.button === 0) {
           this.mouseDown = true; // Wait until media has a duration
 
@@ -7401,15 +8042,19 @@ typeof navigator === "object" && (function (global, factory) {
       value: function endScrubbing() {
         var _this4 = this;
 
-        this.mouseDown = false; // Hide scrubbing preview. But wait until the video has successfully seeked before hiding the scrubbing preview
+        this.mouseDown = false; // Hide scrubbing preview. But wait until the
+								// video has successfully seeked before hiding
+								// the scrubbing preview
 
         if (Math.ceil(this.lastTime) === Math.ceil(this.player.media.currentTime)) {
-          // The video was already seeked/loaded at the chosen time - hide immediately
+          // The video was already seeked/loaded at the chosen time - hide
+			// immediately
           this.toggleScrubbingContainer(false);
         } else {
           // The video hasn't seeked yet. Wait for that
           once.call(this.player, this.player.media, 'timeupdate', function () {
-            // Re-check mousedown - we might have already started scrubbing again
+            // Re-check mousedown - we might have already started scrubbing
+			// again
             if (!_this4.mouseDown) {
               _this4.toggleScrubbingContainer(false);
             }
@@ -7417,15 +8062,17 @@ typeof navigator === "object" && (function (global, factory) {
         }
       }
       /**
-       * Setup hooks for Plyr and window events
-       */
+		 * Setup hooks for Plyr and window events
+		 */
 
     }, {
       key: "listeners",
       value: function listeners() {
         var _this5 = this;
 
-        // Hide thumbnail preview - on mouse click, mouse leave (in listeners.js for now), and video play/seek. All four are required, e.g., for buffering
+        // Hide thumbnail preview - on mouse click, mouse leave (in listeners.js
+		// for now), and video play/seek. All four are required, e.g., for
+		// buffering
         this.player.on('play', function () {
           _this5.toggleThumbContainer(false, true);
         });
@@ -7437,8 +8084,8 @@ typeof navigator === "object" && (function (global, factory) {
         });
       }
       /**
-       * Create HTML elements for image containers
-       */
+		 * Create HTML elements for image containers
+		 */
 
     }, {
       key: "render",
@@ -7451,14 +8098,23 @@ typeof navigator === "object" && (function (global, factory) {
         this.elements.thumb.imageContainer = createElement('div', {
           class: this.player.config.classNames.previewThumbnails.imageContainer
         });
-        this.elements.thumb.container.appendChild(this.elements.thumb.imageContainer); // Create HTML element, parent+span: time text (e.g., 01:32:00)
+        this.elements.thumb.container.appendChild(this.elements.thumb.imageContainer); // Create
+																						// HTML
+																						// element,
+																						// parent+span:
+																						// time
+																						// text
+																						// (e.g.,
+																						// 01:32:00)
 
         var timeContainer = createElement('div', {
           class: this.player.config.classNames.previewThumbnails.timeContainer
         });
         this.elements.thumb.time = createElement('span', {}, '00:00');
         timeContainer.appendChild(this.elements.thumb.time);
-        this.elements.thumb.container.appendChild(timeContainer); // Inject the whole thumb
+        this.elements.thumb.container.appendChild(timeContainer); // Inject
+																	// the whole
+																	// thumb
 
         if (is$1.element(this.player.elements.progress)) {
           this.player.elements.progress.appendChild(this.elements.thumb.container);
@@ -7498,7 +8154,8 @@ typeof navigator === "object" && (function (global, factory) {
           return _this6.seekTime >= frame.startTime && _this6.seekTime <= frame.endTime;
         });
         var hasThumb = thumbNum >= 0;
-        var qualityIndex = 0; // Show the thumb container if we're not scrubbing
+        var qualityIndex = 0; // Show the thumb container if we're not
+								// scrubbing
 
         if (!this.mouseDown) {
           this.toggleThumbContainer(hasThumb);
@@ -7507,7 +8164,8 @@ typeof navigator === "object" && (function (global, factory) {
 
         if (!hasThumb) {
           return;
-        } // Check to see if we've already downloaded higher quality versions of this image
+        } // Check to see if we've already downloaded higher quality versions
+			// of this image
 
 
         this.thumbnails.forEach(function (thumbnail, index) {
@@ -7536,13 +8194,18 @@ typeof navigator === "object" && (function (global, factory) {
         var thumbUrl = urlPrefix + thumbFilename;
 
         if (!this.currentImageElement || this.currentImageElement.dataset.filename !== thumbFilename) {
-          // If we're already loading a previous image, remove its onload handler - we don't want it to load after this one
-          // Only do this if not using sprites. Without sprites we really want to show as many images as possible, as a best-effort
+          // If we're already loading a previous image, remove its onload
+			// handler - we don't want it to load after this one
+          // Only do this if not using sprites. Without sprites we really want
+			// to show as many images as possible, as a best-effort
           if (this.loadingImage && this.usingSprites) {
             this.loadingImage.onload = null;
-          } // We're building and adding a new image. In other implementations of similar functionality (YouTube), background image
-          // is instead used. But this causes issues with larger images in Firefox and Safari - switching between background
-          // images causes a flicker. Putting a new image over the top does not
+          } // We're building and adding a new image. In other implementations
+			// of similar functionality (YouTube), background image
+          // is instead used. But this causes issues with larger images in
+			// Firefox and Safari - switching between background
+          // images causes a flicker. Putting a new image over the top does
+			// not
 
 
           var previewImage = new Image();
@@ -7550,7 +8213,25 @@ typeof navigator === "object" && (function (global, factory) {
           previewImage.dataset.index = thumbNum;
           previewImage.dataset.filename = thumbFilename;
           this.showingThumbFilename = thumbFilename;
-          this.player.debug.log("Loading image: ".concat(thumbUrl)); // For some reason, passing the named function directly causes it to execute immediately. So I've wrapped it in an anonymous function...
+          this.player.debug.log("Loading image: ".concat(thumbUrl)); // For
+																		// some
+																		// reason,
+																		// passing
+																		// the
+																		// named
+																		// function
+																		// directly
+																		// causes
+																		// it to
+																		// execute
+																		// immediately.
+																		// So
+																		// I've
+																		// wrapped
+																		// it in
+																		// an
+																		// anonymous
+																		// function...
 
           previewImage.onload = function () {
             return _this7.showImage(previewImage, frame, qualityIndex, thumbNum, thumbFilename, true);
@@ -7581,7 +8262,9 @@ typeof navigator === "object" && (function (global, factory) {
           }
         } // Preload images before and after the current one
         // Show higher quality of the same frame
-        // Each step here has a short time delay, and only continues if still hovering/seeking the same spot. This is to protect slow connections from overloading
+        // Each step here has a short time delay, and only continues if still
+		// hovering/seeking the same spot. This is to protect slow connections
+		// from overloading
 
 
         this.preloadNearby(thumbNum, true).then(this.preloadNearby(thumbNum, false)).then(this.getHigherQuality(qualityIndex, previewImage, frame, thumbFilename));
@@ -7601,10 +8284,16 @@ typeof navigator === "object" && (function (global, factory) {
           var removeDelay = _this8.usingSprites ? 500 : 1000;
 
           if (image.dataset.index !== currentImage.dataset.index && !image.dataset.deleting) {
-            // Wait 200ms, as the new image can take some time to show on certain browsers (even though it was downloaded before showing). This will prevent flicker, and show some generosity towards slower clients
-            // First set attribute 'deleting' to prevent multi-handling of this on repeat firing of this function
+            // Wait 200ms, as the new image can take some time to show on
+			// certain browsers (even though it was downloaded before showing).
+			// This will prevent flicker, and show some generosity towards
+			// slower clients
+            // First set attribute 'deleting' to prevent multi-handling of this
+			// on repeat firing of this function
             // eslint-disable-next-line no-param-reassign
-            image.dataset.deleting = true; // This has to be set before the timeout - to prevent issues switching between hover and scrub
+            image.dataset.deleting = true; // This has to be set before the
+											// timeout - to prevent issues
+											// switching between hover and scrub
 
             var currentImageContainer = _this8.currentImageContainer;
             setTimeout(function () {
@@ -7614,7 +8303,8 @@ typeof navigator === "object" && (function (global, factory) {
             }, removeDelay);
           }
         });
-      } // Preload images before and after the current one. Only if the user is still hovering/seeking the same frame
+      } // Preload images before and after the current one. Only if the user is
+		// still hovering/seeking the same frame
       // This will only preload the lowest quality
 
     }, {
@@ -7628,7 +8318,9 @@ typeof navigator === "object" && (function (global, factory) {
             var oldThumbFilename = _this9.thumbnails[0].frames[thumbNum].text;
 
             if (_this9.showingThumbFilename === oldThumbFilename) {
-              // Find the nearest thumbs with different filenames. Sometimes it'll be the next index, but in the case of sprites, it might be 100+ away
+              // Find the nearest thumbs with different filenames. Sometimes
+				// it'll be the next index, but in the case of sprites, it might
+				// be 100+ away
               var thumbnailsClone;
 
               if (forward) {
@@ -7642,7 +8334,8 @@ typeof navigator === "object" && (function (global, factory) {
                 var newThumbFilename = frame.text;
 
                 if (newThumbFilename !== oldThumbFilename) {
-                  // Found one with a different filename. Make sure it hasn't already been loaded on this page visit
+                  // Found one with a different filename. Make sure it hasn't
+					// already been loaded on this page visit
                   if (!_this9.loadedImages.includes(newThumbFilename)) {
                     foundOne = true;
 
@@ -7656,13 +8349,21 @@ typeof navigator === "object" && (function (global, factory) {
                     previewImage.onload = function () {
                       _this9.player.debug.log("Preloaded thumb filename: ".concat(newThumbFilename));
 
-                      if (!_this9.loadedImages.includes(newThumbFilename)) _this9.loadedImages.push(newThumbFilename); // We don't resolve until the thumb is loaded
+                      if (!_this9.loadedImages.includes(newThumbFilename)) _this9.loadedImages.push(newThumbFilename); // We
+																														// don't
+																														// resolve
+																														// until
+																														// the
+																														// thumb
+																														// is
+																														// loaded
 
                       resolve();
                     };
                   }
                 }
-              }); // If there are none to preload then we want to resolve immediately
+              }); // If there are none to preload then we want to resolve
+					// immediately
 
               if (!foundOne) {
                 resolve();
@@ -7670,7 +8371,8 @@ typeof navigator === "object" && (function (global, factory) {
             }
           }, 300);
         });
-      } // If user has been hovering current image for half a second, look for a higher quality one
+      } // If user has been hovering current image for half a second, look for a
+		// higher quality one
 
     }, {
       key: "getHigherQuality",
@@ -7678,7 +8380,9 @@ typeof navigator === "object" && (function (global, factory) {
         var _this10 = this;
 
         if (currentQualityIndex < this.thumbnails.length - 1) {
-          // Only use the higher quality version if it's going to look any better - if the current thumb is of a lower pixel density than the thumbnail container
+          // Only use the higher quality version if it's going to look any
+			// better - if the current thumb is of a lower pixel density than
+			// the thumbnail container
           var previewImageHeight = previewImage.naturalHeight;
 
           if (this.usingSprites) {
@@ -7686,9 +8390,11 @@ typeof navigator === "object" && (function (global, factory) {
           }
 
           if (previewImageHeight < this.thumbContainerHeight) {
-            // Recurse back to the loadImage function - show a higher quality one, but only if the viewer is on this frame for a while
+            // Recurse back to the loadImage function - show a higher quality
+			// one, but only if the viewer is on this frame for a while
             setTimeout(function () {
-              // Make sure the mouse hasn't already moved on and started hovering at another image
+              // Make sure the mouse hasn't already moved on and started
+				// hovering at another image
               if (_this10.showingThumbFilename === thumbFilename) {
                 _this10.player.debug.log("Showing higher quality thumb for: ".concat(thumbFilename));
 
@@ -7727,10 +8433,12 @@ typeof navigator === "object" && (function (global, factory) {
       key: "determineContainerAutoSizing",
       value: function determineContainerAutoSizing() {
         if (this.elements.thumb.imageContainer.clientHeight > 20 || this.elements.thumb.imageContainer.clientWidth > 20) {
-          // This will prevent auto sizing in this.setThumbContainerSizeAndPos()
+          // This will prevent auto sizing in
+			// this.setThumbContainerSizeAndPos()
           this.sizeSpecifiedInCSS = true;
         }
-      } // Set the size to be about a quarter of the size of video. Unless option dynamicSize === false, in which case it needs to be set in CSS
+      } // Set the size to be about a quarter of the size of video. Unless
+		// option dynamicSize === false, in which case it needs to be set in CSS
 
     }, {
       key: "setThumbContainerSizeAndPos",
@@ -7755,10 +8463,26 @@ typeof navigator === "object" && (function (global, factory) {
       value: function setThumbContainerPos() {
         var seekbarRect = this.player.elements.progress.getBoundingClientRect();
         var plyrRect = this.player.elements.container.getBoundingClientRect();
-        var container = this.elements.thumb.container; // Find the lowest and highest desired left-position, so we don't slide out the side of the video container
+        var container = this.elements.thumb.container; // Find the lowest and
+														// highest desired
+														// left-position, so we
+														// don't slide out the
+														// side of the video
+														// container
 
         var minVal = plyrRect.left - seekbarRect.left + 10;
-        var maxVal = plyrRect.right - seekbarRect.left - container.clientWidth - 10; // Set preview container position to: mousepos, minus seekbar.left, minus half of previewContainer.clientWidth
+        var maxVal = plyrRect.right - seekbarRect.left - container.clientWidth - 10; // Set
+																						// preview
+																						// container
+																						// position
+																						// to:
+																						// mousepos,
+																						// minus
+																						// seekbar.left,
+																						// minus
+																						// half
+																						// of
+																						// previewContainer.clientWidth
 
         var previewPos = this.mousePosX - seekbarRect.left - container.clientWidth / 2;
 
@@ -7771,7 +8495,8 @@ typeof navigator === "object" && (function (global, factory) {
         }
 
         container.style.left = "".concat(previewPos, "px");
-      } // Can't use 100% width, in case the video is a different aspect ratio to the video container
+      } // Can't use 100% width, in case the video is a different aspect ratio
+		// to the video container
 
     }, {
       key: "setScrubbingContainerSize",
@@ -7795,13 +8520,17 @@ typeof navigator === "object" && (function (global, factory) {
         } // Find difference between height and preview container height
 
 
-        var multiplier = this.thumbContainerHeight / frame.h; // eslint-disable-next-line no-param-reassign
+        var multiplier = this.thumbContainerHeight / frame.h; // eslint-disable-next-line
+																// no-param-reassign
 
-        previewImage.style.height = "".concat(previewImage.naturalHeight * multiplier, "px"); // eslint-disable-next-line no-param-reassign
+        previewImage.style.height = "".concat(previewImage.naturalHeight * multiplier, "px"); // eslint-disable-next-line
+																								// no-param-reassign
 
-        previewImage.style.width = "".concat(previewImage.naturalWidth * multiplier, "px"); // eslint-disable-next-line no-param-reassign
+        previewImage.style.width = "".concat(previewImage.naturalWidth * multiplier, "px"); // eslint-disable-next-line
+																							// no-param-reassign
 
-        previewImage.style.left = "-".concat(frame.x * multiplier, "px"); // eslint-disable-next-line no-param-reassign
+        previewImage.style.left = "-".concat(frame.x * multiplier, "px"); // eslint-disable-next-line
+																			// no-param-reassign
 
         previewImage.style.top = "-".concat(frame.y * multiplier, "px");
       }
@@ -7844,7 +8573,8 @@ typeof navigator === "object" && (function (global, factory) {
               height = _fitRatio2.height;
 
           return height;
-        } // If css is used this needs to return the css height for sprites to work (see setImageSizeAndOffset)
+        } // If css is used this needs to return the css height for sprites to
+			// work (see setImageSizeAndOffset)
 
 
         if (this.sizeSpecifiedInCSS) {
@@ -7936,7 +8666,8 @@ typeof navigator === "object" && (function (global, factory) {
           media: createElement(tagName, attributes)
         }); // Inject the new element
 
-        _this2.elements.container.appendChild(_this2.media); // Autoplay the new source?
+        _this2.elements.container.appendChild(_this2.media); // Autoplay the
+																// new source?
 
 
         if (is$1.boolean(input.autoplay)) {
@@ -7987,7 +8718,8 @@ typeof navigator === "object" && (function (global, factory) {
           if (Object.keys(input).includes('tracks')) {
             source.insertElements.call(_this2, 'track', input.tracks);
           }
-        } // If HTML5 or embed but not fully supported, setupInterface and call ready now
+        } // If HTML5 or embed but not fully supported, setupInterface and
+			// call ready now
 
 
         if (_this2.isHTML5 || _this2.isEmbed && !_this2.supported.ui) {
@@ -8002,7 +8734,13 @@ typeof navigator === "object" && (function (global, factory) {
 
 
         if (!is$1.empty(input.previewThumbnails)) {
-          Object.assign(_this2.config.previewThumbnails, input.previewThumbnails); // Cleanup previewThumbnails plugin if it was loaded
+          Object.assign(_this2.config.previewThumbnails, input.previewThumbnails); // Cleanup
+																					// previewThumbnails
+																					// plugin
+																					// if
+																					// it
+																					// was
+																					// loaded
 
           if (_this2.previewThumbnails && _this2.previewThumbnails.loaded) {
             _this2.previewThumbnails.destroy();
@@ -8023,17 +8761,20 @@ typeof navigator === "object" && (function (global, factory) {
   };
 
   /**
-   * Returns a number whose value is limited to the given range.
-   *
-   * Example: limit the output of this computation to between 0 and 255
-   * (x * 255).clamp(0, 255)
-   *
-   * @param {Number} input
-   * @param {Number} min The lower boundary of the output range
-   * @param {Number} max The upper boundary of the output range
-   * @returns A number in the range [min, max]
-   * @type Number
-   */
+	 * Returns a number whose value is limited to the given range.
+	 * 
+	 * Example: limit the output of this computation to between 0 and 255 (x *
+	 * 255).clamp(0, 255)
+	 * 
+	 * @param {Number}
+	 *            input
+	 * @param {Number}
+	 *            min The lower boundary of the output range
+	 * @param {Number}
+	 *            max The upper boundary of the output range
+	 * @returns A number in the range [min, max]
+	 * @type Number
+	 */
   function clamp() {
     var input = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
     var min = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
@@ -8045,7 +8786,7 @@ typeof navigator === "object" && (function (global, factory) {
   // const globals = new WeakMap();
   // Plyr instance
 
-  var Plyr = /*#__PURE__*/function () {
+  var Plyr = /* #__PURE__ */function () {
     function Plyr(target, options) {
       var _this = this;
 
@@ -8112,7 +8853,8 @@ typeof navigator === "object" && (function (global, factory) {
       }; // Debugging
       // TODO: move to globals
 
-      this.debug = new Console(this.config.debug); // Log config options and support
+      this.debug = new Console(this.config.debug); // Log config options and
+													// support
 
       this.debug.log('Config', this.config);
       this.debug.log('Support', support); // We need an element to setup
@@ -8144,7 +8886,8 @@ typeof navigator === "object" && (function (global, factory) {
 
       var clone = this.media.cloneNode(true);
       clone.autoplay = false;
-      this.elements.original = clone; // Set media type based on tag or data attribute
+      this.elements.original = clone; // Set media type based on tag or data
+										// attribute
       // Supported: video, audio, vimeo, youtube
 
       var type = this.media.tagName.toLowerCase(); // Embed properties
@@ -8160,12 +8903,14 @@ typeof navigator === "object" && (function (global, factory) {
           if (is$1.element(iframe)) {
             // Detect provider
             url = parseUrl(iframe.getAttribute('src'));
-            this.provider = getProviderByUrl(url.toString()); // Rework elements
+            this.provider = getProviderByUrl(url.toString()); // Rework
+																// elements
 
             this.elements.container = this.media;
             this.media = iframe; // Reset classname
 
-            this.elements.container.className = ''; // Get attributes from URL and set config
+            this.elements.container.className = ''; // Get attributes from URL
+													// and set config
 
             if (url.search.length) {
               var truthy = ['1', 'true'];
@@ -8176,20 +8921,27 @@ typeof navigator === "object" && (function (global, factory) {
 
               if (truthy.includes(url.searchParams.get('loop'))) {
                 this.config.loop.active = true;
-              } // TODO: replace fullscreen.iosNative with this playsinline config option
+              } // TODO: replace fullscreen.iosNative with this playsinline
+				// config option
               // YouTube requires the playsinline in the URL
 
 
               if (this.isYouTube) {
                 this.config.playsinline = truthy.includes(url.searchParams.get('playsinline'));
-                this.config.youtube.hl = url.searchParams.get('hl'); // TODO: Should this be setting language?
+                this.config.youtube.hl = url.searchParams.get('hl'); // TODO:
+																		// Should
+																		// this
+																		// be
+																		// setting
+																		// language?
               } else {
                 this.config.playsinline = true;
               }
             }
           } else {
             // <div> with attributes
-            this.provider = this.media.getAttribute(this.config.attributes.embed.provider); // Remove attribute
+            this.provider = this.media.getAttribute(this.config.attributes.embed.provider); // Remove
+																							// attribute
 
             this.media.removeAttribute(this.config.attributes.embed.provider);
           } // Unsupported or missing provider
@@ -8237,7 +8989,13 @@ typeof navigator === "object" && (function (global, factory) {
       } // Check for support again but with type
 
 
-      this.supported = support.check(this.type, this.provider, this.config.playsinline); // If no support for even API, bail
+      this.supported = support.check(this.type, this.provider, this.config.playsinline); // If
+																							// no
+																							// support
+																							// for
+																							// even
+																							// API,
+																							// bail
 
       if (!this.supported.api) {
         this.debug.error('Setup failed: no support');
@@ -8246,7 +9004,8 @@ typeof navigator === "object" && (function (global, factory) {
 
       this.eventListeners = []; // Create listeners
 
-      this.listeners = new Listeners(this); // Setup local storage for user settings
+      this.listeners = new Listeners(this); // Setup local storage for user
+											// settings
 
       this.storage = new Storage(this); // Store reference
 
@@ -8274,7 +9033,8 @@ typeof navigator === "object" && (function (global, factory) {
 
 
       this.fullscreen = new Fullscreen(this); // Setup interface
-      // If embed but not fully supported, build interface now to avoid flash of controls
+      // If embed but not fully supported, build interface now to avoid flash
+		// of controls
 
       if (this.isHTML5 || this.isEmbed && !this.supported.ui) {
         ui.build.call(this);
@@ -8294,7 +9054,8 @@ typeof navigator === "object" && (function (global, factory) {
         setTimeout(function () {
           return silencePromise(_this.play());
         }, 10);
-      } // Seek time will be recorded (in listeners.js) so we can prevent hiding controls for a few seconds after seek
+      } // Seek time will be recorded (in listeners.js) so we can prevent hiding
+		// controls for a few seconds after seek
 
 
       this.lastSeekTime = 0; // Setup preview thumbnails if enabled
@@ -8307,16 +9068,16 @@ typeof navigator === "object" && (function (global, factory) {
     // ---------------------------------------
 
     /**
-     * Types and provider helpers
-     */
+	 * Types and provider helpers
+	 */
 
 
     _createClass(Plyr, [{
       key: "play",
 
       /**
-       * Play the media, or play the advertisement (if they are not blocked)
-       */
+		 * Play the media, or play the advertisement (if they are not blocked)
+		 */
       value: function play() {
         var _this2 = this;
 
@@ -8337,8 +9098,8 @@ typeof navigator === "object" && (function (global, factory) {
         return this.media.play();
       }
       /**
-       * Pause the media
-       */
+		 * Pause the media
+		 */
 
     }, {
       key: "pause",
@@ -8350,16 +9111,18 @@ typeof navigator === "object" && (function (global, factory) {
         return this.media.pause();
       }
       /**
-       * Get playing state
-       */
+		 * Get playing state
+		 */
 
     }, {
       key: "togglePlay",
 
       /**
-       * Toggle playback based on current status
-       * @param {Boolean} input
-       */
+		 * Toggle playback based on current status
+		 * 
+		 * @param {Boolean}
+		 *            input
+		 */
       value: function togglePlay(input) {
         // Toggle based on current state if nothing passed
         var toggle = is$1.boolean(input) ? input : !this.playing;
@@ -8371,8 +9134,8 @@ typeof navigator === "object" && (function (global, factory) {
         return this.pause();
       }
       /**
-       * Stop playback
-       */
+		 * Stop playback
+		 */
 
     }, {
       key: "stop",
@@ -8385,8 +9148,8 @@ typeof navigator === "object" && (function (global, factory) {
         }
       }
       /**
-       * Restart playback
-       */
+		 * Restart playback
+		 */
 
     }, {
       key: "restart",
@@ -8394,9 +9157,12 @@ typeof navigator === "object" && (function (global, factory) {
         this.currentTime = 0;
       }
       /**
-       * Rewind
-       * @param {Number} seekTime - how far to rewind in seconds. Defaults to the config.seekTime
-       */
+		 * Rewind
+		 * 
+		 * @param {Number}
+		 *            seekTime - how far to rewind in seconds. Defaults to the
+		 *            config.seekTime
+		 */
 
     }, {
       key: "rewind",
@@ -8404,9 +9170,12 @@ typeof navigator === "object" && (function (global, factory) {
         this.currentTime -= is$1.number(seekTime) ? seekTime : this.config.seekTime;
       }
       /**
-       * Fast forward
-       * @param {Number} seekTime - how far to fast forward in seconds. Defaults to the config.seekTime
-       */
+		 * Fast forward
+		 * 
+		 * @param {Number}
+		 *            seekTime - how far to fast forward in seconds. Defaults to
+		 *            the config.seekTime
+		 */
 
     }, {
       key: "forward",
@@ -8414,25 +9183,32 @@ typeof navigator === "object" && (function (global, factory) {
         this.currentTime += is$1.number(seekTime) ? seekTime : this.config.seekTime;
       }
       /**
-       * Seek to a time
-       * @param {Number} input - where to seek to in seconds. Defaults to 0 (the start)
-       */
+		 * Seek to a time
+		 * 
+		 * @param {Number}
+		 *            input - where to seek to in seconds. Defaults to 0 (the
+		 *            start)
+		 */
 
     }, {
       key: "increaseVolume",
 
       /**
-       * Increase volume
-       * @param {Boolean} step - How much to decrease by (between 0 and 1)
-       */
+		 * Increase volume
+		 * 
+		 * @param {Boolean}
+		 *            step - How much to decrease by (between 0 and 1)
+		 */
       value: function increaseVolume(step) {
         var volume = this.media.muted ? 0 : this.volume;
         this.volume = volume + (is$1.number(step) ? step : 0);
       }
       /**
-       * Decrease volume
-       * @param {Boolean} step - How much to decrease by (between 0 and 1)
-       */
+		 * Decrease volume
+		 * 
+		 * @param {Boolean}
+		 *            step - How much to decrease by (between 0 and 1)
+		 */
 
     }, {
       key: "decreaseVolume",
@@ -8440,32 +9216,38 @@ typeof navigator === "object" && (function (global, factory) {
         this.increaseVolume(-step);
       }
       /**
-       * Set muted state
-       * @param {Boolean} mute
-       */
+		 * Set muted state
+		 * 
+		 * @param {Boolean}
+		 *            mute
+		 */
 
     }, {
       key: "toggleCaptions",
 
       /**
-       * Toggle captions
-       * @param {Boolean} input - Whether to enable captions
-       */
+		 * Toggle captions
+		 * 
+		 * @param {Boolean}
+		 *            input - Whether to enable captions
+		 */
       value: function toggleCaptions(input) {
         captions.toggle.call(this, input, false);
       }
       /**
-       * Set the caption track by index
-       * @param {Number} - Caption index
-       */
+		 * Set the caption track by index
+		 * 
+		 * @param {Number} -
+		 *            Caption index
+		 */
 
     }, {
       key: "airplay",
 
       /**
-       * Trigger the airplay dialog
-       * TODO: update player with state, support, enabled
-       */
+		 * Trigger the airplay dialog TODO: update player with state, support,
+		 * enabled
+		 */
       value: function airplay() {
         // Show dialog if supported
         if (support.airplay) {
@@ -8473,9 +9255,11 @@ typeof navigator === "object" && (function (global, factory) {
         }
       }
       /**
-       * Toggle the player controls
-       * @param {Boolean} [toggle] - Whether to show the controls
-       */
+		 * Toggle the player controls
+		 * 
+		 * @param {Boolean}
+		 *            [toggle] - Whether to show the controls
+		 */
 
     }, {
       key: "toggleControls",
@@ -8483,11 +9267,29 @@ typeof navigator === "object" && (function (global, factory) {
         // Don't toggle if missing UI support or if it's audio
         if (this.supported.ui && !this.isAudio) {
           // Get state before change
-          var isHidden = hasClass(this.elements.container, this.config.classNames.hideControls); // Negate the argument if not undefined since adding the class to hides the controls
+          var isHidden = hasClass(this.elements.container, this.config.classNames.hideControls); // Negate
+																									// the
+																									// argument
+																									// if
+																									// not
+																									// undefined
+																									// since
+																									// adding
+																									// the
+																									// class
+																									// to
+																									// hides
+																									// the
+																									// controls
 
-          var force = typeof toggle === 'undefined' ? undefined : !toggle; // Apply and get updated state
+          var force = typeof toggle === 'undefined' ? undefined : !toggle; // Apply
+																			// and
+																			// get
+																			// updated
+																			// state
 
-          var hiding = toggleClass(this.elements.container, this.config.classNames.hideControls, force); // Close menu
+          var hiding = toggleClass(this.elements.container, this.config.classNames.hideControls, force); // Close
+																											// menu
 
           if (hiding && is$1.array(this.config.controls) && this.config.controls.includes('settings') && !is$1.empty(this.config.settings)) {
             controls.toggleMenu.call(this, false);
@@ -8505,10 +9307,13 @@ typeof navigator === "object" && (function (global, factory) {
         return false;
       }
       /**
-       * Add event listeners
-       * @param {String} event - Event type
-       * @param {Function} callback - Callback for when event occurs
-       */
+		 * Add event listeners
+		 * 
+		 * @param {String}
+		 *            event - Event type
+		 * @param {Function}
+		 *            callback - Callback for when event occurs
+		 */
 
     }, {
       key: "on",
@@ -8516,10 +9321,13 @@ typeof navigator === "object" && (function (global, factory) {
         on.call(this, this.elements.container, event, callback);
       }
       /**
-       * Add event listeners once
-       * @param {String} event - Event type
-       * @param {Function} callback - Callback for when event occurs
-       */
+		 * Add event listeners once
+		 * 
+		 * @param {String}
+		 *            event - Event type
+		 * @param {Function}
+		 *            callback - Callback for when event occurs
+		 */
 
     }, {
       key: "once",
@@ -8527,10 +9335,13 @@ typeof navigator === "object" && (function (global, factory) {
         once.call(this, this.elements.container, event, callback);
       }
       /**
-       * Remove event listeners
-       * @param {String} event - Event type
-       * @param {Function} callback - Callback for when event occurs
-       */
+		 * Remove event listeners
+		 * 
+		 * @param {String}
+		 *            event - Event type
+		 * @param {Function}
+		 *            callback - Callback for when event occurs
+		 */
 
     }, {
       key: "off",
@@ -8538,12 +9349,16 @@ typeof navigator === "object" && (function (global, factory) {
         off(this.elements.container, event, callback);
       }
       /**
-       * Destroy an instance
-       * Event listeners are removed when elements are removed
-       * http://stackoverflow.com/questions/12528049/if-a-dom-element-is-removed-are-its-listeners-also-removed-from-memory
-       * @param {Function} callback - Callback for when destroy is complete
-       * @param {Boolean} soft - Whether it's a soft destroy (for source changes etc)
-       */
+		 * Destroy an instance Event listeners are removed when elements are
+		 * removed
+		 * http://stackoverflow.com/questions/12528049/if-a-dom-element-is-removed-are-its-listeners-also-removed-from-memory
+		 * 
+		 * @param {Function}
+		 *            callback - Callback for when destroy is complete
+		 * @param {Boolean}
+		 *            soft - Whether it's a soft destroy (for source changes
+		 *            etc)
+		 */
 
     }, {
       key: "destroy",
@@ -8582,7 +9397,8 @@ typeof navigator === "object" && (function (global, factory) {
             }
           } else {
             // Unbind listeners
-            unbindListeners.call(_this3); // Replace the container with the original element provided
+            unbindListeners.call(_this3); // Replace the container with the
+											// original element provided
 
             replaceElement(_this3.elements.original, _this3.elements.container); // Event
 
@@ -8637,9 +9453,11 @@ typeof navigator === "object" && (function (global, factory) {
         }
       }
       /**
-       * Check for support for a mime type (HTML5 only)
-       * @param {String} type - Mime type
-       */
+		 * Check for support for a mime type (HTML5 only)
+		 * 
+		 * @param {String}
+		 *            type - Mime type
+		 */
 
     }, {
       key: "supports",
@@ -8647,11 +9465,15 @@ typeof navigator === "object" && (function (global, factory) {
         return support.mime.call(this, type);
       }
       /**
-       * Check for support
-       * @param {String} type - Player type (audio/video)
-       * @param {String} provider - Provider (html5/youtube/vimeo)
-       * @param {Boolean} inline - Where player has `playsinline` sttribute
-       */
+		 * Check for support
+		 * 
+		 * @param {String}
+		 *            type - Player type (audio/video)
+		 * @param {String}
+		 *            provider - Provider (html5/youtube/vimeo)
+		 * @param {Boolean}
+		 *            inline - Where player has `playsinline` sttribute
+		 */
 
     }, {
       key: "isHTML5",
@@ -8689,8 +9511,8 @@ typeof navigator === "object" && (function (global, factory) {
         return Boolean(this.ready && !this.paused && !this.ended);
       }
       /**
-       * Get paused state
-       */
+		 * Get paused state
+		 */
 
     }, {
       key: "paused",
@@ -8698,8 +9520,8 @@ typeof navigator === "object" && (function (global, factory) {
         return Boolean(this.media.paused);
       }
       /**
-       * Get stopped state
-       */
+		 * Get stopped state
+		 */
 
     }, {
       key: "stopped",
@@ -8707,8 +9529,8 @@ typeof navigator === "object" && (function (global, factory) {
         return Boolean(this.paused && this.currentTime === 0);
       }
       /**
-       * Get ended state
-       */
+		 * Get ended state
+		 */
 
     }, {
       key: "ended",
@@ -8731,20 +9553,21 @@ typeof navigator === "object" && (function (global, factory) {
         this.debug.log("Seeking to ".concat(this.currentTime, " seconds"));
       }
       /**
-       * Get current time
-       */
+		 * Get current time
+		 */
       ,
       get: function get() {
         return Number(this.media.currentTime);
       }
       /**
-       * Get buffered
-       */
+		 * Get buffered
+		 */
 
     }, {
       key: "buffered",
       get: function get() {
-        var buffered = this.media.buffered; // YouTube / Vimeo return a float between 0-1
+        var buffered = this.media.buffered; // YouTube / Vimeo return a float
+											// between 0-1
 
         if (is$1.number(buffered)) {
           return buffered;
@@ -8760,8 +9583,8 @@ typeof navigator === "object" && (function (global, factory) {
         return 0;
       }
       /**
-       * Get seeking status
-       */
+		 * Get seeking status
+		 */
 
     }, {
       key: "seeking",
@@ -8769,24 +9592,40 @@ typeof navigator === "object" && (function (global, factory) {
         return Boolean(this.media.seeking);
       }
       /**
-       * Get the duration of the current media
-       */
+		 * Get the duration of the current media
+		 */
 
     }, {
       key: "duration",
       get: function get() {
         // Faux duration set via config
-        var fauxDuration = parseFloat(this.config.duration); // Media duration can be NaN or Infinity before the media has loaded
+        var fauxDuration = parseFloat(this.config.duration); // Media
+																// duration can
+																// be NaN or
+																// Infinity
+																// before the
+																// media has
+																// loaded
 
         var realDuration = (this.media || {}).duration;
-        var duration = !is$1.number(realDuration) || realDuration === Infinity ? 0 : realDuration; // If config duration is funky, use regular duration
+        var duration = !is$1.number(realDuration) || realDuration === Infinity ? 0 : realDuration; // If
+																									// config
+																									// duration
+																									// is
+																									// funky,
+																									// use
+																									// regular
+																									// duration
 
         return fauxDuration || duration;
       }
       /**
-       * Set the player volume
-       * @param {Number} value - must be between 0 and 1. Defaults to the value from local storage and config.volume if not set in storage
-       */
+		 * Set the player volume
+		 * 
+		 * @param {Number}
+		 *            value - must be between 0 and 1. Defaults to the value
+		 *            from local storage and config.volume if not set in storage
+		 */
 
     }, {
       key: "volume",
@@ -8822,15 +9661,16 @@ typeof navigator === "object" && (function (global, factory) {
 
         this.config.volume = volume; // Set the player volume
 
-        this.media.volume = volume; // If muted, and we're increasing volume manually, reset muted state
+        this.media.volume = volume; // If muted, and we're increasing volume
+									// manually, reset muted state
 
         if (!is$1.empty(value) && this.muted && volume > 0) {
           this.muted = false;
         }
       }
       /**
-       * Get the current player volume
-       */
+		 * Get the current player volume
+		 */
       ,
       get: function get() {
         return Number(this.media.volume);
@@ -8855,15 +9695,15 @@ typeof navigator === "object" && (function (global, factory) {
         this.media.muted = toggle;
       }
       /**
-       * Get current muted state
-       */
+		 * Get current muted state
+		 */
       ,
       get: function get() {
         return Boolean(this.media.muted);
       }
       /**
-       * Check if the media has audio
-       */
+		 * Check if the media has audio
+		 */
 
     }, {
       key: "hasAudio",
@@ -8881,9 +9721,11 @@ typeof navigator === "object" && (function (global, factory) {
         return Boolean(this.media.mozHasAudio) || Boolean(this.media.webkitAudioDecodedByteCount) || Boolean(this.media.audioTracks && this.media.audioTracks.length);
       }
       /**
-       * Set playback speed
-       * @param {Number} speed - the speed of playback (0.5-2.0)
-       */
+		 * Set playback speed
+		 * 
+		 * @param {Number}
+		 *            speed - the speed of playback (0.5-2.0)
+		 */
 
     }, {
       key: "speed",
@@ -8916,15 +9758,15 @@ typeof navigator === "object" && (function (global, factory) {
         }, 0);
       }
       /**
-       * Get current playback speed
-       */
+		 * Get current playback speed
+		 */
       ,
       get: function get() {
         return Number(this.media.playbackRate);
       }
       /**
-       * Get the minimum allowed speed
-       */
+		 * Get the minimum allowed speed
+		 */
 
     }, {
       key: "minimumSpeed",
@@ -8943,8 +9785,8 @@ typeof navigator === "object" && (function (global, factory) {
         return 0.0625;
       }
       /**
-       * Get the maximum allowed speed
-       */
+		 * Get the maximum allowed speed
+		 */
 
     }, {
       key: "maximumSpeed",
@@ -8963,10 +9805,11 @@ typeof navigator === "object" && (function (global, factory) {
         return 16;
       }
       /**
-       * Set playback quality
-       * Currently HTML5 & YouTube only
-       * @param {Number} input - Quality level
-       */
+		 * Set playback quality Currently HTML5 & YouTube only
+		 * 
+		 * @param {Number}
+		 *            input - Quality level
+		 */
 
     }, {
       key: "quality",
@@ -9001,17 +9844,19 @@ typeof navigator === "object" && (function (global, factory) {
         }
       }
       /**
-       * Get current quality level
-       */
+		 * Get current quality level
+		 */
       ,
       get: function get() {
         return this.media.quality;
       }
       /**
-       * Toggle loop
-       * TODO: Finish fancy new logic. Set the indicator on load as user may pass loop as config
-       * @param {Boolean} input - Whether to loop or not
-       */
+		 * Toggle loop TODO: Finish fancy new logic. Set the indicator on load
+		 * as user may pass loop as config
+		 * 
+		 * @param {Boolean}
+		 *            input - Whether to loop or not
+		 */
 
     }, {
       key: "loop",
@@ -9020,54 +9865,39 @@ typeof navigator === "object" && (function (global, factory) {
         this.config.loop.active = toggle;
         this.media.loop = toggle; // Set default to be a true toggle
 
-        /* const type = ['start', 'end', 'all', 'none', 'toggle'].includes(input) ? input : 'toggle';
-             switch (type) {
-                case 'start':
-                    if (this.config.loop.end && this.config.loop.end <= this.currentTime) {
-                        this.config.loop.end = null;
-                    }
-                    this.config.loop.start = this.currentTime;
-                    // this.config.loop.indicator.start = this.elements.display.played.value;
-                    break;
-                 case 'end':
-                    if (this.config.loop.start >= this.currentTime) {
-                        return this;
-                    }
-                    this.config.loop.end = this.currentTime;
-                    // this.config.loop.indicator.end = this.elements.display.played.value;
-                    break;
-                 case 'all':
-                    this.config.loop.start = 0;
-                    this.config.loop.end = this.duration - 2;
-                    this.config.loop.indicator.start = 0;
-                    this.config.loop.indicator.end = 100;
-                    break;
-                 case 'toggle':
-                    if (this.config.loop.active) {
-                        this.config.loop.start = 0;
-                        this.config.loop.end = null;
-                    } else {
-                        this.config.loop.start = 0;
-                        this.config.loop.end = this.duration - 2;
-                    }
-                    break;
-                 default:
-                    this.config.loop.start = 0;
-                    this.config.loop.end = null;
-                    break;
-            } */
+        /*
+		 * const type = ['start', 'end', 'all', 'none',
+		 * 'toggle'].includes(input) ? input : 'toggle'; switch (type) { case
+		 * 'start': if (this.config.loop.end && this.config.loop.end <=
+		 * this.currentTime) { this.config.loop.end = null; }
+		 * this.config.loop.start = this.currentTime; //
+		 * this.config.loop.indicator.start =
+		 * this.elements.display.played.value; break; case 'end': if
+		 * (this.config.loop.start >= this.currentTime) { return this; }
+		 * this.config.loop.end = this.currentTime; //
+		 * this.config.loop.indicator.end = this.elements.display.played.value;
+		 * break; case 'all': this.config.loop.start = 0; this.config.loop.end =
+		 * this.duration - 2; this.config.loop.indicator.start = 0;
+		 * this.config.loop.indicator.end = 100; break; case 'toggle': if
+		 * (this.config.loop.active) { this.config.loop.start = 0;
+		 * this.config.loop.end = null; } else { this.config.loop.start = 0;
+		 * this.config.loop.end = this.duration - 2; } break; default:
+		 * this.config.loop.start = 0; this.config.loop.end = null; break; }
+		 */
       }
       /**
-       * Get current loop state
-       */
+		 * Get current loop state
+		 */
       ,
       get: function get() {
         return Boolean(this.media.loop);
       }
       /**
-       * Set new media source
-       * @param {Object} input - The new source object (see docs)
-       */
+		 * Set new media source
+		 * 
+		 * @param {Object}
+		 *            input - The new source object (see docs)
+		 */
 
     }, {
       key: "source",
@@ -9075,15 +9905,15 @@ typeof navigator === "object" && (function (global, factory) {
         source.change.call(this, input);
       }
       /**
-       * Get current source
-       */
+		 * Get current source
+		 */
       ,
       get: function get() {
         return this.media.currentSrc;
       }
       /**
-       * Get a download URL (either source or custom)
-       */
+		 * Get a download URL (either source or custom)
+		 */
 
     }, {
       key: "download",
@@ -9092,8 +9922,8 @@ typeof navigator === "object" && (function (global, factory) {
         return is$1.url(download) ? download : this.source;
       }
       /**
-       * Set the download URL
-       */
+		 * Set the download URL
+		 */
       ,
       set: function set(input) {
         if (!is$1.url(input)) {
@@ -9104,9 +9934,11 @@ typeof navigator === "object" && (function (global, factory) {
         controls.setDownloadUrl.call(this);
       }
       /**
-       * Set the poster image for a video
-       * @param {String} input - the URL for the new poster image
-       */
+		 * Set the poster image for a video
+		 * 
+		 * @param {String}
+		 *            input - the URL for the new poster image
+		 */
 
     }, {
       key: "poster",
@@ -9119,8 +9951,8 @@ typeof navigator === "object" && (function (global, factory) {
         ui.setPoster.call(this, input, false).catch(function () {});
       }
       /**
-       * Get the current poster image
-       */
+		 * Get the current poster image
+		 */
       ,
       get: function get() {
         if (!this.isVideo) {
@@ -9130,8 +9962,8 @@ typeof navigator === "object" && (function (global, factory) {
         return this.media.getAttribute('poster') || this.media.getAttribute('data-poster');
       }
       /**
-       * Get the current aspect ratio in use
-       */
+		 * Get the current aspect ratio in use
+		 */
 
     }, {
       key: "ratio",
@@ -9144,8 +9976,8 @@ typeof navigator === "object" && (function (global, factory) {
         return is$1.array(ratio) ? ratio.join(':') : ratio;
       }
       /**
-       * Set video aspect ratio
-       */
+		 * Set video aspect ratio
+		 */
       ,
       set: function set(input) {
         if (!this.isVideo) {
@@ -9162,9 +9994,11 @@ typeof navigator === "object" && (function (global, factory) {
         setAspectRatio.call(this);
       }
       /**
-       * Set the autoplay state
-       * @param {Boolean} input - Whether to autoplay or not
-       */
+		 * Set the autoplay state
+		 * 
+		 * @param {Boolean}
+		 *            input - Whether to autoplay or not
+		 */
 
     }, {
       key: "autoplay",
@@ -9173,8 +10007,8 @@ typeof navigator === "object" && (function (global, factory) {
         this.config.autoplay = toggle;
       }
       /**
-       * Get the current autoplay state
-       */
+		 * Get the current autoplay state
+		 */
       ,
       get: function get() {
         return Boolean(this.config.autoplay);
@@ -9185,8 +10019,8 @@ typeof navigator === "object" && (function (global, factory) {
         captions.set.call(this, input, false);
       }
       /**
-       * Get the current caption track index (-1 if disabled)
-       */
+		 * Get the current caption track index (-1 if disabled)
+		 */
       ,
       get: function get() {
         var _this$captions = this.captions,
@@ -9195,10 +10029,13 @@ typeof navigator === "object" && (function (global, factory) {
         return toggled ? currentTrack : -1;
       }
       /**
-       * Set the wanted language for captions
-       * Since tracks can be added later it won't update the actual caption track until there is a matching track
-       * @param {String} - Two character ISO language code (e.g. EN, FR, PT, etc)
-       */
+		 * Set the wanted language for captions Since tracks can be added later
+		 * it won't update the actual caption track until there is a matching
+		 * track
+		 * 
+		 * @param {String} -
+		 *            Two character ISO language code (e.g. EN, FR, PT, etc)
+		 */
 
     }, {
       key: "language",
@@ -9206,17 +10043,16 @@ typeof navigator === "object" && (function (global, factory) {
         captions.setLanguage.call(this, input, false);
       }
       /**
-       * Get the current track's language
-       */
+		 * Get the current track's language
+		 */
       ,
       get: function get() {
         return (captions.getCurrentTrack.call(this) || {}).language;
       }
       /**
-       * Toggle picture-in-picture playback on WebKit/MacOS
-       * TODO: update player with state, support, enabled
-       * TODO: detect outside changes
-       */
+		 * Toggle picture-in-picture playback on WebKit/MacOS TODO: update
+		 * player with state, support, enabled TODO: detect outside changes
+		 */
 
     }, {
       key: "pip",
@@ -9227,7 +10063,9 @@ typeof navigator === "object" && (function (global, factory) {
         } // Toggle based on current state if not passed
 
 
-        var toggle = is$1.boolean(input) ? input : !this.pip; // Toggle based on current state
+        var toggle = is$1.boolean(input) ? input : !this.pip; // Toggle based
+																// on current
+																// state
         // Safari
 
         if (is$1.function(this.media.webkitSetPresentationMode)) {
@@ -9244,8 +10082,8 @@ typeof navigator === "object" && (function (global, factory) {
         }
       }
       /**
-       * Get the current picture-in-picture state
-       */
+		 * Get the current picture-in-picture state
+		 */
       ,
       get: function get() {
         if (!support.pip) {
@@ -9266,10 +10104,13 @@ typeof navigator === "object" && (function (global, factory) {
         return support.check(type, provider, inline);
       }
       /**
-       * Load an SVG sprite into the page
-       * @param {String} url - URL for the SVG sprite
-       * @param {String} [id] - Unique ID
-       */
+		 * Load an SVG sprite into the page
+		 * 
+		 * @param {String}
+		 *            url - URL for the SVG sprite
+		 * @param {String}
+		 *            [id] - Unique ID
+		 */
 
     }, {
       key: "loadSprite",
@@ -9277,10 +10118,13 @@ typeof navigator === "object" && (function (global, factory) {
         return loadSprite(url, id);
       }
       /**
-       * Setup multiple instances
-       * @param {*} selector
-       * @param {Object} options
-       */
+		 * Setup multiple instances
+		 * 
+		 * @param {*}
+		 *            selector
+		 * @param {Object}
+		 *            options
+		 */
 
     }, {
       key: "setup",

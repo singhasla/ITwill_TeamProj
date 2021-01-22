@@ -75,7 +75,7 @@
 	                            <h5><a href="${contextPath}/notice/listNotice.do">공지사항</a></h5>
 	                        </li>
 	                        <li class="blog__details__btns__item">
-	                            <h5><a href="${contextPath}/faq/">자주 묻는 질문</a></h5>
+	                            <h5><a href="${contextPath}/faq/listFaq.do">자주 묻는 질문</a></h5>
 	                        </li>
 	                        <li class="blog__details__btns__item">
 	                            <h5><a href="${contextPath}/qna/addQna.do">문의하기</a></h5>

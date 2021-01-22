@@ -1,5 +1,7 @@
 @CHARSET "UTF-8";
-
+a {
+	color: #ffffff;
+}
 h3 {
 	color: #ffffff !important; 
 }
@@ -186,7 +188,7 @@ h3 {
 
 .btn-box.board {
     height: 2.5rem;
-    line-height: 2.125rem;
+    line-height: 2.5rem;
     min-width: 4rem;
     padding: 0 .5625rem;
     border-radius: 5px;

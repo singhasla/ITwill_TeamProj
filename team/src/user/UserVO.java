@@ -12,7 +12,7 @@ public class UserVO {
 	private String userAddr1; 
 	private String userAddr2; 
 	private Timestamp userWriteDate;
-	private Timestamp userUpdateDate;
+	private Timestamp userUpdate;
 	private String userAddr3; 
 	private String userAddr4; 
 	
@@ -114,13 +114,19 @@ public class UserVO {
 		this.userWriteDate = userWriteDate;
 	}
 
-	public Timestamp getUserUpdateDate() {
-		return userUpdateDate;
+	
+
+	public Timestamp getUserUpdate() {
+		return userUpdate;
 	}
 
-	public void setUserUpdateDate(Timestamp userUpdateDate) {
-		this.userUpdateDate = userUpdateDate;
+
+
+	public void setUserUpdate(Timestamp userUpdate) {
+		this.userUpdate = userUpdate;
 	}
+
+
 
 	public String getUserAddr3() {
 		return userAddr3;
