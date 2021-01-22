@@ -54,7 +54,7 @@ public class AdminUserDAO {
 				 sql ="select * from user ";
 			}else{
 				//검색했을때
-				sql="select * from user where userName like '%"+searchKeyword+"%'";
+				/*sql="select * from user where userName like '%"+searchKeyword+"%'";*/
 			}
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -71,6 +71,8 @@ public class AdminUserDAO {
 				userVO.setUserAddr2(rs.getString("userAddr2"));
 				userVO.setUserAddr3(rs.getString("userAddr3"));
 				userVO.setUserAddr4(rs.getString("userAddr4"));
+				userVO.setUserUpdate(rs.getTimestamp("userUpdate"));
+				userVO.setUserWriteDate(rs.getTimestamp("userWriteDate"));
 				
 				userList.add(userVO);
 			}
@@ -109,6 +111,77 @@ public class AdminUserDAO {
 		}
 		
 		return total;
+	}
+
+	public UserVO getUser(String userID) {
+		UserVO userVO= new UserVO();
+		try {
+			conn = getConnection();
+			String sql = "select * from user where userID = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userID);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				userVO.setUserID(rs.getString("userID"));
+				userVO.setUserPW(rs.getString("userPW"));
+				userVO.setUserName(rs.getString("userName"));
+				userVO.setUserNickname(rs.getString("userNickname"));
+				userVO.setUserTel(rs.getString("userTel"));
+				userVO.setUserEmail(rs.getString("userEmail"));
+				userVO.setUserAddr1(rs.getString("userAddr1"));
+				userVO.setUserAddr2(rs.getString("userAddr2"));
+				userVO.setUserAddr3(rs.getString("userAddr3"));
+				userVO.setUserAddr4(rs.getString("userAddr4"));
+				userVO.setUserWriteDate(rs.getTimestamp("userWriteDate"));
+				userVO.setUserUpdate(rs.getTimestamp("userUpdate"));
+			}
+			
+		} catch (Exception e) {
+			System.out.println("getUser 메소드 내부 오류 "+e);
+		}finally {
+			discon();
+		}
+		return userVO;
+	}
+
+	public int userUpdate(UserVO userVO) {
+		int result =0;
+		try {
+			conn = getConnection();
+			String sql = "update user set userNickname= ?, userTel= ?, userAddr1=?,userAddr2=?,userAddr3=?,userAddr4=? , userUpdate = now() where userID =? ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userVO.getUserNickname());
+			pstmt.setString(2, userVO.getUserTel());
+			pstmt.setString(3, userVO.getUserAddr1());
+			pstmt.setString(4, userVO.getUserAddr2());
+			pstmt.setString(5, userVO.getUserAddr3());
+			pstmt.setString(6, userVO.getUserAddr4());
+			pstmt.setString(7, userVO.getUserID());
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("userUpdate 메소드 내부 오류 "+e);
+		}finally {
+			discon();
+		}
+		return result ;
+	}
+
+	public int deleteUser(String userID) {
+		
+		try {
+			conn = getConnection();
+			String sql = "delete from user where userID =?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userID);
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("delete()메소드 내부에서 오류"+e);
+		}finally {
+			discon();
+		}
+		return 0;
 	}
 
 }
