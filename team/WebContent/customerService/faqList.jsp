@@ -95,13 +95,10 @@
 		                        	<c:otherwise>
 		                        		<c:forEach var="faqVO" items="${faqList}">
 										    <dl id="faq_list" class="faq-list">
-										    	<dt class="accordion content-box-question" style="padding: 28px 0px 28px 70px">
-										    		<a href="#">
+										    	<dt class="accordion">
 										    			<span>${faqVO.faqTitle}</span>
-										    			<span class="arrow_triangle-down scrolldown" id="arrow"></span>
-										    		</a>
 										    	</dt>
-										    	<dd class="content-box-answer" id="fqaAnswer" style="display: none;">
+										    	<dd class="panel">
 													<div><p>${fn:replace(faqVO.faqContent,LF,BR)}</p></div>
 												</dd>
 											</dl>
@@ -182,13 +179,20 @@
 	<!-- footer영역 -->
 	<jsp:include page="../inc/footer.jsp" />
 	<script>
-		$(".accordion").click(function(){
-			$("#fqaAnswer").toggle();
-			if($("#arrow").hasClass(".arrow_triangle-down") === true)
-				$("#arrow").removeClass('arrow_triangle-down').addClass('arrow_triangle-up');
-			else
-				$("#arrow").removeClass('arrow_triangle-up').addClass('arrow_triangle-down');
-		});
+	var acc = document.getElementsByClassName("accordion");
+	var i;
+
+	for (i = 0; i < acc.length; i++) {
+	  acc[i].addEventListener("click", function() {
+	    this.classList.toggle("active1");
+	    var panel = this.nextElementSibling;
+	    if (panel.style.maxHeight) {
+	      panel.style.maxHeight = null;
+	    } else {
+	      panel.style.maxHeight = panel.scrollHeight + "px";
+	    } 
+	  });
+	}
 	</script>
 	
 </body>
