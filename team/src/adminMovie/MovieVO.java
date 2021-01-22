@@ -12,12 +12,12 @@ public class MovieVO {
 	private int movieCategoryNo1;
 	private int movieCategoryNo2;
 	private String movieDirector;
+	private String actorName;
+	private String movieTime;
 	private String movieLink;
 	private Date movieReleaseDate;
 	private Date movieWriteDate;
 	private Date movieUpdateDate;
-	private String actorName;
-	private String movieTime;
 
 	public MovieVO() {
 	}
