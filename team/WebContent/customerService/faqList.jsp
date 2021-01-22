@@ -127,16 +127,16 @@
 			            			<c:forEach var="page" begin="1" end="10" step="1">
 				            			<c:if test="${section > 1 && page = 1}">
 				            			<div class="paging">
-				            				<a href="${contextPath}/faq/listFaq.do?section=${section-1}&pageNo=${(section-1)*10+1}">
+				            				<a href="${contextPath}/faq/listFaq.do?section=${section-1}&pageNo=${(section-1)*10+1}&search=${search}">
 				            				<span class="arrow_carrot-left"></span></a>
 				            			</div>
 				            			</c:if>
 				            			<div class="paging">
-				            				<a href="${contextPath}/faq/listFaq.do?section=${section}&pageNo=${page}">${(section-1)*10}</a>
+				            				<a href="${contextPath}/faq/listFaq.do?section=${section}&pageNo=${page}&search=${search}">${(section-1)*10}</a>
 			            				</div>
 			            				<c:if test="${page==10}">
 			            				<div class="paging">	
-			            					<a href="${contextPath}/faq/listFaq.do?section=${section+1}&pageNo=${section*10+1}">
+			            					<a href="${contextPath}/faq/listFaq.do?section=${section+1}&pageNo=${section*10+1}&search=${search}">
 			            					<span class="arrow_carrot-right"></span></a>
 			            				</div>
 			            				</c:if>
@@ -154,7 +154,7 @@
 			            				<c:choose>
 			            					<c:when test="${page==pageNo}">
 			            					<div class="paging">
-			            						<span><a class="current" href="${contextPath}/faq/listFaq.do?section=${section}&pageNo=${page}&pageNum=${page}&search=${search}">${page}</a></span>
+			            						<span><a class="current" href="${contextPath}/faq/listFaq.do?section=${section}&pageNo=${page}&search=${search}">${page}</a></span>
 			            					</div>
 			            					</c:when>
 			            					<c:otherwise>
