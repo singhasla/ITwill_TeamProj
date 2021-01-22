@@ -2,16 +2,20 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"/>
-<c:set var="noticeList" value="${noticeMap.noticeList}"/>
-<c:set var="noticeListCount" value="${noticeMap.noticeListCount}"/>
-<c:set var="section" value="${noticeMap.section}"/>
-<c:set var="pageNo" value="${noticeMap.pageNo}"/>
-<c:set var="search" value="${noticeMap.search}"/>
+<c:set var="faqList" value="${faqList}"/>
+<c:set var="faqListCount" value="${faqListCount}"/>
+<c:set var="section" value="${faqMap.section}"/>
+<c:set var="pageNo" value="${faqMap.pageNo}"/>
+<c:set var="search" value="${faqMap.search}"/>
 
 <%
 	request.setCharacterEncoding("UTF-8");
-%>    
+	pageContext.setAttribute("LF", "\n");
+	pageContext.setAttribute("BR", "<br>");
+%>        
+    
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -37,8 +41,11 @@
     <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="../css/style.css" type="text/css">
     <link rel="stylesheet" href="../css/customerService.css" type="text/css">
-    <link rel="stylesheet" href="../css/event.css" type="text/css">
-
+	<link rel="stylesheet" href="../css/event.css" type="text/css">
+    
+    <!-- jQuery -->
+	<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+	
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -52,10 +59,11 @@
 
 	<!-- Header -->
 	<jsp:include page="../inc/header.jsp" />
-
-	<!-- Notice Section Begin -->
-	<section class="blog-details spad">
+	
+	<!-- FAQ Section Begin -->
+    <section class="blog-details spad">
 	    <div class="container">
+	    
 		    <div class="row d-flex justify-content-center">
 	            <div class="col-lg-8">
 	                <div class="blog__details__title">
@@ -75,48 +83,33 @@
 	                            <h5><a href="${contextPath}/qna/addQna.do">문의하기</a></h5>
 	                        </li>
                         </ul>
-                        <div class="blog__details__form" style="color: #ffffff;">
-	                        <h4>공지사항</h4>
-						    <table class="notice_table">
-							<colgroup>
-								<col style="width:10%;">
-								<col style="width:*">
-								<col style="width:15%;">
-								<col style="width:10%;">
-							</colgroup>
-							<thead>
-							<tr>
-								<th>번호</th>
-								<th style="text-align: left;">제목</th>
-								<th>등록일</th>
-								<th>조회수</th>
-							</tr>
-							</thead>
-							<tbody>
-							<c:choose>	
-								<c:when test="${noticeListCount == 0 }">
-									<tr>
-										<td colspan="4">등록된 공지사항이 없습니다.</td>
-									</tr>		
-								</c:when>
-								<c:otherwise>
-									<c:forEach var="notice" items="${noticeList}">
-									<fmt:formatDate var="noticeFormattedDate" value="${notice.noticeWriteDate}" pattern="yy-MM-dd"/>
-									<tr>
-										<td><span>${notice.noticeNo}</span></td>
-										<td class="table_title"><a href="${contextPath}/notice/viewNotice.do?noticeNo=${notice.noticeNo}" class="table_title"><span style="color: #ffffff;">[${notice.noticeCategory}]${notice.noticeTitle}</span></a></td>
-										<td>${noticeFormattedDate}</td>	
-										<td>${notice.noticeReadCount}</td>
-									</tr>
-									</c:forEach>
-								</c:otherwise>	
-							</c:choose>	
-							</tbody>
-							</table>
+                        <!-- FAQ -->
+                        <div class="blog__details__form accordions">
+	                        <h4>자주 묻는 질문</h4>
+	                        <c:choose>
+	                        	<c:when test="${faqListCount == 0 }">
+	                        		<div>
+	                        			<p>등록된 FAQ가 없습니다.</p>
+	                        		</div>
+	                        	</c:when>
+		                        	<c:otherwise>
+		                        		<c:forEach var="faqVO" items="${faqList}">
+										    <dl id="faq_list" class="faq-list">
+										    	<dt class="accordion">
+										    			<span>${faqVO.faqTitle}</span>
+										    	</dt>
+										    	<dd class="panel">
+													<div><p>${fn:replace(faqVO.faqContent,LF,BR)}</p></div>
+												</dd>
+											</dl>
+										</c:forEach>
+								</c:otherwise>
+							</c:choose>
 						</div>
+						<!-- FAQ end -->
 						<!-- Search Begin -->
-			        	<div class="faq-search-box noticesearch">
-				        	<form action="${contextPath}/notice/listNotice.do">
+			        	<div class="faq-search-box noticesearch" style="margin-top: 20px;">
+				        	<form action="${contextPath}/faq/listFaq.do">
 								<div class="form-box tmg0">
 									<input type="hidden" name="section" value="${section}">
 									<input type="hidden" name="pageNo" value="${pageNo}">
@@ -126,51 +119,47 @@
 							</form>	
 						</div>
 						<!-- Search End -->
-						<!-- 공지 등록버튼 -->
-			            <c:if test="${userID eq 'admin'}">
-			           		<a class="site-btn submit" href="${contextPath}/notice/addNotice.do">등록</a>
-			            </c:if>
-			            <!-- 페이징 -->
+						<!-- 페이징 -->
 			            <div class="row" style="justify-content: center;">
-			            <c:if test="${noticeListCount != 0}">
+			            <c:if test="${faqListCount != 0}">
 			            	<c:choose>
-			            		<c:when test="${noticeListCount > 100}">
+			            		<c:when test="${faqListCount > 100}">
 			            			<c:forEach var="page" begin="1" end="10" step="1">
 				            			<c:if test="${section > 1 && page = 1}">
 				            			<div class="paging">
-				            				<a href="${contextPath}/notice/listNotice.do?section=${section-1}&pageNo=${(section-1)*10+1}&search=${search}">
+				            				<a href="${contextPath}/faq/listFaq.do?section=${section-1}&pageNo=${(section-1)*10+1}&search=${search}">
 				            				<span class="arrow_carrot-left"></span></a>
 				            			</div>
 				            			</c:if>
 				            			<div class="paging">
-				            				<a href="${contextPath}/notice/listNotice.do?section=${section}&pageNo=${page}&search=${search}">${(section-1)*10}</a>
+				            				<a href="${contextPath}/faq/listFaq.do?section=${section}&pageNo=${page}&search=${search}">${(section-1)*10}</a>
 			            				</div>
 			            				<c:if test="${page==10}">
 			            				<div class="paging">	
-			            					<a href="${contextPath}/notice/listNotice.do?section=${section+1}&pageNo=${section*10+1}&search=${search}">
+			            					<a href="${contextPath}/faq/listFaq.do?section=${section+1}&pageNo=${section*10+1}&search=${search}">
 			            					<span class="arrow_carrot-right"></span></a>
 			            				</div>
 			            				</c:if>
 			            			</c:forEach>
 			            		</c:when>
-			            		<c:when test="${noticeListCount == 100}">
+			            		<c:when test="${faqListCount == 100}">
 			            			<c:forEach var="page" begin="1" end="10" step="1">
 			            			<div class="paging">	
 			            				<span><a>${page}</a></span>
 			            			</div>	
 			            			</c:forEach>
 			            		</c:when>
-			            		<c:when test="${noticeListCount < 100 }">
-			            			<c:forEach var="page" begin="1" end="${noticeListCount/10+1}" step="1">
+			            		<c:when test="${faqListCount < 100 }">
+			            			<c:forEach var="page" begin="1" end="${faqListCount/10+1}" step="1">
 			            				<c:choose>
 			            					<c:when test="${page==pageNo}">
 			            					<div class="paging">
-			            						<span><a class="current" href="${contextPath}/notice/listNotice.do?section=${section}&pageNo=${page}&search=${search}">${page}</a></span>
+			            						<span><a class="current" href="${contextPath}/faq/listFaq.do?section=${section}&pageNo=${page}&search=${search}">${page}</a></span>
 			            					</div>
 			            					</c:when>
 			            					<c:otherwise>
 			            					<div class="paging">
-			            						<span><a href="${contextPath}/notice/listNotice.do?section=${section}&pageNo=${page}&search=${search}">${page}</a></span>
+			            						<span><a href="${contextPath}/faq/listFaq.do?section=${section}&pageNo=${page}&search=${search}">${page}</a></span>
 			            					</div>	
 			            					</c:otherwise>
 			            				</c:choose>
@@ -179,17 +168,32 @@
 			            	</c:choose>
 						</c:if>
 						</div>
-						<!-- 페이징 끝 -->
+						<!-- 페이징 끝 -->	
 					</div>		
 				</div>			
 	        </div>
 		</div>
     </section>
-    <!-- Notice Section End -->
-	
+    <!-- FAQ Section End -->	
 	
 	<!-- footer영역 -->
 	<jsp:include page="../inc/footer.jsp" />
+	<script>
+	var acc = document.getElementsByClassName("accordion");
+	var i;
 
+	for (i = 0; i < acc.length; i++) {
+	  acc[i].addEventListener("click", function() {
+	    this.classList.toggle("active1");
+	    var panel = this.nextElementSibling;
+	    if (panel.style.maxHeight) {
+	      panel.style.maxHeight = null;
+	    } else {
+	      panel.style.maxHeight = panel.scrollHeight + "px";
+	    } 
+	  });
+	}
+	</script>
+	
 </body>
 </html>

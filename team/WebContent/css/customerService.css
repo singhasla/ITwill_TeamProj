@@ -1,5 +1,8 @@
 @CHARSET "UTF-8";
 
+a {
+	color: #ffffff;
+}
 button {
 	color: #ffffff !important;
     cursor: pointer;
@@ -7,6 +10,13 @@ button {
 
 h4 {
 	color: #ffffff !important; 
+}
+.bdt3 {
+	border-top: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.bdb3 {
+	border-bottom: 3px solid rgba(255, 255, 255, 0.2);
 }
 
 .blog__details__btns {
@@ -76,8 +86,8 @@ h4 {
 	height: 3.4375rem;
     line-height: 3.4375rem;
     padding-left: 1rem;
-    border-bottom: 1px solid #383838;
-    border-top: 1px solid #383838
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .next span {
@@ -87,7 +97,7 @@ h4 {
     padding: 0 2.125rem 0 1rem;
 }
 .bo-r {
-	border-right: 1px solid #383838;
+	border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
 .next a {
 	margin-left: 30px;
@@ -147,7 +157,7 @@ h4 {
 }
 
 .filearea {
-	border-bottom: 1px solid;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     color: #646464;
     margin-top: 10px;
     margin-bottom: 30px;
@@ -163,49 +173,6 @@ h4 {
     height: 15px !important;
 }
 
-.content-box-question{
-    padding: 30px 60px;
-    color: #e6e6e6;
-    font-weight: 300;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    position: relative;
-}
-.content-box-question p {
-	color: #ffffff;
-	font-size: 18px;
-}
-.content-box-question:before{
-    content: "Q";
-    font-size: 25px;
-    color: #ea003d;
-    font-weight: 500;
-    position: relative;
-    left: 25px;
-    top: 22px;
-    position: absolute;
-}
-
-.content-box-answer{
-    padding: 30px 60px;
-    color: #e6e6e6;
-    font-weight: 300;
-    position: relative;
-    
-}
-.content-box-answer:before {
-	content: "A";
-    font-size: 25px;
-    color: #666;
-    font-weight: 500;
-    position: relative;
-    left: 25px;
-    top: 22px;
-    position: absolute;
-}
-.content-box-answer p {
-	color: #ffffff;
-	font-size: 18px;
-}
 .btn-area {
     margin-top: 1.25rem;
     z-index: 10;
@@ -242,4 +209,115 @@ h4 {
 
 .mr-top-20 {
 	margin-top: 20px;
+}
+
+.accordion {
+	padding: 30px 60px;
+    color: #e6e6e6;
+    font-weight: 300;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+}
+
+.accordion p {
+	color: #ffffff;
+	font-size: 18px;
+}
+.accordion:before {
+	content: "Q";
+    font-size: 25px;
+    color: #ea003d;
+    font-weight: 500;
+    position: relative;
+    left: 25px;
+    top: 22px;
+    position: absolute;
+}
+.accordion:after {
+	content: '\02795';
+	font-size: 15px;
+	float: right;
+	margin-right: 20px;
+}
+
+.active1:after {
+	content: "\2796";
+	
+}
+
+.active1, .accordion:hover {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+.panel {
+    color: #e6e6e6;
+    font-weight: 300;
+    position: relative;
+    max-height: 0;
+  	overflow: hidden;
+  	transition: max-height 0.2s ease-out;
+    
+}
+
+.panel:before {
+	content: "A";
+    font-size: 25px;
+    color: #666;
+    font-weight: 500;
+    position: relative;
+    left: 25px;
+    top: 22px;
+    position: absolute;	
+   
+}	
+
+.panel p {
+	color: #ffffff;
+	font-size: 18px;
+}
+.faq-list {
+	color: #fff;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 0px !important;
+}
+.faq-list dt {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    position: relative;
+}
+.faq-list dt span {
+    left: auto;
+    font-size: 1.2rem;
+    top: 0;
+    color: #b7b7b7;
+    float: left;
+    margin-right: 30px;
+}
+.faq-list dt p {
+	float: left;
+	font-size: 1.2rem;
+	color: #b7b7b7;
+	line-height: inherit;
+}
+.scrolldown {
+	float: right !important;
+	font-size: xx-large !important;
+}
+.faq-list dd {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    line-height: 1.7em;
+    font-size: 1.2rem;
+    background: #070720;
+    color: #969696;
+    font-weight: 500;
+    margin-bottom: 0px !important;
+}
+
+.faq-list dd p {
+	padding: 30px 60px;
+	color: #b7b7b7;
+	font-size: 1.2rem;
 }
