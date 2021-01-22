@@ -23,6 +23,7 @@ public class AdminUserController extends HttpServlet{
 	
 	UserVO userVO;
 	AdminUserService adminUserService;
+	UserDAO userDAO;
 	
 	@Override
 	public void init() throws ServletException {
@@ -106,7 +107,25 @@ public class AdminUserController extends HttpServlet{
 			result = adminUserService.userUpate(userVO);
 			request.setAttribute("result", result);
 			nextPage = "/adminPage/getUser.do";
-		}//수정메소드
+			
+		} else if (action.equals("/nickCheck.do")) {
+			String userNickname = request.getParameter("userNickname");
+			request.setAttribute("userNickname", userNickname);
+			int check = userDAO.nickCheck(userNickname);
+			
+			System.out.println(userNickname);
+			if (check == 1) {
+				request.setAttribute("msg", "used");
+				System.out.println("사용중");
+			} else {
+				request.setAttribute("msg", "allow");
+				System.out.println("가능");
+			}
+			
+			nextPage = "/userPage/nick.jsp";
+			
+		}
+		
 		
 		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 		dispatch.forward(request, response);

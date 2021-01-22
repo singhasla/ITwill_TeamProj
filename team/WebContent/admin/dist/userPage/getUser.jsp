@@ -90,7 +90,7 @@
 					<div class="text-center my-5">
 						<button type="button" class="btn btn-secondary" onclick="location.href='${contextPath}/adminPage/dashBoard.do'">목록</button>
 						<button type="button" class="btn btn-warning" onclick="location.href='${contextPath}/adminPage/modUser.do?userID=${user.userID}'">수정</button>
-						<button type="button" class="btn btn-danger">삭제</button>
+						<button type="button" class="btn btn-danger"  onclick="location.href='${contextPath}/adminPage/delUser.do?userID=${user.userID}'">삭제</button>
 					</div>
 				
 				</div>

@@ -19,64 +19,12 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
        	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	    <script type="text/javascript">
-	    function sample4_execDaumPostcode() {
-	        new daum.Postcode({
-	            oncomplete: function(data) {
-	                var roadAddr = data.roadAddress; // 도로명 주소 변수
-	                var extraRoadAddr = ''; // 참고 항목 변수
-	
-	                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-	                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-	                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-	                    extraRoadAddr += data.bname;
-	                }
-	                // 건물명이 있고, 공동주택일 경우 추가한다.
-	                if(data.buildingName !== '' && data.apartment === 'Y'){
-	                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-	                }
-	                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-	                if(extraRoadAddr !== ''){
-	                    extraRoadAddr = ' (' + extraRoadAddr + ')';
-	                }
-	
-	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-	                document.getElementById('sample4_postcode').value = data.zonecode;
-	                document.getElementById("sample4_roadAddress").value = roadAddr;
-	                document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
-	                
-	                // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-	                if(roadAddr !== ''){
-	                    document.getElementById("sample4_extraAddress").value = extraRoadAddr;
-	                } else {
-	                    document.getElementById("sample4_extraAddress").value = '';
-	                }
-	
-	                var guideTextBox = document.getElementById("guide");
-	                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-	                if(data.autoRoadAddress) {
-	                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-	                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-	                    guideTextBox.style.display = 'block';
-	
-	                } else if(data.autoJibunAddress) {
-	                    var expJibunAddr = data.autoJibunAddress;
-	                    guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-	                    guideTextBox.style.display = 'block';
-	                } else {
-	                    guideTextBox.innerHTML = '';
-	                    guideTextBox.style.display = 'none';
-	                }
-	            }
-	        }).open();
-	    }
-	  
-	    
-	    </script>
+		<script  src="${contextPath}/admin/dist/userJS/moduser.js"></script>
     </head>
     <body class="sb-nav-fixed">
     <!-- 헤더 -->
 	<jsp:include page="../adminInc/header.jsp"/>
+	
         <div id="layoutSidenav">
         <!-- 사이드 메뉴 -->
         	<jsp:include page="../adminInc/sidenav.jsp"/>
@@ -86,8 +34,10 @@
 			<div style="margin-left: 100px; margin-right: 100px;">
 				<fmt:formatDate var="userFormattedDate" value="${user.userWriteDate}" pattern="yyyy-MM-dd HH:mm"/>
 				<fmt:formatDate var="userUpdate" value="${user.userUpdate}" pattern="yyyy-MM-dd HH:mm"/>
-				<form action="${contextPath}/adminPage/updateUser.do" method="post" >
-					<table class="table">
+				<form action="${contextPath}/adminPage/updateUser.do" method="post" name="userForm">
+					<input type="hidden" name="nicknameCheckState" value="0" />
+					<input type="hidden" name="telCheckState" value="0" />
+					<table class="table"  >
 						<colgroup>
 							<col style="width: 120px" />
 							<col />
@@ -113,7 +63,12 @@
 								<label for="userNickname" class="m-0">닉네임</label>
 							</th>
 							<td>
-								<input class="form-control" type="text" name="userNickname" id="userNickname" value="${user.userNickname}" required />
+								<div class="input-group">
+									<input class="form-control" type="text" name="userNickname" id="userNickname" value="${user.userNickname}" onkeyup="resetCheck2()" required />
+									<div class="input-group-append">
+										<!-- <button class="btn btn-secondary" type="button" onclick="nickCheck()">중복체크</button> -->
+									</div>
+								</div>
 							</td>
 						</tr>
 						<tr>
@@ -129,7 +84,7 @@
 								<label for="userTel" class="m-0">전화번호</label>
 							</th>
 							<td>
-								<input class="form-control" type="text" name="userTel" id="userTel" value="${user.userTel}" placeholder="010-0000-0000" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required />
+								<input class="form-control" type="text" name="userTel" id="userTel" value="${user.userTel}" placeholder="010-0000-0000" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" onkeyup="resetCheck3()" required />
 							</td>
 						</tr>
 						<tr>
