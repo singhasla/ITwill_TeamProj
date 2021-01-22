@@ -91,10 +91,21 @@
                                 </div>
                          	</div>
                          	<!-- 이벤트 수정,삭제 버튼 -->
-				            <c:if test="${userID eq 'admin'}">
+                         	<c:choose>
+				            <c:when test="${userID eq 'admin'}">
 				           		<button type="button" class="site-btn cancel" onclick="location.href='${contextPath}/eventServlet/deleteEvent.do?eventNo=${eventNo}'">삭제</button>
 				           		<button type="button" class="site-btn cancel" onclick="location.href='${contextPath}/eventServlet/modifyEvent.do?eventNo=${eventNo}'">수정</button>
-				            </c:if>
+				            
+					            <div class="btn-area ar" style="float: left;">
+									<a href="${contextPath}/eventServlet/listEvent.do" class="btn-box board">목록</a>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="btn-area ar">
+									<a href="${contextPath}/eventServlet/listEvent.do" class="btn-box board">목록</a>
+								</div>
+							</c:otherwise>
+							</c:choose>
                     	</div>
                     </div>
                 </div>
