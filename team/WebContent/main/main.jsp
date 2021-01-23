@@ -114,7 +114,7 @@
 					<div class="row">
 						<c:forEach var="latest" items="${latestList}" end="5">
 							<div class="col-lg-4 col-md-6 col-sm-6">
-								<a href="../detail/movie-detail.jsp">
+								<a href="${contextPath}/detailServlet/detail.do?movieNo=${latest.movieNo}">
 									<div class="product__item">
 										<div class="product__item__pic set-bg"
 											data-setbg="${latest.movieImage}">
