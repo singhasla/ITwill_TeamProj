@@ -31,6 +31,10 @@
 			<div class="container-fluid">
 
 				<!-- 영화등록 -->
+				
+				<div class="col-12">
+					<h1 class="mt-4">영화관리</h1>
+				</div>
 				<article class="product">
 
 					<form action="${contextPath}/adminMovieServlet/insertMovie.do"
