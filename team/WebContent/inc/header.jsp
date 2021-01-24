@@ -44,7 +44,7 @@
 		                                        <li><a href="${contextPath}/ordersvlt/myOrderList.do">나의 구매내역</a></li>
 		                                        <li><a href="#">나의 찜 목록</a></li>
 		                                        <li><a href="${contextPath}/me/info.do?userID=${userID}">회원정보수정</a></li>
-		                                        <li><a href="#">회원탈퇴</a></li>
+		                                        <li><a href="${contextPath}/me/withdrawal.do?userID=${userID}">회원탈퇴</a></li>
 		                                        <li><a href="${contextPath}/qna/myQnaList.do">문의내역</a></li>
 		                                    </ul>
 		                                </li>

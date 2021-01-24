@@ -22,6 +22,7 @@ import javax.servlet.http.HttpSession;
 
 import order.OrderDAO;
 import order.OrderService;
+import user.UserVO;
 
 @WebServlet("/me/*")
 public class myInfoController extends HttpServlet{
@@ -84,7 +85,34 @@ public class myInfoController extends HttpServlet{
 			nextPage = "/mainServlet/main.do";
 		
 			
-		}else if (action.equals("/idCheck.do")) {
+		}else if (action.equals("/withdrawal.do")) {//탈퇴하기전 
+			
+			nextPage = "/myInfo/withdrawalForm.jsp";
+			
+
+		}
+		else if (action.equals("/delUser.do")) {//탈퇴하기
+			PrintWriter pw = response.getWriter();
+
+			String userID = (String)session.getAttribute("userID");
+			
+			String my_pw = userDAO.pwCheck(userID);
+			String inputPW = request.getParameter("inputPW");
+			
+			if(my_pw.equals(inputPW)){
+				userDAO.delUser(userID);
+				session.invalidate();
+				pw.print("<script>" + " alert('삭제완료');" 
+						+ " location.href='" + request.getContextPath()
+						+ "/mainServlet/main.do';" + "</script>");
+				//nextPage = "/mainServlet/main.do";
+			}
+			else {
+				pw.print("<script>" + " alert('비밀번호가 기존 비밀번호와 다릅니다.');" 
+						+ "history.back();</script>");
+			}
+		}
+		else if (action.equals("/idCheck.do")) {
 			String userID = request.getParameter("userID");
 			request.setAttribute("userID", userID);
 			int check = userDAO.idCheck(userID);
