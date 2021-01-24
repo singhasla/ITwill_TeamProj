@@ -36,7 +36,8 @@ public class MovieVO {
 
 
 	public MovieVO(String movieName, String movieContent, String movieImage, int moviePrice, int movieCategoryNo1,
-			int movieCategoryNo2, String movieDirector, String movieLink, Date movieReleaseDate, String actorName, String movieTime) {
+			int movieCategoryNo2, String movieDirector, String movieLink, Date movieReleaseDate, String actorName, 
+			String movieTime) {
 		super();
 		this.movieName = movieName;
 		this.movieContent = movieContent;
@@ -50,7 +51,24 @@ public class MovieVO {
 		this.actorName = actorName;
 		this.movieTime = movieTime;
 	}
-
+	public MovieVO(String movieName, String movieContent, String movieImage, int moviePrice, int movieCategoryNo1,
+			int movieCategoryNo2, String movieDirector, String movieLink, Date movieReleaseDate, String actorName, 
+			String movieTime, int movieNo) {
+		super();
+		this.movieName = movieName;
+		this.movieContent = movieContent;
+		this.movieImage = movieImage;
+		this.moviePrice = moviePrice;
+		this.movieCategoryNo1 = movieCategoryNo1;
+		this.movieCategoryNo2 = movieCategoryNo2;
+		this.movieDirector = movieDirector;
+		this.movieLink = movieLink;
+		this.movieReleaseDate = movieReleaseDate;
+		this.actorName = actorName;
+		this.movieTime = movieTime;
+		this.movieNo = movieNo;
+	}
+	
 	public int getMovieNo() {
 		return movieNo;
 	}

@@ -67,6 +67,7 @@
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr style="text-align: center;">
+                                            	<th>#</th>
                                                 <th style="width: 5%">No.</th>
                                                 <th style="width: 20%">제목</th>
                                                 <th style="width: 39%">줄거리</th>
@@ -86,8 +87,9 @@
 													</tr>
 												</c:when>
 												<c:otherwise>	
-													<c:forEach var="movie" items="${movieList}">
+													<c:forEach var="movie" items="${movieList}" varStatus="stat">
 			                                            <tr>
+			                                            	<td>${stat.index}</td>
 			                                                <td>${movie.movieNo}</td>
 			                                                <td>${movie.movieName}</td>
 			                                                <td><div class="cut">${movie.movieContent}</div></td>
@@ -95,7 +97,7 @@
 			                                                <td>${movie.movieCategoryNo2}</td>
 			                                                <td>${movie.moviePrice}</td>
 			                                                <td style="vertical-align: middle; text-align: center;">
-																<a class="icon_trash" href="#"></a>
+																<a class="icon_tools" href="${contextPath}/adminMovieServlet/modifyMovie.do?movieNo=${movie.movieNo}"></a>
 															</td>
 			                                                <td style="vertical-align: middle; text-align: center;">
 																<a class="icon_trash" href="#"></a>
