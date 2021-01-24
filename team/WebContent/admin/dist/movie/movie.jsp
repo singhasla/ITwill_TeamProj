@@ -40,7 +40,7 @@
 									상품 등록
 							</button>
 							<button type="button" class="btn btn-secondary btn-sm"
-									onclick="location.href='${contextPath}/adminMovieServlet/listProductCategory.do'"
+									onclick="location.href='${contextPath}/adminMovieServlet/.do'"
 									style="position: relative; top: -40px;">
 									카테고리 관리
 							</button>
@@ -88,7 +88,7 @@
 			                                                <td>${movie.movieCategoryNo2}</td>
 			                                                <td>${movie.moviePrice}</td>
 			                                                <td style="vertical-align: middle; text-align: center;">
-																<a class="icon_trash" href="#"></a>
+																<a class="icon_trash" href="${contextPath}/adminMovieServlet/modifyMovie.do"></a>
 															</td>
 			                                                <td style="vertical-align: middle; text-align: center;">
 																<a class="icon_trash" href="#"></a>
