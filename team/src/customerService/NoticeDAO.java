@@ -70,17 +70,22 @@ public class NoticeDAO {
 		int pageNo = (int)searchMap.get("pageNo"); 
 		int startNum = (section - 1)*27 + (pageNo - 1)*10;
 		String search = (String)searchMap.get("search");
-		
+	
 		try {
 			conn = getConnection();
-			String sql = "select * from notice"
-						+ " where noticeTitle like ?"
-						+ " order by noticeNo desc"
-						+ " limit ?, 10";
-			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%" + search + "%");
-			pstmt.setInt(2, startNum);
+			String sql = "select * from notice";
+						
+			if(search != null && search.length() != 0){
+				sql += " where noticeTitle like ?"
+					+ " order by noticeNo desc limit ?, 10";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, "%" + search + "%");
+				pstmt.setInt(2, startNum);
+			} else {
+				sql += " order by noticeNo desc limit ?, 10";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, startNum);
+			}
 			
 			rs = pstmt.executeQuery();
 			

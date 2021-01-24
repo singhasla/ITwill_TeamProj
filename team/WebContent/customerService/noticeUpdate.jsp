@@ -38,7 +38,9 @@
     <link rel="stylesheet" href="../css/style.css" type="text/css">
     <link rel="stylesheet" href="../css/customerService.css" type="text/css">
     <link rel="stylesheet" href="../css/event.css" type="text/css">
-
+	<!-- jQuery -->
+	<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+	
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -130,13 +132,15 @@
 										<tr>
 											<th>첨부파일</th>
 											<td>
-												<c:if test="${not empty noticeFile }">
+												<c:if test="${not empty noticeFile}">
 													<div class="originalFile">
-														<p style="color: #ffffff;">${noticeFile}</p>
-														<input type="checkbox" name="deleteFile" id="deleteFile">
-														<label for="deleteFile">첨부된 파일 삭제하기</label>
+														<p>${noticeFile}</p>
+														<div class="mr-l-30">
+															<input type="checkbox" name="deleteFile" id="deleteFile">
+															<label for="deleteFile">체크시 첨부된 파일이 삭제됩니다.</label>
+														</div>
 													</div>
-													<p class="alert" style="display: none;">파일 첨부 시 기존 파일이 삭제됩니다.</p>
+													<p class="alert">파일 수정 시 기존 파일이 삭제됩니다.</p>
 												</c:if>
 												<input type="file" name="noticeFile" id="noticeFile" onchange="checkFile(this); showPreview(this);" >
 											</td>
@@ -162,15 +166,15 @@
 	
 	<script>
 	function checkFile(obj){
-		if($(obj).parent().siblings(".alert")){
+		if($(obj).siblings(".alert")){
 			if($(obj).val().length > 0){
-				$(obj).parent().siblings(".alert").fadeIn();
+				$(obj).siblings(".alert").fadeIn();
+				$(".mr-l-30").hide();
 			}else{
-				$(obj).parent().siblings(".alert").hide();
+				$(obj).siblings(".alert").hide();
 			}
 		}
 	}
-	
 	</script>
 
 </body>

@@ -93,6 +93,7 @@ public class NoticeController extends HttpServlet {
 				List<NoticeVO> noticeList = noticeDAO.getNoticeList(searchMap);
 				int noticeListCount = noticeDAO.getNoticeListCount(searchMap);
 				noticeMap.put("noticeList", noticeList);
+				System.out.println(noticeList);
 				noticeMap.put("noticeListCount", noticeListCount);
 				
 				request.setAttribute("noticeMap", noticeMap);
@@ -218,10 +219,10 @@ public class NoticeController extends HttpServlet {
 				
 			} else if(action.equals("/download.do")) {		
 				
-				int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
+				int noitceNo = Integer.parseInt(request.getParameter("noticeNo"));
 				String noticeFile = request.getParameter("noticeFile");
 				
-				downloadFile(response, noticeNo, noticeFile);
+				downloadFile(response, noitceNo, noticeFile);
 				
 			} else {
 				nextPage = "/customerService/notice.jsp";
@@ -350,18 +351,18 @@ public class NoticeController extends HttpServlet {
 		}
 	}
 
-	private void downloadFile(HttpServletResponse response, int noticeNo, String noticeFile) {
-		try {
+	private void downloadFile(HttpServletResponse response, int noticeNo, String noticeFile){
+		try {			
 			String filePath = realPath + "\\" + noticeNo + "\\" + noticeFile;
 			File file = new File(filePath);
+		
+			OutputStream out = response.getOutputStream();			
 			
-			OutputStream out = response.getOutputStream();
+			response.setHeader("Cache-Control", "no-chche");
+			response.addHeader("Cache-Control", "no-store");			
+			response.setHeader("Content-disposition", "attachment; fileName=\"" + URLEncoder.encode(noticeFile,"UTF-8") + "\";");
 			
-			response.setHeader("Cache-Cotrol", "no-chche");
-			response.addHeader("Cache-Control", "no-store");
-			response.setHeader("Content-disposition", "attachment; noticeFile=\"" + URLEncoder.encode(noticeFile, "UTF-8") + "\";");
-			
-			FileInputStream in = new FileInputStream(file);
+			FileInputStream in = new FileInputStream(file);	
 			
 			byte[] buffer = new byte[1024*8];
 			
@@ -371,14 +372,14 @@ public class NoticeController extends HttpServlet {
 				if(count == -1) {
 					break;
 				}
-				out.write(buffer, 0, count);
+				out.write(buffer, 0, count);;
 			}
 			
 			in.close();
 			out.close();
 		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			System.out.println("downloadFile()메소드 내부에서 오류 : " + e.toString());
+		}		
 	}
 	
 	private String getFileType(int noticeNo, String noticeFile) {

@@ -4,14 +4,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"/>
-<c:set var="noticeNo" value="${noticeMap.noticeVO.noticeNo }"/>
-<c:set var="noticeTitle" value="${noticeMap.noticeVO.noticeTitle }"/>
-<c:set var="noticeContent" value="${noticeMap.noticeVO.noticeContent }"/>
-<c:set var="noticeFile" value="${noticeMap.noticeVO.noticeFile }"/>
-<c:set var="noticeWriteDate" value="${noticeMap.noticeVO.noticeWriteDate }"/>
-<c:set var="noticeReadCount" value="${noticeMap.noticeVO.noticeReadCount }"/>
-<c:set var="noticeCategory" value="${noticeMap.noticeVO.noticeCategory }"/>
-<fmt:formatDate var="noticeFormattedDate" value="${noticeWriteDate }" pattern="yy-MM-dd"/>
+<c:set var="noticeNo" value="${noticeMap.noticeVO.noticeNo}"/>
+<c:set var="noticeTitle" value="${noticeMap.noticeVO.noticeTitle}"/>
+<c:set var="noticeContent" value="${noticeMap.noticeVO.noticeContent}"/>
+<c:set var="noticeFile" value="${noticeMap.noticeVO.noticeFile}"/>
+<c:set var="noticeWriteDate" value="${noticeMap.noticeVO.noticeWriteDate}"/>
+<c:set var="noticeReadCount" value="${noticeMap.noticeVO.noticeReadCount}"/>
+<c:set var="noticeCategory" value="${noticeMap.noticeVO.noticeCategory}"/>
+<fmt:formatDate var="noticeFormattedDate" value="${noticeWriteDate}" pattern="yy-MM-dd"/>
 <%
 	request.setCharacterEncoding("UTF-8");
 	pageContext.setAttribute("LF", "\n");
@@ -97,7 +97,7 @@
 		                            <span>등록일 : ${noticeFormattedDate}<small>|</small></span>
 		                        </div>
 		                        <div class="filearea">
-		                        	첨부파일 : <a onclick="downloadNotice(${noticeNo}, '${noticeFile}')">${noticeFile }</a>
+		                        	첨부파일 : <a onclick="downloadNotice(${noticeNo}, '${noticeFile}')">${noticeFile}</a>
 		                        </div>
 		                        <div class="blog__details__item__text">
 		                        	<p>${fn:replace(noticeContent,LF,BR)}</p>
@@ -142,9 +142,7 @@
     </section>
     <!-- Notice Section End -->
 	
-	<form mothod="post"	name="noticeInfo">
-	
-	</form>
+	<form method="post"	name="noticeInfo"></form>
 	
 	<!-- footer영역 -->
 	<jsp:include page="../inc/footer.jsp" />
