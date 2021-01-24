@@ -1,8 +1,9 @@
-package adminMovie;
+package detail;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
-public class MovieVO {
+public class DetailVO {
 
 	private int movieNo;
 	private String movieName;
@@ -10,46 +11,49 @@ public class MovieVO {
 	private String movieImage;
 	private int moviePrice;
 	private int movieCategoryNo1;
+	private String CN1;
 	private int movieCategoryNo2;
+	private String CN2;
+	private double movieAvgRating;
+	private String movieLink;
+	private Date movieReleaseDate;
+	private Timestamp movieWriteDate;
+	private Timestamp movieUpdateDate;
 	private String movieDirector;
 	private String actorName;
 	private String movieTime;
-	private String movieLink;
-	private Date movieReleaseDate;
-	private Date movieWriteDate;
-	private Date movieUpdateDate;
 
-	public MovieVO() {
+	public DetailVO() {
 	}
 
-
-	public MovieVO(int movieNo, String movieName, String movieContent,  int movieCategoryNo1,
-			int movieCategoryNo2, int moviePrice) {
+	
+	public DetailVO(int movieNo, String movieName, String movieContent, String movieImage, int moviePrice,
+			int movieCategoryNo1, String CN1, int movieCategoryNo2, String CN2, double movieAvgRating, String movieLink, Date movieReleaseDate,
+			Timestamp movieWriteDate, Timestamp movieUpdateDate, String movieDirector, String actorName,
+			String movieTime) {
 		super();
 		this.movieNo = movieNo;
-		this.movieName = movieName;
-		this.movieContent = movieContent;
-		this.movieCategoryNo1 = movieCategoryNo1;
-		this.movieCategoryNo2 = movieCategoryNo2;
-		this.moviePrice = moviePrice;
-	}
-
-
-	public MovieVO(String movieName, String movieContent, String movieImage, int moviePrice, int movieCategoryNo1,
-			int movieCategoryNo2, String movieDirector, String movieLink, Date movieReleaseDate, String actorName, String movieTime) {
-		super();
 		this.movieName = movieName;
 		this.movieContent = movieContent;
 		this.movieImage = movieImage;
 		this.moviePrice = moviePrice;
 		this.movieCategoryNo1 = movieCategoryNo1;
 		this.movieCategoryNo2 = movieCategoryNo2;
-		this.movieDirector = movieDirector;
+		this.movieAvgRating = movieAvgRating;
 		this.movieLink = movieLink;
 		this.movieReleaseDate = movieReleaseDate;
+		this.movieWriteDate = movieWriteDate;
+		this.movieUpdateDate = movieUpdateDate;
+		this.movieDirector = movieDirector;
 		this.actorName = actorName;
 		this.movieTime = movieTime;
+		this.CN1 = CN1;
+		this.CN2 = CN2;
 	}
+
+
+
+
 
 	public int getMovieNo() {
 		return movieNo;
@@ -107,12 +111,12 @@ public class MovieVO {
 		this.movieCategoryNo2 = movieCategoryNo2;
 	}
 
-	public String getMovieDirector() {
-		return movieDirector;
+	public double getMovieAvgRating() {
+		return movieAvgRating;
 	}
 
-	public void setMovieDirector(String movieDirector) {
-		this.movieDirector = movieDirector;
+	public void setMovieAvgRating(double movieAvgRating) {
+		this.movieAvgRating = movieAvgRating;
 	}
 
 	public String getMovieLink() {
@@ -123,28 +127,36 @@ public class MovieVO {
 		this.movieLink = movieLink;
 	}
 
-	public Date getMovieWriteDate() {
-		return movieWriteDate;
-	}
-
-	public void setMovieWriteDate(Date movieWriteDate) {
-		this.movieWriteDate = movieWriteDate;
-	}
-
-	public Date getMovieUpdateDate() {
-		return movieUpdateDate;
-	}
-
-	public void setMovieUpdateDate(Date movieUpdateDate) {
-		this.movieUpdateDate = movieUpdateDate;
-	}
-
 	public Date getMovieReleaseDate() {
 		return movieReleaseDate;
 	}
 
 	public void setMovieReleaseDate(Date movieReleaseDate) {
 		this.movieReleaseDate = movieReleaseDate;
+	}
+
+	public Timestamp getMovieWriteDate() {
+		return movieWriteDate;
+	}
+
+	public void setMovieWriteDate(Timestamp movieWriteDate) {
+		this.movieWriteDate = movieWriteDate;
+	}
+
+	public Timestamp getMovieUpdateDate() {
+		return movieUpdateDate;
+	}
+
+	public void setMovieUpdateDate(Timestamp movieUpdateDate) {
+		this.movieUpdateDate = movieUpdateDate;
+	}
+
+	public String getMovieDirector() {
+		return movieDirector;
+	}
+
+	public void setMovieDirector(String movieDirector) {
+		this.movieDirector = movieDirector;
 	}
 
 	public String getActorName() {
@@ -163,6 +175,25 @@ public class MovieVO {
 		this.movieTime = movieTime;
 	}
 
-	
+
+	public String getCN1() {
+		return CN1;
+	}
+
+
+	public void setCN1(String cN1) {
+		CN1 = cN1;
+	}
+
+
+	public String getCN2() {
+		return CN2;
+	}
+
+
+	public void setCN2(String cN2) {
+		CN2 = cN2;
+	}
+
 
 }

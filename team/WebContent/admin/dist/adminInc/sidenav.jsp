@@ -77,9 +77,9 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Tables
                             </a>
-                            <a class="nav-link" href="${contextPath}/adminPage/mainHome.do">
+                            <a class="nav-link" href="${contextPath}/mainServlet/main.do">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                	홈페이지 바로가기 
+                                	메인 홈페이지 바로가기 
                             </a>
                         </div>
                     </div>

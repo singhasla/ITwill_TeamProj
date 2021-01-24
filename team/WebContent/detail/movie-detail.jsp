@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="detail" value="${DetailVO}" />
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -26,7 +30,6 @@
     <link rel="stylesheet" href="../css/style.css" type="text/css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 </head>
 
 
@@ -47,7 +50,7 @@
                     <div class="breadcrumb__links">
                         <a href="./index.html"><i class="fa fa-home"></i> Home</a>
                         <a href="./categories.html">Categories</a>
-                        <span>Romance</span>
+                        <span>${detail.CN1} || ${detail.CN2}</span>
                     </div>
                 </div>
             </div>
@@ -61,19 +64,19 @@
             <div class="anime__details__content">
                 <div class="row">
                     <div class="col-lg-3">
-                        <div class="anime__details__pic set-bg" data-setbg="../img/anime/details-pic.jpg">
+                        <div class="anime__details__pic set-bg" data-setbg="${detail.movieImage}">
                             <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                            <div class="view"><i class="fa fa-eye"></i>${detail.movieTime}</div>
                         </div>
                     </div>
                     <div class="col-lg-9">
                         <div class="anime__details__text">
                             <div class="anime__details__title">
                                 <div>
-                                	<h3>영화제목</h3>
+                                	<h3>${detail.movieName}</h3>
                                 	<a>+ WATCH LIST</a>
                                 </div>
-                                <span>TENET, 2020</span>
+                                <span>${detail.movieName}</span>
                             </div>
                             <div class="anime__details__rating">
                                 <!-- 별점 -->
@@ -86,24 +89,23 @@
                                 </div>
                                 <span>투표자수 n명</span>
                             </div>
-                            <p>영화 줄거리 : 시간의 흐름을 뒤집는 인버전을 통해 현재와 미래를 오가며 세상을 파괴하려는 사토르(케네스 브래너)를 막기 위해 투입된 작전의 주도자(존 데이비드 워싱턴). 
-     							인버전에 대한 정보를 가진 닐(로버트 패틴슨)과 미술품 감정사이자 사토르에 대한 복수심이 가득한 그의 아내 캣(엘리자베스 데비키)과 협력해 미래의 공격에 맞서 제3차 세계대전을 막아야 한다!
+                            <p>${detail.movieContent}
                             </p>
                             <div class="anime__details__widget">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <ul>
-                                        	<li><span>감독 :</span> 감독이름</li>
-                                            <li><span>주연 :</span> 출연진</li>
-                                            <li><span>등급 :</span> n세 관람</li>
+                                        	<li><span>감독 :</span> ${detail.movieDirector}</li>
+                                            <li><span>주연 :</span> ${detail.actorName}</li>
+                                            <li><span>가격 :</span> ${detail.moviePrice}</li>
                                             
                                         </ul>
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <ul>
-                                        	<li><span>장르 :</span> 액션, 모험</li>
-                                            <li><span>개봉일 :</span> 년도</li>
-                                            <li><span>상영시간 :</span> 시간</li>
+                                        	<li><span>장르 :</span> ${detail.CN1} || ${detail.CN2}</li>
+                                            <li><span>개봉일 :</span> ${detail.movieReleaseDate}</li>
+                                            <li><span>상영시간 :</span> ${detail.movieTime}</li>
                                         </ul>
                                     </div>
                                 </div>
