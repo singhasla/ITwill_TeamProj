@@ -109,7 +109,7 @@
 											<th>종류</th>
 											<td>
 												<select class="nice-select" name="noticeCategory" id="noticeCategory">
-													<option>선택하세요</option>
+													<option value="">선택하세요</option>
 													<c:forEach var="category" items="${noticeCategoryList}">
 														<c:choose>
 															<c:when test="${category.noticeCategory == noticeCategory}">
@@ -135,14 +135,14 @@
 												<c:if test="${not empty noticeFile}">
 													<div class="originalFile">
 														<p>${noticeFile}</p>
-														<div class="mr-l-30">
+														<div class="mr-l">
 															<input type="checkbox" name="deleteFile" id="deleteFile">
 															<label for="deleteFile">체크시 첨부된 파일이 삭제됩니다.</label>
 														</div>
 													</div>
 													<p class="alert">파일 수정 시 기존 파일이 삭제됩니다.</p>
 												</c:if>
-												<input type="file" name="noticeFile" id="noticeFile" onchange="checkFile(this); showPreview(this);" >
+												<input type="file" name="noticeFile" id="noticeFile" onchange="checkFile(this);" >
 											</td>
 										</tr>
 									</tbody>

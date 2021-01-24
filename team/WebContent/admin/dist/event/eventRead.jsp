@@ -72,8 +72,8 @@
 	                                    </table>
 	                                    <div class="text-center">
 											<button type="button" class="btn btn-secondary" onclick="location.href='${contextPath}/eventAdmin/listEvent.do'">목록</button>
-											<button type="button" class="btn btn-primary" onclick="location.href='${contextPath}/eventAdmin/modifyEvent.do?eventNo=${eventNo}'">수정</button>
-			                                <button type="button" class="btn btn-danger" onclick="location.href='${contextPath}/eventAdmin/deleteEvent.do?eventNo=${eventNo}'">삭제</button>
+											<button type="button" class="btn btn-primary" onclick="modifyEvent('${eventNo}', event)">수정</button>
+			                                <button type="button" class="btn btn-danger" onclick="deleteEvent('${eventNo}', event)">삭제</button>
 										</div>
 	                                </div>
 	                            </div>
@@ -81,7 +81,7 @@
 	                        <div class="card mb-4  ecol-12 ecol-lg-4 ecol-xl-3">
 	                            <div class="card-header">
 	                                <i class="fas fa-table mr-1"></i>
-	                                	이미지
+	                                	첨부파일
 	                            </div>
 	                            <div class="card-body">
 	                                <div class="table-responsive">
@@ -126,6 +126,20 @@
 			form.action = "${contextPath}/eventAdmin/download.do?eventNo=" + eventNo + "&eventImage=" + eventImage;
 			form.submit();
 		}
+		function modifyEvent(eventNo,event) {
+        	event.stopPropagation();
+			var form = document.eventInfo;
+        	form.action = "${contextPath}/eventAdmin/modifyEvent.do?eventNo=" + eventNo;
+        	form.submit();
+        }
+        function deleteEvent(eventNo,event) {
+        	event.stopPropagation();
+			var form = document.eventInfo;
+			if(confirm("정말로 삭제하시겠습니까?")) {
+	        	form.action = "${contextPath}/eventAdmin/deleteEvent.do?eventNo=" + eventNo;
+	        	form.submit();
+			}
+        }
 	
 		</script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>

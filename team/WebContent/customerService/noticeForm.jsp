@@ -99,7 +99,7 @@
 											<th>종류</th>
 											<td>
 												<select class="nice-select" name="noticeCategory">
-													<option>선택하세요</option>
+													<option value="">선택하세요</option>
 													<option value="공지">공지</option>
 													<option value="안내">안내</option>
 													<option value="이벤트">이벤트</option>

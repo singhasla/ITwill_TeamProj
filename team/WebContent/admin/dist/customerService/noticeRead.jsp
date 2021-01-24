@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>        
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-
+<c:set var="notice" value="${noticeVO}"/>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +14,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>관리자 페이지입니다</title>
-         <link rel="stylesheet" href="${contextPath}/admin/dist/css/event.css" type="text/css">
+        <link rel="stylesheet" href="${contextPath}/admin/dist/css/event.css" type="text/css">
         <link href="${contextPath}/admin/dist/css/styles.css" rel="stylesheet" />
        
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
@@ -32,75 +32,61 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">이벤트</h1>
+                        <h1 class="mt-4">공지사항</h1>
                         <div class="row">
-	                        <div class="card mb-4 ecol-12 ecol-lg-8 ecol-xl-9">
+	                        <div class="card mb-4 ecol-12">
 	                            <div class="card-header">
 	                                <i class="fas fa-table mr-1"></i>
-	                                	이벤트 정보
+	                                	공지사항 관리
 	                            </div>
 	                            <div class="card-body">
 	                                <div class="table-responsive">
-	                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+	                                    <table class="table table-bordered bdlr" id="dataTable" width="100%" cellspacing="0">
 	                                        <colgroup>
+												<col width="20%">
+												<col width="*">
 												<col width="20%">
 												<col width="*">
 											</colgroup>
 	                                        <tbody>
-	                                        	<tr>
-											<th>번호</th>
-											<td>
-												
-											</td>
-										</tr>
-										<tr>
-											<th>제목</th>
-											<td>
-											
-											</td>
-										</tr>
-										<tr>
-											<th>내용</th>
-											<td>
-												<textarea cols="40" rows="15" name="noticeContent" placeholder="내용을 입력해 주세요." class="widhun"></textarea>
-											</td>
-										</tr>
-										<tr>
-											<th>첨부파일</th>
-											<td>
-											</td>
-										</tr>
+			                                    <tr align="center"><th colspan="4">공지사항 정보</th></tr>    
+			                                    <tr>
+													<th>번호</th>
+													<td>${notice.noticeNo}</td>
+													<th>조회수</th>
+													<td>${notice.noticeReadCount}</td>
+												</tr>
+												<tr>
+													<th>카테고리</th>
+													<td colspan="3">${notice.noticeCategory}</td>
+												</tr>
+												<tr>
+													<th>제목</th>
+													<td colspan="3">${notice.noticeTitle}</td>
+												</tr>
+												<tr>
+													<th>내용</th>
+													<td colspan="3">${notice.noticeContent}</td>
+												</tr>
+												<tr>
+													<th>첨부파일</th>
+													<td colspan="3"><a onclick="downloadNotice(${notice.noticeNo}, '${notice.noticeFile}')" class="hover">${notice.noticeFile}</a></td>
+												</tr>
 	                                        </tbody>
 	                                    </table>
+	                                    <div class="text-center">
+											<button type="button" class="btn btn-secondary" onclick="location.href='${contextPath}/noticeAdmin/listNotice.do'">목록</button>
+											<button type="button" class="btn btn-primary" onclick="modifyNotice('${notice.noticeNo}', event)">수정</button>
+			                                <button type="button" class="btn btn-danger" onclick="deleteNotice('${notice.noticeNo}', event)">삭제</button>
+										</div>
 	                                </div>
 	                            </div>
 	                        </div>
-	                        <div class="card mb-4  ecol-12 ecol-lg-4 ecol-xl-3">
-	                            <div class="card-header">
-	                                <i class="fas fa-table mr-1"></i>
-	                                	이미지
-	                            </div>
-	                            <div class="card-body">
-	                                <div class="table-responsive">
-	                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-	                                        <thead>
-	                                            <tr align="center">
-	                                                <th style="width: 20%;">이미지</th>
-	                                            </tr>
-	                                        </thead>
-	                                        <tbody>
-	                                        	<tr>
-	                                        		<td><img src="${contextPath}/files/event/2/이벤트이미지1.png" class="maxwid"></td>
-	                                        	</tr>
-	                                        </tbody>
-	                                    </table>
-	                                </div>
-	                            </div>
-	                        </div>
+	                       
                         </div>
                     </div>
                 </main>
-                <form name="userForm" method="post"></form>
+                <form method="post"	name="noticeInfo"></form>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
@@ -115,6 +101,30 @@
                 </footer>
             </div>
         </div>
+       
+        
+        <script type="text/javascript">
+		function downloadNotice(noticeNo, noticeFile) {
+			var form = document.noticeInfo;
+			form.action = "${contextPath}/noticeAdmin/download.do?noticeNo=" + noticeNo + "&noticeFile=" + noticeFile;
+			form.submit();
+		}
+		function modifyNotice(noticeNo,event) {
+        	event.stopPropagation();
+			var form = document.noticeInfo;
+        	form.action = "${contextPath}/noticeAdmin/modifyNotice.do?noticeNo=" + noticeNo;
+        	form.submit();
+        }
+		function deleteNotice(noticeNo,event) {
+	        event.stopPropagation();
+			var form = document.noticeInfo;
+	        if(confirm("정말로 삭제하시겠습니까?")) {
+	        	form.action = "${contextPath}/noticeAdmin/deleteNotice.do?noticeNo=" + noticeNo;
+	        	form.submit();
+	        }
+	    }
+	
+		</script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="${contextPath}/admin/dist/js/scripts.js"></script>
@@ -123,6 +133,6 @@
         <script src="${contextPath}/admin/dist/assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-        <script src="${contextPath}/admin/dist/assets/demo/datatables-demo.js"></script>
+        <script src="${contextPath}/admin/dist/assets/demo/datatables-demo.js"></script> 
     </body>
 </html>

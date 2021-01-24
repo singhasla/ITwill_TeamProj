@@ -16,11 +16,11 @@
         <title>관리자 페이지입니다</title>
          <link rel="stylesheet" href="${contextPath}/admin/dist/css/event.css" type="text/css">
         <link href="${contextPath}/admin/dist/css/styles.css" rel="stylesheet" />
-       
-        <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-        
+        <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
-        
+        <!-- jQuery -->
+		<script type="text/javascript" src="${contextPath}/js/jquery-3.3.1.min.js"></script>
+    
     </head>
     <body class="sb-nav-fixed">
     <!-- 헤더 -->
@@ -32,47 +32,60 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">자주하는 질문</h1>
+                        <h1 class="mt-4">공지사항</h1>
                         <div class="row">
 	                        <div class="card mb-4 ecol-12">
 	                            <div class="card-header">
 	                                <i class="fas fa-table mr-1"></i>
-	                                	FAQ 추가하기
+	                                	공지사항 관리
 	                            </div>
 	                            <div class="card-body">
 	                                <div class="table-responsive">
-	                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-	                                        <colgroup>
-												<col width="20%">
-												<col width="*">
-											</colgroup>
-	                                        <tbody>
-	                                        	<tr>
-											<th>제목</th>
-											<td>
-												<input type="text" name="noticeTitle" placeholder="제목을 입력해 주세요." class="widhun">
-											</td>
-										</tr>
-										<tr>
-											<th>종류</th>
-											<td>
-												<select class="nice-select" name="noticeCategory">
-													<option>선택하세요</option>
-													<option value="공지">공지</option>
-													<option value="안내">안내</option>
-													<option value="이벤트">이벤트</option>
-													<option value="점검">점검</option>
-												</select>
-											</td>
-										</tr>
-										<tr>
-											<th>내용</th>
-											<td>
-												<textarea cols="40" rows="15" name="noticeContent" placeholder="내용을 입력해 주세요." class="widhun"></textarea>
-											</td>
-										</tr>
-	                                        </tbody>
-	                                    </table>
+	                               		<form action="${contextPath}/noticeAdmin/insertNotice.do" method="post" enctype="multipart/form-data" >
+		                                    <table class="table table-bordered" width="100%" cellspacing="0">
+		                                        <colgroup>
+													<col width="20%">
+													<col width="*">
+												</colgroup>
+		                                        <tbody>
+		                                        	<tr align="center"><th colspan="2" >공지사항 등록</th></tr>
+		                                        	<tr>
+														<th>제목</th>
+														<td>
+															<input type="text" name="noticeTitle" placeholder="제목을 입력해 주세요." class="widhun">
+														</td>
+													</tr>
+													<tr>
+														<th>종류</th>
+														<td>
+															<select class="nice-select" name="noticeCategory">
+																<option value="">선택하세요</option>
+																<option value="공지">공지</option>
+																<option value="안내">안내</option>
+																<option value="이벤트">이벤트</option>
+																<option value="점검">점검</option>
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<th>내용</th>
+														<td>
+															<textarea cols="40" rows="15" name="noticeContent" placeholder="내용을 입력해 주세요."></textarea>
+														</td>
+													</tr>
+													<tr>
+														<th>첨부파일</th>
+														<td>
+															<input type="file" name="noticeFile" id="noticeFile" onchange="showPreview(this, 'image')"/>
+														</td>
+													</tr>
+		                                        </tbody>
+		                                    </table>
+		                                    <div class="float-right">
+												<button type="submit" class="btn btn-primary">등록</button>
+												<button type="button" class="btn btn-secondary" onclick="history.back();">취소</button>
+											</div>
+		                            	</form>        
 	                                </div>
 	                            </div>
 	                        </div>

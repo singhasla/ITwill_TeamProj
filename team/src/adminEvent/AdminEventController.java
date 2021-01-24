@@ -24,8 +24,6 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FileUtils;
 
-import com.sun.javafx.event.EventHandlerManager;
-
 import event.EventDAO;
 import event.EventVO;
 
@@ -181,8 +179,6 @@ public class AdminEventController extends HttpServlet{
 				
 				int eventNo = Integer.parseInt(request.getParameter("eventNo"));
 				String eventImage = request.getParameter("eventImage");
-				System.out.println(eventNo);
-				System.out.println(eventImage);
 				downloadFile(response, eventNo, eventImage);
 					
 			} else {

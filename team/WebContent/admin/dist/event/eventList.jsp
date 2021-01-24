@@ -115,8 +115,10 @@
         function deleteEvent(eventNo,event) {
         	event.stopPropagation();
 			var form = document.eventInfo;
-        	form.action = "${contextPath}/eventAdmin/deleteEvent.do?eventNo=" + eventNo;
-        	form.submit();
+			if(confirm("정말로 삭제하시겠습니까?")) {
+	        	form.action = "${contextPath}/eventAdmin/deleteEvent.do?eventNo=" + eventNo;
+	        	form.submit();
+			}
         }
 	
 		</script>

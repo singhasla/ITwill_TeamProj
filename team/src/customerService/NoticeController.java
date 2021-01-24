@@ -7,19 +7,16 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.nio.file.Files;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItem;
@@ -27,7 +24,8 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FileUtils;
 
-import sun.print.PrinterJobWrapper;
+import customerService.NoticeDAO;
+import customerService.NoticeVO;
 
 @WebServlet("/notice/*")
 public class NoticeController extends HttpServlet {
@@ -40,7 +38,6 @@ public class NoticeController extends HttpServlet {
 	public void init() throws ServletException {
 		noticeDAO = new NoticeDAO();
 		noticeVO = new NoticeVO();
-		
 	}
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -93,7 +90,6 @@ public class NoticeController extends HttpServlet {
 				List<NoticeVO> noticeList = noticeDAO.getNoticeList(searchMap);
 				int noticeListCount = noticeDAO.getNoticeListCount(searchMap);
 				noticeMap.put("noticeList", noticeList);
-				System.out.println(noticeList);
 				noticeMap.put("noticeListCount", noticeListCount);
 				
 				request.setAttribute("noticeMap", noticeMap);
@@ -126,7 +122,7 @@ public class NoticeController extends HttpServlet {
 				out.print("<script>"
 						 + " window.alert('새글을 추가했습니다.');"
 						 + " location.href='" + request.getContextPath() 
-						 + "/notice/viewNotice.do?noticeNo=" + noticeNo + "';"
+						 + "/notice/listNotice.do';"
 						 + "</script>"
 						 );
 				return;
@@ -157,7 +153,6 @@ public class NoticeController extends HttpServlet {
 				noticeMap.put("noticeVO", noticeVO);
 				
 				List noticeCategoryList = noticeDAO.noticeCategoryList();
-				System.out.println(noticeCategoryList);
 				noticeMap.put("noticeCategoryList", noticeCategoryList);
 				
 				request.setAttribute("noticeMap", noticeMap);
@@ -169,7 +164,7 @@ public class NoticeController extends HttpServlet {
 				Map<String, String> multipartMap = uploadFile(request);
 				
 				int noticeNo = Integer.parseInt(multipartMap.get("noticeNo"));
-				String noticeTitle = multipartMap.get("noticTitle");
+				String noticeTitle = multipartMap.get("noticeTitle");
 				String noticeContent = multipartMap.get("noticeContent");
 				String noticeCategory = multipartMap.get("noticeCategory");
 				String noticeFile = multipartMap.get("noticeFile");
@@ -267,7 +262,6 @@ public class NoticeController extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	
 	private Map<String, String> uploadFile(HttpServletRequest request) {
 		
 		Map<String, String> noticeMap = new HashMap<String, String>();
@@ -320,6 +314,7 @@ public class NoticeController extends HttpServlet {
 		}
 		return noticeMap;
 	}
+	
 	
 	private void moveFile(int noticeNo, String noticeFile) {
 		try {
