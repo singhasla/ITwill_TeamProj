@@ -51,7 +51,7 @@ public class AdminFaqController extends HttpServlet{
 		
 		try {
 			
-			if(action == null || action.equals("/listFaq.do") ) {
+			if(action == null || action.equals("/listFaq.do")) {
 				
 				List<FaqVO> faqList = faqDAO.getFaqList();
 				int faqListCount = faqDAO.faqListCount();

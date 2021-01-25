@@ -73,6 +73,11 @@ textarea {
     padding-right: 0 !important;
     padding-top: 30px !important;
 }
+.checkqna {
+	text-align: right !important;
+    padding-right: 0 !important;
+    padding-top: 50px !important;
+}
 .eventlist {
 	text-align: center;
 	cursor: pointer;

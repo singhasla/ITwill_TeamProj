@@ -1,6 +1,10 @@
 package adminCustomerService;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,7 +26,6 @@ public class AdminQnaController extends HttpServlet{
 	public void init() throws ServletException {
 		qnaDAO = new QnaDAO();
 		qnaVO = new QnaVO();
-
 	}
 
 	@Override
@@ -49,6 +52,59 @@ public class AdminQnaController extends HttpServlet{
 			
 			if(action == null || action.equals("/listQna.do")) {
 				
+				String answerCheck = request.getParameter("answerCheck");
+				List<QnaVO> qnaList = qnaDAO.qnaList(answerCheck);
+				int qnaListCount = qnaDAO.qnaListCount();
+				request.setAttribute("qnaList", qnaList);
+				request.setAttribute("qnaListCount", qnaListCount);
+				
+				nextPage = "/admin/dist/customerService/qnaList.jsp";
+			
+			} else if(action.equals("/readQna.do")) {
+				
+				int qnaNo = Integer.parseInt(request.getParameter("qnaNo"));
+				QnaVO qnaVO = qnaDAO.getQna(qnaNo);
+				
+				request.setAttribute("qnaVO", qnaVO);
+				
+				nextPage = "/admin/dist/customerService/qnaRead.jsp";
+				
+			} else if(action.equals("/answerQna.do")) {
+				
+				int qnaNo = Integer.parseInt(request.getParameter("qnaNo"));
+				QnaVO qnaVO = qnaDAO.getQna(qnaNo);
+				request.setAttribute("qnaVO", qnaVO);
+				
+				nextPage = "/admin/dist/customerService/qnaAnswer.jsp";
+			
+			} else if(action.equals("/insertAnswer.do")) {	
+				
+				int _qnaNo = Integer.parseInt(request.getParameter("qnaNo"));
+				String answerContent = request.getParameter("answerContent");
+				
+				qnaDAO.insertAnswer(_qnaNo, answerContent);
+				
+				PrintWriter out = response.getWriter();
+				out.print("<script>"
+						 + " window.alert('답변을 등록했습니다.');"
+						 + " location.href='" + request.getContextPath() 
+						 + "/qnaAdmin/readQna.do?qnaNo="+ _qnaNo +"';"
+						 + "</script>"
+						 );
+				return;
+				
+			} else if(action.equals("/deleteQna.do")) {	
+				
+				int qnaNo = Integer.parseInt(request.getParameter("qnaNo"));
+				qnaDAO.deleteQna(qnaNo);
+				
+				PrintWriter out = response.getWriter();
+				out.print("<script>"
+						 + " window.alert('문의내역을 삭제했습니다.');"
+						 + " location.href='" + request.getContextPath()  + "/qnaAdmin/listQna.do';"
+						 + "</script>"
+						 );
+				return;
 			} else {
 				nextPage = "/admin/dist/customerService/qnaList.jsp";
 			}
@@ -59,8 +115,4 @@ public class AdminQnaController extends HttpServlet{
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
-	
 }
