@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:set var="userNo" value="${sessionScope.userNo}"/>
-<%--String userNo = (String)session.getAttribute("userNo"); --%>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -61,46 +60,45 @@
 			<div class="row d-flex justify-content-center">
 				<div class="col-12">
 					<div class="blog__details__title">
-						<h2>구매내역</h2>
+						<h2>나의 찜 목록</h2>
 					</div>
 				</div>
 				<div class="col-8">
 					<table class="table table-hover">
 						<thead>
-							<p style="color: white;">${userID} 님이 구매하신 상품입니다.</p>
-							<tr style="color: white;" >
+							<p style="color: white;">${userID} 님의 찜 목록에 담긴 상품입니다.</p>
+							<tr style="color: white;">
 								<th scope="col">#</th>
-								<th width="20%" scope="col" style="text-align: center">영화</th>
+								<th width="15%" scope="col" style="text-align: center">영화</th>
 								<th width="50%" scope="col">제목</th>
-								<th width="15%" scope="col">시청하기</th>
-								<th width="10%"scope="col" style="text-align: center">삭제</th>
+								<th width="20%" scope="col">가격</th>
+								<th width="15%">
+								<button>
+									<a href="${contextPath}/wishsvlt/allDelWish.do?userNo=${userNo}">
+										전체삭제
+									</a></button>
+								</th>
 							</tr>
 						</thead>
-						<tbody style="color: white;">
+						<tbody>
 							<c:choose>
-								<c:when test="${myOrderList == null}">
+								<c:when test="${myWishList == null}">
 										<tr>
-											<td colspan="5" align="center">구매하신 상품이 없습니다.</td>
+											<td colspan="5" align="center">찜 목록에 담긴 상품이 없습니다.</td>
 										</tr>
 								</c:when>
 								
-								<c:when test="${myOrderList != null}">
-									<c:forEach var="orderListInf" items="${myOrderList}" varStatus="status">
-										<tr class="hover" onclick="location.href='${contextPath}/detailServlet/detail.do?movieNo=${orderListInf.movieNo}'">
+								<c:when test="${myWishList != null}">
+									<c:forEach var="wishListInf" items="${myWishList}" varStatus="status">
+										<tr class="hover" style="color: white;" onclick="location.href='${contextPath}/detailServlet/detail.do?movieNo=${wishListInf.movieNo}'">
 											<td scope="row" style="vertical-align: middle">${status.index+1}</td>
-											<td><img src="${orderListInf.movieImage}" class="cart_thumbnail"/></td>
-											<td style="vertical-align: middle">${orderListInf.movieName}</td>
-											<td style="vertical-align: middle">	
-												<%-- <a href="${orderListInf.movieLink}">
-													<img style="max-width: 80%" src="../img/playbutton.png" >
-												</a> --%>
-												<!-- 나중에 상세보기페이지로 이동할 예정 -->
-												<a href="${contextPath}/detailServlet/watching.do?movieNo=${orderListInf.movieNo}"></div>
-													<img src="../img/playbutton.png">
-												</a>
+											<td><img src="${wishListInf.movieImage}" class="cart_thumbnail"/></td>
+											<td style="vertical-align: middle">${wishListInf.movieName}</td>
+											<td style="vertical-align: middle">
+												<fmt:formatNumber type="number" maxFractionDigits="3" value="${wishListInf.moviePrice}"/>
 											</td>
 											<td style="vertical-align: middle; text-align: center;">
-												<a class="icon_trash" href="${contextPath}/ordersvlt/delOrder.do?userNo=${userNo}&movieNo=${orderListInf.movieNo}"></a>
+												<a class="icon_trash" href="${contextPath}/wishsvlt/delWish.do?userNo=${userNo}&movieNo=${wishListInf.movieNo}"></a>
 											</td>
 										</tr>
 									</c:forEach>
@@ -108,6 +106,8 @@
 							</c:choose>
 						</tbody>
 					</table>
+					<div class="col-12">
+				</div>
 			</div>
 		</div>
 	</section>
