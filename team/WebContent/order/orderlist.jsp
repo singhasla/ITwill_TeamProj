@@ -86,7 +86,7 @@
 								
 								<c:when test="${myOrderList != null}">
 									<c:forEach var="orderListInf" items="${myOrderList}" varStatus="status">
-										<tr class="hover">
+										<tr class="hover" onclick="location.href='${contextPath}/detailServlet/detail.do?movieNo=${orderListInf.movieNo}'">
 											<td scope="row" style="vertical-align: middle">${status.index+1}</td>
 											<td><img src="${orderListInf.movieImage}" class="cart_thumbnail"/></td>
 											<td style="vertical-align: middle">${orderListInf.movieName}</td>
