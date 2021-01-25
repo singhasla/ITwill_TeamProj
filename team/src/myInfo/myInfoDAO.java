@@ -118,7 +118,7 @@ public class myInfoDAO {
 		
 		try{
 			conn = getConnection();
-			String sql = "delete from user where userID=?";
+			String sql = "delete from team.user where userID=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userID);
 			pstmt.executeUpdate();
@@ -340,6 +340,28 @@ public class myInfoDAO {
 			discon();
 		}
 		return userPW;
+	}
+
+	
+	
+	public String pwCheck(String userID) {
+		String userPW2 = "";
+		try {
+			conn = getConnection();
+			String sql = "select userPW from team.user where userID=?";
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setString(1, userID);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				userPW2 = rs.getString("userPW");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("pwCheck 메소드 실행중 오류"+e);
+		}finally {
+			discon();
+		}
+		return userPW2;
 	}
 
 	
