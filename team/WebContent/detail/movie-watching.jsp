@@ -51,8 +51,7 @@
                     <div class="breadcrumb__links">
                         <a href="../main/index.jsp"><i class="fa fa-home"></i> Home</a>
                         <a href="#">Categories</a>
-                        <a href="#">장르</a>
-                        <span>${detail.movieName}</span>
+                        <span>${detail.CN1} &nbsp;&nbsp; ${detail.CN2}</span>
                     </div>
                 </div>
             </div>
@@ -66,7 +65,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="anime__video__player">
-                        <video id="player" playsinline controls data-poster="./videos/anime-watch.jpg">
+                        <video id="player">
                             <source src="${detail.movieLink}" type="video/mp4" />
                             <!-- Captions are optional -->
                             <track kind="captions" label="English captions" src="#" srclang="en" default />
@@ -89,7 +88,6 @@
 		                        <div class="anime__details__text">
 		                            <div class="anime__details__title">
 		                                <h3>${detail.movieName}</h3>
-		                                <span>TENET, 2020</span>
 		                            </div>
 		                            <div class="anime__details__rating">
 		                                <!-- 별점 -->
@@ -132,14 +130,8 @@
     </section>
     <!-- movie-watching Section End -->
 	
-	
-
-
-
-	
-
-<!-- footer영역 -->
-<jsp:include page="../inc/footer.jsp" />
+	<!-- footer영역 -->
+	<jsp:include page="../inc/footer.jsp" />
 
 </body>
 </html>
