@@ -179,10 +179,9 @@ public class NoticeDAO {
 			sql = "select noticeNo from notice order by noticeNo desc limit 1";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			rs.next();
-			
-			noticeNo = rs.getInt("noticeNo");
-			
+			if(rs.next()) {
+				noticeNo = rs.getInt("noticeNo");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -263,7 +262,6 @@ public class NoticeDAO {
 	public void updateNotice(NoticeVO noticeVO, String deleteFile) {
 		
 		String noticeFile = noticeVO.getNoticeFile();
-		System.out.println(noticeFile);
 		try {
 			conn = getConnection();
 			

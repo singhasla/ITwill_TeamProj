@@ -63,8 +63,6 @@ public class FaqController extends HttpServlet {
 				
 				List<FaqVO> faqList = faqDAO.faqList(faqMap);
 				int faqListCount = faqDAO.faqListCount();
-				System.out.println(faqList);
-				System.out.println(faqListCount);
 				request.setAttribute("faqList", faqList);
 				request.setAttribute("faqListCount", faqListCount);
 				

@@ -98,7 +98,7 @@
 	                        <c:choose>
 	                        	<c:when test="${faqListCount == 0 }">
 	                        		<div>
-	                        			<p>등록된 FAQ가 없습니다.</p>
+	                        			<p class="nofaq">등록된 FAQ가 없습니다.</p>
 	                        		</div>
 	                        	</c:when>
 		                        	<c:otherwise>
