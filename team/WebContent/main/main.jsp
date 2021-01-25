@@ -129,7 +129,9 @@
 										<div class="product__item__text">
 											<ul>
 												<li>${latest.cn1}</li>
-												<li>${latest.cn2}</li>
+												<c:if test="${latest.cn2 != null}">
+													<li>${latest.cn2}</li>
+												</c:if>
 											</ul>
 											<h5>
 												<a href="#">${latest.movieName}</a>
@@ -178,7 +180,9 @@
 										<div class="product__item__text">
 											<ul>
 												<li>${hot.cn1}</li>
-												<li>${hot.cn2}</li>
+												<c:if test="${hot.cn2 != null}">
+													<li>${hot.cn2}</li>
+												</c:if>
 											</ul>
 											<h5>
 												<a href="#">${hot.movieName}</a>

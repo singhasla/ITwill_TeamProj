@@ -58,8 +58,10 @@ public class DetailController extends HttpServlet {
 				
 				DetailVO vo = detailService.movieDetail(movieNo);
 
+				int star = (int)vo.getMovieAvgRating();
+				
 				request.setAttribute("DetailVO", vo);
-
+				request.setAttribute("star", star);
 				nextPage = "/detail/movie-detail.jsp";
 			
 			} else if (action.equals("/watching.do")) {	
