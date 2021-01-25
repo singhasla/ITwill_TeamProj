@@ -38,9 +38,6 @@ public class MovieService {
 		movieDAO.deleteMovie(movieNo);
 		
 	}
-
-	
-
 	
 
 }
