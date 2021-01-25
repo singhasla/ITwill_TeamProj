@@ -38,7 +38,9 @@
     <link rel="stylesheet" href="../css/style.css" type="text/css">
     <link rel="stylesheet" href="../css/customerService.css" type="text/css">
     <link rel="stylesheet" href="../css/event.css" type="text/css">
-
+	<!-- jQuery -->
+	<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+	
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -71,9 +73,18 @@
 	                        <li class="blog__details__btns__item">
 	                            <h5><a href="${contextPath}/faq/listFaq.do">자주 묻는 질문</a></h5>
 	                        </li>
-	                        <li class="blog__details__btns__item">
-	                            <h5><a href="${contextPath}/qna/addQna.do">문의하기</a></h5>
-	                        </li>
+	                        <c:if test="${sessionScope.userID != null || sessionScope.userNo != null }">
+	                           	 <li class="blog__details__btns__item">
+	                           	<h5><a href="${contextPath}/qna/addQna.do">문의하기</a></h5>
+	                       		</li>
+	                       	</c:if>
+	                       	<c:if test="${ sessionScope.userID == null || sessionScope.userNo == null }">
+	                       		 <li class="blog__details__btns__item">
+	                       		<h5><a onclick="if(confirm('로그인 후 이용이 가능합니다. 로그인 페이지로 이동합니다.'))
+	                       			{location.href='${contextPath}/user/loginPage.do'}else{cancel();}" 
+	                       			style="cursor: pointer; color: #ffffff;">문의하기</a></h5>
+	                       		</li>
+	                       	</c:if>
                         </ul>
                         <div class="noticeForm">
 	                        <h4>공지사항 수정</h4>
@@ -98,7 +109,7 @@
 											<th>종류</th>
 											<td>
 												<select class="nice-select" name="noticeCategory" id="noticeCategory">
-													<option>선택하세요</option>
+													<option value="">선택하세요</option>
 													<c:forEach var="category" items="${noticeCategoryList}">
 														<c:choose>
 															<c:when test="${category.noticeCategory == noticeCategory}">
@@ -121,15 +132,17 @@
 										<tr>
 											<th>첨부파일</th>
 											<td>
-												<c:if test="${not empty noticeFile }">
+												<c:if test="${not empty noticeFile}">
 													<div class="originalFile">
-														<p style="color: #ffffff;">${noticeFile}</p>
-														<input type="checkbox" name="deleteFile" id="deleteFile">
-														<label for="deleteFile">첨부된 파일 삭제하기</label>
+														<p>${noticeFile}</p>
+														<div class="mr-l">
+															<input type="checkbox" name="deleteFile" id="deleteFile">
+															<label for="deleteFile">체크시 첨부된 파일이 삭제됩니다.</label>
+														</div>
 													</div>
-													<p class="alert" style="display: none;">파일 첨부 시 기존 파일이 삭제됩니다.</p>
+													<p class="alert">파일 수정 시 기존 파일이 삭제됩니다.</p>
 												</c:if>
-												<input type="file" name="noticeFile" id="noticeFile" onchange="checkFile(this); showPreview(this);" >
+												<input type="file" name="noticeFile" id="noticeFile" onchange="checkFile(this);" >
 											</td>
 										</tr>
 									</tbody>
@@ -153,15 +166,15 @@
 	
 	<script>
 	function checkFile(obj){
-		if($(obj).parent().siblings(".alert")){
+		if($(obj).siblings(".alert")){
 			if($(obj).val().length > 0){
-				$(obj).parent().siblings(".alert").fadeIn();
+				$(obj).siblings(".alert").fadeIn();
+				$(".mr-l-30").hide();
 			}else{
-				$(obj).parent().siblings(".alert").hide();
+				$(obj).siblings(".alert").hide();
 			}
 		}
 	}
-	
 	</script>
 
 </body>

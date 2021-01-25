@@ -11,6 +11,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import customerService.NoticeVO;
+
 public class EventDAO {
 	
 	private DataSource ds;
@@ -45,8 +47,8 @@ public class EventDAO {
 		}
 	}
 	
-	//
-	public List selectAllEvents(Map pagingMap){
+	//검색어에 해당하는 이벤트 리스트 가져오기
+	public List getSearchEventList(Map pagingMap){
 		List eventList = new ArrayList();
 		
 		int section = (Integer)pagingMap.get("section");
@@ -81,35 +83,37 @@ public class EventDAO {
 		}
 		return eventList;
 	}
-	//전체 이벤트 조회
-	public List selectAllEvent(){
-		
+	
+	//전체 이벤트 리스트 가져오기
+	public List getNewEventList() {
 		List eventList = new ArrayList();
 		
 		try {
 			conn = getConnection();
-			String sql = "select * from event order by eventNo desc";
+			String sql = "select * from event"
+						+ " order by eventNo desc";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			while(rs.next()){
-				EventVO event = new EventVO();
-				event.setEventNo(rs.getInt("eventNO"));
-				event.setEventTitle(rs.getString("eventTitle"));
-				event.setEventContent(rs.getString("eventContent"));
-				event.setEventImage(rs.getString("eventImage"));
-				event.setEventWriteDate(rs.getTimestamp("eventWriteDate"));
-				eventList.add(event);
+			while(rs.next()) {
+				EventVO eventVO = new EventVO();
+				eventVO.setEventNo(rs.getInt("eventNo"));
+				eventVO.setEventTitle(rs.getString("eventTitle"));
+				eventVO.setEventContent(rs.getString("eventContent"));
+				eventVO.setEventImage(rs.getString("eventImage"));
+				eventVO.setEventWriteDate(rs.getTimestamp("eventWriteDate"));
+				
+				eventList.add(eventVO);
 			}
-			closeAll();
-			
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			closeAll();
 		}
 		return eventList;
 	}
 	
-	//검색어에 해당하는 글갯수 얻기
-	public int allEvents(Map pagingMap) {
+	//검색어에 해당하는 글개수 얻기
+	public int searchEventCount(Map pagingMap) {
 		
 		int section = (Integer)pagingMap.get("section");
 		int pageNum = (Integer)pagingMap.get("pageNum");
@@ -131,6 +135,25 @@ public class EventDAO {
 			closeAll();
 		}
 		return 0;
+	}
+	
+	//글 개수 가져오기
+	public int getEventListCount() {
+		int eventListCount = 0;
+		try {
+			conn = getConnection();
+			String sql = "select count(eventNo) from event";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				eventListCount = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll();
+		}
+		return eventListCount;
 	}
 	
 	//최신 글번호 가져오기
@@ -158,7 +181,7 @@ public class EventDAO {
 	}
 	
 	//새 이번트 등록 후 해당 글번호 가져오기 
-	public int insertNewEvent(EventVO event) {
+	public int insertEvent(EventVO event) {
 		
 		int eventNo=0;
 		try {
@@ -190,9 +213,9 @@ public class EventDAO {
 	}
 	
 	//글번호에 해당하는 이벤트 글 가져오기
-	 public EventVO selectEvent(int eventNo) {
+	 public EventVO getEvent(int eventNo) {
 		
-		 EventVO event = new EventVO();
+		 EventVO eventVO = new EventVO();
 		 
 		 try {
 			conn = getConnection();
@@ -206,18 +229,18 @@ public class EventDAO {
 			rs = pstmt.executeQuery();
 			rs.next();
 			
-			event.setEventNo(rs.getInt("eventNo"));
-			event.setEventTitle(rs.getString("eventTitle"));
-			event.setEventContent(rs.getString("eventContent"));
-			event.setEventImage(rs.getString("eventImage"));
-			event.setEventWriteDate(rs.getTimestamp("eventWriteDate"));
+			eventVO.setEventNo(rs.getInt("eventNo"));
+			eventVO.setEventTitle(rs.getString("eventTitle"));
+			eventVO.setEventContent(rs.getString("eventContent"));
+			eventVO.setEventImage(rs.getString("eventImage"));
+			eventVO.setEventWriteDate(rs.getTimestamp("eventWriteDate"));
 			
 			closeAll();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
-		return event;
+		return eventVO;
 	 }
 	 
 	 //이벤트 글 수정
@@ -250,6 +273,45 @@ public class EventDAO {
 			closeAll();
 		}
 	 }
+	 
+	 public void updateEvent(EventVO eventVO, String deleteFile) {
+			
+			String eventImage = eventVO.getEventImage();
+			
+			try {
+				conn = getConnection();
+				
+				if(eventImage != null && eventImage.length() != 0) {
+					String sql = "update event set eventTitle=?, eventContent=?, eventImage=?"
+							+ " where eventNo= ?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, eventVO.getEventTitle());
+					pstmt.setString(2, eventVO.getEventContent());
+					pstmt.setString(3, eventVO.getEventImage());
+					pstmt.setInt(4, eventVO.getEventNo());	
+				} else if(deleteFile != null) {
+					String sql = "update event set eventTitle=?, eventContent=?, eventImage=?"
+							+ " where eventNo= ?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, eventVO.getEventTitle());
+					pstmt.setString(2, eventVO.getEventContent());
+					pstmt.setString(3, null);
+					pstmt.setInt(4, eventVO.getEventNo());
+				} else {
+					String sql = "update event set eventTitle=?, eventContent=?"
+							+ " where eventNo= ?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, eventVO.getEventTitle());
+					pstmt.setString(2, eventVO.getEventContent());
+					pstmt.setInt(3, eventVO.getEventNo());
+				}
+				pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				closeAll();
+			}
+		}
 	 
 	 //삭제할 글번호
 	 public List<Integer> selectRemoveEvent(int eventNo) {

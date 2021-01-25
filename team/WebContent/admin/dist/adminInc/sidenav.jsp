@@ -20,6 +20,24 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                              		영화관리
                             </a>
+                            <div class="sb-sidenav-menu-heading">Event</div>
+                            <a class="nav-link" href="${contextPath}/eventAdmin/listEvent.do">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                               		 이벤트
+                            </a>
+                            <div class="sb-sidenav-menu-heading">CustomerService</div>
+                            <a class="nav-link" href="${contextPath}/noticeAdmin/listNotice.do">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                               		 공지사항
+                            </a>
+                            <a class="nav-link" href="${contextPath}/faqAdmin/listFaq.do">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                               		 FAQ
+                            </a>
+                            <a class="nav-link" href="${contextPath}/qnaAdmin/listQna.do">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                               		 문의내역
+                            </a>
                             <div class="sb-sidenav-menu-heading">Interface</div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>

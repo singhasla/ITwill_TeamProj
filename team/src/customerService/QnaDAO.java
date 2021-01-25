@@ -100,7 +100,6 @@ public class QnaDAO {
 				qnaVO.setQnaContent(rs.getString("qnaContent"));
 				qnaVO.setQnaCategory(rs.getString("qnaCategory"));
 				qnaVO.setQnaWriteDate(rs.getTimestamp("qnaWriteDate"));
-				qnaVO.setAnswerTitle(rs.getString("answerTitle"));
 				qnaVO.setAnswerContent(rs.getString("answerContent"));
 				qnaVO.setAnswerWriteDate(rs.getTimestamp("answerWriteDate"));
 				qnaList.add(qnaVO);
@@ -134,6 +133,63 @@ public class QnaDAO {
 		return 0;
 	}
 	
+	public List<QnaVO> qnaList(String answerCheck) {
+		
+		String sql = "";
+		String sqlFilter = "";
+		List<QnaVO> qnaList = new ArrayList<QnaVO>();
+		
+		if(answerCheck != null && !answerCheck.equals("")) {
+			sqlFilter =" where answerContent is null";
+		}
+		
+		try {
+			conn = getConnection();
+			sql = "select * from qna"
+				+ sqlFilter
+				+ " order by qnaNo desc";
+			
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				QnaVO qnaVO = new QnaVO();
+				qnaVO.setUserNo(rs.getInt("userNo"));
+				qnaVO.setQnaNo(rs.getInt("qnaNo"));
+				qnaVO.setQnaTitle(rs.getString("qnaTitle"));
+				qnaVO.setQnaContent(rs.getString("qnaContent"));
+				qnaVO.setQnaCategory(rs.getString("qnaCategory"));
+				qnaVO.setQnaWriteDate(rs.getTimestamp("qnaWriteDate"));
+				qnaVO.setAnswerContent(rs.getString("answerContent"));
+				qnaVO.setAnswerWriteDate(rs.getTimestamp("answerWriteDate"));
+				qnaList.add(qnaVO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll();
+		}
+		return qnaList;
+	}
+	
+	public int qnaListCount() {
+		int qnaListCount = 0;
+		try {
+			conn = getConnection();
+			String sql = "select count(qnaNo) from qna";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) qnaListCount = rs.getInt(1);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll();
+		}
+		return qnaListCount;
+	}
+	
 	public QnaVO getQna(int qnaNo) {
 		QnaVO qnaVO = new QnaVO();
 		
@@ -152,7 +208,6 @@ public class QnaDAO {
 				qnaVO.setQnaContent(rs.getString("qnaContent"));
 				qnaVO.setQnaCategory(rs.getString("qnaCategory"));
 				qnaVO.setQnaWriteDate(rs.getTimestamp("qnaWriteDate"));
-				qnaVO.setAnswerTitle(rs.getString("answerTitle"));
 				qnaVO.setAnswerContent(rs.getString("answerContent"));
 				qnaVO.setAnswerWriteDate(rs.getTimestamp("answerWriteDate"));
 				
@@ -165,4 +220,37 @@ public class QnaDAO {
 		return qnaVO;
 	}
 	
+	public void insertAnswer(int qnaNo, String answerContent) {
+		
+		try {
+			conn = getConnection();
+			String sql = "update qna set answerContent=?"
+						+ "where qnaNo = ?"; 
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, answerContent);
+			pstmt.setInt(2, qnaNo);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll();
+		}
+	}
+	
+	public void deleteQna(int qnaNo) {
+		
+		try {
+			conn = getConnection();
+			String sql = "delete from qna where qnaNo = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qnaNo);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll();
+		}
+	}
 }

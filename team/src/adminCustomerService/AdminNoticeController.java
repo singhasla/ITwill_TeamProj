@@ -1,4 +1,4 @@
-package customerService;
+package adminCustomerService;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -27,9 +27,9 @@ import org.apache.commons.io.FileUtils;
 import customerService.NoticeDAO;
 import customerService.NoticeVO;
 
-@WebServlet("/notice/*")
-public class NoticeController extends HttpServlet {
-	
+@WebServlet("/noticeAdmin/*")
+public class AdminNoticeController extends HttpServlet{
+
 	NoticeDAO noticeDAO;
 	NoticeVO noticeVO;
 	String realPath;
@@ -38,67 +38,46 @@ public class NoticeController extends HttpServlet {
 	public void init() throws ServletException {
 		noticeDAO = new NoticeDAO();
 		noticeVO = new NoticeVO();
+		
 	}
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doHandle(request, response);
 	}
+
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doHandle(request, response);
 	}
 	
 	protected void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		realPath = request.getServletContext().getRealPath("/files/notice");
 		
 		String nextPage = "";
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=utf-8");
+		realPath = request.getServletContext().getRealPath("/files/notice");
+		
+		request.setCharacterEncoding("UTF-8");		
+		response.setContentType("text/html;charset=utf-8");
 		
 		String action = request.getPathInfo();
 		System.out.println("action: " + action);
 		
 		try {
-			if(action == null || action.equals("/listNotice.do")) {
-				
-/*				setPagination(request);
-				
-				Map<String, Object> searchMap = new HashMap<String, Object>();
-				searchMap.put("pageNo", request.getAttribute("pageNo"));
-				searchMap.put("section", request.getAttribute("section"));
-				searchMap.put("search", request.getAttribute("search"));*/
-				
-				String _search = request.getParameter("search");			
-				String _section = request.getParameter("section");
-				String _pageNo = request.getParameter("pageNo");			
-				
-				int section = Integer.parseInt(((_section == null) ? "1" : _section));
-				int pageNo = Integer.parseInt(((_pageNo == null) ? "1" : _pageNo));
-				String search = (_search == null) ? "" : _search;
-				
-				Map<String, Object> searchMap = new HashMap<String, Object>();
-				searchMap.put("pageNo", pageNo);
-				searchMap.put("search", search);
-				searchMap.put("section", section);
-				
+			if(action == null || action.equals("/listNotice.do")){
 				Map<String, Object> noticeMap = new HashMap<String, Object>();
-				noticeMap.put("pageNo", pageNo);
-				noticeMap.put("section", section);
-				noticeMap.put("search", search);
-				
-				List<NoticeVO> noticeList = noticeDAO.getNoticeList(searchMap);
-				int noticeListCount = noticeDAO.getNoticeListCount(searchMap);
+				List<NoticeVO> noticeList = noticeDAO.getNoticeList();
+				int noticeListCount = noticeDAO.getNoticeListCount();
 				noticeMap.put("noticeList", noticeList);
 				noticeMap.put("noticeListCount", noticeListCount);
 				
 				request.setAttribute("noticeMap", noticeMap);
-				nextPage = "/customerService/notice.jsp";
-			
+				
+				nextPage = "/admin/dist/customerService/noticeList.jsp";
+				
 			} else if(action.equals("/addNotice.do")) {	
 				
-				nextPage = "/customerService/noticeForm.jsp";
-			
+				nextPage = "/admin/dist/customerService/noticeAdd.jsp";
+				
 			} else if(action.equals("/insertNotice.do")) {
 				
 				Map<String, String> multipartMap = uploadFile(request);
@@ -122,29 +101,21 @@ public class NoticeController extends HttpServlet {
 				out.print("<script>"
 						 + " window.alert('새글을 추가했습니다.');"
 						 + " location.href='" + request.getContextPath() 
-						 + "/notice/listNotice.do';"
+						 + "/noticeAdmin/readNotice.do?noticeNo="+ noticeNo + "';"
 						 + "</script>"
 						 );
 				return;
-			
-			} else if(action.equals("/viewNotice.do")) {	
 				
-				setPagination(request);
+			} else if(action.equals("/readNotice.do")) {		
 				
 				int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
 				
-				Map<String, Object> noticeMap = new HashMap<String, Object>();
-				noticeDAO.increaseNoticeReadCount(noticeNo);
-				
 				NoticeVO noticeVO = noticeDAO.getNotice(noticeNo);
-				noticeMap.put("noticeVO", noticeVO);
-				request.setAttribute("noticeMap", noticeMap);
+				request.setAttribute("noticeVO", noticeVO);
 				
-				nextPage = "/customerService/noticeView.jsp";
-			
+				nextPage = "/admin/dist/customerService/noticeRead.jsp";
+				
 			} else if(action.equals("/modifyNotice.do")) {		
-				
-				setPagination(request);
 				
 				int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
 				
@@ -157,9 +128,9 @@ public class NoticeController extends HttpServlet {
 				
 				request.setAttribute("noticeMap", noticeMap);
 				
-				nextPage = "/customerService/noticeUpdate.jsp";
+				nextPage = "/admin/dist/customerService/noticeUpdate.jsp";
 				
-			} else if(action.equals("/updateNotice.do")) {		
+			} else if(action.equals("/updateNotice.do")) {	
 				
 				Map<String, String> multipartMap = uploadFile(request);
 				
@@ -180,7 +151,7 @@ public class NoticeController extends HttpServlet {
 				noticeDAO.updateNotice(noticeVO, deleteFile);
 				
 				if(deleteFile != null || noticeFile != null) {
-					deleteFile(noticeNo, originalFile);
+					deleteFile(noticeNo, noticeFile);
 				}
 				
 				if(noticeFile != null) {
@@ -191,77 +162,42 @@ public class NoticeController extends HttpServlet {
 				pw.print("<script>"
 						+ " window.alert('글을 수정했습니다.');"
 						+ " location.href='" + request.getContextPath()
-						+ "/notice/viewNotice.do?noticeNo=" + noticeNo + "';"
+						+ "/noticeAdmin/readNotice.do?noticeNo=" + noticeNo + "';"
 						+ "</script>"
 						);
 				return;
 				
-				
-			} else if(action.equals("/deleteNotice.do")) {
+			} else if(action.equals("/deleteNotice.do")) {	
 				
 				int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
 				noticeDAO.deleteNotice(noticeNo);
-				deleteDirectory(noticeNo);
 				
 				PrintWriter pw = response.getWriter();
 				pw.print("<script>"
 						+ " window.alert('글을 삭제했습니다.');"
 						+ " location.href='"
-						+ request.getContextPath() + "/notice/listNotice.do';"
+						+ request.getContextPath() + "/noticeAdmin/listNotice.do';"
 						+ "</script>"
 						);
 				return;
 				
-			} else if(action.equals("/download.do")) {		
+			} else if(action.equals("/download.do")) {
 				
-				int noitceNo = Integer.parseInt(request.getParameter("noticeNo"));
+				int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
 				String noticeFile = request.getParameter("noticeFile");
-				
-				downloadFile(response, noitceNo, noticeFile);
+				downloadFile(response, noticeNo, noticeFile);
 				
 			} else {
-				nextPage = "/customerService/notice.jsp";
+				nextPage = "/admin/dist/customerService/noticeList.jsp";
 			}
 			
-			RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
-			dispatcher.forward(request, response);
-		
+			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
+			dispatch.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
-	private void setPagination(HttpServletRequest request) {
-		try {
-			int pageNo = 1;
-			if(request.getParameter("pageNo")!=null) {
-				pageNo = Integer.parseInt(request.getParameter("pageNo"));
-			}
-			if(request.getAttribute("pageNo")==null) {
-				request.setAttribute("pageNo", pageNo);
-			}
-			
-			int section = 1;
-			if(request.getParameter("section")!=null) {
-				section = Integer.parseInt(request.getParameter("section"));
-			}
-			if(request.getAttribute("section")==null) {
-				request.setAttribute("section", section);
-			}
-			
-			String search = "";
-			if(request.getParameter("search")!=null) {
-				search = request.getParameter("search");
-			}
-			if(request.getAttribute("search")==null) {
-				request.setAttribute("search", search);
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 	private Map<String, String> uploadFile(HttpServletRequest request) {
 		
 		Map<String, String> noticeMap = new HashMap<String, String>();
@@ -314,7 +250,6 @@ public class NoticeController extends HttpServlet {
 		}
 		return noticeMap;
 	}
-	
 	
 	private void moveFile(int noticeNo, String noticeFile) {
 		try {
@@ -405,5 +340,4 @@ public class NoticeController extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
 }

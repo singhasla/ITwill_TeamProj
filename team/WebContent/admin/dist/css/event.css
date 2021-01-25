@@ -1,0 +1,128 @@
+@CHARSET "UTF-8";
+
+.row {
+	display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;	
+}
+
+@media (min-width: 992px) {
+ .ecol-lg-4 {
+     -ms-flex: 0 0 50%;
+     flex: 0 0 50%;
+     max-width: 50%;
+}
+.ecol-lg-8 {
+     -ms-flex: 0 0 96%;
+     flex: 0 0 96%;
+     max-width: 96%;
+ }
+}
+@media (min-width: 1200px) {
+ .ecol-xl-3 {
+     -ms-flex: 0 0 23%;
+     flex: 0 0 23%;
+     max-width: 23%;
+ }
+ .ecol-xl-9 {
+     -ms-flex: 0 0 71%;
+     flex: 0 0 71%;
+     max-width: 71%;
+ }
+}
+.ecol-12, .ecol-xl-3, .ecol-lg-4, .ecol-xl-9, .ecol-lg-8 {
+    position: relative;
+    width: 100%;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.maxwid {
+	max-width: 100%
+}
+
+.bdlr {
+	border-left: 1px solid #dee2e6 !important;
+	border-right: 1px solid #dee2e6 !important;
+	border-bottom: 1px solid #dee2e6 !important;
+}
+
+.widhun {
+	width: 100%;
+    height: 42px;
+    line-height: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+textarea {
+	width: 100%;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.button_add {
+	float: right;
+	border-radius: 5px;
+	color: 
+}
+.eventbutton {
+	text-align: right !important;
+    padding-right: 0 !important;
+    padding-top: 30px !important;
+}
+.checkqna {
+	text-align: right !important;
+    padding-right: 0 !important;
+    padding-top: 50px !important;
+}
+.eventlist {
+	text-align: center;
+	cursor: pointer;
+}
+.eventlist:hover {
+	background-color: rgba(0,0,0,.075);
+}
+.eventlist img {
+	height: 40px;
+}
+
+.text-center {
+	text-align: center !important;
+}
+.hover:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+.originalFile {
+	display: flex;
+}
+.originalFile p{
+	color: #aea6a6;
+	font-size: 17px;
+}
+.originalFile input{
+	width: auto !important;
+    height: 15px !important;
+}
+
+.mr-l {
+	margin-left: 15px;
+    margin-top: 2px;
+}
+.alert {
+	background-color: #ffa000e3;
+    width: 50%;
+    height: 40px;
+    line-height: 15px;
+    font-weight: 700;
+    color: #0b0c2a;
+    display: none;
+}
+
+.nice-select {
+	width: 25%;
+    height: 40px;
+}

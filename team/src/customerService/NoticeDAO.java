@@ -46,6 +46,7 @@ public class NoticeDAO {
 	
 	public int getNoticeListCount(Map searchMap) {
 		
+		int getNoticeListCount = 0;
 		String search = (String)searchMap.get("search");
 		
 		try {
@@ -53,14 +54,15 @@ public class NoticeDAO {
 			String sql = "select count(noticeNo) from notice";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			if(rs.next()) return rs.getInt(1);
-			
+			if(rs.next()) {  
+				getNoticeListCount = rs.getInt(1);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			closeAll();
 		}
-		return 0;
+		return getNoticeListCount;
 	}
 	
 	public List getNoticeList(Map searchMap) {
@@ -70,17 +72,22 @@ public class NoticeDAO {
 		int pageNo = (int)searchMap.get("pageNo"); 
 		int startNum = (section - 1)*27 + (pageNo - 1)*10;
 		String search = (String)searchMap.get("search");
-		
+	
 		try {
 			conn = getConnection();
-			String sql = "select * from notice"
-						+ " where noticeTitle like ?"
-						+ " order by noticeNo desc"
-						+ " limit ?, 10";
-			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%" + search + "%");
-			pstmt.setInt(2, startNum);
+			String sql = "select * from notice";
+						
+			if(search != null && search.length() != 0){
+				sql += " where noticeTitle like ?"
+					+ " order by noticeNo desc limit ?, 10";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, "%" + search + "%");
+				pstmt.setInt(2, startNum);
+			} else {
+				sql += " order by noticeNo desc limit ?, 10";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, startNum);
+			}
 			
 			rs = pstmt.executeQuery();
 			
@@ -105,13 +112,61 @@ public class NoticeDAO {
 		return noticeList;
 	}
 	
+	public List getNoticeList() {
+		List noticeList = new ArrayList();
+		
+		try {
+			conn = getConnection();
+			String sql = "select * from notice order by noticeNo desc";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				NoticeVO noticeVO = new NoticeVO();
+				noticeVO.setNoticeNo(rs.getInt("noticeNo"));
+				noticeVO.setNoticeCategory(rs.getString("noticeCategory"));
+				noticeVO.setNoticeTitle(rs.getString("noticeTitle"));
+				noticeVO.setNoticeContent(rs.getString("noticeContent"));
+				noticeVO.setNoticeWriteDate(rs.getTimestamp("noticeWriteDate"));
+				noticeVO.setNoticeReadCount(rs.getInt("noticeReadcount"));
+				noticeVO.setNoticeFile(rs.getString("noticeFile"));
+				
+				noticeList.add(noticeVO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll();
+		}
+		return noticeList;
+	}
+	
+	public int getNoticeListCount() {
+		int noticeListCount = 0;
+		
+		try {
+			conn = getConnection();
+			String sql = "select count(noticeNo) from notice";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				noticeListCount = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll();
+		}
+		return noticeListCount;
+	}
+	
 	public int insertNotice(NoticeVO notice) {
 		
 		int noticeNo = 0;
 		try {
 			conn = getConnection();
 			String sql = "insert into notice (noticeTitle, noticeContent, noticeWriteDate, noticeCategory, noticeFile, noticeReadCount)"
-					+ "values (?, ?, now(), ?,?,?)";
+					+ " values (?, ?, now(), ?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, notice.getNoticeTitle());
 			pstmt.setString(2, notice.getNoticeContent());
@@ -124,10 +179,9 @@ public class NoticeDAO {
 			sql = "select noticeNo from notice order by noticeNo desc limit 1";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			rs.next();
-			
-			noticeNo = rs.getInt("noticeNo");
-			
+			if(rs.next()) {
+				noticeNo = rs.getInt("noticeNo");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -208,7 +262,6 @@ public class NoticeDAO {
 	public void updateNotice(NoticeVO noticeVO, String deleteFile) {
 		
 		String noticeFile = noticeVO.getNoticeFile();
-		
 		try {
 			conn = getConnection();
 			
