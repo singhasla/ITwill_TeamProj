@@ -15,6 +15,7 @@ public class UserVO {
 	private Timestamp userUpdate;
 	private String userAddr3; 
 	private String userAddr4; 
+	private int userNo;
 	
 	public UserVO() {
 		
@@ -143,6 +144,20 @@ public class UserVO {
 	public void setUserAddr4(String userAddr4) {
 		this.userAddr4 = userAddr4;
 	}
+
+
+
+	public int getUserNo() {
+		return userNo;
+	}
+
+
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
+	}
+	
+	
 	
 	
 	

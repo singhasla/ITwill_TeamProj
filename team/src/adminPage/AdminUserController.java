@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.buf.UEncoder;
 
+import order.MovieVO;
 import user.UserDAO;
 import user.UserVO;
 
@@ -87,10 +88,16 @@ public class AdminUserController extends HttpServlet{
 			nextPage = "/adminPage/dashBoard.do";
 			
 		}else if(action.equals("/getUser.do")) {
-			String userID = request.getParameter("userID");
 			
+			String userID = request.getParameter("userID");
+			int userNo = Integer.parseInt(request.getParameter("userNo"));
+			List userM = adminUserService.getUsermList(userNo);
+			List userQ = adminUserService.getUserqList(userNo);
 			UserVO userVO = adminUserService.getUser(userID);
+			
 			request.setAttribute("userVO", userVO);
+			request.setAttribute("userM", userM);
+			request.setAttribute("userQ", userQ);
 			nextPage = "/admin/dist/userPage/getUser.jsp";
 			
 		}else if(action.equals("/updateUser.do")) {
