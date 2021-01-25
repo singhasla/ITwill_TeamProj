@@ -10,6 +10,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import customerService.QnaVO;
+import order.MovieVO;
 import user.UserVO;
 
 public class AdminUserDAO {
@@ -61,6 +63,7 @@ public class AdminUserDAO {
 			
 			while(rs.next()){
 				UserVO userVO= new UserVO();
+				userVO.setUserNo(rs.getInt("userNo"));
 				userVO.setUserID(rs.getString("userID"));
 				userVO.setUserPW(rs.getString("userPW"));
 				userVO.setUserName(rs.getString("userName"));
@@ -123,6 +126,7 @@ public class AdminUserDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()){
+				userVO.setUserNo(rs.getInt("userNo"));
 				userVO.setUserID(rs.getString("userID"));
 				userVO.setUserPW(rs.getString("userPW"));
 				userVO.setUserName(rs.getString("userName"));
@@ -183,5 +187,93 @@ public class AdminUserDAO {
 		}
 		return 0;
 	}
+
+	public MovieVO getuserM(int userNo) {//개인별 영화
+	
+		MovieVO userM = new MovieVO();
+		try {
+			conn = getConnection();
+			String sql ="";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				userM.setMovieName("movieName");
+				userM.setMoviePrice(rs.getInt("moviePrice"));
+				userM.setMovieNo(rs.getInt("movieNo"));
+				userM.setMovieCategoryNo1(rs.getInt("movieCategoryNo1"));
+
+			}
+			
+			
+			
+		} catch (Exception e) {
+			System.out.println("getuserM 실행중 오류 "+e);
+		}finally {
+			discon();
+		}
+		return userM;
+	}
+
+	public List<MovieVO> getUserM(int userNo) {
+		String sql ="";
+		List<MovieVO> userM = new ArrayList();
+		try {
+			conn = getConnection();
+			sql="select a.userNo, c.*  from user a, `order` b, movie c where a.userNo = b.userNo &&  b.movieNO = c.movieNO && a.userNo=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				MovieVO movieVo = new MovieVO();
+				movieVo.setMovieNo(rs.getInt("movieNo"));
+				movieVo.setMovieName(rs.getString("movieName"));
+				movieVo.setMoviePrice(rs.getInt("moviePrice"));
+				movieVo.setMovieContent(rs.getString("movieContent")); 
+				movieVo.setMovieImage(rs.getString("movieImage"));
+			
+				userM.add(movieVo);
+			}
+		
+			
+		} catch (Exception e) {
+			System.out.println("getuserM 실행중 오류 "+e);
+		}finally {
+			discon();
+		}
+		
+		return userM;
+	}
+
+	public List<QnaVO> getUserQ(int userNo) {
+		String sql ="";
+		List<QnaVO> userQ = new ArrayList();
+		try {
+			conn = getConnection();
+			sql="select * from qna where userNo = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				QnaVO qnaVo = new QnaVO();
+				qnaVo.setQnaTitle(rs.getString("qnaTitle"));
+				qnaVo.setQnaCategory(rs.getString("qnaContent"));
+				qnaVo.setQnaWriteDate(rs.getTimestamp("qnaWriteDate"));
+				qnaVo.setAnswerWriteDate(rs.getTimestamp("answerWriteDate"));
+				qnaVo.setAnswerTitle(rs.getString("answerTitle"));			
+				userQ.add(qnaVo);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("");
+		}finally {
+			discon();
+		}
+		
+		return userQ;
+	}
+
+
 
 }

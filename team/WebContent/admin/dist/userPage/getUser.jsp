@@ -4,6 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>        
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:set var="user" value="${userVO}" />
+<c:set var="userM" value="${userM}" />
+<c:set var="userQ" value="${userQ}" />
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -94,8 +96,111 @@
 					</div>
 				
 				</div>
-			</article>
+				
+                <main>
+                    <div class="container-fluid">
+                    <br /><br />
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table mr-1"></i>
+                                	개별 영화 주문 내역	
+                            </div>
+                            <div class="card-body">
+                            
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr align="center">
+                                                <th>Movie No</th>
+                                                <th>Movie Name</th>
+                                                <th>Movie Price</th>
+                                                <th>Movie Content</th>
+                                                <th>Movie Image</th>
+                                            </tr>
+                                        </thead>
 
+                                        <tbody>
+                                        	<c:choose>
+                                       			<c:when test="${userM==null}">			
+													<tr align="center">
+														<td colspan="6">등록된 회원이 없습니다.</td>
+													</tr>
+												</c:when>
+												<c:otherwise>	
+													<c:forEach var="userM" items="${userM}">
+			                                            <tr align="center"  >
+			                                                <td>${userM.movieNo}</td>
+			                                                <td>${userM.movieName}</td>
+			                                                <td>${userM.moviePrice}</td>
+			                                                <td>${userM.movieContent}</td>
+			                                                <td><img src="${userM.movieImage}" width="100" height="100" alt="영화 이미지" /></td>
+			                                            </tr>
+			                      					</c:forEach>
+	                                   			</c:otherwise>
+                                            </c:choose>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                
+                 <main>
+                    <div class="container-fluid">
+                    <br /><br />
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table mr-1"></i>
+                                	개별 문의 내역	
+                            </div>
+                            <div class="card-body">
+                            
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr align="center">
+                                                <th>QnA Title</th>
+                                                <th>QnA Category</th>
+                                                <th>QnA WriteDate</th>
+                                                <th>Answer Title</th>
+                                                <th>Answer WriteDate</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        	<c:choose>
+                                       			<c:when test="${userQ==null}">			
+													<tr align="center">
+														<td colspan="6"></td>
+													</tr>
+												</c:when>
+												<c:otherwise>	
+													<c:forEach var="userQ" items="${userQ}">
+													<fmt:formatDate var="qnaWriteDate" value="${userQ.qnaWriteDate}" pattern="yyyy-MM-dd HH:mm"/>
+													<fmt:formatDate var="answerWriteDate" value="${userQ.answerWriteDate}" pattern="yyyy-MM-dd HH:mm"/>
+			                                            <tr align="center"  >
+			                                                <td>${userQ.qnaTitle}</td>
+			                                                <td>${userQ.qnaCategory}</td>
+			                                                <td>${qnaWriteDate}</td>
+			                                                <td>${userQ.answerTitle}</td>
+			                                                <td>${answerWriteDate}</td>
+			                                            </tr>
+			                      					</c:forEach>
+	                                   			</c:otherwise>
+                                            </c:choose>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            
+			</article>
+			
 
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">

@@ -28,10 +28,10 @@
         	form.submit();
         }
          
-         function getUser(userID,event){
+         function getUser(userID,userNo,event){
         	event.stopPropagation();
 			var form = document.userForm;
-        	form.action = "${contextPath}/adminPage/getUser.do?userID=" + userID;
+        	form.action = "${contextPath}/adminPage/getUser.do?userID=" + userID+"&userNo="+userNo;
         	form.submit();
         }
          
@@ -94,7 +94,7 @@
 												<c:otherwise>	
 													<c:forEach var="user" items="${userList}">
 													<fmt:formatDate var="userFmtDate" value="${user.userWriteDate}" pattern="yyyy-MM-dd HH:mm"/>
-			                                            <tr align="center"  onclick="getUser('${user.userID}', event)" style="cursor:pointer">
+			                                            <tr align="center"  onclick="getUser('${user.userID}','${user.userNo}', event)" style="cursor:pointer">
 			                                                <td>${user.userID}</td>
 			                                                <td>${user.userName}</td>
 			                                                <td>${user.userNickname}</td>
