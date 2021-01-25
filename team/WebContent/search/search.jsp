@@ -71,10 +71,26 @@
                                 </div>
                             </div>
                         </div>
+		           		<c:if test="${empty searchList}">
+                        <div class="row">
+		                    <div class="col ">
+		                        <div class="anime__details__review">
+		                            <div class="anime__review__item">
+		                                <div class="anime__review__item__text">
+					                        	<h4 style="color: white">
+					                        		검색하신 결과가 없습니다. 띄어쓰기에 유의해주세요.
+					                        	</h4>
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+					    </c:if>
                         <div class="row">
 	                        <c:forEach var="list" items="${searchList}">
                             <div class="col-lg-3 col-md-6 col-sm-6">
-                            	<a href="${contextPath}/detailServlet/detail.do?movieNo=${list.movieNo}">
+                            	<a href="${contextPath}/detailServlet/detail.do?movieNo=${list.movieNo}"/>
+                                
                                 <div class="product__item">
                                     <div data-setbg="${list.movieImage}" style="background-size:contain;" class="product__item__pic set-bg" >
                                         <div class="ep">18 / 18</div>
