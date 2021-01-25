@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:set var="userNo" value="${sessionScope.userNo}"/>
 <!DOCTYPE html>
@@ -25,14 +25,14 @@
                                 <li><a href="#">카테고리 <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
                                         <li><a href="${contextPath}/ctgrServlet/romance.do">로맨스</a></li>
-                                        <li><a href="#">액션/모험</a></li>
-                                        <li><a href="#">코미디</a></li>
-                                        <li><a href="#">드라마</a></li>
-                                        <li><a href="#">공포/스릴러</a></li>
-                                        <li><a href="#">SF/판타지</a></li>
-                                        <li><a href="#">애니메이션</a></li>
-                                        <li><a href="#">다큐멘터리</a></li>
-                                        <li><a href="#">범죄</a></li>
+                                        <li><a href="${contextPath}/ctgrServlet/adventure.do">액션/모험</a></li>
+                                        <li><a href="${contextPath}/ctgrServlet/comedy.do">코미디</a></li>
+                                        <li><a href="${contextPath}/ctgrServlet/drama.do">드라마</a></li>
+                                        <li><a href="${contextPath}/ctgrServlet/thriller.do">공포/스릴러</a></li>
+                                        <li><a href="${contextPath}/ctgrServlet/phantasy.do">SF/판타지</a></li>
+                                        <li><a href="${contextPath}/ctgrServlet/animation.do">애니메이션</a></li>
+                                        <li><a href="${contextPath}/ctgrServlet/documentary.do">다큐멘터리</a></li>
+                                        <li><a href="${contextPath}/ctgrServlet/crime.do">범죄</a></li>
                                     </ul>
                                 </li>
                                 <c:choose>

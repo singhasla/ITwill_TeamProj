@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import adminMovie.MovieVO;
+import category.CtgrMovieVO;
 
 public class DetailDAO {
 
@@ -92,6 +93,49 @@ public class DetailDAO {
 		}
 		return vo;
 	}//movieDetail
+
+	public List<CtgrMovieVO> searchMovie(String text) {	//입력한 검색어로 영화번호 가져오기
+		
+			sql = "SELECT movieNo FROM team.movie WHERE movieName like %?%";
+
+			List<CtgrMovieVO> list = new ArrayList<CtgrMovieVO>();
+
+			try {
+				conn = getConnection();
+
+				sql = "select m.movieNo, m.movieName, m.movieImage, "
+					+ "m.movieCategoryNo1, c1.movieCategoryName AS CN1, "
+					+ "m.movieCategoryNo2, c2.movieCategoryName AS CN2, m.movieTime "
+					+ "from team.movie m "
+					+ "left outer join team.category c1 on m.movieCategoryNo1 = c1.movieCategoryNo "
+					+ "left outer join team.category c2 on m.movieCategoryNo2 = c2.movieCategoryNo "
+					+ "WHERE m.movieName like '%"+text+"%'";
+
+				pstmt = conn.prepareStatement(sql);
+				//pstmt.setString(1, text);
+				
+				rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+					CtgrMovieVO vo = new CtgrMovieVO(rs.getInt("movieNo"), 
+											rs.getString("movieName"),
+											rs.getString("movieImage"),
+											rs.getInt("movieCategoryNo1"), 
+											rs.getString("CN1"),
+											rs.getInt("movieCategoryNo2"), 
+											rs.getString("CN2"),
+											rs.getString("movieTime"));
+
+					list.add(vo);
+				}
+			} catch (Exception e) {
+				System.out.println("searchMovie메소드 오류 :" + e.getMessage());
+				e.printStackTrace();
+			} finally {
+				freeResource();
+			}
+			return list;
+	}//searchMovie
 	
 	
 	

@@ -117,34 +117,6 @@ public class MovieController extends HttpServlet {
 				MovieVO movieVO = movieService.readMovie(movieNo);
 				request.setAttribute("movieNo", movieNo);
 				request.setAttribute("movieVO", movieVO);
-
-				List<CategoryVO> categoryList = movieService.categoryList();	
-				request.setAttribute("categoryList", categoryList);
-				
-				nextPage = "/admin/dist/movie/modifyMovie.jsp";
-				
-			}else if(action.equals("/updateMovie.do")){
-				Map<String, String> multipartMap = uploadFile(request);
-				
-				String movieName = multipartMap.get("movieName");
-				String movieContent = multipartMap.get("movieContent");
-				String movieImage = multipartMap.get("movieImage");
-				int moviePrice = Integer.parseInt(multipartMap.get("moviePrice"));
-				int movieCategoryNo1 = Integer.parseInt(multipartMap.get("movieCategoryNo1"));
-				int movieCategoryNo2 = Integer.parseInt(multipartMap.get("movieCategoryNo2"));
-				String movieDirector = multipartMap.get("movieDirector");
-				String movieLink = multipartMap.get("movieLink");
-				Date movieReleaseDate = Date.valueOf(multipartMap.get("movieReleaseDate"));
-				String actorName = multipartMap.get("actorName");
-				String movieTime = multipartMap.get("movieTime");
-				int movieNo = Integer.parseInt(multipartMap.get("movieNo"));
-
-			}else if(action.equals("/modifyMovie.do")){
-				
-				int movieNo = Integer.parseInt(request.getParameter("movieNo"));
-				MovieVO movieVO = movieService.readMovie(movieNo);
-				request.setAttribute("movieNo", movieNo);
-				request.setAttribute("movieVO", movieVO);
 				
 				
 				
@@ -169,6 +141,7 @@ public class MovieController extends HttpServlet {
 				String movieTime = multipartMap.get("movieTime");
 				int movieNo = Integer.parseInt(multipartMap.get("movieNo"));
 
+				
 
 				movieVO = new MovieVO(movieName, movieContent, movieImage, moviePrice, movieCategoryNo1,
 						movieCategoryNo2, movieDirector, movieLink, movieReleaseDate, actorName, movieTime, movieNo);
@@ -186,7 +159,6 @@ public class MovieController extends HttpServlet {
 
 				nextPage = "/admin/dist/movie/movie.jsp";
 				 */
-
 			}else if(action.equals("/deleteMovie.do")){//영화 삭제
 				int movieNo = Integer.parseInt(request.getParameter("movieNo"));
 				
@@ -197,7 +169,7 @@ public class MovieController extends HttpServlet {
 						+ " location.href='" + request.getContextPath()
 						+ "/adminMovieServlet/movie.do';" + "</script>");
 				return;
-
+				
 			}
 
 			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);

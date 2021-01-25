@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import adminMovie.MovieVO;
+import category.CtgrMovieVO;
+
 
 @WebServlet("/detailServlet/*")
 public class DetailController extends HttpServlet {
@@ -61,11 +62,7 @@ public class DetailController extends HttpServlet {
 
 				nextPage = "/detail/movie-detail.jsp";
 			
-			} else if (action.equals("/search.do")) {	
-				
-				String text = request.getParameter("search");
-				
-			} else if (action.equals("/watching.do")) {
+			} else if (action.equals("/watching.do")) {	
 				
 				int movieNo = Integer.parseInt(request.getParameter("movieNo"));
 				
@@ -73,10 +70,22 @@ public class DetailController extends HttpServlet {
 
 				request.setAttribute("DetailVO", vo);
 				
-				
 				nextPage = "/detail/movie-watching.jsp";
 
-			}
+			} else if (action.equals("/search.do")) {	//텍스트로 검색한 결과영화번호 리스트
+				
+				String text = request.getParameter("search");
+				
+				List<CtgrMovieVO> search = detailService.searchMovie(text);
+				
+				
+				request.setAttribute("searchList", search);
+				
+				nextPage = "/search/search.jsp";
+
+				//nextPage = "/detailServlet/detail.do?movieNo="+movieNo;
+				///detailServlet/detail.do?movieNo=${latest.movieNo}
+			} 
 
 			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 			dispatch.forward(request, response);
