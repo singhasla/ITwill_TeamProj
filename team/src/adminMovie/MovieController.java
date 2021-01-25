@@ -2,6 +2,7 @@ package adminMovie;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -124,7 +125,7 @@ public class MovieController extends HttpServlet {
 				
 				nextPage = "/admin/dist/movie/modifyMovie.jsp";
 				
-			}else if(action.equals("/updateMovie.do")){
+			}else if(action.equals("/updateMovie.do")){ //영화 수정
 				Map<String, String> multipartMap = uploadFile(request);
 				
 				String movieName = multipartMap.get("movieName");
@@ -158,6 +159,17 @@ public class MovieController extends HttpServlet {
 
 				nextPage = "/admin/dist/movie/movie.jsp";
 				 */
+			}else if(action.equals("/deleteMovie.do")){//영화 삭제
+				int movieNo = Integer.parseInt(request.getParameter("movieNo"));
+				
+				movieService.deleteMovie(movieNo);
+				
+				PrintWriter pw = response.getWriter();
+				pw.print("<script>" + " alert('삭제완료');" 
+						+ " location.href='" + request.getContextPath()
+						+ "/adminMovieServlet/movie.do';" + "</script>");
+				return;
+				
 			}
 
 			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);

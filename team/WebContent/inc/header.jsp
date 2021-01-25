@@ -13,7 +13,7 @@
                 <div class="col-lg-2">
                     <div class="header__logo">
                         <a href="../main/index.jsp">
-                            <img src="${contextPath }/img/logo.png" alt="">
+                            <img src="${contextPath}/img/logo.png" alt="">
                         </a>
                     </div>
                 </div>
