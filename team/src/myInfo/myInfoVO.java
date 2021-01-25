@@ -1,8 +1,9 @@
-package user;
+package myInfo;
 
 import java.sql.Timestamp;
 
-public class UserVO {
+public class myInfoVO {
+	private int userNo;
 	private String userID;
 	private String userPW; 
 	private String userName;
@@ -11,20 +12,21 @@ public class UserVO {
 	private String userEmail; 
 	private String userAddr1; 
 	private String userAddr2; 
-	private Timestamp userWriteDate;
-	private Timestamp userUpdate;
 	private String userAddr3; 
 	private String userAddr4; 
-	private int userNo;
+	private Timestamp userWriteDate;
+	private Timestamp userUpdateDate;
 	
-	public UserVO() {
+	public myInfoVO() {
 		
 	}
 
 	
 
-	public UserVO(String userID, String userPW, String userName, String userNickname, String userTel, String userEmail,
+	public myInfoVO(int userNo,
+			String userID, String userPW, String userName, String userNickname, String userTel, String userEmail,
 			String userAddr1, String userAddr2, String userAddr3, String userAddr4) {
+		this.userNo = userNo;
 		this.userID = userID;
 		this.userPW = userPW;
 		this.userName = userName;
@@ -35,6 +37,34 @@ public class UserVO {
 		this.userAddr2 = userAddr2;
 		this.userAddr3 = userAddr3;
 		this.userAddr4 = userAddr4;
+	}
+
+	
+
+	public myInfoVO(String userID, String userPW, String userName, String userNickname, String userTel,
+			String userEmail, String userAddr1, String userAddr2, String userAddr3, String userAddr4) {
+		this.userID = userID;
+		this.userPW = userPW;
+		this.userName = userName;
+		this.userNickname = userNickname;
+		this.userTel = userTel;
+		this.userEmail = userEmail;
+		this.userAddr1 = userAddr1;
+		this.userAddr2 = userAddr2;
+		this.userAddr3 = userAddr3;
+		this.userAddr4 = userAddr4;
+	}
+
+
+
+	public int getUserNo() {
+		return userNo;
+	}
+
+
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
 	}
 
 
@@ -115,19 +145,13 @@ public class UserVO {
 		this.userWriteDate = userWriteDate;
 	}
 
-	
-
-	public Timestamp getUserUpdate() {
-		return userUpdate;
+	public Timestamp getUserUpdateDate() {
+		return userUpdateDate;
 	}
 
-
-
-	public void setUserUpdate(Timestamp userUpdate) {
-		this.userUpdate = userUpdate;
+	public void setUserUpdateDate(Timestamp userUpdateDate) {
+		this.userUpdateDate = userUpdateDate;
 	}
-
-
 
 	public String getUserAddr3() {
 		return userAddr3;
@@ -144,20 +168,6 @@ public class UserVO {
 	public void setUserAddr4(String userAddr4) {
 		this.userAddr4 = userAddr4;
 	}
-
-
-
-	public int getUserNo() {
-		return userNo;
-	}
-
-
-
-	public void setUserNo(int userNo) {
-		this.userNo = userNo;
-	}
-	
-	
 	
 	
 	

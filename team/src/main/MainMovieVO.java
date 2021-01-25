@@ -1,8 +1,8 @@
-package adminMovie;
+package main;
 
 import java.sql.Date;
 
-public class MovieVO {
+public class MainMovieVO {
 
 	private int movieNo;
 	private String movieName;
@@ -10,7 +10,9 @@ public class MovieVO {
 	private String movieImage;
 	private int moviePrice;
 	private int movieCategoryNo1;
+	private String cn1;
 	private int movieCategoryNo2;
+	private String cn2;
 	private String movieDirector;
 	private String actorName;
 	private String movieTime;
@@ -19,56 +21,23 @@ public class MovieVO {
 	private Date movieWriteDate;
 	private Date movieUpdateDate;
 
-	public MovieVO() {
+	public MainMovieVO() {
 	}
 
-
-	public MovieVO(int movieNo, String movieName, String movieContent,  int movieCategoryNo1,
-			int movieCategoryNo2, int moviePrice) {
-		super();
-		this.movieNo = movieNo;
-		this.movieName = movieName;
-		this.movieContent = movieContent;
-		this.movieCategoryNo1 = movieCategoryNo1;
-		this.movieCategoryNo2 = movieCategoryNo2;
-		this.moviePrice = moviePrice;
-	}
-
-
-	public MovieVO(String movieName, String movieContent, String movieImage, int moviePrice, int movieCategoryNo1,
-			int movieCategoryNo2, String movieDirector, String movieLink, Date movieReleaseDate, String actorName, 
+	/*메인페이지에 쓸 목록가져올 VO*/
+	public MainMovieVO(int movieNo, String movieName, String movieImage, int movieCategoryNo1, String cn1, int movieCategoryNo2, String cn2,
 			String movieTime) {
 		super();
-		this.movieName = movieName;
-		this.movieContent = movieContent;
-		this.movieImage = movieImage;
-		this.moviePrice = moviePrice;
-		this.movieCategoryNo1 = movieCategoryNo1;
-		this.movieCategoryNo2 = movieCategoryNo2;
-		this.movieDirector = movieDirector;
-		this.movieLink = movieLink;
-		this.movieReleaseDate = movieReleaseDate;
-		this.actorName = actorName;
-		this.movieTime = movieTime;
-	}
-	public MovieVO(String movieName, String movieContent, String movieImage, int moviePrice, int movieCategoryNo1,
-			int movieCategoryNo2, String movieDirector, String movieLink, Date movieReleaseDate, String actorName, 
-			String movieTime, int movieNo) {
-		super();
-		this.movieName = movieName;
-		this.movieContent = movieContent;
-		this.movieImage = movieImage;
-		this.moviePrice = moviePrice;
-		this.movieCategoryNo1 = movieCategoryNo1;
-		this.movieCategoryNo2 = movieCategoryNo2;
-		this.movieDirector = movieDirector;
-		this.movieLink = movieLink;
-		this.movieReleaseDate = movieReleaseDate;
-		this.actorName = actorName;
-		this.movieTime = movieTime;
 		this.movieNo = movieNo;
+		this.movieName = movieName;
+		this.movieImage = movieImage;
+		this.movieCategoryNo1 = movieCategoryNo1;
+		this.cn1 = cn1;
+		this.movieCategoryNo2 = movieCategoryNo2;
+		this.cn2 = cn2;
+		this.movieTime = movieTime;
 	}
-	
+
 	public int getMovieNo() {
 		return movieNo;
 	}
@@ -179,6 +148,22 @@ public class MovieVO {
 
 	public void setMovieTime(String movieTime) {
 		this.movieTime = movieTime;
+	}
+
+	public String getCn1() {
+		return cn1;
+	}
+
+	public void setCn1(String cn1) {
+		this.cn1 = cn1;
+	}
+
+	public String getCn2() {
+		return cn2;
+	}
+
+	public void setCn2(String cn2) {
+		this.cn2 = cn2;
 	}
 
 	

@@ -5,7 +5,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -170,13 +172,120 @@ public List<MovieVO> movieList() {
 		}
 		return list;
 	}
-	
 
-	
-	
+	public MovieVO getMovie(int movieNo) {
+		
+		MovieVO movieVO = new MovieVO();
+		
+		try {
+			conn = getConnection();
+			String sql = "SELECT * FROM team.movie where movieNo = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, movieNo);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {;
+				
+				movieVO.setMovieNo(rs.getInt("movieNo"));
+				movieVO.setMovieName(rs.getString("movieName"));
+				movieVO.setMovieContent(rs.getString("movieContent"));
+				movieVO.setMovieImage(rs.getString("movieImage"));
+				movieVO.setMovieCategoryNo1(rs.getInt("movieCategoryNo1"));
+				movieVO.setMovieCategoryNo2(rs.getInt("movieCategoryNo2"));
+				movieVO.setMovieDirector(rs.getString("movieDirector"));
+				movieVO.setMovieLink(rs.getString("movieLink"));
+				movieVO.setMovieReleaseDate(rs.getDate("movieReleaseDate"));
+				movieVO.setActorName(rs.getString("actorName"));
+				movieVO.setMovieTime(rs.getString("movieTime"));
+				movieVO.setMoviePrice(rs.getInt("moviePrice"));
+				
+				
+							
+			}
+			
+		} catch(Exception e) {
+			System.out.println("getMovie()오류: " + e.toString());
+		} finally {
+			freeResource();
+		}
+		
+		return movieVO;
+	}
 
-	
-	
+	public void updateMoive(MovieVO vo) {
+		try {
+			conn = getConnection();
+
+			String movieName = vo.getMovieName();
+			String movieContent = vo.getMovieContent();
+			String movieImage = vo.getMovieImage();
+			int moviePrice = vo.getMoviePrice();
+			int movieCategoryNo1 = vo.getMovieCategoryNo1();
+			int movieCategoryNo2 = vo.getMovieCategoryNo2();
+			String movieDirector = vo.getMovieDirector();
+			String movieLink = vo.getMovieLink();
+			String actorName = vo.getActorName();
+			Date movieReleaseDate = vo.getMovieReleaseDate();
+			String movieTime = vo.getMovieTime();
+			int movieNo = vo.getMovieNo();
+
+			// 쿼리로 중복체크 후 데이터 삽입(같은 userNo에 movieNo가 중복될 수 없도록...)
+
+			sql = "UPDATE team.movie SET movieName = ?, movieContent = ?, movieImage = ?, moviePrice = ?, "
+					+ "movieCategoryNo1 = ?, movieCategoryNo2 = ?, movieLink = ?, movieReleaseDate = ?, "
+					+ "movieDirector = ?, actorName = ?, movieTime = ? WHERE movieNo = ?";
+
+			// sql = "INSERT INTO order(userNo, movieNo, orderWriteDate)"
+			// + " VALUES(?,?,sysdate())";
+
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, movieName);
+			pstmt.setString(2, movieContent);
+			pstmt.setString(3, movieImage);
+			pstmt.setInt(4, moviePrice);
+			pstmt.setInt(5, movieCategoryNo1);
+			pstmt.setInt(6, movieCategoryNo2);
+			pstmt.setString(7, movieLink);
+			pstmt.setDate(8, movieReleaseDate);
+			pstmt.setString(9, movieDirector);
+			pstmt.setString(10, actorName);
+			pstmt.setString(11, movieTime);
+			pstmt.setInt(12, movieNo);
+
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("updateMoive메소드 오류 :" + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			freeResource();
+		}
+	}// updateMoive
+
+	public void deleteMovie(int movieNo) {
+		try {
+			conn = getConnection();
+
+			sql = "DELETE FROM team.movie WHERE movieNo=?";
+
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, movieNo);
+
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("deleteMovie 메소드 오류 : " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			freeResource();
+		}
+		
+	}
+		
 	
 	
 }

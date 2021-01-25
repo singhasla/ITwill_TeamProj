@@ -35,6 +35,14 @@
 	<link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css">
 	<link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
 	<link rel="stylesheet" href="../css/style.css" type="text/css">
+	
+	<style>
+	
+	.hover :hover {
+		  color: #5CAAEF;
+		}
+		
+	</style>
 </head>
 
 <body>
@@ -57,10 +65,10 @@
 					</div>
 				</div>
 				<div class="col-8">
-					<table class="table table-dark table-hover">
+					<table class="table table-hover">
 						<thead>
 							<p style="color: white;">${userID} 님이 구매하신 상품입니다.</p>
-							<tr>
+							<tr style="color: white;" >
 								<th scope="col">#</th>
 								<th width="20%" scope="col" style="text-align: center">영화</th>
 								<th width="50%" scope="col">제목</th>
@@ -68,7 +76,7 @@
 								<th width="10%"scope="col" style="text-align: center">삭제</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody style="color: white;">
 							<c:choose>
 								<c:when test="${myOrderList == null}">
 										<tr>
@@ -78,18 +86,18 @@
 								
 								<c:when test="${myOrderList != null}">
 									<c:forEach var="orderListInf" items="${myOrderList}" varStatus="status">
-										<tr>
+										<tr class="hover">
 											<td scope="row" style="vertical-align: middle">${status.index+1}</td>
 											<td><img src="${orderListInf.movieImage}" class="cart_thumbnail"/></td>
 											<td style="vertical-align: middle">${orderListInf.movieName}</td>
 											<td style="vertical-align: middle">	
-												<a href="${orderListInf.movieLink}"></div>
-													<img style="max-width: 80%" src="../img/playbutton.png">
-												</a>
-												<!-- 나중에 상세보기페이지로 이동할 예정 -->
-												<%-- <a href="${contextPath}/ordersvlt/xxxx.do?userNo=${userNo}&movieNo=${orderListInf.movieNo}"></div>
-													<img src="../img/playbutton.png">
+												<%-- <a href="${orderListInf.movieLink}">
+													<img style="max-width: 80%" src="../img/playbutton.png" >
 												</a> --%>
+												<!-- 나중에 상세보기페이지로 이동할 예정 -->
+												<a href="${contextPath}/detailServlet/watching.do?movieNo=${orderListInf.movieNo}"></div>
+													<img src="../img/playbutton.png">
+												</a>
 											</td>
 											<td style="vertical-align: middle; text-align: center;">
 												<a class="icon_trash" href="${contextPath}/ordersvlt/delOrder.do?userNo=${userNo}&movieNo=${orderListInf.movieNo}"></a>

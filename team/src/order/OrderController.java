@@ -82,6 +82,11 @@ public class OrderController extends HttpServlet {
 				cartVO = new OrderVO(userNo, movieNo);
 				orderService.addItemCart(cartVO);
 				
+				PrintWriter pw = response.getWriter();
+				pw.print("<script>" + " alert('장바구니에 추가되었습니다.');" 
+						+ " location.href='" + request.getContextPath()
+						+ "/detailServlet/detail.do?movieNo="+movieNo+"';" + "</script>");
+				
 				return;
 
 			} else if (action.equals("/allDelCart.do")) {	//로그인한 회원의 카트 목록 전체삭제

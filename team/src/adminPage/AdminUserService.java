@@ -3,6 +3,8 @@ package adminPage;
 import java.util.ArrayList;
 import java.util.List;
 
+import customerService.QnaVO;
+import order.MovieVO;
 import user.UserVO;
 
 public class AdminUserService {
@@ -45,5 +47,26 @@ public class AdminUserService {
 		
 		return adminUserDAO.deleteUser(userID);
 	}
+
+	public MovieVO getuserM(int userNo) {
+		
+		return adminUserDAO.getuserM(userNo);
+	}
+
+	public List getUsermList(int userNo) {
+		
+		List<MovieVO> getUserM = new ArrayList<MovieVO>();
+		getUserM = adminUserDAO.getUserM(userNo);
+		/*System.out.println(getUserM);*/
+		return getUserM;
+	}
+
+	public List getUserqList(int userNo) {
+		List<QnaVO> getUserQ = new ArrayList<QnaVO>();
+		getUserQ = adminUserDAO.getUserQ(userNo);
+		return getUserQ;
+	}
+
+
 
 }
