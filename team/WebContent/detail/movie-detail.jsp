@@ -111,9 +111,9 @@
                                 </div>
                             </div>
                             <div class="anime__details__btn">
-                               <a href="${contextPath}/ordersvlt/addCart.do?userNo=${userNo}&&movieNo=${detail.movieNo}" 
+                               <a href="${contextPath}/ordersvlt/addCart.do?userNo=${userNo}&movieNo=${detail.movieNo}" 
                                		class="follow-btn"><span class="icon_cart">장바구니</span></a>
-                               <a href="${contextPath}/detailServlet/watching.do?movieNo=${detail.movieNo}" 
+                               <a href="${contextPath}/wishsvlt/addWish.do?userNo=${userNo}&movieNo=${detail.movieNo}" 
                                		class="follow-btn"><span class="icon_heart">찜하기</span></a>
                                 </div>
                             </div>
