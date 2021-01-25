@@ -4,6 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:set var="detail" value="${DetailVO}" />
+<c:set var="star" value="${star}" />
+
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -48,9 +50,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
-                        <a href="./index.html"><i class="fa fa-home"></i> Home</a>
-                        <a href="./categories.html">Categories</a>
-                        <span>${detail.CN1} &nbsp;&nbsp; ${detail.CN2}</span>
+                        <a href="#"><i class="fa fa-home"></i> Home</a>
                     </div>
                 </div>
             </div>
@@ -74,20 +74,20 @@
                             <div class="anime__details__title">
                                 <div>
                                 	<h3>${detail.movieName}</h3>
-                                	<a>+ WATCH LIST</a>
                                 </div>
                                 <span>${detail.movieName}</span>
                             </div>
                             <div class="anime__details__rating">
                                 <!-- 별점 -->
+                                <span>평점 &nbsp; ${detail.movieAvgRating }</span>
                                 <div class="rating">
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star-half-o"></i></a>
+ 		   	                        <c:forEach var="i" begin="2" end="${star}" step="2">
+ 		   	                        	<a href="#"><i class="fa fa-star"></i></a>
+ 		   	                        </c:forEach>      
+	   	                        	<c:if test="${star%2 >= 1}">
+ 	                                    <a href="#"><i class="fa fa-star-half-o"></i></a>
+									</c:if>
                                 </div>
-                                <span>투표자수 n명</span>
                             </div>
                             <p>${detail.movieContent}
                             </p>
@@ -111,8 +111,8 @@
                                 </div>
                             </div>
                             <div class="anime__details__btn">
-                                <a href="#" class="follow-btn">장바구니</a>
-                                <a href="${contextPath}/detailServlet/watching.do?movieNo=${detail.movieNo}" class="watch-btn"><span>바로 보기</span> 
+                                <a href="${contextPath}/ordersvlt/addCart.do?userNo=${userNo}&&movieNo=${detail.movieNo}" class="follow-btn">장바구니</a>
+                               <%--  <a href="${contextPath}/detailServlet/watching.do?movieNo=${detail.movieNo}" class="watch-btn"><span>바로 보기</span> --%> 
                                 	<i class="fa fa-angle-right"></i></a>
                                 </div>
                             </div>
