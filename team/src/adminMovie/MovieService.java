@@ -34,8 +34,10 @@ public class MovieService {
 		
 	}
 
-	
-
+	public void deleteMovie(int movieNo) {
+		movieDAO.deleteMovie(movieNo);
+		
+	}
 	
 
 }
