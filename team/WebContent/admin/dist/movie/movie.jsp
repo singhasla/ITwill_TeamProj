@@ -18,7 +18,7 @@
 		</style>
 	
 	
-        <title>관리자 페이지입니다</title>
+        <title>영화관리 페이지</title>
         <link href="${contextPath}/admin/dist/css/styles.css" rel="stylesheet" />
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <link rel="stylesheet" href="${contextPath}/css/elegant-icons.css" type="text/css">
@@ -44,7 +44,7 @@
 							<button type="button" class="btn btn-primary btn-sm"
 									onclick="location.href='${contextPath}/adminMovieServlet/addMovie.do'"
 									style="position: relative;  top: -40px;">
-									상품 등록
+									영화 등록
 							</button>
 							<button type="button" class="btn btn-secondary btn-sm"
 									onclick="location.href='${contextPath}/adminMovieServlet/listProductCategory.do'"
@@ -67,7 +67,6 @@
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr style="text-align: center;">
-                                            	<th>#</th>
                                                 <th style="width: 5%">No.</th>
                                                 <th style="width: 20%">제목</th>
                                                 <th style="width: 39%">줄거리</th>
@@ -89,7 +88,6 @@
 												<c:otherwise>	
 													<c:forEach var="movie" items="${movieList}" varStatus="stat">
 			                                            <tr>
-			                                            	<td>${stat.index}</td>
 			                                                <td>${movie.movieNo}</td>
 			                                                <td>${movie.movieName}</td>
 			                                                <td><div class="cut">${movie.movieContent}</div></td>
@@ -100,7 +98,7 @@
 																<a class="icon_tools" href="${contextPath}/adminMovieServlet/modifyMovie.do?movieNo=${movie.movieNo}"></a>
 															</td>
 			                                                <td style="vertical-align: middle; text-align: center;">
-																<a class="icon_trash" href="#"></a>
+																<a class="icon_trash" href="${contextPath}/adminMovieServlet/deleteMovie.do?movieNo=${movie.movieNo}"></a>
 															</td>
 			                                            </tr>
 			                      					</c:forEach>

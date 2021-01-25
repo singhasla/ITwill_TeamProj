@@ -50,7 +50,7 @@
                     <div class="breadcrumb__links">
                         <a href="./index.html"><i class="fa fa-home"></i> Home</a>
                         <a href="./categories.html">Categories</a>
-                        <span>${detail.CN1} || ${detail.CN2}</span>
+                        <span>${detail.CN1} &nbsp;&nbsp; ${detail.CN2}</span>
                     </div>
                 </div>
             </div>
@@ -103,7 +103,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <ul>
-                                        	<li><span>장르 :</span> ${detail.CN1} || ${detail.CN2}</li>
+                                        	<li><span>장르 :</span> ${detail.CN1} &nbsp;&nbsp; ${detail.CN2}</li>
                                             <li><span>개봉일 :</span> ${detail.movieReleaseDate}</li>
                                             <li><span>상영시간 :</span> ${detail.movieTime}</li>
                                         </ul>
@@ -112,7 +112,7 @@
                             </div>
                             <div class="anime__details__btn">
                                 <a href="#" class="follow-btn">장바구니</a>
-                                <a href="movie-watching.jsp" class="watch-btn"><span>바로 보기</span> 
+                                <a href="${contextPath}/detailServlet/watching.do?movieNo=${detail.movieNo}" class="watch-btn"><span>바로 보기</span> 
                                 	<i class="fa fa-angle-right"></i></a>
                                 </div>
                             </div>

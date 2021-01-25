@@ -264,6 +264,27 @@ public List<MovieVO> movieList() {
 			freeResource();
 		}
 	}// updateMoive
+
+	public void deleteMovie(int movieNo) {
+		try {
+			conn = getConnection();
+
+			sql = "DELETE FROM team.movie WHERE movieNo=?";
+
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, movieNo);
+
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("deleteMovie 메소드 오류 : " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			freeResource();
+		}
+		
+	}
 		
 	
 	
