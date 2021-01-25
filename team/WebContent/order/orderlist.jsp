@@ -91,13 +91,13 @@
 											<td><img src="${orderListInf.movieImage}" class="cart_thumbnail"/></td>
 											<td style="vertical-align: middle">${orderListInf.movieName}</td>
 											<td style="vertical-align: middle">	
-												<a href="${orderListInf.movieLink}">
+												<%-- <a href="${orderListInf.movieLink}">
 													<img style="max-width: 80%" src="../img/playbutton.png" >
-												</a>
-												<!-- 나중에 상세보기페이지로 이동할 예정 -->
-												<%-- <a href="${contextPath}/ordersvlt/xxxx.do?userNo=${userNo}&movieNo=${orderListInf.movieNo}"></div>
-													<img src="../img/playbutton.png">
 												</a> --%>
+												<!-- 나중에 상세보기페이지로 이동할 예정 -->
+												<a href="${contextPath}/detailServlet/watching.do?movieNo=${orderListInf.movieNo}"></div>
+													<img src="../img/playbutton.png">
+												</a>
 											</td>
 											<td style="vertical-align: middle; text-align: center;">
 												<a class="icon_trash" href="${contextPath}/ordersvlt/delOrder.do?userNo=${userNo}&movieNo=${orderListInf.movieNo}"></a>
