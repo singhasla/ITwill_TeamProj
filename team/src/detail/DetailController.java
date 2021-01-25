@@ -61,11 +61,14 @@ public class DetailController extends HttpServlet {
 
 				nextPage = "/detail/movie-detail.jsp";
 			
+<<<<<<< HEAD
 			} else if (action.equals("/search.do")) {	
 				
 				String text = request.getParameter("search");
 				
-			} else if (action.equals("/watching.do")) {
+=======
+			} else if (action.equals("/watching.do")) {	
+>>>>>>> refs/remotes/origin/Jo
 				
 				int movieNo = Integer.parseInt(request.getParameter("movieNo"));
 				
