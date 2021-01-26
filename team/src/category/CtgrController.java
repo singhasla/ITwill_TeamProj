@@ -49,7 +49,23 @@ public class CtgrController extends HttpServlet {
 
 		try {
 
-			if (action.equals("/romance.do")) { //1. 로맨스
+			if (action.equals("/latestAll.do")) { //전체 리스트 출력
+
+				List<CtgrMovieVO> allList = ctgrService.latestAllList();
+				
+				request.setAttribute("ctgrList", allList);
+				
+				nextPage = "/category/categories.jsp";
+			
+			}else if (action.equals("/hotAll.do")) { //전체 리스트 출력
+
+				List<CtgrMovieVO> allList = ctgrService.hotAllList();
+				
+				request.setAttribute("ctgrList", allList);
+				
+				nextPage = "/category/categories.jsp";
+			
+			}else if (action.equals("/romance.do")) { //1. 로맨스
 
 				List<CtgrMovieVO> romancelist = ctgrService.romanceList();
 				

@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+ <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>이메일 중복 확인</title>
 <script>
@@ -20,19 +21,26 @@
 <body>
 	<div>
 		<form action="${contextPath}/user/mailCheck.do" method="post" name="checkform">
-			<div>
+			<div >
 				<input type="email" class="form-control" name="userEmail" id=userEmail value="${userEmail}" maxlength="20" required>
-				<div >
-					<button type="submit" class="btn btn-secondary">중복확인</button>
+				<div align="center">
+					<br />
+					<c:if test='${msg=="allow"}'>
+						<div class="text-center">
+							<button type="button" class="btn btn-primary" onclick="result()">사용하기</button>
+							<button type="submit" class="btn btn-secondary">중복확인</button>
+						</div>
+					</c:if>
+					<c:if test='${msg=="used"}'>
+						<div class="text-center">
+							<button type="submit" class="btn btn-secondary">중복확인</button>
+						</div>
+					</c:if>
 				</div>
 			</div>
 		</form>
 	</div>
-	<c:if test='${msg=="allow"}'>
-		<div class="text-center">
-			<button type="button" class="btn btn-primary" onclick="result()">사용하기</button>
-		</div>
-	</c:if>
+
 	
 	<c:choose>
 		<c:when test='${msg=="used"}'>

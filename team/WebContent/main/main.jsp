@@ -46,39 +46,39 @@
 	<section class="hero">
 		<div class="container">
 			<div class="hero__slider owl-carousel">
-				<div class="hero__items set-bg" data-setbg="../img/hero/movie1.jpg">
+				<div class="hero__items set-bg" data-setbg="../img/hero/JJ.jpg" style="background-size: contain;">
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="hero__text">
-								<div class="label">드라마</div>
+								<div class="label">로맨스, 드라마</div>
+								<h2>조제</h2>
+								<p>한지민, 남주혁 外</p>
+								<a href="#"><span>Watch Now</span> <i
+									class="fa fa-angle-right"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="hero__items set-bg" data-setbg="../img/hero/PARASITE.jpg" style="background-size: contain;">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="hero__text">
+								<div class="label">드라마, 스릴러</div>
+								<h2>기생충</h2>
+								<p>송강호, 이선균, 조여정 外</p>
+								<a href="#"><span>Watch Now</span> <i
+									class="fa fa-angle-right"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="hero__items set-bg" data-setbg="../img/hero/NG.jpg" style="background-size: contain;">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="hero__text">
+								<div class="label">스릴러</div>
 								<h2>나이팅게일</h2>
-								<p>샘 클라플린, 데이몬 헤리맨, 아이슬링 프란쵸시, ...</p>
-								<a href="#"><span>Watch Now</span> <i
-									class="fa fa-angle-right"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="hero__items set-bg" data-setbg="../img/hero/movie2.jpg">
-					<div class="row">
-						<div class="col-lg-6">
-							<div class="hero__text">
-								<div class="label">범죄</div>
-								<h2>도굴</h2>
-								<p>이제훈, 조우진, 신혜선, 임원희, 송영창, 주진모</p>
-								<a href="#"><span>Watch Now</span> <i
-									class="fa fa-angle-right"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="hero__items set-bg" data-setbg="../img/hero/movie3.jpg">
-					<div class="row">
-						<div class="col-lg-6">
-							<div class="hero__text">
-								<div class="label">액션</div>
-								<h2>원더 우먼 1984</h2>
-								<p>갤 가돗, 크리스 파인, 크리스틴 위그, 페드로 파...</p>
+								<p>아이슬링 프란시오시, 베이칼리 가남바르, 샘 클라플린 外</p>
 								<a href="#"><span>Watch Now</span> <i
 									class="fa fa-angle-right"></i></a>
 							</div>
@@ -105,7 +105,7 @@
 						</div>
 						<div class="col-lg-2 col-md-4 col-sm-4">
 							<div class="btn__all">
-								<a href="#" class="primary-btn">View All <span
+								<a href="${contextPath}/ctgrServlet/latestAll.do" class="primary-btn">View All <span
 									class="arrow_right"></span></a>
 							</div>
 						</div>
@@ -156,7 +156,7 @@
 						</div>
 						<div class="col-lg-2 col-md-4 col-sm-4">
 							<div class="btn__all">
-								<a href="#" class="primary-btn">View All <span
+								<a href="${contextPath}/ctgrServlet/hotAll.do" class="primary-btn">View All <span
 									class="arrow_right"></span></a>
 							</div>
 						</div>
