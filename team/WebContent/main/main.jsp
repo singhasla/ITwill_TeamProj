@@ -12,7 +12,7 @@
 <meta name="keywords" content="Anime, unica, creative, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>main</title>
+<title>다본다MOVIE</title>
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -118,7 +118,6 @@
 									<div class="product__item">
 										<div class="product__item__pic set-bg"
 											data-setbg="${latest.movieImage}">
-											<div class="ep">18 / 18</div>
 											<div class="comment">
 												<i class="fa fa-comments"></i> 11
 											</div>
@@ -169,9 +168,8 @@
 									<div class="product__item">
 										<div class="product__item__pic set-bg"
 											data-setbg="${hot.movieImage}">
-											<div class="ep">18 / 18</div>
 											<div class="comment">
-												<i class="fa fa-comments"></i> 11
+												<i class="fa fa-comments"></i> 5
 											</div>
 											<div class="view">
 												<i class="fa fa-eye"></i> ${hot.movieTime}
