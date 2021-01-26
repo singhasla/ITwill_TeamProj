@@ -213,7 +213,7 @@ public class NoticeDAO {
 		
 		try {
 			conn = getConnection();
-			String sql = "select * from notice where noticeNo = ?";
+			String sql = "select * from notice where noticeNo = ?;";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, noticeNo);
 			rs = pstmt.executeQuery();
@@ -234,6 +234,40 @@ public class NoticeDAO {
 			closeAll();
 		}
 		return noticeVO;
+	}
+	
+	public PrevNextVO getPrevNext(int noticeNo) {
+		PrevNextVO prevNextVO = new PrevNextVO();
+		String sql = "";
+		try {
+			conn = getConnection();
+			sql = "select noticeNo, noticeTitle, noticeCategory from notice"
+					+ " where noticeNo = ( select max(noticeNo) from notice where noticeNo < ? );";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, noticeNo);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				prevNextVO.setPrevNo(rs.getInt("noticeNo"));
+				prevNextVO.setPrevTitle(rs.getString("noticeTitle"));
+				prevNextVO.setPrevCategory(rs.getString("noticeCategory"));
+			}
+			
+			sql = "select noticeNo, noticeTitle, noticeCategory from notice"
+				+ " where noticeNo = ( select min(noticeNo) from notice where noticeNo > ? );";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, noticeNo);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				prevNextVO.setNextNo(rs.getInt("noticeNo"));
+				prevNextVO.setNextTitle(rs.getString("noticeTitle"));
+				prevNextVO.setNextCategory(rs.getString("noticeCategory"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll();
+		}
+		return prevNextVO;
 	}
 	
 	public List<NoticeVO> noticeCategoryList(){

@@ -10,6 +10,8 @@ public class EventVO {
 	private String eventImage;
 	private Timestamp eventWriteDate;
 	private Timestamp eventUpdateDate;
+	private int prev_eventNo;
+	private int next_eventNo;
 	
 	public EventVO() {
 		
@@ -68,6 +70,22 @@ public class EventVO {
 
 	public void setEventUpdateDate(Timestamp eventUpdateDate) {
 		this.eventUpdateDate = eventUpdateDate;
+	}
+
+	public int getPrev_eventNo() {
+		return prev_eventNo;
+	}
+
+	public void setPrev_eventNo(int prev_eventNo) {
+		this.prev_eventNo = prev_eventNo;
+	}
+
+	public int getNext_eventNo() {
+		return next_eventNo;
+	}
+
+	public void setNext_eventNo(int next_eventNo) {
+		this.next_eventNo = next_eventNo;
 	}
 	
 	

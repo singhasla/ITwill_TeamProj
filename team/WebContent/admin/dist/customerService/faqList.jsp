@@ -66,7 +66,7 @@
 			                                            <tr class="eventlist"  onclick="readFaq('${faq.faqNo}', event)">
 			                                                <td>${faq.faqNo}</td>
 			                                                <td>${faq.faqTitle}</td>
-			                                                <td>${faq.faqContent}</td>
+			                                                <td><div class="cut">${faq.faqContent}</div></td>
 			                                                <td>
 			                                                	<button type="button" class="btn btn-warning" onclick="modifyFaq('${faq.faqNo}', event)">수정</button>
 			                                                	<button type="button" class="btn btn-danger" onclick="deleteFaq('${faq.faqNo}', event)">삭제</button>

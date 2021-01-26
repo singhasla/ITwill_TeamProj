@@ -12,6 +12,7 @@
 <c:set var="noticeReadCount" value="${noticeMap.noticeVO.noticeReadCount}"/>
 <c:set var="noticeCategory" value="${noticeMap.noticeVO.noticeCategory}"/>
 <fmt:formatDate var="noticeFormattedDate" value="${noticeWriteDate}" pattern="yy-MM-dd"/>
+<c:set var="prevNext" value="${noticeMap.prevNextVO }"/>
 <%
 	request.setCharacterEncoding("UTF-8");
 	pageContext.setAttribute("LF", "\n");
@@ -110,11 +111,25 @@
 		                        <div style="margin-bottom: 20px;">
 			                        <div class="next">
 			                        	<span class="bo-r">다음 글</span>
-			                        	<span><a href=""  style="color: #646464;">[이전글 카테고리] 이전글 제목</a></span>
+			                        	<c:choose>
+	                                    		<c:when test="${prevNext.nextNo == 0 || prevNext.nextNo eq null}">
+													<span class="mr-l-30">다음글이 존재하지 않습니다.</span>
+	                                        	</c:when>
+	                                        	<c:otherwise>
+	                                        		<span><a href="${contextPath}/notice/viewNotice.do?noticeNo=${prevNext.nextNo}"  style="color: #646464;">[${prevNext.nextCategory}] ${prevNext.nextTitle}</a></span>
+	                                        	</c:otherwise>
+	                                    </c:choose>	
 			                        </div>
 			                         <div class="next">
-			                        	<span class="bo-r">이전 글</span>
-			                        	<span><a href=""  style="color: #646464;">[다음글 카테고리] 다음글 제목</a></span>
+	                                    <span class="bo-r">이전 글</span>
+			                        	<c:choose>
+	                                    		<c:when test="${prevNext.prevNo == 0 || prevNext.prevNo eq null}">
+													<span class="mr-l-30">이전글이 존재하지 않습니다.</span>
+	                                        	</c:when>
+	                                        	<c:otherwise>
+	                                        		<span><a href="${contextPath}/notice/viewNotice.do?noticeNo=${prevNext.prevNo}"  style="color: #646464;">[${prevNext.prevCategory}] ${prevNext.prevTitle}</a></span>
+	                                        	</c:otherwise>
+	                                    </c:choose>	
 			                        </div>
 		                        </div>
 		                        	
@@ -129,7 +144,7 @@
 					            </c:when>
 					            <c:otherwise>
 					            	<div class="btn-area ar" style="margin-top: 0px;">
-										<a href="${contextPath}/notice/listQna.do" class="btn-box board">목록</a>
+										<a href="${contextPath}/notice/listNotice.do" class="btn-box board">목록</a>
 									</div>
 					            </c:otherwise>
 					            </c:choose>
@@ -153,7 +168,7 @@
 			form.action = "${contextPath}/notice/download.do?noticeNo=" + noticeNo + "&noticeFile=" + noticeFile;
 			form.submit();
 		}
-	
+
 	</script>
 	
 </body>
