@@ -139,6 +139,10 @@ public class NoticeController extends HttpServlet {
 				NoticeVO noticeVO = noticeDAO.getNotice(noticeNo);
 				noticeMap.put("noticeVO", noticeVO);
 				request.setAttribute("noticeMap", noticeMap);
+
+				PrevNextVO prevNextVO = noticeDAO.getPrevNext(noticeNo);
+				noticeMap.put("prevNextVO", prevNextVO);
+				request.setAttribute("prevNextVO", prevNextVO);
 				
 				nextPage = "/customerService/noticeView.jsp";
 			

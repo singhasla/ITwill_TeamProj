@@ -8,7 +8,8 @@
 <c:set var="eventContent"  value="${event.eventContent}"/>
 <c:set var="eventImage"  value="${event.eventImage}"/>
 <c:set var="eventWriteDate"  value="${event.eventWriteDate}"/>
-
+<c:set var="prev"  value="${event.prev_eventNo}"/>
+<c:set var="next"  value="${event.next_eventNo}"/>
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
@@ -79,13 +80,26 @@
 	                            <div class="row">
 	                                <div class="col-lg-6 next1">
 	                                    <div class="blog__details__btns__item" >
-	                                        <h5><a href="${contextPath}/eventServlet/event-detail.do?eventNo=${eventNo+1}"><span class="arrow_left"></span>이전페이지</a>
-	                                        </h5>
+	                                    	<c:choose>
+	                                    		<c:when test="${prev == 0 || prev eq null}">
+													<h5><a onclick="prev_none()"><span class="arrow_left"></span>이전페이지</a></h5>
+	                                        	</c:when>
+	                                        	<c:otherwise>
+	                                        		<h5><a href="${contextPath}/eventServlet/event-detail.do?eventNo=${prev}"><span class="arrow_left"></span>이전페이지</a></h5>
+	                                        	</c:otherwise>
+	                                        </c:choose>	
 	                                    </div>
 	                                </div>
 	                                <div class="col-lg-6 next1">
 	                                    <div class="blog__details__btns__item next__btn">
-	                                        <h5><a href="${contextPath}/eventServlet/event-detail.do?eventNo=${eventNo-1}">다음페이지<span class="arrow_right"></span></a></h5>
+	                                    	<c:choose>
+	                                    		<c:when test="${next == 0 || next eq null}">
+	                                        		<h5><a onclick="next_none()">다음페이지<span class="arrow_right"></span></a></h5>
+	                                        	</c:when>
+	                                        	<c:otherwise>
+	                                        		<h5><a href="${contextPath}/eventServlet/event-detail.do?eventNo=${next}">다음페이지<span class="arrow_right"></span></a></h5>
+	                                        	</c:otherwise>
+	                                        </c:choose>	
                                         </div>
                                     </div>
                                 </div>
@@ -113,7 +127,16 @@
             </div>
         </section>
         <!-- Event Details Section End -->
-	
+		
+		<script>
+			function prev_none(){
+				window.alert("이전페이지가 존재하지 않습니다.");
+			}
+			
+			function next_none(){
+				window.alert("다음페이지가 존재하지 않습니다.");
+			}
+		</script>
 	<!-- footer영역 -->
 	<jsp:include page="../inc/footer.jsp" />
 

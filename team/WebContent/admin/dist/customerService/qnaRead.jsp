@@ -4,7 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>        
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:set var="qna" value="${qnaVO}"/>
-
+<fmt:formatDate var="qnaFmtDate" value="${qna.qnaWriteDate}" pattern="yyyy-MM-dd HH:mm"/>
+<fmt:formatDate var="answerFmtDate" value="${qna.answerWriteDate}" pattern="yyyy-MM-dd HH:mm"/>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -62,7 +63,7 @@
 													<th>작성자</th>
 													<td>${qna.userNo}</td>
 													<th>문의 작성일</th>
-													<td>${qna.qnaWriteDate}</td>
+													<td>${qnaFmtDate}</td>
 												</tr>
 												<tr>
 													<th>문의 제목</th>
@@ -89,7 +90,7 @@
 													<c:when test="${qna.answerWriteDate!=null}">
 													<tr>	
 														<th>답변 작성일</th>
-														<td colspan="3">${qna.answerWriteDate}</td>
+														<td colspan="3">${answerFmtDate}</td>
 													</tr>
 													</c:when>
 													<c:otherwise>
