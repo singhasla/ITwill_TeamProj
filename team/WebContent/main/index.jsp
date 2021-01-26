@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>다본다MOVIE</title>
+<title>다본다MOVIE.</title>
 </head>
 <body>
 	<jsp:forward page="main.do"/>
