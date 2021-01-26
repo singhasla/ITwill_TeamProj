@@ -55,11 +55,11 @@
                 <div class="col-lg-2">
                     <div class="header__right">
                         <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                        <a href="${contextPath}/ordersvlt/cart.do" ><span class="icon_cart"></span></a>
                        <!-- 위시리스트 아이콘 입니다 -->
                        <!--  <a href="#" ><span class="icon_star"></span></a> -->
 	                      <c:choose>
 		                       <c:when test="${sessionScope.userID!=null}">		
+                     		    <a href="${contextPath}/ordersvlt/cart.do" ><span class="icon_cart"></span></a>
 		                        <a href="${contextPath}/user/logout.do" ><span class="icon_lock-open"></span></a>
 	                        	<c:if test='${userID=="admin"}'>
 	                       			<a href="${contextPath}/adminPage/dashBoard.do" ><span class="icon_datareport"></span></a>
