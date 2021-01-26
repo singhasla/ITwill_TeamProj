@@ -399,5 +399,83 @@ public class CtgrDAO {
 		return list;
 	}//crimeList
 
+	public List<CtgrMovieVO> latestAllList() {
+		List<CtgrMovieVO> list = new ArrayList<CtgrMovieVO>();
+
+		try {
+			conn = getConnection();
+
+			sql = "select m.movieNo, m.movieName, m.movieImage, "
+				+ "m.movieCategoryNo1, c1.movieCategoryName AS CN1, "
+				+ "m.movieCategoryNo2, c2.movieCategoryName AS CN2, m.movieTime "
+				+ "from team.movie m "
+				+ "left outer join team.category c1 on m.movieCategoryNo1 = c1.movieCategoryNo "
+				+ "left outer join team.category c2 on m.movieCategoryNo2 = c2.movieCategoryNo "
+				+ "ORDER BY m.movieReleaseDate DESC;";
+
+			pstmt = conn.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				CtgrMovieVO vo = new CtgrMovieVO(rs.getInt("movieNo"), 
+										rs.getString("movieName"),
+										rs.getString("movieImage"),
+										rs.getInt("movieCategoryNo1"), 
+										rs.getString("CN1"),
+										rs.getInt("movieCategoryNo2"), 
+										rs.getString("CN2"),
+										rs.getString("movieTime"));
+
+				list.add(vo);
+			}
+		} catch (Exception e) {
+			System.out.println("latestAllList메소드 오류 :" + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			freeResource();
+		}
+		return list;
+	}//latestAllList
+
+	public List<CtgrMovieVO> hotAllList() {
+		List<CtgrMovieVO> list = new ArrayList<CtgrMovieVO>();
+
+		try {
+			conn = getConnection();
+
+			sql = "select m.movieNo, m.movieName, m.movieImage, "
+				+ "m.movieCategoryNo1, c1.movieCategoryName AS CN1, "
+				+ "m.movieCategoryNo2, c2.movieCategoryName AS CN2, m.movieTime "
+				+ "from team.movie m "
+				+ "left outer join team.category c1 on m.movieCategoryNo1 = c1.movieCategoryNo "
+				+ "left outer join team.category c2 on m.movieCategoryNo2 = c2.movieCategoryNo "
+				+ "ORDER BY m.movieAvgRating DESC;";
+
+			pstmt = conn.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				CtgrMovieVO vo = new CtgrMovieVO(rs.getInt("movieNo"), 
+										rs.getString("movieName"),
+										rs.getString("movieImage"),
+										rs.getInt("movieCategoryNo1"), 
+										rs.getString("CN1"),
+										rs.getInt("movieCategoryNo2"), 
+										rs.getString("CN2"),
+										rs.getString("movieTime"));
+
+				list.add(vo);
+			}
+		} catch (Exception e) {
+			System.out.println("hotAllList메소드 오류 :" + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			freeResource();
+		}
+		return list;
+	}//hotAllList
+
 
 }

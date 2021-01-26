@@ -44,6 +44,14 @@ public class CtgrService {
 	public List<CtgrMovieVO> crimeList() {
 		return ctrgDAO.crimeList();
 	}
+
+	public List<CtgrMovieVO> latestAllList() {
+		return ctrgDAO.latestAllList();
+	}
+
+	public List<CtgrMovieVO> hotAllList() {
+		return ctrgDAO.hotAllList();
+	}
 	
 
 }

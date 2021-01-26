@@ -105,7 +105,7 @@
 						</div>
 						<div class="col-lg-2 col-md-4 col-sm-4">
 							<div class="btn__all">
-								<a href="#" class="primary-btn">View All <span
+								<a href="${contextPath}/ctgrServlet/latestAll.do" class="primary-btn">View All <span
 									class="arrow_right"></span></a>
 							</div>
 						</div>
@@ -156,7 +156,7 @@
 						</div>
 						<div class="col-lg-2 col-md-4 col-sm-4">
 							<div class="btn__all">
-								<a href="#" class="primary-btn">View All <span
+								<a href="${contextPath}/ctgrServlet/hotAll.do" class="primary-btn">View All <span
 									class="arrow_right"></span></a>
 							</div>
 						</div>
