@@ -52,23 +52,17 @@
 	<!-- Header -->
 	<jsp:include page="../inc/header.jsp" />
 	
-	<!-- Normal Breadcrumb Begin -->
-    <section class="normal-breadcrumb set-bg" data-setbg="../img/normal-breadcrumb.jpg">
-        <div class="container">
+    <!-- Event Section Begin -->
+    <section class="blog spad">
+    	<div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <div class="normal__breadcrumb__text">
+                    <div class="blog__details__title">
                         <h2>이벤트</h2>
-                        <p>EVENT</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Normal Breadcrumb End -->
-
-    <!-- Event Section Begin -->
-    <section class="blog spad">
         <div class="container">
         	<!-- Search Begin -->
         	<div class="faq-search-box">
@@ -166,8 +160,6 @@
         </div>
     </section>
     <!-- Event Section End -->
-	
-	
 	
 	<!-- footer영역 -->
 	<jsp:include page="../inc/footer.jsp" />
