@@ -81,7 +81,7 @@
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                                         <div class="view"><i class="fa fa-eye"></i> ${list.movieTime}</div>
                                     </div>
-                                    <div class="product__item__text">
+                                    <div class="product__item__text" style="text-align: center;">
 										<ul>
 											<li>${list.CN1}</li>
 											<c:if test="${list.CN2 != null}">
@@ -91,6 +91,7 @@
 										<h5>
 											<a href="#">${list.movieName}</a>
 										</h5>
+										<br>
 									</div>
                                 </div>
                             </div>
