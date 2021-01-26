@@ -261,7 +261,8 @@ public class AdminUserDAO {
 				qnaVo.setQnaCategory(rs.getString("qnaContent"));
 				qnaVo.setQnaWriteDate(rs.getTimestamp("qnaWriteDate"));
 				qnaVo.setAnswerWriteDate(rs.getTimestamp("answerWriteDate"));
-				qnaVo.setAnswerTitle(rs.getString("answerTitle"));			
+				qnaVo.setAnswerTitle(rs.getString("answerTitle"));	
+				qnaVo.setAnswerContent(rs.getString("answerContent"));
 				userQ.add(qnaVo);
 			}
 			

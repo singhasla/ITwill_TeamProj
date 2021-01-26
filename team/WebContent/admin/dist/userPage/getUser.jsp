@@ -164,8 +164,7 @@
                                                 <th>QnA Title</th>
                                                 <th>QnA Category</th>
                                                 <th>QnA WriteDate</th>
-                                                <th>Answer Title</th>
-                                                <th>Answer WriteDate</th>
+                                                <th>Answer Content</th>
                                             </tr>
                                         </thead>
 
@@ -184,8 +183,7 @@
 			                                                <td>${userQ.qnaTitle}</td>
 			                                                <td>${userQ.qnaCategory}</td>
 			                                                <td>${qnaWriteDate}</td>
-			                                                <td>${userQ.answerTitle}</td>
-			                                                <td>${answerWriteDate}</td>
+			                                                <td>${userQ.answerContent}</td>
 			                                            </tr>
 			                      					</c:forEach>
 	                                   			</c:otherwise>
