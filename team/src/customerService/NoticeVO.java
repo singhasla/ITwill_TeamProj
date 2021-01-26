@@ -13,6 +13,7 @@ public class NoticeVO {
 	private int noticeReadCount;
 	private String noticeFile;
 	
+	
 	public NoticeVO() {
 		
 	}
@@ -94,9 +95,7 @@ public class NoticeVO {
 
 	public void setNoticeFile(String noticeFile) {
 		this.noticeFile = noticeFile;
-	}
+	}	
 	
-	
-	
-	
-}
+}	
+

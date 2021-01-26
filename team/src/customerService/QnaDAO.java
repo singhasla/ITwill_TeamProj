@@ -224,8 +224,8 @@ public class QnaDAO {
 		
 		try {
 			conn = getConnection();
-			String sql = "update qna set answerContent=?"
-						+ "where qnaNo = ?"; 
+			String sql = "update qna set answerContent=?, answerWriteDate= now()"
+						+ " where qnaNo = ?"; 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, answerContent);
 			pstmt.setInt(2, qnaNo);

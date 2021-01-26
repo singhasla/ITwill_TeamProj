@@ -220,12 +220,15 @@ public class EventDAO {
 		 try {
 			conn = getConnection();
 			
-			String sql = "select eventNo, eventTitle, eventContent, "
-						+ "eventImage, eventWriteDate"
+			String sql = "select *,"
+						+ "(select ifnull(eventNo,0) from event where eventNo < ? order by eventNo desc limit 1) as prev_eventNo,"
+						+ "(select ifnull(eventNo,0) from event where eventNo > ? order by eventNo asc limit 1) as next_eventNo"
 						+ " from event where eventNo = ?";
-			
+			System.out.println(sql);
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, eventNo);
+			pstmt.setInt(2, eventNo);
+			pstmt.setInt(3, eventNo);
 			rs = pstmt.executeQuery();
 			rs.next();
 			
@@ -234,12 +237,14 @@ public class EventDAO {
 			eventVO.setEventContent(rs.getString("eventContent"));
 			eventVO.setEventImage(rs.getString("eventImage"));
 			eventVO.setEventWriteDate(rs.getTimestamp("eventWriteDate"));
-			
-			closeAll();
+			eventVO.setPrev_eventNo(rs.getInt("prev_eventNo"));
+			eventVO.setNext_eventNo(rs.getInt("next_eventNo"));
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		} finally {
+			closeAll();
+		}
 		return eventVO;
 	 }
 	 
@@ -331,6 +336,8 @@ public class EventDAO {
 			closeAll();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			closeAll();
 		}
 		return removeEventNo;
 	 }
@@ -349,9 +356,11 @@ public class EventDAO {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		} finally {
+			closeAll();
+		}
 	 }
-
-
+	 //이전 글 다음글 
+	 
 }
 

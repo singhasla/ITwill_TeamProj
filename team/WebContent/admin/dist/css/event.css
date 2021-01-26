@@ -126,3 +126,10 @@ textarea {
 	width: 25%;
     height: 40px;
 }
+
+.cut {
+	width: 800px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
