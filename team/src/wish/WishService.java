@@ -6,8 +6,8 @@ import java.util.Map;
 public class WishService {
 	WishDAO wishDAO = new WishDAO();
 	
-	public List<MovieVO> myWishList(int userNo){	//회원 찜 목록
-		return wishDAO.myWishList(userNo);
+	public List<MovieVO> myWishList(int userNo, int start, int pageLength){	//회원 찜 목록
+		return wishDAO.myWishList(userNo, start, pageLength);
 	}
 
 	public void addItemWish(WishVO vo) {	//찜에 추가
@@ -20,6 +20,10 @@ public class WishService {
 
 	public void delSelectedItem1(int userNo, int movieNo){ //찜 리스트에 일부 상품만 삭제
 		wishDAO.delSelectedItem1(userNo, movieNo);
+	}
+
+	public int getBoardCount() {
+		return wishDAO.getBoardCount();
 	}
 
 }

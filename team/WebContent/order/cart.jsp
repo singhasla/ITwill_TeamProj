@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:set var="userNo" value="${sessionScope.userNo}"/>
-<%--String userNo = (String)session.getAttribute("userNo"); --%>
 
 <!DOCTYPE html>
 <html lang="zxx">

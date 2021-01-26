@@ -72,7 +72,7 @@ public class WishDAO {
 		return Number;
 	}//myUserNo
 	
-	public List<MovieVO> myWishList(int userNo) { // 회원의 찜 목록 조회
+	public List<MovieVO> myWishList(int userNo, int start, int pageLength) { // 회원의 찜 목록 조회
 		
 		List<MovieVO> list = new ArrayList();
 
@@ -82,11 +82,14 @@ public class WishDAO {
 			sql = "SELECT m.* FROM team.wishlist w JOIN team.movie m "
 					+ "ON w.movieNo = m.movieNo "
 					+ "WHERE w.userNo=? "
-					+ "ORDER BY wishWriteDate DESC;";
+					+ "ORDER BY wishWriteDate DESC "
+					+ "LIMIT ?, ?";
 
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, pageLength);
 
 			rs = pstmt.executeQuery();
 
@@ -182,5 +185,32 @@ public class WishDAO {
 			freeResource();
 		}
 	}// addItemWish
+
+	public int getBoardCount() {
+		
+		int count = 0; 
+		
+		try {
+			conn = getConnection();
+			
+			sql = "select count(*) from team.wishlist";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				count = rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("getBoardCount 메서드 내부에서 오류 : " + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			freeResource();
+		}
+		return count;
+	}
+
 
 }
