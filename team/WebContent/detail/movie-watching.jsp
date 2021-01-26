@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>    
 <c:set var="detail" value="${DetailVO}" />
+<c:set var="star" value="${star}" />
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -91,14 +92,15 @@
 		                            </div>
 		                            <div class="anime__details__rating">
 		                                <!-- 별점 -->
+		                                <span>평점 &nbsp; ${detail.movieAvgRating }</span>
 		                                <div class="rating">
-		                                    <a href="#"><i class="fa fa-star"></i></a>
-		                                    <a href="#"><i class="fa fa-star"></i></a>
-		                                    <a href="#"><i class="fa fa-star"></i></a>
-		                                    <a href="#"><i class="fa fa-star"></i></a>
-		                                    <a href="#"><i class="fa fa-star-half-o"></i></a>
+		 		   	                        <c:forEach var="i" begin="2" end="${star}" step="2">
+		 		   	                        	<a href="#"><i class="fa fa-star"></i></a>
+		 		   	                        </c:forEach>      
+			   	                        	<c:if test="${star%2 >= 1}">
+		 	                                    <a href="#"><i class="fa fa-star-half-o"></i></a>
+											</c:if>
 		                                </div>
-		                                <span>투표자수 n명</span>
 		                            </div>
 		                            <p>${detail.movieContent}</p>
 		                            <div class="anime__details__widget">

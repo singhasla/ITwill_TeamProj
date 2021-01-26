@@ -55,9 +55,7 @@ public class DetailController extends HttpServlet {
 			if (action == null || action.equals("/detail.do")) { //상세보기 페이지 첫화면
 
 				int movieNo = Integer.parseInt(request.getParameter("movieNo"));
-				
 				DetailVO vo = detailService.movieDetail(movieNo);
-
 				int star = (int)vo.getMovieAvgRating();
 				
 				request.setAttribute("DetailVO", vo);
@@ -67,11 +65,11 @@ public class DetailController extends HttpServlet {
 			} else if (action.equals("/watching.do")) {	
 				
 				int movieNo = Integer.parseInt(request.getParameter("movieNo"));
-				
 				DetailVO vo = detailService.movieDetail(movieNo);
+				int star = (int)vo.getMovieAvgRating();
 
 				request.setAttribute("DetailVO", vo);
-				
+				request.setAttribute("star", star);
 				nextPage = "/detail/movie-watching.jsp";
 
 			} else if (action.equals("/search.do")) {	//텍스트로 검색한 결과영화번호 리스트
@@ -85,8 +83,6 @@ public class DetailController extends HttpServlet {
 				
 				nextPage = "/search/search.jsp";
 
-				//nextPage = "/detailServlet/detail.do?movieNo="+movieNo;
-				///detailServlet/detail.do?movieNo=${latest.movieNo}
 			} 
 
 			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
