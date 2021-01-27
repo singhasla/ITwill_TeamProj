@@ -9,7 +9,7 @@
 >감상평<br>
 >댓글<br>
 -관리자페이지<br>
->영화관리<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>영화관리<br>
 <br>
 
 2. 이승하<br>
