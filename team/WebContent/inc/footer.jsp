@@ -10,18 +10,17 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-3">
-                <div class="footer__logo">
-                    <a href="./index.html"><img src="../img/logo.png" alt=""></a>
-                </div>
-            </div>
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <div class="footer__nav">
                     <ul>
-                        <li class="active"><a href="../main/index.jsp">Homepage</a></li>
-                        <li><a href="#">Homepage</a></li>
-                        <li><a href="#">Homepage </a></li>
-                        <li><a href="#">Homepage</a></li>
+                        <li class="active"><a href="${contextPath}/index.jsp">홈</a></li>
+                        <li><a href="${contextPath}/notice/listNotice.do">고객센터</a></li>
+                        <li><a href="#">이용약관</a></li>
+                        <li><a href="#">개인정보처리방침</a></li>
+                        <li><a href="#">법적고지</a></li>
+                        <li><a href="${contextPath}/eventServlet/listEvent.do">이벤트</a></li>
+                        <li><a href="${contextPath}/notice/listNotice.do">공지사항</a></li>
+                        
                     </ul>
                 </div>
             </div>
@@ -42,11 +41,11 @@
 <!-- Search model end -->
 
 <!-- Js Plugins -->
-<script src="../js/jquery-3.3.1.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/player.js"></script>
-<script src="../js/jquery.nice-select.min.js"></script>
-<script src="../js/mixitup.min.js"></script>
-<script src="../js/jquery.slicknav.js"></script>
-<script src="../js/owl.carousel.min.js"></script>
-<script src="../js/main.js"></script>
+<script src="${contextPath}/js/jquery-3.3.1.min.js"></script>
+<script src="${contextPath}/js/bootstrap.min.js"></script>
+<script src="${contextPath}/js/player.js"></script>
+<script src="${contextPath}/js/jquery.nice-select.min.js"></script>
+<script src="${contextPath}/js/mixitup.min.js"></script>
+<script src="${contextPath}/js/jquery.slicknav.js"></script>
+<script src="${contextPath}/js/owl.carousel.min.js"></script>
+<script src="${contextPath}/js/main.js"></script>

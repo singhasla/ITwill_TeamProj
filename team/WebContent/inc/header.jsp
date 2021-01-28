@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="header__logo">
-                        <a href="../main/index.jsp">
+                        <a href="${contextPath}/index.jsp">
                             <img src="${contextPath}/img/logo.png" alt="">
                         </a>
                     </div>
@@ -19,7 +19,7 @@
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
                             <ul>
-                            	<li ><a href="../main/index.jsp">홈</a></li>
+                            	<li ><a href="${contextPath}/index.jsp">홈</a></li>
                             	<li ><a href="${contextPath}/eventServlet/listEvent.do">이벤트</a></li>
                                 <li ><a href="${contextPath}/notice/listNotice.do">고객센터</a></li>
                                 <li><a href="#">카테고리 <span class="arrow_carrot-down"></span></a>
@@ -69,7 +69,7 @@
 		                       	
 		                       </c:when>
 		                       <c:otherwise>
-		                       		<a href="../login/login.jsp"><span class="icon_profile"></span></a>
+		                       		<a href="${contextPath}/login/login.jsp"><span class="icon_profile"></span></a>
 		                       </c:otherwise>
 	                       </c:choose>
                     </div>
