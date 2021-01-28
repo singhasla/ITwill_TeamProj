@@ -117,13 +117,13 @@ public class UserController extends HttpServlet{
 				}else{
 					session.setAttribute("userNo", Integer.toString(userNo));
 					session.setAttribute("userID", userID);
-					nextPage = "/main/index.jsp";
+					nextPage = "/index.jsp";
 				}
 			
 			
 			} else if (action.equals("/logout.do")) {
 				session.invalidate();
-				nextPage = "/main/index.jsp";
+				nextPage = "/index.jsp";
 				
 			} else if (action.equals("/nickCheck.do")) {
 				String userNickname = request.getParameter("userNickname");
