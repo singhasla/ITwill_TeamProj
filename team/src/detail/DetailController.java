@@ -55,11 +55,17 @@ public class DetailController extends HttpServlet {
 			if (action == null || action.equals("/detail.do")) { //상세보기 페이지 첫화면
 
 				int movieNo = Integer.parseInt(request.getParameter("movieNo"));
+				
 				DetailVO vo = detailService.movieDetail(movieNo);
 				int star = (int)vo.getMovieAvgRating();
+				double AvgRating = detailDAO.avgRating(movieNo);
+				List<CMTVO> list = detailService.cmtList(movieNo);
+				
 				
 				request.setAttribute("DetailVO", vo);
 				request.setAttribute("star", star);
+				request.setAttribute("star2", AvgRating);
+				request.setAttribute("cmtList", list);
 				nextPage = "/detail/movie-detail.jsp";
 			
 			} else if (action.equals("/watching.do")) {	
@@ -82,6 +88,18 @@ public class DetailController extends HttpServlet {
 				request.setAttribute("searchList", search);
 				
 				nextPage = "/search/search.jsp";
+
+			} else if (action.equals("/addcmt.do")) {	// 코멘트(한줄평) 등록
+				
+				int userNo = Integer.parseInt((String)session.getAttribute("userNo"));
+				int movieNo = Integer.parseInt(request.getParameter("movieNo"));
+				String commentContent = request.getParameter("comment");
+				int rating = Integer.parseInt(request.getParameter("rating"));
+				
+				CMTVO vo = new CMTVO(userNo, movieNo, commentContent, rating);
+				detailService.addCmt(vo);
+				
+				nextPage = "/detailServlet/detail.do";
 
 			} 
 
