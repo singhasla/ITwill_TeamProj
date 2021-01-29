@@ -136,6 +136,96 @@ public class DetailDAO {
 			}
 			return list;
 	}//searchMovie
+
+	public List<CMTVO> cmtList(int movieNo) {
+		List<CMTVO> list = new ArrayList();
+
+		try {
+			conn = getConnection();
+
+			sql = "SELECT c.*, u.userNickName FROM comment c join user u "
+					+ "ON c.userNo = u.userNo WHERE movieNo=?;";
+
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, movieNo);
+
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				CMTVO vo = new CMTVO(rs.getInt("commentNo"), 
+										 rs.getInt("userNo"), 
+										 rs.getInt("movieNo"), 
+										 rs.getString("commentContent"), 
+										 rs.getDate("commentWriteDate"),
+										 rs.getInt("rating"),
+										 rs.getString("userNickName"));
+				list.add(vo);
+			}
+		} catch (Exception e) {
+			System.out.println("cmtList메소드 오류 :" + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			freeResource();
+		}
+		return list;
+	}
+
+	public void addCmt(CMTVO vo) {
+		
+		try {
+			conn = getConnection();
+
+			int userNo = vo.getUserNo();
+			int movieNo = vo.getMovieNo();
+			String comment = vo.getCommentContent();
+			int rating = vo.getRating();
+
+			sql = "INSERT INTO comment (userNo,movieNo,commentContent,commentWriteDate,rating)"
+					+ "VALUES (?,?,?,sysdate(),?);";
+
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, movieNo);
+			pstmt.setString(3, comment);
+			pstmt.setInt(4, rating);
+
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("addCmt메소드 오류 :" + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			freeResource();
+		}
+	}//addCmt
+
+	public double avgRating(int movieNo) {
+
+		double star = 0;
+
+		try {
+			conn = getConnection();
+
+			sql = "SELECT AVG(rating) AS avg FROM comment WHERE movieNo=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, movieNo);
+			
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				star = rs.getDouble("avg");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("avgRating메소드 오류 :" + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			freeResource();
+		}
+		return star;
+	}//avgRating
 	
 	
 	

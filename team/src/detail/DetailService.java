@@ -17,6 +17,14 @@ public class DetailService {
 		return movieDAO.searchMovie(text);
 	}
 
+	public List<CMTVO> cmtList(int movieNo) {
+		return movieDAO.cmtList(movieNo);
+	}
+
+	public void addCmt(CMTVO vo) {
+		movieDAO.addCmt(vo);
+	}
+
 	
 
 	
