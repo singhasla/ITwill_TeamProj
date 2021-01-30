@@ -150,64 +150,66 @@
 	                            </div>
                             </c:forEach>
                         </div>
-                        <div class="anime__details__form">
-                            <div class="section-title">
-                                <h5>한줄평 남기기</h5>
-                            </div>
-                            <form action="addcmt.do">
-                            <div>
-                            	<input name="movieNo" type="hidden" value="${detail.movieNo}">
-                            	<div class="rating">
-                            		<input id="star-5" type="radio" name="rating" value="5"></input>
-						            <label for="star-5">
-						                <a href="#"><i class="fa fa-star"></i></a>
-						                <a href="#"><i class="fa fa-star"></i></a>
-						                <a href="#"><i class="fa fa-star"></i></a>
-						                <a href="#"><i class="fa fa-star"></i></a>
-						                <a href="#"><i class="fa fa-star"></i></a>
-						            </label>
-						            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						            <input id="star-4" type="radio" name="rating" value="4"></input>
-						             <label for="star-4">
-						                <a href="#"><i class="fa fa-star"></i></a>
-						                <a href="#"><i class="fa fa-star"></i></a>
-						                <a href="#"><i class="fa fa-star"></i></a>
-						                <a href="#"><i class="fa fa-star"></i></a>
-						                <i class="fa fa-star"></i>
-						            </label>
-						            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						            <input id="star-3" type="radio" name="rating" value="3"></input>
-						             <label for="star-3">
-						                <a href="#"><i class="fa fa-star"></i></a>
-						                <a href="#"><i class="fa fa-star"></i></a>
-						                <a href="#"><i class="fa fa-star"></i></a>
-						                <i class="fa fa-star"></i>
-						                <i class="fa fa-star"></i>
-						            </label>
-						            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						            <input id="star-2" type="radio" name="rating" value="2"></input>
-						             <label for="star-2">
-						                <a href="#"><i class="fa fa-star"></i></a>
-						                <a href="#"><i class="fa fa-star"></i></a>
-						                <i class="fa fa-star"></i>
-						                <i class="fa fa-star"></i>
-						                <i class="fa fa-star"></i>
-						            </label>
-						            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						            <input id="star-1" type="radio" name="rating" value="1"></input>
-						             <label for="star-1">
-						                <a href="#"><i class="fa fa-star"></i></a>
-						                <i class="fa fa-star"></i>
-						                <i class="fa fa-star"></i>
-						                <i class="fa fa-star"></i>
-						                <i class="fa fa-star"></i>
-						            </label>
-						          </div>
-						     </div>
-						          
-                                <textarea name="comment" placeholder="주제와 무관한 댓글, 악플은 삭제될 수 있습니다."></textarea>
-                                <button type="submit"><i class="fa fa-location-arrow"></i> 등록</button>
-                            </form>
+                        <c:if test="${userID ne null || userNo ne null }">
+	                        <div class="anime__details__form">
+	                            <div class="section-title">
+	                                <h5>한줄평 남기기</h5>
+	                            </div>
+	                            <form action="addcmt.do" method="post">
+	                            <div>
+	                            	<input name="movieNo" type="hidden" value="${detail.movieNo}">
+	                            	<div class="rating">
+	                            		<input id="star-5" type="radio" name="rating" value="5"></input>
+							            <label for="star-5">
+							                <a href="#"><i class="fa fa-star"></i></a>
+							                <a href="#"><i class="fa fa-star"></i></a>
+							                <a href="#"><i class="fa fa-star"></i></a>
+							                <a href="#"><i class="fa fa-star"></i></a>
+							                <a href="#"><i class="fa fa-star"></i></a>
+							            </label>
+							            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							            <input id="star-4" type="radio" name="rating" value="4"></input>
+							             <label for="star-4">
+							                <a href="#"><i class="fa fa-star"></i></a>
+							                <a href="#"><i class="fa fa-star"></i></a>
+							                <a href="#"><i class="fa fa-star"></i></a>
+							                <a href="#"><i class="fa fa-star"></i></a>
+							                <i class="fa fa-star"></i>
+							            </label>
+							            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							            <input id="star-3" type="radio" name="rating" value="3"></input>
+							             <label for="star-3">
+							                <a href="#"><i class="fa fa-star"></i></a>
+							                <a href="#"><i class="fa fa-star"></i></a>
+							                <a href="#"><i class="fa fa-star"></i></a>
+							                <i class="fa fa-star"></i>
+							                <i class="fa fa-star"></i>
+							            </label>
+							            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							            <input id="star-2" type="radio" name="rating" value="2"></input>
+							             <label for="star-2">
+							                <a href="#"><i class="fa fa-star"></i></a>
+							                <a href="#"><i class="fa fa-star"></i></a>
+							                <i class="fa fa-star"></i>
+							                <i class="fa fa-star"></i>
+							                <i class="fa fa-star"></i>
+							            </label>
+							            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							            <input id="star-1" type="radio" name="rating" value="1"></input>
+							             <label for="star-1">
+							                <a href="#"><i class="fa fa-star"></i></a>
+							                <i class="fa fa-star"></i>
+							                <i class="fa fa-star"></i>
+							                <i class="fa fa-star"></i>
+							                <i class="fa fa-star"></i>
+							            </label>
+							          </div>
+							     </div>
+							          
+	                                <textarea name="comment" placeholder="주제와 무관한 댓글, 악플은 삭제될 수 있습니다."></textarea>
+	                                <button type="submit"><i class="fa fa-location-arrow"></i> 등록</button>
+	                            </form>
+                            </c:if>
                         </div>
                     </div>
                 </div>
