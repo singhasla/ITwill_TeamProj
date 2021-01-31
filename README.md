@@ -14,7 +14,8 @@
     * JDK8(ver_1.8.0)
     * Tomcat(ver_8.0)
     * MySQL Workbench 8.0 CE
-  + SCM : Git(GitHub)
+  + SCM :
+    * Git(GitHub)
 
 - 담당 개발부분
   + 메인페이지<br>
