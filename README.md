@@ -14,7 +14,7 @@
     * JDK8(ver_1.8.0)
     * Tomcat(ver_8.0)
     * MySQL Workbench 8.0 CE
-  + SCM :
+  + SCM(버전관리) :
     * Git(GitHub)
 
 - 역할 : 팀장
