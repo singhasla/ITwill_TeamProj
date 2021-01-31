@@ -4,13 +4,17 @@
 - 간단소개 : 인터넷을 통한 영화 미디어 콘텐츠를 제공하는 서비스 사이트입니다.
 
 - 기술스택 :
-  + Language : Java  / JSP / Javascript  / Jquery
-  + SCM : Git(GitHub)
+  + Language : 
+    * Java
+    * JSP
+    * Javascript
+    * Jquery
   + Tool : 
     * Eclipse-jee-mars
     * JDK8(ver_1.8.0)
     * Tomcat(ver_8.0)
     * MySQL Workbench 8.0 CE
+  + SCM : Git(GitHub)
 
 - 담당 개발부분
   + 메인페이지<br>
