@@ -1,5 +1,6 @@
 # TeamProj(Model2패턴)
 ## 소개 : 영화🎥 OTT 사이트(http://tobeadev1.shop/) <br>
+### <a href="https://github.com/singhasla/teamProject/팀프로젝트1.pdf">Portfolio 보기</a>
 
 - 간단소개 : 인터넷을 통한 영화 미디어 콘텐츠를 제공하는 서비스 사이트입니다.
 
